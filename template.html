@@ -110,8 +110,9 @@ body {
 .nav-chapter:hover,
 .nav-chapter.active {
   opacity: 1;
-  background: var(--color-bg);
+  background: rgba(139, 109, 92, 0.15);
   color: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-bg);
 }
 
 .nav-roman {
@@ -163,9 +164,14 @@ body {
 }
 
 /* Size classes on body */
-body.text-size-default { --reading-font-size: 1.125rem; --reading-line-height: 1.85; }
-body.text-size-bigger  { --reading-font-size: 1.35rem;  --reading-line-height: 1.9; }
-body.text-size-biggest { --reading-font-size: 1.65rem;  --reading-line-height: 1.95; }
+body.text-size-default { --reading-font-size: 1.125rem; }
+body.text-size-bigger  { --reading-font-size: 1.35rem; }
+body.text-size-biggest { --reading-font-size: 1.65rem; }
+
+/* Line spacing classes on body */
+body.line-spacing-compact { --reading-line-height: 1.6; }
+body.line-spacing-default { --reading-line-height: 1.85; }
+body.line-spacing-relaxed { --reading-line-height: 2.15; }
 
 /* ========================================
    Chapter Headers
@@ -457,7 +463,7 @@ body.text-size-biggest { --reading-font-size: 1.65rem;  --reading-line-height: 1
 }
 </style>
 </head>
-<body class="text-size-default">
+<body class="text-size-default line-spacing-default">
 
 <div class="page-wrapper">
   <!-- Left: scrolling text -->
@@ -484,19 +490,31 @@ body.text-size-biggest { --reading-font-size: 1.65rem;  --reading-line-height: 1
 <nav class="chapter-nav" id="chapter-nav">
 {{CHAPTER_NAV}}
 <div class="text-size-controls">
-  <button class="text-size-btn active" data-size="default" onclick="setTextSize('default')">A</button>
-  <button class="text-size-btn" data-size="bigger" onclick="setTextSize('bigger')" style="font-size:0.85rem">A</button>
-  <button class="text-size-btn" data-size="biggest" onclick="setTextSize('biggest')" style="font-size:1.05rem">A</button>
+  <button class="text-size-btn" data-group="spacing" data-val="compact" onclick="setLineSpacing('compact')" title="Compact spacing">≡</button>
+  <button class="text-size-btn active" data-group="spacing" data-val="default" onclick="setLineSpacing('default')" title="Default spacing">☰</button>
+  <button class="text-size-btn" data-group="spacing" data-val="relaxed" onclick="setLineSpacing('relaxed')" title="Relaxed spacing">⋮</button>
+</div>
+<div class="text-size-controls" style="border-top:none; padding-top:0.25rem">
+  <button class="text-size-btn active" data-group="size" data-val="default" onclick="setTextSize('default')">A</button>
+  <button class="text-size-btn" data-group="size" data-val="bigger" onclick="setTextSize('bigger')" style="font-size:0.85rem">A</button>
+  <button class="text-size-btn" data-group="size" data-val="biggest" onclick="setTextSize('biggest')" style="font-size:1.05rem">A</button>
 </div>
 </nav>
 <script>
 function setTextSize(size) {
   document.body.classList.remove('text-size-default', 'text-size-bigger', 'text-size-biggest');
   document.body.classList.add('text-size-' + size);
-  document.querySelectorAll('.text-size-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.size === size);
+  document.querySelectorAll('[data-group="size"]').forEach(b => {
+    b.classList.toggle('active', b.dataset.val === size);
   });
-  // Re-measure after font size change
+  if (window._pretextReflow) window._pretextReflow();
+}
+function setLineSpacing(spacing) {
+  document.body.classList.remove('line-spacing-compact', 'line-spacing-default', 'line-spacing-relaxed');
+  document.body.classList.add('line-spacing-' + spacing);
+  document.querySelectorAll('[data-group="spacing"]').forEach(b => {
+    b.classList.toggle('active', b.dataset.val === spacing);
+  });
   if (window._pretextReflow) window._pretextReflow();
 }
 </script>
