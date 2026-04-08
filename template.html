@@ -518,22 +518,47 @@ body.line-spacing-relaxed { --reading-line-height: 2.15; }
 </div>
 </nav>
 <script>
+function updateURL() {
+  const seg = window._activeSegmentId || '';
+  const size = document.body.className.match(/text-size-(\w+)/)?.[1] || 'default';
+  const spacing = document.body.className.match(/line-spacing-(\w+)/)?.[1] || 'default';
+  const hash = seg ? `#${seg}` : '';
+  const params = new URLSearchParams();
+  if (size !== 'default') params.set('size', size);
+  if (spacing !== 'default') params.set('spacing', spacing);
+  const qs = params.toString();
+  const url = qs ? `?${qs}${hash}` : hash || '.';
+  history.replaceState(null, '', url);
+}
+
 function setTextSize(size) {
   document.body.classList.remove('text-size-default', 'text-size-bigger', 'text-size-biggest');
   document.body.classList.add('text-size-' + size);
   document.querySelectorAll('[data-group="size"]').forEach(b => {
     b.classList.toggle('active', b.dataset.val === size);
   });
+  updateURL();
   if (window._pretextReflow) window._pretextReflow();
 }
+
 function setLineSpacing(spacing) {
   document.body.classList.remove('line-spacing-compact', 'line-spacing-default', 'line-spacing-relaxed');
   document.body.classList.add('line-spacing-' + spacing);
   document.querySelectorAll('[data-group="spacing"]').forEach(b => {
     b.classList.toggle('active', b.dataset.val === spacing);
   });
+  updateURL();
   if (window._pretextReflow) window._pretextReflow();
 }
+
+// Restore settings from URL on page load
+(function restoreFromURL() {
+  const params = new URLSearchParams(location.search);
+  const size = params.get('size');
+  const spacing = params.get('spacing');
+  if (size && ['bigger', 'biggest'].includes(size)) setTextSize(size);
+  if (spacing && ['compact', 'relaxed'].includes(spacing)) setLineSpacing(spacing);
+})();
 </script>
 
 <script type="module">
@@ -584,6 +609,16 @@ function init() {
     reflowWithPretext();
     syncFromScroll();
   };
+
+  // Restore scroll position from URL hash
+  const hash = location.hash.replace('#', '');
+  if (hash) {
+    const target = document.getElementById(hash);
+    if (target) {
+      target.scrollIntoView({ block: 'center' });
+      activateSegment(hash);
+    }
+  }
 }
 
 // ============================================
@@ -734,6 +769,8 @@ function mediaHTML(mediaId, mood) {
 function activateSegment(mediaId) {
   const prev = activeSegmentId;
   activeSegmentId = mediaId;
+  window._activeSegmentId = mediaId;
+  updateURL();
 
   if (prev && mediaElements[prev]) {
     mediaElements[prev].classList.remove('active');
