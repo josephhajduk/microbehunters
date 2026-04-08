@@ -1,0 +1,37 @@
+{
+  "id": "ch08_sec04",
+  "chapter": 8,
+  "section": 4,
+  "scientist": "Theobald Smith",
+  "subtitle": "Ticks and Texas Fever",
+  "summary": "Dr. Salmon assigns Theobald Smith to investigate Texas fever in 1888. Smith examines cow spleens shipped on ice, discovers the first sample is spoiled and useless, then finds that fresh specimens show mysteriously destroyed red blood cells but no obvious microbe. He dismisses a rival scientist's false claims and realizes he must study the living disease in the field. When his assistant Kilborne mentions the cattlemen's belief that ticks cause the fever, Smith's respect for practical farmers' wisdom leads him to take the theory seriously and plan field experiments for the summer of 1889.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Then, in 1888, Dr. Salmon put Theobald Smith, with Kilborne to help him, and Alexander to clean up after them—saying nothing about ticks, Salmon put his entire staff to work on Texas fever.",
+      "visual": {
+        "scene_description": "Theobald Smith in his sweltering attic laboratory examines a cow spleen under a microscope, with ice-packed pails nearby. A circular inset shows fragmented red blood cells with no visible microbes.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, quiet neat clean-shaven young man in wool waistcoat and rolled shirtsleeves hunched over brass compound microscope in cramped hot attic laboratory, wooden pails packed with ice and dark organ specimens on workbench, summer light through small window, circular magnified inset showing shattered red blood cells with no bacteria visible"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 5],
+      "anchor_sentence": "\"Somewhat pompous claims,\" said Smith, and he blew away all that pseudo-scientific rubbish in a few dry sentences.",
+      "visual": {
+        "scene_description": "Smith sits at a desk scattered with scientific papers and journals, pushing aside a rival's published claims. He looks up with a sharp, determined expression, thinking beyond the laboratory toward the cattle fields.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, clean-shaven young man in wool waistcoat seated at cluttered desk covered with scientific papers and glass syringes, pushing a journal aside with one hand, sharp focused expression, small window showing distant green pasture with cattle silhouettes, oil lamp casting yellow glow across scattered notes"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [6, 8],
+      "anchor_sentence": "Now, though Theobald Smith was born in a city, he liked the smell of hay just cut and the brown furrows of fresh-turned fields.",
+      "visual": {
+        "scene_description": "Smith stands outdoors at a wooden fence talking with a weathered cattleman who points toward a pasture. A cow grazes in the background with small ticks visible on its hide. Smith listens intently, notebook in hand.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, clean-shaven man in wool waistcoat leaning on wooden rail fence beside a weathered cattleman in wide-brimmed hat and suspenders pointing toward grazing cow, small dark ticks visible on cow hide, rolling green pasture under open sky, Smith holding small notebook and pencil, attentive expression"
+      }
+    }
+  ]
+}

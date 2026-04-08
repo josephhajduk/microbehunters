@@ -1,0 +1,70 @@
+{
+  "id": "ch10_sec06",
+  "chapter": 10,
+  "section": 6,
+  "scientist": "Grassi",
+  "subtitle": "Ross vs. Grassi — Malaria",
+  "summary": "Giovanni Battista Grassi, a meticulous Italian zoologist, independently set out to prove which mosquito carries malaria. Through dogged fieldwork across Italy's malarious lowlands, he identified the Anopheles claviger (zanzarone) as the sole suspect. In experiments at the Hospital of the Holy Spirit in Rome, he proved that only this specific mosquito could transmit malaria to humans, and that baby mosquitoes do not inherit the disease from their mothers — only mosquitoes that bite infected people can spread it.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "You might know Giovanni Battista Grassi would be the man to do what Ronald Ross had not quite succeeded in bringing off.",
+      "visual": {
+        "scene_description": "Grassi is introduced as a brilliant zoologist at his desk surrounded by specimens of eels and termites, with Italian political newspapers urging action on malaria spread across the table.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, dark-featured Italian man with animated expression and red-rimmed eyes seated at a cluttered University of Rome desk, glass jars of preserved eels and pinned termite specimens surrounding him, stacked zoology monographs, 19th-century lecture hall with arched windows, late afternoon light from tall windows casting shadows across scattered papers and a brass hand lens",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 14],
+      "anchor_sentence": "Koch was an extremely grumpy, quiet, and restless man now; sad because of the affair of his consumption cure (which had killed a considerable number of people); restless after the scandal of his divorce from Emmy Fraatz.",
+      "visual": {
+        "scene_description": "Grassi argues passionately with a dismissive Robert Koch about mosquitoes and malaria, gesturing emphatically while Koch stands arms crossed and unimpressed.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, animated dark-featured Italian man gesturing emphatically at a stocky German man with thick dark mustache and round wire spectacles who stands with arms crossed scowling, 19th-century Italian study with stone walls and shuttered windows, map of Italy pinned to wall with marked malaria regions, scattered specimen jars of mosquitoes on a wooden table between them",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [15, 18],
+      "anchor_sentence": "His lectures for the year 1898 at the University of Rome over, he was a conscientious man who always gave more lectures than the law demanded, he needed a rest, and on the 15th of July he took it.",
+      "visual": {
+        "scene_description": "Grassi trudges through hot Italian marshlands catching mosquitoes in fat glass test-tubes, cataloging each species in his notebook as he hunts for the malaria culprit.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, thin dark-featured Italian man with red-rimmed eyes crouching in a hot marshy Italian lowland, fat glass test-tube in one hand trapping a mosquito with his thumb over the opening, small cramped notebook tucked under his arm, reeds and stagnant water around him, low stone farmhouses in the background under hazy summer sky, several different mosquito species visible on nearby surfaces",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [19, 22],
+      "anchor_sentence": "So it was—it is most fantastical—that Battista Grassi went more than two-thirds of the way to solving this puzzle of how malaria gets from sick men to healthy ones before he had ever made a single experiment in his laboratory!",
+      "visual": {
+        "scene_description": "Grassi identifies the zanzarone — the Anopheles mosquito with four dark spots on her wings, sitting tail-up — as the one mosquito always found where malaria strikes.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, large detailed Anopheles mosquito perched tail-up on a wall with four dark spots visible on light brown wings, circular magnified inset showing crescent-shaped malaria gametocytes inside round red blood cells, dark-featured Italian man peering closely at the mosquito through a hand lens in a dim Italian village bedroom, oil lamp on bedside table, rumpled bed linens in background",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [23, 31],
+      "anchor_sentence": "\"I'll try them on myself!\" Grassi cried.",
+      "visual": {
+        "scene_description": "In a high room of the Hospital of the Holy Spirit in Rome, Mr. Sola sits on a hospital bed as Grassi releases Anopheles mosquitoes from small glass bottles into the darkened room for the decisive experiment.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, high-ceilinged hospital room atop a hill in Rome visible through arched window, dark-featured Italian scientist opening small glass bottles releasing Anopheles mosquitoes toward an elderly man sitting stoically on an iron hospital bed, oil lamp casting dim light, mosquitoes with spotted wings hovering in the air, 19th-century medical ward with stone walls and simple furnishings",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [32, 38],
+      "anchor_sentence": "Over the country went Grassi once more, chasing zanzarone, hoarding zanzarone: in his laboratory he tenderly raised zanzarone on winter-melons and sugar-water; and in the top of the hospital of the Holy Spirit, in those high mosquito-proof rooms, Grassi and Bastianelli (to say nothing of another assistant, Bignami) loosed zanzarone into the bedrooms of people who had never had malaria—and so gave them malaria.",
+      "visual": {
+        "scene_description": "Grassi and his friends sit in a room at dusk with sleeves and trouser legs rolled up, letting baby Anopheles mosquitoes bite them to prove that offspring of infected mothers cannot transmit malaria.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, dark-featured Italian man and six companions seated in a dim room at dusk with trouser legs rolled to knees and shirtsleeves rolled to elbows, dozens of Anopheles mosquitoes with spotted wings landing on their bare skin, glass breeding jars with cut winter-melons and sugar-water on a side table, 19th-century Roman laboratory with shuttered windows, expressions of stoic determination",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

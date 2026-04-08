@@ -1,0 +1,40 @@
+{
+  "id": "ch11_sec06",
+  "chapter": 11,
+  "section": 6,
+  "scientist": "Walter Reed",
+  "subtitle": "In the Interest of Science—and for Humanity!",
+  "summary": "After Reed's discovery, Gorgas wipes out yellow fever in Habana by destroying Stegomyia mosquitoes, but rash immunization attempts by Gorgas and Guiteras kill three volunteers. Carroll returns to Habana obsessed with finding what actually causes yellow fever, and by filtering infected blood through porcelain proves the germ is an invisible ultra-microbe too small for any microscope. Carroll's relentless self-experimentation and disregard for his own safety define him as the bravest of Reed's team, but his damaged heart gives out six years later.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Then the world came to Habana, and there was acclaim for Walter Reed, and the customary solemn discussions and doubts and arguments of the learned men who came.",
+      "visual": {
+        "scene_description": "Skeptical visiting doctors scramble in panic out of a laboratory room as a jar of Stegomyia mosquitoes is accidentally uncorked, the insects buzzing free while the gauze lid lies on the floor.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a group of bearded doctors in dark formal frock coats and top hats stampeding toward a wooden screen door inside a sparse tropical laboratory, an overturned glass jar on a table with gauze lid fallen aside, several dark Stegomyia mosquitoes buzzing free in the air, louvered shutters letting in bright Caribbean light, wooden benches and insect cages lining the walls",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 5],
+      "anchor_sentence": "There was panic in Habana, and mutterings of the mob—and who can blame that mob, for human life is sacred.",
+      "visual": {
+        "scene_description": "Carroll and Reed lean over a brass compound microscope in a cramped military laboratory, peering at slides of yellow fever blood and finding nothing visible, with a circular inset showing an empty microscope field of view among red blood cells.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a bald bespectacled man in rolled shirtsleeves and a kind-faced officer in US Army uniform lean over a brass compound microscope on a wooden desk in a dim military laboratory, thin glass slides and staining bottles scattered around, oil lamp casting amber glow, circular magnified inset showing round red blood cells with no visible microbes among them",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [6, 10],
+      "anchor_sentence": "Walter Reed was busy, so he sent James Carroll to Habana to see, and here you find James Carroll, intensely annoyed because those experimental cases of Guitéras had died.",
+      "visual": {
+        "scene_description": "Carroll carefully pours yellow fever blood through a white porcelain filter in a Habana laboratory, collecting the invisible filtrate in a glass flask below, determined to prove the germ passes through.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a bald bespectacled man in rolled shirtsleeves carefully pouring dark blood from a glass vial into a white cylindrical porcelain filter clamped above a clear flask on a wooden laboratory bench, filtered clear liquid dripping into the flask below, syringes and glass tubes arranged nearby, louvered shutters open to tropical light, mosquito cages stacked against the wall",
+        "mood": "discovery"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "ch08_sec02",
+  "chapter": 8,
+  "section": 2,
+  "scientist": "Theobald Smith",
+  "subtitle": "Ticks and Texas Fever",
+  "summary": "Young Theobald Smith, a Cornell graduate and Albany-trained doctor, had no interest in practicing medicine and wanted to do real science with microbes. Unable to afford studying in Europe like wealthier peers, he took a humble job at the tiny Bureau of Animal Industry in Washington, where the staff consisted of just four people. In a cramped, sweltering attic laboratory, Smith taught himself Koch's methods from German texts and began making his own discoveries, including a new kind of filtered vaccine.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "In 1884 Theobald Smith was in his middle twenties; he was a Bachelor of Philosophy of Cornell University; he was a doctor of medicine from the Albany Medical College.",
+      "visual": {
+        "scene_description": "Young Theobald Smith as a student at Cornell, peering intently through a microscope in a college laboratory, surrounded by textbooks and sheet music, hinting at his dual passions for science and organ playing.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, quiet neat clean-shaven young man in 1880s American college attire peering through a brass compound microscope at a wooden laboratory bench, open German textbooks and rolled sheet music nearby, tall windows casting afternoon light across the cluttered desk, glass specimen slides stacked beside the microscope",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 3],
+      "anchor_sentence": "He graduated and wanted above everything to be an experimenter, but he had, before anything, to make a living.",
+      "visual": {
+        "scene_description": "Smith arrives at the small, underfunded Bureau of Animal Industry in Washington, meeting the tiny staff of four in a modest government office with a few caged guinea pigs and dirty bottles.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, quiet neat clean-shaven young man in plain 1880s suit entering a cramped dingy government office, older man at a desk piled with papers, wooden cages holding guinea pigs on a low shelf, dirty glass bottles and jars lining a windowsill, a worn American flag on the wall, sparse furnishings suggesting a meager budget",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [4, 5],
+      "anchor_sentence": "In a little room lighted by a dormer window under the roof in the attic of a government building, Smith set out to hunt microbes.",
+      "visual": {
+        "scene_description": "Smith works intensely in his hot, cramped attic laboratory under a dormer window, hunched over a brass microscope with syringes, platinum wire loops, and glass flasks around him, cockroaches scurrying on the floor.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, quiet neat clean-shaven young man in rolled shirtsleeves hunched over a brass compound microscope in a tiny sweltering attic room, dormer window casting slanted light, platinum wire loop and syringe on the bench, sealed glass flasks of broth cultures, open German book propped against the wall, cockroaches on the wooden floorboards",
+        "mood": "discovery"
+      }
+    }
+  ]
+}

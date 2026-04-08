@@ -1,0 +1,60 @@
+{
+  "id": "ch10_sec03",
+  "chapter": 10,
+  "section": 3,
+  "scientist": "Ross",
+  "subtitle": "Ross vs. Grassi — Malaria",
+  "summary": "Ronald Ross, a failed writer and frustrated army doctor, returns to London in 1894 and meets Patrick Manson, who convinces him that mosquitoes carry malaria. Ross sails to India to prove the theory, but his early experiments are plagued by ignorance, bungling, and stubborn mosquitoes that refuse to bite. Despite years of failed attempts feeding people mosquito soup and chasing false leads at Secunderabad, Ross persists with relentless determination, slowly learning to identify malaria parasites even as the real answer eludes him.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 5],
+      "anchor_sentence": "He went back to London in 1894, plotting to throw up medicine and science.",
+      "visual": {
+        "scene_description": "Ross and Manson peer through a microscope in Manson's London office, watching crescent-shaped malaria parasites with whip-like flagella bursting from red blood cells.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, two Victorian-era men in a London medical office, one with thin mustache in British Indian Army coat, the other older with white side-whiskers in black frock coat, both leaning over a brass compound microscope on a wooden desk, gaslight on wall, circular magnified inset showing crescent-shaped malaria parasites with long whip-like flagella emerging from pale red blood cells",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [6, 8],
+      "anchor_sentence": "Of course that didn't really bother Patrick Manson at all.",
+      "visual": {
+        "scene_description": "Manson and Ross walk along busy Oxford Street as Manson passionately explains his theory that mosquitoes transmit malaria, gesturing toward an imagined mosquito.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, two Victorian gentlemen walking along a crowded London street with horse-drawn carriages and gas lamps, older doctor in black frock coat gesturing emphatically with both hands, younger man with thin mustache listening intently, a large detailed mosquito looming above them in the sky like a shared vision, brick storefronts and top-hatted pedestrians in background",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [9, 11],
+      "anchor_sentence": "\"It is my duty to solve the problem,\" Ross said.",
+      "visual": {
+        "scene_description": "Ross arrives at the desolate military station at Secunderabad, a sun-scorched plain with rocky outcrops and small lakes, carrying his microscope case and looking determined.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a lone British army doctor with thin mustache in sweat-stained white shirt and pith helmet stepping off a horse cart at a desolate Indian military station, flat dusty plain with jagged rock piles and small stagnant lakes, low white barracks buildings, blazing sun overhead, the man clutching a leather case containing a brass microscope, determined stance",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [12, 14],
+      "anchor_sentence": "He started out to follow Manson's orders.",
+      "visual": {
+        "scene_description": "Ross in his cramped hot quarters at Secunderabad, hunched over a mosquito net soaked with water, trying to coax mosquitoes to bite while peering at captured specimens in glass bottles.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a frustrated British officer with thin mustache in rolled shirtsleeves hunched over a bed draped with wet mosquito netting in a cramped hot room, glass bottles with captured mosquitoes on a wooden table beside a brass microscope, oil lamp casting sharp shadows, mosquitoes buzzing around the dripping net, sweat on the man's brow, scattered papers and letters on the floor",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [15, 17],
+      "anchor_sentence": "What an incredible pair of searchers they were!",
+      "visual": {
+        "scene_description": "Ross at his desk writing frantic letters to Manson, surrounded by bottles of dead mosquitoes and failed experiments, a glass of murky mosquito-water nearby.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a weary British army doctor with thin mustache slumped at a cluttered desk writing a letter by oil lamp light in a stifling Indian bungalow, glass jars of dead mosquitoes in murky water lined up on the desk, crumpled papers and scattered envelopes, a brass microscope pushed aside, ceiling fan overhead, the man's face showing exhausted determination",
+        "mood": "tension"
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "ch03_sec07",
+  "chapter": 3,
+  "section": 7,
+  "scientist": "Pasteur",
+  "subtitle": "Microbes Are a Menace!",
+  "summary": "After saving the silkworm industry, the forty-five-year-old Pasteur boldly declared that man could wipe parasitic diseases from the earth. Driven by patriotic fervor after the Franco-Prussian War, he threw himself into improving French beer, visiting breweries and studying yeast under the microscope, but discovered he loathed the taste of beer. He then turned to a heated public argument about whether yeasts arise spontaneously inside grapes, and through a series of ingenious experiments with swan-neck flasks and sterilized tubes, proved conclusively that yeasts come only from the outside surface of grapes, not from within.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "He was forty-five.",
+      "visual": {
+        "scene_description": "Pasteur, emboldened after his silkworm success, stands amid the turmoil of the Franco-Prussian War era and channels his patriotic anger into a mission to improve French beer.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a determined middle-aged man with neat trimmed beard and round spectacles wearing a formal black frock coat, standing in a 19th-century French study with maps and newspapers scattered on a wooden desk, one fist raised defiantly, a foaming beer stein and glass laboratory flasks visible on the table behind him, winter light through tall arched windows",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 5],
+      "anchor_sentence": "He embarked on vast voyages to the great breweries of France and here he questioned everybody from the brewmaster in his studio to the lowest workman that cleaned out the vats.",
+      "visual": {
+        "scene_description": "Pasteur visits a large brewery and peers through his microscope at yeast from beer vats, but grimaces at the taste of the beer he must sample.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a man with neat trimmed beard and round spectacles in a black frock coat, hunched over a brass compound microscope in a brewery with large copper vats and burnished kettles, a foamy mug of beer beside him untouched, his nose wrinkled in distaste, circular inset showing round budding yeast cells with visible cell walls",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [6, 7],
+      "anchor_sentence": "Pasteur did help the French beer industry.",
+      "visual": {
+        "scene_description": "Pasteur stands before the French Academy of Sciences, arguing passionately against Fremy's claim that yeasts generate spontaneously inside grapes.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a man with neat trimmed beard round spectacles and formal black frock coat gesturing dramatically at a podium before rows of seated academics in a grand 19th-century French lecture hall with tall columns and arched ceiling, bunches of grapes and a swan-neck glass flask on the demonstration table beside him",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [8, 9],
+      "anchor_sentence": "\"So Frémy says that yeasts rise by themselves inside the grape!\" cried Pasteur.",
+      "visual": {
+        "scene_description": "Pasteur performs his decisive experiment, using a sterilized hollow tube to extract juice from inside a grape and transferring it to a swan-neck flask, proving no yeasts exist inside the fruit.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a man with neat trimmed beard round spectacles and black frock coat carefully piercing a ripe grape with a thin sealed glass tube at a wooden laboratory bench, rows of swan-neck flasks filled with grape juice lined up beside him, some flasks showing pink foam and others clear and still, an oil lamp illuminating the scene",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

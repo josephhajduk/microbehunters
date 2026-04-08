@@ -1,0 +1,40 @@
+{
+  "id": "ch07_sec02",
+  "chapter": 7,
+  "section": 2,
+  "scientist": "Metchnikoff",
+  "subtitle": "The Nice Phagocytes",
+  "summary": "In 1883, Metchnikoff sets up a makeshift laboratory in a Sicilian cottage and begins studying how starfish digest food. He discovers wandering cells that flow like amoebas and gobble up carmine particles he places inside transparent starfish larvae. In a sudden flash of insight, he leaps to the idea that these same wandering cells must protect all animals—including humans—from invading microbes. He tests his theory by pushing rose thorns into a starfish larva and finds the wandering cells swarming around the slivers by morning, convincing himself (and a famous professor) that he has discovered the secret of immunity.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "It was in 1883, when the discoveries of Pasteur and Koch had made everybody mad about microbes, that Metchnikoff turned suddenly from a naturalist into a microbe hunter.",
+      "visual": {
+        "scene_description": "Metchnikoff hunched over a parlor table in his Sicilian cottage, peering through a lens at a transparent starfish larva while tiny carmine particles are visible inside the creature, with bowls of starfish and sponges scattered around the makeshift laboratory.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy bearded man with round spectacles in rumpled dark coat hunched over a small parlor table cluttered with glass bowls of starfish and sponges, peering through a handheld brass lens at a transparent starfish larva, circular magnified inset showing amoeba-like irregular cells flowing toward red carmine granules inside a translucent body, sunlit Sicilian cottage window with blue sea visible beyond",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 7],
+      "anchor_sentence": "The next day Olga took the children to the circus to see some extraordinary performing monkeys.",
+      "visual": {
+        "scene_description": "Metchnikoff alone in his parlor, springing to his feet in a moment of electrifying revelation, arms thrown wide, as he realizes the wandering cells must protect all creatures from microbes.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy bearded man with round spectacles leaping up from a chair with arms flung wide in dramatic excitable gesture, eyes blazing with sudden insight, parlor room with glass bowls of starfish on the table, circular inset showing large irregular white blood cells with visible nuclei surrounding and engulfing small rod-shaped bacilli, late nineteenth-century Italian cottage interior",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [8, 11],
+      "anchor_sentence": "Now Koch, precise microbe hunter that he was, would hardly have trusted Metchnikoff with the wiping of his microscope, but his ignorance of germs was nothing to this wild Russian.",
+      "visual": {
+        "scene_description": "Metchnikoff at dawn examining a starfish larva and finding wandering cells clustered around a rose thorn he inserted the night before, with a small rose bush and cottage garden visible through the doorway.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy bearded man with round spectacles holding up a transparent starfish larva toward early dawn light streaming through a cottage window, a small thorny rose branch on the table beside him, circular magnified inset showing sluggish irregular phagocyte cells with visible nuclei massed densely around a dark rose thorn sliver, cottage garden with rose shrub visible through open door",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

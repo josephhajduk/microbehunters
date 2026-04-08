@@ -1,0 +1,50 @@
+{
+  "id": "ch07_sec05",
+  "chapter": 7,
+  "section": 5,
+  "scientist": "Metchnikoff",
+  "subtitle": "The Nice Phagocytes",
+  "summary": "Metchnikoff arrives at the Pasteur Institute and sparks a twenty-year scientific feud: he insists phagocytes (white blood cells) defend us by eating germs, while German scientists like Behring argue it is the blood serum that kills microbes. Neither side will consider that both might be right. Meanwhile, Metchnikoff's wild personality transforms the Institute into a bustling circus of experimentation, with dozens of devoted assistants racing to prove his phagocyte theory before every medical congress.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "Metchnikoff bounced into the austere Pasteur Institute and started a circus there which lasted for twenty years; it was as if a skilled proprietor of a medicine show had become pastor of a congregation of sober Quakers.",
+      "visual": {
+        "scene_description": "Metchnikoff and Behring face off in a heated scientific debate at a medical congress, each gesturing passionately, with a split image showing phagocytes on one side and blood serum on the other.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, two scientists arguing across a podium at a 19th-century medical congress, wild-bearded Metchnikoff with round spectacles gesturing left, broad-shouldered blond-mustached Behring in formal dress gesturing right, circular inset split in half showing large irregular phagocyte engulfing rod-shaped bacilli on one side and blood serum dissolving bacteria on the other, gas-lit lecture hall with tiered wooden seats behind them",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 7],
+      "anchor_sentence": "But the stumbling strides of microbe hunters are not made by any perfect logic, and that is the reason I may write a grotesque, but not perfect story of their deeds.",
+      "visual": {
+        "scene_description": "Metchnikoff stands in the Pasteur Institute, his wild bushy beard and spectacles prominent, hair growing long over his collar, lecturing animatedly with dramatic gestures to an unseen audience.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Metchnikoff with wild bushy white beard and round spectacles and long unkempt hair over his collar, standing in a stone-walled Pasteur Institute corridor, arms spread wide in dramatic gesture, wearing a rumpled dark coat, behind him shelves of glass specimen jars containing tadpoles and scorpions, tall arched windows casting daylight across worn floorboards",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [8, 10],
+      "anchor_sentence": "He had brilliant ideas for experiments and was always trying to carry out these ideas—intensely—but at any moment he was ready to drop his science to praise the operas of Mozart or whistle the symphonies of Beethoven, and sometimes he seemed to be more learned about the dramas and the loves of Goethe than about those phagocytes upon which his whole fame rested.",
+      "visual": {
+        "scene_description": "Metchnikoff's chaotic laboratory-studio at the Pasteur Institute, overflowing with instruments, animal cages, and young doctors eagerly crowding around workbenches.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, bustling 19th-century laboratory crammed with brass microscopes and glass flasks and caged guinea pigs, wild-bearded Metchnikoff at center with round spectacles whistling with eyes closed, young doctors in white aprons crowded around wooden workbenches, stacks of papers and specimen jars on every surface, gas lamps hanging from ceiling, cluttered shelves lining the walls",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [11, 12],
+      "anchor_sentence": "\"Mr. Saltykoff!\" he would cry.",
+      "visual": {
+        "scene_description": "Metchnikoff with sleeves rolled up, red-faced and wild-eyed, injecting microbes into exotic animals while his assistants rush around the laboratory in frantic preparation for a congress.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, red-faced Metchnikoff with wild bushy beard and round spectacles and rolled-up shirtsleeves gripping a glass syringe, injecting a large green frog on a wooden table, assistants in dark coats rushing past carrying glass jars and specimen trays, rhinoceros beetles and axolotls visible in tanks along the wall, circular inset showing round colorless phagocyte cells engulfing rod-shaped bacilli",
+        "mood": "adventure"
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "ch03_sec03",
+  "chapter": 3,
+  "section": 3,
+  "scientist": "Pasteur",
+  "subtitle": "Microbes Are a Menace!",
+  "summary": "Pasteur moves to Paris and sets up a makeshift laboratory in a rat-infested attic at the Normal School. He devises a clever experiment to prove that living yeasts, not mere chemical breakdown, ferment sugar into alcohol — disproving the great chemist Liebig. His triumphs win him fame and prizes but also fierce enemies, partly because of his arrogant manner. Along the way he discovers anaerobic microbes that make rancid-butter acid, though he fails to credit earlier observers like Leeuwenhoek and Spallanzani, and begins to dream that microbes may cause human disease.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Then one day in the midst of all this—they were just nicely settled in Lille—he came to her and said: \"We are going to Paris, I have just been made Administrator and Director of Scientific Studies in the Normal School.\"",
+      "visual": {
+        "scene_description": "Pasteur climbs rickety stairs to a cramped attic in the Normal School, chasing rats away and claiming the tiny room as his laboratory, surrounded by flasks and a microscope.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man in round spectacles and formal black frock coat ascending narrow wooden stairs into a cramped attic room, rats scurrying away, dusty rafters overhead, a single window letting in pale light, brass microscope and glass flasks arranged on a rough plank table, cobwebs in corners, 19th-century Parisian rooftop visible through the window.",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 6],
+      "anchor_sentence": "Liebig, the great German, the prince of chemists, the pope of chemistry, was opposed to his idea.",
+      "visual": {
+        "scene_description": "Pasteur in his attic lab carefully prepares his albumenless yeast experiment, weighing ammonia salt and sugar into clean flasks of distilled water, determined to disprove Liebig.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, bearded man with round spectacles and black frock coat hunched over a rough wooden table in a cramped attic, carefully pouring crystalline powder from a small balance scale into a round glass flask filled with clear liquid, several stoppered bottles nearby, a yellowish flake of yeast on a glass rod, an iron incubating oven against the wall.",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [7, 9],
+      "anchor_sentence": "That night he turned over and over in his bed.",
+      "visual": {
+        "scene_description": "Pasteur peers through his microscope at budding yeasts the next morning, discovering they have thrived and produced alcohol in the albumenless soup — his experiment has succeeded.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, bearded man with round spectacles pressing his eye to a brass compound microscope in a sunlit attic, expression of elated surprise, a glass flask of cloudy foaming liquid beside him, a retort with drops of distilled alcohol trickling down its neck, circular magnified inset showing oval budding yeast cells with visible cell walls and daughter buds.",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [10, 13],
+      "anchor_sentence": "His new fact was old stuff by now but still he kept on, he cared for his yeasts like some tender father, he fed them and loved them and was proud of their miraculous work of turning great quantities of sugar into alcohol.",
+      "visual": {
+        "scene_description": "Pasteur stands before the French Academy of Sciences, triumphantly presenting his yeast findings to a grand audience of formally dressed scientists in a vaulted lecture hall.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, bearded man with round spectacles in formal black frock coat standing at a lectern in a grand 19th-century Parisian lecture hall, gesturing emphatically toward a table of glass flasks and bottles, rows of seated men in dark coats and high collars watching intently, tall arched windows, ornate ceiling molding, gaslight chandelier overhead.",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [14, 16],
+      "anchor_sentence": "It is only natural that in the midst of this hurrahing there was some quiet hissing.",
+      "visual": {
+        "scene_description": "Pasteur at about forty-five, looking combative and confident, stands in his laboratory surrounded by flasks — some of which have gone wrong with a rancid smell — while critics murmur.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, bearded man with round spectacles and black frock coat standing defiantly in a cluttered laboratory, arms crossed, rows of glass flasks on wooden shelves behind him, some flasks cloudy and discolored, a faint wavy line suggesting bad odor rising from one bottle, stern determined expression, gaslight casting sharp shadows on stone walls.",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [17, 20],
+      "anchor_sentence": "Why this annoying rancid butter smell—why sometimes no sour-milk-acid?",
+      "visual": {
+        "scene_description": "Pasteur examines a drop under his microscope and discovers large swimming microbes — anaerobic bacteria that make rancid-butter acid — alive in the center of the drop but dead at the air-exposed edge.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, bearded man with round spectacles peering intently into a brass microscope in a dim attic laboratory, a spoiled flask giving off wavy odor lines nearby, circular magnified inset showing large elongated rod-shaped bacteria with visible flagella swimming actively in the center while stiff immobile rods lie at the edge of the drop, clear contrast between lively center and still periphery.",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 6,
+      "paragraph_range": [21, 23],
+      "anchor_sentence": "Unfortunately it was the third example.",
+      "visual": {
+        "scene_description": "A split scene showing ghostly echoes of Leeuwenhoek and Spallanzani who discovered anaerobic life long before, while Pasteur in his lab dreams of microbes as the cause of human disease.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, bearded man with round spectacles seated at a desk writing by candlelight in a cramped laboratory, faded ghostly silhouettes of a man in a 17th-century periwig and another in a black cassock flanking him in the background, jars of spoiled meat on a shelf, swirling tiny dots suggesting invisible microbes drifting from the jars toward a shadowed human figure, somber reflective atmosphere.",
+        "mood": "curiosity"
+      }
+    }
+  ]
+}

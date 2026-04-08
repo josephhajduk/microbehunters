@@ -1,0 +1,70 @@
+{
+  "id": "ch01_sec04",
+  "chapter": 1,
+  "section": 4,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "Leeuwenhoek discovers teeming microbes in the white stuff between his teeth and in the mouth of an old man who never brushed. He becomes famous across Europe, visited by Peter the Great and the Queen of England, yet stays devoted to truth above all. He accidentally discovers that hot coffee kills mouth bacteria, puzzles over why microbes have no visible organs, and watches microbes devour baby mussels in canal water. In old age he refuses to teach his methods, and on his deathbed at ninety-one he dictates his final letters to the Royal Society.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 6],
+      "anchor_sentence": "Those little animals were everywhere!",
+      "visual": {
+        "scene_description": "Leeuwenhoek peers through his tiny hand-held brass microscope at a sample scraped from his teeth, with a circular inset showing the mouth bacteria he discovered — rods, spirals, and darting spheres.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, round-faced Dutch man with big nose and white curled periwig in long dark wool coat hunched over tiny brass plate microscope held to his eye, quill and salt pot on wooden table, 17th-century Dutch study with leaded glass window, circular magnified inset showing rod-shaped bacilli and spiral corkscrew bacteria and darting round cocci swimming in fluid",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [7, 9],
+      "anchor_sentence": "You may wonder that Leeuwenhoek nowhere in any of those hundreds of letters makes any mention of the harm these mysterious new little animals might do to men.",
+      "visual": {
+        "scene_description": "Leeuwenhoek in his later years, famous across Europe, demonstrating his microscopes to distinguished visitors including royalty in his Delft study, surrounded by hundreds of his tiny brass instruments.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly round-faced Dutch man with big nose and white curled periwig in long dark wool coat standing proudly in a crowded 17th-century Dutch study, shelves lined with dozens of tiny brass plate microscopes, a tall man in Russian fur-trimmed coat and a woman in English court dress peering through a microscope, candlelight illuminating the scene",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [10, 15],
+      "anchor_sentence": "He was an amazingly healthy man, and at the age of eighty his hand hardly trembled as he held up his microscope for visitors to peep at his little animals or to exclaim at the unborn oysters.",
+      "visual": {
+        "scene_description": "Leeuwenhoek at eighty, drinking steaming hot coffee at his table, then examining the white stuff from his front teeth under his microscope and finding the bacteria killed by the heat.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly round-faced Dutch man with big nose and white curled periwig in dark wool coat seated at wooden table drinking from steaming ceramic cup, sweat on his brow, brass plate microscope beside him, circular magnified inset showing still unmoving rod-shaped bacteria lying dead among empty fluid, 17th-century Dutch interior with tiled floor",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [16, 18],
+      "anchor_sentence": "With what delight he watched them once more!",
+      "visual": {
+        "scene_description": "Leeuwenhoek examining a glass jar of canal water containing baby mussels, watching through his lens as tiny microbes swarm over and devour the shellfish embryos.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly round-faced Dutch man with big nose and white curled periwig in dark wool coat peering through tiny brass plate microscope at a glass jar of murky canal water containing small open mussel shells on his wooden worktable, circular magnified inset showing swarming rod-shaped bacteria attacking and engulfing translucent mussel embryo tissue, Dutch canal visible through window",
+        "mood": "wonder"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [19, 23],
+      "anchor_sentence": "He passed eighty, and his teeth came loose as they had to even in his strong body; he didn't complain at the inexorable arrival of the winter of his life, but he jerked out that old tooth and turned his lens onto the little creatures he found within that hollow root—why shouldn't he study them once more?",
+      "visual": {
+        "scene_description": "Very elderly Leeuwenhoek at eighty-five, still vigorous and defiant, showing visitors his microscopes while refusing to take on students, his study packed with instruments and letters.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, very elderly round-faced Dutch man with big nose and white curled periwig in long dark wool coat standing defiantly with bright eyes and raised finger in a cluttered 17th-century study, stacks of handwritten letters on desk, shelves crowded with hundreds of tiny brass microscopes, two younger men in scholar robes gesturing pleadingly at him",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [24, 27],
+      "anchor_sentence": "That was the first of the microbe hunters.",
+      "visual": {
+        "scene_description": "Ninety-one-year-old Leeuwenhoek on his deathbed, dictating his final letters to his friend Hoogvliet, two sealed letters resting on the bedside table destined for the Royal Society in London.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, frail very old Dutch man with white curled periwig lying in a canopied bed with heavy blankets, a younger man in dark 17th-century Dutch clothing seated beside him writing with a quill, two folded and sealed letters on a small wooden bedside table, single candle casting dim light across the somber room, leaded glass window showing gray sky",
+        "mood": "sadness"
+      }
+    }
+  ]
+}

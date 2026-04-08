@@ -1,0 +1,70 @@
+{
+  "id": "ch04_sec07",
+  "chapter": 4,
+  "section": 7,
+  "scientist": "Koch",
+  "subtitle": "The Death Fighter",
+  "summary": "Koch presents his groundbreaking discovery of the tuberculosis bacillus to Berlin's top scientists, leaving even the great Virchow speechless. His fame explodes worldwide, but the modest Koch dislikes the attention and keeps working, training pupils who go to extreme lengths to prove microbes cause disease. When cholera strikes Egypt, Koch races against the French team to find its cause, and after the tragic death of young Thuillier, Koch presses on to India where he finally identifies the comma-shaped cholera bacillus and learns how it spreads through contaminated water.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "On the twenty-fourth of March in 1882 in Berlin there was a meeting of the Physiological Society in a plain small room made magnificent by the presence of the most brilliant men of science in Germany.",
+      "visual": {
+        "scene_description": "Koch nervously presents his tuberculosis discovery to an audience of eminent scientists in a small Berlin lecture room, while the powerful Virchow sits stone-faced before silently leaving.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, small bespectacled man with thick dark mustache and round wire spectacles standing at a lectern clutching papers, facing rows of seated bearded men in dark formal coats in a gas-lit wood-paneled Berlin lecture hall, one stern silver-haired man in the front row rising to leave with top hat in hand, 1882 German academic setting",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 8],
+      "anchor_sentence": "If old Leeuwenhoek, two hundred years before, had made so astounding a discovery, Europe of the Seventeenth Century would have heard the news in months.",
+      "visual": {
+        "scene_description": "The news of Koch's tuberculosis discovery spreads around the world as doctors flood to Berlin; Koch tries to work quietly at his microscope while crowds of eager students from many nations press around him.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, small man with thick dark mustache and round wire spectacles hunched over a brass compound microscope at a wooden bench, surrounded by a pressing crowd of eager doctors in various national dress, beef-broth jelly plates and glass tubes on shelves behind, a telegraph machine sparking in the corner, 1882 Berlin laboratory",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [9, 11],
+      "anchor_sentence": "In all of his writings I have never found any evidence that Koch considered himself a great originator; never, like Pasteur, did he seem to realize that he was the leader in the most beautiful and one of the most thrilling battles of men against cruel nature—there was no actor in this mussy-bearded little man.",
+      "visual": {
+        "scene_description": "Koch's daring pupils conduct dangerous self-experiments: Fehleisen injects chain-shaped streptococci into patients, and Garrè rubs staphylococci onto his own arm, proving these microbes cause disease.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a determined young doctor in rolled shirtsleeves rubbing liquid from a glass test tube onto his own forearm in a cluttered 1880s laboratory, shelves of specimen jars behind him, circular magnified inset showing round cocci bacteria linked in chains like beads of a rosary with visible cell walls",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [12, 14],
+      "anchor_sentence": "Meanwhile, at the end of 1882, when Koch had finished his virulent and partly comic wrangle with Pasteur, who was just then with prodigious enthusiasm saving the lives of sheep and cattle in France, the discoverer of the tubercle bacillus started sniffing along the trail of one of the most delicate, the most easy to kill, and yet the most terribly savage of all microbes.",
+      "visual": {
+        "scene_description": "Koch and Gaffky work frantically in a sweltering makeshift laboratory in Alexandria, Egypt, dissecting cholera victims and peering through microscopes in a race against Pasteur's French team to find the cholera microbe.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, two men in sweat-stained shirtsleeves hunched over brass compound microscopes in a muggy Alexandria laboratory, specimen jars and caged mice and apes on tables, arched window showing Egyptian rooftops and minarets beyond, glass slides and staining dyes scattered on the bench, steamy tropical heat suggested by dripping walls",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [15, 17],
+      "anchor_sentence": "Koch and Gaffky were getting ready to return to Berlin, when one morning a frightened messenger came to them and told them: \"Dr. Thuillier, of the French Commission, is dead—of cholera.\"",
+      "visual": {
+        "scene_description": "Koch solemnly carries laurel wreaths at the funeral of young Thuillier, the French microbe hunter killed by cholera in Egypt, then hurries back to Berlin with mysterious boxes containing specimens of a comma-shaped microbe.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, small bespectacled man with thick dark mustache in dark formal coat laying laurel wreaths on a plain wooden coffin in a sun-bleached Egyptian cemetery, a gaunt dark-bearded Frenchman standing grief-stricken nearby, pale dusty gravestones and palm trees under harsh midday sun, solemn procession of scientists behind",
+        "mood": "sadness"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [18, 22],
+      "anchor_sentence": "So Koch sailed from Berlin for Calcutta, with the fate of Thuillier hanging over him, drolly chaperoning fifty mice and dreadfully annoyed by seasickness.",
+      "visual": {
+        "scene_description": "Koch in Calcutta discovers the comma-shaped cholera bacillus in every victim he examines, grows it pure on beef-broth jelly, and traces it to contaminated water tanks near Hindu huts, finally returning to Germany as a conquering hero.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, small bespectacled man with thick dark mustache and round wire spectacles peering into a brass compound microscope in a Calcutta laboratory, glass tubes of beef-broth jelly on the bench, circular magnified inset showing comma-shaped bacilli with flagella swimming among round cells, Indian architecture visible through an open window",
+        "mood": "discovery"
+      }
+    }
+  ]
+}

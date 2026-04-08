@@ -1,0 +1,60 @@
+{
+  "id": "ch02_sec02",
+  "chapter": 2,
+  "section": 2,
+  "scientist": "Spallanzani",
+  "subtitle": "Microbes Must Have Parents!",
+  "summary": "Spallanzani refused to believe that living creatures could arise spontaneously from mud or gravy. Inspired by Redi's clever experiment disproving that maggots arise from meat, he set out to test whether microscopic animals truly spring from dead matter. When a rival priest named Needham claimed to have created animalcules in mutton gravy, Spallanzani spotted the flaws in the experiment and designed a far more rigorous one: sealing glass flasks shut in a flame and boiling them for a full hour.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "Even the scientists were on this side of the question.",
+      "visual": {
+        "scene_description": "Scientists and citizens in 17th-century Europe confidently pointing at mice emerging from river mud, illustrating the widespread belief in spontaneous generation that Spallanzani rejected.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black Catholic priest cassock standing apart from a group of wigged 17th-century naturalists who gesture excitedly at mice crawling from dark river mud, the priest frowning with arms crossed in disbelief, riverside landscape with reeds and a stone bridge behind them",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 6],
+      "anchor_sentence": "Then one night, in his solitude, he came across a little book, a simple and innocent little book, and this book told him of an entirely new way to tackle the question of how life arises.",
+      "visual": {
+        "scene_description": "Spallanzani reading Redi's book late at night by candlelight, captivated by the description of the elegant jar-and-veil experiment that disproved spontaneous generation of flies.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black cassock hunched over a small open book at a wooden desk, single candle casting long shadows, coat draped over chair back, his eyes wide with excitement, 17th-century Italian stone-walled study with arched ceiling and stacked leather-bound volumes on shelves",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [7, 10],
+      "anchor_sentence": "Spallanzani began fumblingly to learn how to grow wee beasts, and how to use a microscope.",
+      "visual": {
+        "scene_description": "Spallanzani in his cluttered laboratory struggling with broken glass flasks and a foggy microscope lens, learning through trial and error how to culture and observe microbes.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black cassock with rolled-up sleeves at a stone laboratory bench, broken glass flask shards on the table, one hand holding a brass microscope while the other wipes a lens with cloth, scattered seed jars and round-bellied glass flasks, 18th-century Italian laboratory with arched windows",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [11, 13],
+      "anchor_sentence": "The Royal Society and the whole educated world were excited by Needham's discovery.",
+      "visual": {
+        "scene_description": "Spallanzani alone in his laboratory at night, hair disheveled, chewing a quill pen as he realizes the fatal flaw in Needham's experiment: insufficient heat and loose corks.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black cassock alone at a desk in a dim laboratory, shaggy hair falling forward, chewing a quill pen with narrowed dark eyes, a sheet of paper before him with sketched flask diagrams, dusty glass flasks and a brass microscope on a side table, single oil lamp casting dramatic shadows on stone walls",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [14, 17],
+      "anchor_sentence": "So he took his shining flasks one by one, and rolled their necks gently in a hot flame till each one was fused completely shut.",
+      "visual": {
+        "scene_description": "Spallanzani carefully melting the glass necks of round-bellied flasks shut over a flame, then lowering the sealed flasks into large caldrons of boiling water for his rigorous experiment.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black cassock holding a round-bellied glass flask with tapering neck over a bright flame, the glass neck glowing orange and fusing shut, a row of sealed flasks on the table beside a large iron caldron of boiling water with steam rising, 18th-century Italian stone laboratory with fireplace",
+        "mood": "adventure"
+      }
+    }
+  ]
+}

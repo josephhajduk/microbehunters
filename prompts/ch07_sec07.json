@@ -1,0 +1,60 @@
+{
+  "id": "ch07_sec07",
+  "chapter": 7,
+  "section": 7,
+  "scientist": "Metchnikoff",
+  "subtitle": "The Nice Phagocytes",
+  "summary": "Metchnikoff, now famous and happy, writes a massive treatise on immunity and turns his attention to aging and death, founding the speculative sciences of 'Gerontology' and 'Thanatology.' He searches fruitlessly for people who welcome death, studies ancient animals, and then partners with Roux to investigate syphilis in apes. Their experiments lead to a genuinely important discovery: calomel ointment can prevent syphilis infection if applied soon after exposure, proven first in apes and then in a daring human volunteer experiment.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "At last Metchnikoff began really to be happy.",
+      "visual": {
+        "scene_description": "Metchnikoff at his desk writing his enormous treatise on immunity, surrounded by stacks of manuscript pages, radiating satisfaction and purpose in his study.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy white-bearded man with round spectacles seated at a heavy wooden desk piled high with manuscript pages and open books, quill pen in hand, wearing a dark wool coat, late 19th-century Parisian study with tall bookshelves, oil lamp casting sharp shadows, expression of deep contentment and concentration",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 7],
+      "anchor_sentence": "ÉLIE METCHNIKOFF",
+      "visual": {
+        "scene_description": "Metchnikoff in his garden at Sevres with his ancient tortoise and various elderly animals people have sent him, investigating old age with eccentric enthusiasm.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy white-bearded man with round spectacles kneeling in a sunlit garden beside a large old tortoise on flagstones, a gray-muzzled dog and elderly cat nearby, the man examining the tortoise with a magnifying glass, suburban French cottage with ivy walls in the background, scattered notebooks on the ground",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [8, 10],
+      "anchor_sentence": "But to push back old age?",
+      "visual": {
+        "scene_description": "The Pasteur Institute transformed into a primate house, with chimpanzees and monkeys in large cages while Metchnikoff and Roux plan their syphilis experiments.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, two scientists in a high-ceilinged stone laboratory room filled with large wire cages holding chimpanzees and small monkeys, one man wild bushy white beard and round spectacles gesturing excitedly, the other gaunt with dark pointed beard and rolled shirtsleeves holding a notebook, 19th-century Parisian institutional interior",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [11, 13],
+      "anchor_sentence": "Almost at once Roux and Metchnikoff made an important find; their experiments were ingenious and they had about them a certain tautness and clearness that was strangely un-Metchnikoffian.",
+      "visual": {
+        "scene_description": "Metchnikoff applying calomel ointment to one of two apes after inoculation, demonstrating the prevention experiment that would become his most practical discovery.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy white-bearded man with round spectacles carefully applying grayish ointment from a small jar to the arm of a chimpanzee restrained on a laboratory table, a second untreated chimpanzee in a cage behind, brass microscope and glass vials on a side bench, gaslit 19th-century Paris laboratory with tiled walls",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [14, 15],
+      "anchor_sentence": "Then for the last time Metchnikoff's strange insanity got hold of him.",
+      "visual": {
+        "scene_description": "The dramatic scene of volunteer Maisonneuve standing before a committee of distinguished doctors while Metchnikoff prepares the calomel ointment, a tense moment of medical daring.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a young man in a white shirt standing resolute before a semicircle of seated distinguished men in dark formal coats in a grand lecture hall, wild bushy white-bearded man with round spectacles holding a small ointment jar approaching, gaslit chandelier overhead, polished wood paneling and tall windows",
+        "mood": "tension"
+      }
+    }
+  ]
+}

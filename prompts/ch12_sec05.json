@@ -1,0 +1,50 @@
+{
+  "id": "ch12_sec05",
+  "chapter": 12,
+  "section": 5,
+  "scientist": "Paul Ehrlich",
+  "subtitle": "The Magic Bullet",
+  "summary": "Ehrlich discovers Atoxyl, an arsenic compound that shows promise against sleeping sickness but blinds patients. Despite chemists insisting Atoxyl cannot be modified, Ehrlich proves them wrong in his chaotic, bottle-strewn laboratory and enlists his chief chemist Bertheim to create hundreds of new arsenic compounds. For two years the entire staff tests 606 compounds on mice, enduring failures where cures cause jaundice, death, or bizarre dancing in the mice, yet Ehrlich's relentless optimism drives them forward toward his great day in 1909.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "The dyes were a great disappointment.",
+      "visual": {
+        "scene_description": "Ehrlich sits in a cluttered office reading a chemical journal, discovering Atoxyl, surrounded by towering piles of books and papers. His makeshift laboratory has a huge table covered in hundreds of mismatched bottles and a single Bunsen burner flame.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly man with wrinkled brow and round spectacles, coat stained with chemical dyes, hunched in wooden chair surrounded by towering book stacks, reading a journal intently, huge table covered in hundreds of bottles with slopped purple liquid, single Bunsen burner with blue flame, dim gas-lit cluttered room",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 4],
+      "anchor_sentence": "Here Paul Ehrlich dabbled with Atoxyl, shouting: \"Splendid!\", growling: \"Un-be-liev-a-ble!\", dictating to the long-suffering Miss Marquardt, bawling for the indispensable Kadereit.",
+      "visual": {
+        "scene_description": "Ehrlich rushes hatless and coatless from his messy lab to Bertheim's proper chemistry workshop, gesticulating wildly and exclaiming that Atoxyl can be changed into a thousand new compounds.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, excited elderly man with round spectacles and dye-stained coat bursting through doorway without hat, arms gesturing wildly, entering a proper chemistry workshop with glass retorts and beakers, younger chemist in white apron looking startled, scattered papers with chemical diagrams on benches, gaslit corridor behind",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [5, 7],
+      "anchor_sentence": "For the next two years the whole staff, Japs and Germans, not to mention some Jews, men and white rats and white mice, not to mention Miss Marquardt and Miss Leupold—and don't forget Kadereit!—toiled together in that laboratory which was like a subterranean forge of imps and gnomes.",
+      "visual": {
+        "scene_description": "A bustling laboratory full of researchers testing arsenic compounds on rows of white mice in cages, some mice dancing and spinning in circles, while Ehrlich observes with fascination rather than dismay.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, crowded basement laboratory with multiple researchers in shirtsleeves working at benches, rows of glass cages with white mice, several mice standing on hind legs spinning in circles, elderly man with round spectacles and stained coat watching mice with amused expression, racks of numbered glass vials along walls, dim overhead gas lamps",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [8, 9],
+      "anchor_sentence": "They invented countless compounds, and it was a business for despair.",
+      "visual": {
+        "scene_description": "Ehrlich sketches chemical diagrams on scraps of paper and restaurant menu cards, surrounded by his skeptical but inspired staff, as they push through compound after compound toward number 606.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly man with round spectacles and cigar sketching chemical diagrams on scattered menu cards and postcards at a beer-hall table, younger chemists leaning in watching with amazed expressions, dozens of crumpled papers with molecular drawings strewn about, numbered vials in wooden rack showing 591 through 606, warm lamplight",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

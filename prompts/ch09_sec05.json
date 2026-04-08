@@ -1,0 +1,50 @@
+{
+  "id": "ch09_sec05",
+  "chapter": 9,
+  "section": 5,
+  "scientist": "Bruce",
+  "subtitle": "Trail of the Tsetse",
+  "summary": "Bruce is summoned to Uganda where sleeping sickness is killing hundreds of thousands. A young researcher named Castellani has stumbled upon trypanosomes in the spinal fluid of victims. Bruce and his team confirm the finding in every patient, then cleverly prove healthy people lack the parasite, establishing trypanosomes as the cause. With his practical instincts, Bruce traces the disease to a narrow strip along lakeshores and rivers, suspecting a tsetse fly carries it from victim to victim.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "Presently, two years after Ladysmith, he became stronger than they\u2014and they came asking him to hunt microbes....",
+      "visual": {
+        "scene_description": "The devastating sleeping sickness spreads across the shores of Lake Victoria Nyanza, with villagers collapsing into lethargy while a Royal Society commission of three scientists arrives by boat.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, panoramic view of Lake Victoria Nyanza shoreline with thatched-roof huts among tall tropical trees, three European scientists in Victorian tropical dress and pith helmets stepping off a wooden boat onto a dirt landing, local villagers in the background sitting listlessly under shade, hazy equatorial sky overhead",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 9],
+      "anchor_sentence": "That was way off the truth, but Castellani had the merit of working with his hands, trying this, trying that, devising ingenious ways of looking at the juices of those darkies.",
+      "visual": {
+        "scene_description": "Castellani peers through a microscope and discovers a trypanosome in spinal fluid, then Bruce and his full team arrive in Uganda and set up their laboratory.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a small tropical laboratory with shuttered windows open to equatorial heat, a young Italian scientist squinting into a brass compound microscope beside a hand-cranked centrifuge with glass tubes, circular magnified inset showing a single elongated trypanosome with undulating membrane and whip-like flagellum swimming among gray spinal fluid",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [10, 12],
+      "anchor_sentence": "A bellow from Bruce: \"I've got one!\"",
+      "visual": {
+        "scene_description": "Bruce shouts in excitement as he spots a trypanosome through his microscope, and his team crowds around to confirm the discovery in patient after patient.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a broad-shouldered British officer in sun helmet and khaki field shirt leaning back from a brass compound microscope with mouth open in a triumphant shout, three colleagues in a cramped equatorial laboratory crowding around him to peer at the eyepiece, circular magnified inset showing writhing trypanosomes with flagella among gray fluid",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [13, 17],
+      "anchor_sentence": "Now\u2014and this is rare in the dreamers who find fundamental facts in science\u2014Bruce was a fiend for practical applications, not poetically like Pasteur, for Bruce wasn't given to such lofty soarings, nor was he practical in the dangerous manner of the strange genius I tell of in the last chapter of this story; but the moment he turned to the study of a new plague, Bruce's gray eyes would dart round, he would begin asking himself questions: What is the natural home of the virus of this disease?",
+      "visual": {
+        "scene_description": "Bruce and Mrs. Bruce explore the lakeshore jungle, noticing that sleeping sickness cases only occur near water, leading Bruce to suspect a water-dwelling tsetse fly as the carrier.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a broad-shouldered British military officer in sun helmet and a woman in long practical field dress walking along a densely forested tropical lakeshore with overhanging trees and tangled roots at the water edge, large tsetse flies with distinctive folded wings hovering near the vegetation, a strip of blue lake visible through the foliage",
+        "mood": "curiosity"
+      }
+    }
+  ]
+}

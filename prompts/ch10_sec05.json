@@ -1,0 +1,60 @@
+{
+  "id": "ch10_sec05",
+  "chapter": 10,
+  "section": 5,
+  "scientist": "Ross",
+  "subtitle": "Ross vs. Grassi — Malaria",
+  "summary": "Ross relocates to Calcutta with his resourceful assistant Mahomed Bux, but their initial mosquito experiments on humans fail again. A pivotal shift to studying bird malaria finally lets Ross trace the parasite's full journey through the mosquito's body to its salivary gland, proving that malaria spreads through the mosquito's bite. Though the Edinburgh medical congress celebrates his work, Ross cannot replicate the results with human malaria and collapses under the strain, leaving the door open for Grassi to finish the job.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "But Patrick Manson did not fail him, and presently Ross came down from the north, to Calcutta, to a good laboratory, to assistants, to mosquitoes, to as many—for that city was a fine malaria pest-hole!—Hindus with malaria crescents in their blood as any searcher could possibly want.",
+      "visual": {
+        "scene_description": "Ross and Mahomed Bux working together in a Calcutta laboratory, catching and sorting mosquitoes from jars while caged sparrows wait nearby, establishing their new research partnership.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British officer with thin mustache in sweat-stained shirt standing beside an Indian assistant in a cramped Calcutta laboratory, wooden table covered with glass jars containing mosquitoes, wire bird cages holding sparrows and larks nearby, oil lamp casting harsh light, shuttered windows, humid tropical setting with ceiling fan overhead",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 10],
+      "anchor_sentence": "On St. Patrick's day of the year 1898, Ronald Ross let loose ten gray mosquitoes into a cage containing three larks, and the blood of those larks teemed with the germs of malaria.",
+      "visual": {
+        "scene_description": "Ross peers through his microscope and discovers that bird malaria parasites grow as dark-dotted circles in the stomach wall of gray mosquitoes, mirroring what he had seen before with human malaria.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British officer with thin mustache hunched over brass compound microscope in hot Calcutta laboratory, excited expression, hand gripping focus knob, circular magnified inset showing cross-section of mosquito stomach wall with round dark-pigmented oocyst circles containing jet-black dots, three larks visible in wire cage behind him, oil lamp on cluttered desk",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [11, 15],
+      "anchor_sentence": "You would think that such a man as Ross, wild as the maddest of hatters, topsy-turvy as the dream of a hasheesh-eater, you would swear, I say, that he could do no accurate experiments.",
+      "visual": {
+        "scene_description": "The controlled sparrow experiment: three sparrows in separate mosquito-proof cages, each exposed to clean mosquitoes, showing different levels of infection in a rigorous scientific design.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, three separate wire cages on a wooden bench each containing one sparrow, mosquito netting draped over each cage, Indian assistant in turban releasing mosquitoes from glass vials into one cage, British officer with thin mustache observing and taking notes in a leather journal, hot Calcutta laboratory with shuttered windows and dissecting tools on the table",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [16, 22],
+      "anchor_sentence": "But by the beginning of June he was back at his birds in Calcutta—it was more than 100 degrees in his laboratory—and he was asking: \"Where do the malaria microbes go from the circles that grow into those big warts in the stomach wall of the mosquito?\"",
+      "visual": {
+        "scene_description": "Ross watches through his microscope as a malaria oocyst on a mosquito's stomach wall bursts open, releasing spindle-shaped sporozoites that swarm toward the salivary gland, the key discovery that malaria spreads through the bite.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British officer with thin mustache squinting intensely through brass compound microscope in sweltering laboratory, large circular magnified inset showing a ruptured oocyst on mosquito stomach wall releasing streams of spindle-shaped sporozoites swarming toward a translucent salivary gland structure, sweat on his brow, oil lamp flickering, thermometer on wall showing extreme heat",
+        "mood": "wonder"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [23, 29],
+      "anchor_sentence": "Now Ronald Ross did anything but live remotely on his mountain top.",
+      "visual": {
+        "scene_description": "Patrick Manson presents Ross's findings to an audience of formally dressed doctors at the Edinburgh medical congress, reading aloud a telegram from Ross while the audience reacts with astonishment.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly distinguished gentleman in formal black Victorian frock coat standing at a wooden lectern in a grand Edinburgh lecture hall, holding up a telegram, rows of seated doctors in dark suits and high collars leaning forward with astonished expressions, gas lamps illuminating the ornate hall with arched windows, period-correct 1898 academic setting",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

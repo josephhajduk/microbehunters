@@ -1,0 +1,60 @@
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "Leeuwenhoek spent twenty years meticulously observing specimens through his hand-ground lenses, never writing anything down until he was absolutely certain of what he saw. When the Royal Society of England, born from a secret group of rebel scientists called the Invisible College, heard about his lenses through a colleague named de Graaf, they invited him to share his findings. After years of correspondence, Leeuwenhoek made his greatest discovery: peering through his tiny lens at a drop of rainwater, he found a hidden world of tiny living creatures no human had ever seen before.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "There never was a less sure man than Leeuwenhoek.",
+      "visual": {
+        "scene_description": "Leeuwenhoek hunched over rows of tiny brass microscopes, each with a specimen still pinned to its needle, obsessively re-examining something he has already looked at hundreds of times.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, round-faced man with big nose and white curled periwig in long dark wool coat hunched over a worktable crowded with dozens of tiny brass-plate microscopes each the size of a large coin, specimens pinned on needles, candlelit 17th-century Dutch study with leaded glass windows, scattered handwritten notes",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 5],
+      "anchor_sentence": "But at this time, in the middle of the seventeenth century, great things were astir in the world.",
+      "visual": {
+        "scene_description": "Members of the Invisible College gathered around a table by candlelight, watching a spider crawl freely out of a circle of supposed unicorn horn powder, debunking an old superstition.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, group of 17th-century English gentlemen in dark coats and white cravats crowded around a wooden table lit by tall candles, a small spider crawling out of a circle of white powder on the tabletop, expressions of fascination, dark wood-paneled room with glass bottles on shelves",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [6, 7],
+      "anchor_sentence": "\"Get Antony Leeuwenhoek to write you telling of his discoveries.\"",
+      "visual": {
+        "scene_description": "Leeuwenhoek sitting at his desk composing a long, rambling letter to the Royal Society, surrounded by his tiny brass microscopes and specimen jars, writing in Dutch with a quill pen.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, round-faced man with big nose white curled periwig and long dark wool coat writing with quill pen at a cluttered desk, sheets of paper covered in handwriting, tiny brass-plate microscopes and glass specimen jars nearby, 17th-century Dutch interior with tiled floor and wooden shutters",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [8, 11],
+      "anchor_sentence": "When you look back at them, many of the fundamental discoveries of science seem so simple, too absurdly simple.",
+      "visual": {
+        "scene_description": "Leeuwenhoek in his garden bending over an earthen rain-collecting pot, using a hair-thin glass tube to gather a water sample, while his daughter Maria watches from the doorway with puzzled concern.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, round-faced man with big nose white curled periwig and dark wool coat bending over an earthen clay pot in a Dutch garden, drawing up water with a hair-thin glass tube, young woman in 17th-century Dutch dress and white cap watching from a brick doorway, cobblestone path and potted herbs",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [12, 16],
+      "anchor_sentence": "What can that dear silly father be up to?",
+      "visual": {
+        "scene_description": "Leeuwenhoek squinting through his tiny brass microscope at the rainwater sample, mouth open in astonishment, with a circular magnified inset showing tiny elongated and round microorganisms swimming in the water.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, round-faced man with big nose white curled periwig and dark wool coat pressing his eye to a tiny brass-plate microscope held up to candlelight, mouth open in astonishment, circular magnified inset showing tiny rod-shaped and oval single-celled creatures with flagella swimming in clear water, 17th-century Dutch study with leaded glass window",
+        "mood": "discovery"
+      }
+    }
+  ]
+}

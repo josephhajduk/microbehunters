@@ -1,0 +1,30 @@
+{
+  "id": "ch07_sec08",
+  "chapter": 7,
+  "section": 8,
+  "scientist": "Metchnikoff",
+  "subtitle": "The Nice Phagocytes",
+  "summary": "Metchnikoff becomes convinced that poisonous bacteria in the large intestine cause people to age too quickly. He seizes on the Bulgarian bacillus found in sour milk as a remedy, believing its acid will drive out the harmful germs. He devotes nearly twenty years to an austere regimen of sour milk and sterilized food, yet dies at seventy-one, an ironic end to his grand theory of longevity.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Meanwhile he was scheming and groping about and having dreams about other things that might cause the arteries to harden, and suddenly he invented another cause—surely no one can say he discovered it!—\"auto-intoxication, poisoning from the wild, putrefying bacilli in our large intestines—that is surely a cause of the hardening of the arteries, that is what helps us to grow old too soon!\"",
+      "visual": {
+        "scene_description": "Metchnikoff excitedly presents his sour milk theory, holding up a glass of sour milk in one hand and gesturing at a chalkboard diagram of the intestine, while flasks of Bulgarian bacillus cultures line the bench beside him.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy white-bearded man with round spectacles in rumpled coat, excitedly holding up a tall glass of white sour milk in a cluttered Paris laboratory, shelves of glass flasks containing cloudy bacterial cultures, circular magnified inset showing rod-shaped bacilli with visible cell walls swimming in liquid",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 5],
+      "anchor_sentence": "For nearly twenty years Metchnikoff austerely lived to the letter of his new theory.",
+      "visual": {
+        "scene_description": "An older Metchnikoff sits alone at a meticulously clean dining table, surrounded by sterilized paper-wrapped bread rolls and glasses of sour milk, looking gaunt and determined as he follows his strict regimen.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly man with wild bushy white beard and round spectacles sitting at a sparse clean table, individually paper-wrapped bread rolls arranged neatly, multiple glasses of white sour milk, no wine or tobacco visible, stark Parisian dining room with tall windows casting pale light",
+        "mood": "sadness"
+      }
+    }
+  ]
+}

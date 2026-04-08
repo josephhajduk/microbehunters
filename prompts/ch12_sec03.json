@@ -1,0 +1,40 @@
+{
+  "id": "ch12_sec03",
+  "chapter": 12,
+  "section": 3,
+  "scientist": "Ehrlich",
+  "subtitle": "The Magic Bullet",
+  "summary": "Ehrlich becomes director of his own tiny lab in Steglitz in 1896, trying to find mathematical laws for serums and antitoxins. His elaborate side-chain theory of immunity turns out to be a dead end, but he refuses to give it up. He relocates to Frankfurt, close to the great dye factories, and buries himself in scientific books. In 1901, he reads about Laveran's trypanosome experiments and decides the trypanosome is the perfect microbe for testing a magic bullet cure.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "Such was the gayety of Paul Ehrlich, and such his modesty—for he was always making straight-faced jokes at his own ridiculousness—that he easily won friends, and he was a crafty man too and saw to it that certain of these friends were men in high places.",
+      "visual": {
+        "scene_description": "Ehrlich pacing in his cramped two-room laboratory at Steglitz, smoking a cigar, surrounded by calibrated tubes and scribbled diagrams of his side-chain theory, guinea pigs in cages nearby.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, messy-haired man with ever-present cigar and dye-stained coat pacing in a tiny dark room that was once a bakery, calibrated glass tubes of serum and drops of poison broth on a wooden bench, hand-drawn molecular diagrams pinned to the wall, caged guinea pigs on a shelf, gas lamp casting dim light",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 5],
+      "anchor_sentence": "So, in 1899, when he was forty-five, if he had died then, Ehrlich would certainly still have been called a failure.",
+      "visual": {
+        "scene_description": "Ehrlich in his cluttered Frankfurt office, buried among towering stacks of chemical journals and scientific books, cigars and dye bottles on every surface, a pet toad in a jar on the windowsill.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, dye-stained man with cigar sitting at a desk completely buried under towering stacks of chemical journals and scientific books, bottles of bright chemical dyes crowded among the volumes, an old sofa overflowing with books, a small toad in a glass jar on the windowsill, cluttered Frankfurt laboratory office",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [6, 7],
+      "anchor_sentence": "So now, in 1901, at the beginning of his eight-year search for the magic bullet he read of the researches of Alphonse Laveran.",
+      "visual": {
+        "scene_description": "Ehrlich reading a journal article about Laveran's trypanosome research, with a circular magnified inset showing elongated trypanosomes with undulating membranes and flagella swimming among blood cells.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, dye-stained man with cigar hunched over an open chemical journal at a cluttered desk, excited expression, one finger pointing at the page, laboratory mice in a cage beside him, circular magnified inset showing elongated trypanosomes with undulating membranes and single flagella swimming among round red blood cells",
+        "mood": "discovery"
+      }
+    }
+  ]
+}

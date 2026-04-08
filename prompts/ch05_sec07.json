@@ -1,0 +1,70 @@
+{
+  "id": "ch05_sec07",
+  "chapter": 5,
+  "section": 7,
+  "scientist": "Pasteur",
+  "subtitle": "And the Mad Dog",
+  "summary": "Pasteur embarks on his most dangerous quest: conquering rabies. Despite being unable to see the virus under any microscope, he and his assistant Roux develop a method of growing it in rabbit brains and weakening it by drying strips of spinal cord. After years of grueling trial and error, they create a fourteen-dose vaccination that protects dogs completely. When nine-year-old Joseph Meister arrives mangled by a mad dog, Pasteur makes the agonizing decision to try the vaccine on a human for the first time, and the boy survives. Bitten people from around the world flock to his laboratory, including nineteen Russian peasants attacked by a mad wolf, and Pasteur saves nearly all of them, leading to the founding of the Institut Pasteur.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 11],
+      "anchor_sentence": "And now Pasteur began—God knows why—to stick little hollow glass tubes into the gaping mouths of dogs writhing mad with rabies.",
+      "visual": {
+        "scene_description": "Pasteur leans dangerously close to a restrained mad bulldog, sucking saliva into a glass tube while two servants hold the dog's jaws open. The scene conveys the terrifying bravery of his early rabies research.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly man with neat trimmed beard and round spectacles in formal black frock coat leaning over a large snarling bulldog held by two servants in a 17th-century laboratory, man holds a thin hollow glass tube near the dog's open jaws, saliva droplets visible, brick-walled room with glass flasks on wooden shelves behind them",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [12, 21],
+      "anchor_sentence": "Roux listened to these dreamings of Pasteur, he listened bright-eyed to these fantastic imaginings....",
+      "visual": {
+        "scene_description": "Roux performs the forbidden trephining operation on a chloroformed dog while Pasteur is away, drilling a small hole in the skull and injecting rabid brain matter with a syringe. The dog later recovers and prances happily.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt man with dark pointed beard and rolled-up shirtsleeves carefully operating on a sleeping dog on a wooden laboratory table, small hand drill and brass syringe beside him, the dog lies peacefully under chloroform, glass bottles and cages with rabbits visible in the cluttered Paris laboratory, oil lamp casting directional light",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [22, 33],
+      "anchor_sentence": "Then Pasteur and his assistants started on their outlandish—any wise man would say their impossible—adventure of taming this vicious virus that they could not see.",
+      "visual": {
+        "scene_description": "Pasteur stands guard over Roux and Chamberland in their cramped laboratory, surrounded by cages of paralyzed animals and tangled jungles of tubes and bottles, pushing his exhausted team to repeat failed experiments over and over.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, determined elderly man with trimmed beard and round spectacles standing with arms crossed in a cramped laboratory, two younger men hunched over wooden benches with glass tubes and syringes, wire cages with rabbits and dogs line the walls, scattered notebooks and bottles cover every surface, narrow room in the Rue d'Ulm Paris",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [34, 44],
+      "anchor_sentence": "And at last they found a way of weakening the savage hydrophobia virus—by taking out a little section of the spinal cord of a rabbit dead of rabies, and hanging this bit of deadly stuff up to dry in a germ-proof bottle for fourteen days.",
+      "visual": {
+        "scene_description": "A row of sealed glass bottles each containing a strip of rabbit spinal cord drying on a string, numbered by days. Pasteur examines the bottles with intense focus, his notebook open with scrawled diagrams of the fourteen-day vaccination schedule.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a row of six sealed glass bottles on a wooden shelf each containing a thin pale strip of tissue suspended on a thread inside, elderly man with trimmed beard and round spectacles peers closely at the bottles holding an open notebook with dense scrawled notes, 19th-century French laboratory with brass microscope and petri dishes on the bench",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [45, 59],
+      "anchor_sentence": "Then finally there dawned on Pasteur a simple way out of his trouble: \"It's not the dogs we must give our fourteen doses of vaccine,\" he pondered, \"it's the human beings that have been bitten by mad dogs....\"",
+      "visual": {
+        "scene_description": "A tearful mother leads her wounded nine-year-old son Joseph Meister into Pasteur's laboratory. Pasteur, visibly anxious, prepares to give the boy his first injection while physician Vulpian looks on encouragingly.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a weeping woman in a long dress leads a small limping boy with bandaged arms into a 19th-century laboratory, elderly man with trimmed beard round spectacles and black frock coat holds a small hypodermic syringe, a second man in formal dark suit stands beside him nodding, wooden shelves with glass flasks and bottles behind them, evening light through tall windows",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [60, 72],
+      "anchor_sentence": "Then all fears left Pasteur—it was very much like the case of that first dog that Roux had injected years before, against the master's wishes.",
+      "visual": {
+        "scene_description": "Pasteur's seventieth birthday celebration at the Sorbonne: the elderly, limping Pasteur walks up the aisle on the arm of the President of France, while Lister rises to embrace him and tiers of cheering students fill the galleries above.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, grand hall of the Sorbonne with arched ceiling and columns, elderly frail man with trimmed gray beard and round spectacles limps up a central aisle supported by a man in formal attire, rows of seated dignitaries in dark suits on either side, tiers of young students in upper galleries waving and cheering, a tall man with white beard rises to embrace the elderly scientist",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

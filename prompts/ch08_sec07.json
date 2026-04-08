@@ -1,0 +1,20 @@
+{
+  "id": "ch08_sec07",
+  "chapter": 8,
+  "section": 7,
+  "scientist": "Theobald Smith",
+  "subtitle": "Ticks and Texas Fever",
+  "summary": "This closing section celebrates Theobald Smith's landmark discovery that an insect — the cattle tick — could carry a disease. His report showed that wiping out ticks could eliminate Texas fever entirely, and today mass cattle-dipping programs have done just that. Smith's work also opened the door for future microbe hunters to investigate other insect-borne diseases: tsetse flies and sleeping sickness in Africa, mosquitoes and malaria in India and Italy, and yellow fever in the Americas.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "And so, with this report, Theobald Smith made mankind turn a corner, showed men an entirely new and fantastic way a disease may be carried—by an insect.",
+      "visual": {
+        "scene_description": "A triumphant panorama of Theobald Smith's legacy: cattle being dipped in vats to kill ticks in the foreground, while the horizon shows silhouettes of future discoveries — a tsetse fly over Africa, mosquitoes over India, hinting at the new era of insect-borne disease research Smith made possible.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, clean-shaven quiet American scientist Theobald Smith standing proudly beside a large cattle-dipping vat, ranchers lowering longhorn cattle into tick-killing solution, rolling prairie landscape behind, silhouettes on the distant horizon of a tsetse fly and a mosquito, bright open sky suggesting a new era of discovery.",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

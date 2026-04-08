@@ -1,0 +1,50 @@
+{
+  "id": "ch01_sec01",
+  "chapter": 1,
+  "section": 1,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "This opening section introduces Antony Leeuwenhoek, a Dutch dry-goods dealer born in 1632 in Delft, Holland, who became the first person to peer into the invisible world of microbes. In an era when superstition ruled and science was dangerous, Leeuwenhoek taught himself to grind tiny glass lenses far superior to any others in Holland, mounting them in hand-made metal plates. Obsessively curious, he turned his lenses on everything from whale muscles to fly brains, discovering an unseen world that no one else could see.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Two hundred and fifty years ago an obscure man named Leeuwenhoek looked for the first time into a mysterious new world peopled with a thousand different kinds of tiny beings, some ferocious and deadly, others friendly and useful, many of them more important to mankind than any continent or archipelago.",
+      "visual": {
+        "scene_description": "A shadowy figure hunches over a tiny hand-held microscope, with a swirling invisible world of tiny creatures emerging from the lens above him, setting the tone for the book's grand introduction.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a round-faced man in white curled periwig and long dark wool coat hunching over a tiny brass hand-held single-lens microscope, a circular magnified inset above reveals swirling rod-shaped bacilli and round cocci, 17th-century Dutch study with leaded glass window casting dim light across a wooden table",
+        "mood": "wonder"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 6],
+      "anchor_sentence": "You have lately recovered from an attack of mumps, you ask your father what is the cause of mumps and he tells you a mumpish evil spirit has got into you.",
+      "visual": {
+        "scene_description": "A young Leeuwenhoek as a boy in 17th-century Delft, standing among the canals and blue-tiled buildings, gazing curiously at the bustling Dutch town where he grew up among brewers and basket-makers.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a sturdy Dutch boy in 17th-century wool breeches and cap standing on a cobblestone bridge over a high canal in Delft, blue windmills turning in the background, low brick houses with stepped gables, barrels stacked outside a brewery, overcast sky reflected in still canal water",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [7, 8],
+      "anchor_sentence": "At the age of twenty-one he left the dry-goods store, went back to Delft, married, set up a dry-goods store of his own there.",
+      "visual": {
+        "scene_description": "Leeuwenhoek in his workshop at night, hunched over a flame, carefully grinding and shaping a tiny glass bead lens, surrounded by tools of gold- and silversmiths, copper plates, and glowing embers.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a round-faced man with big nose and white curled periwig in dark wool coat bending over a workbench by candlelight, fingers holding a tiny glass bead lens near a small flame, copper and silver metal plates scattered on the table, grinding tools and pliers beside him, smoke curling upward in a cramped Dutch workshop",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [9, 10],
+      "anchor_sentence": "Of course his neighbors thought he was a bit cracked but Leeuwenhoek went on burning and blistering his hands.",
+      "visual": {
+        "scene_description": "Leeuwenhoek peering through his tiny hand-held brass microscope at an ox eye on his table, with a circular inset showing the crystalline lens structure magnified, while amazed at the hidden details of ordinary things.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a round-faced man with big nose and white curled periwig in long dark wool coat peering through a tiny brass plate microscope held to one eye, an ox eye dissected on the wooden table before him, circular magnified inset showing layered crystalline lens fibers of the ox eye, 17th-century Dutch room with leaded glass windows and shelves of specimen jars",
+        "mood": "wonder"
+      }
+    }
+  ]
+}

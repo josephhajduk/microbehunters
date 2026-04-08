@@ -1,0 +1,90 @@
+{
+  "id": "ch12_sec06",
+  "chapter": 12,
+  "section": 6,
+  "scientist": "Ehrlich",
+  "subtitle": "The Magic Bullet",
+  "summary": "Paul Ehrlich discovers that his compound 606, a dangerous arsenic derivative, can obliterate the spirochete causing syphilis in a single injection. After dramatic rabbit experiments with his assistant Hata, Ehrlich announces the miraculous cure at the 1910 Koenigsberg congress to thunderous applause. But mass production reveals rare fatal side effects that torment Ehrlich, wearing down his already failing health. De Kruif closes the book with a tribute to Ehrlich as a trail-breaker who launched the search for chemical cures — magic bullets — against infectious disease.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 6],
+      "anchor_sentence": "Burning his candle at both ends, for he was past fifty and his time was short, Paul Ehrlich stumbled onto the famous preparation 606—though you understand he could never have found it without the aid of that expert, Bertheim.",
+      "visual": {
+        "scene_description": "Ehrlich in his cluttered study reads about Schaudinn's discovery of the pale spirochete and realizes his compound 606 might destroy it, connecting trypanosomes to spirochetes in his mind.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Paul Ehrlich with messy desk covered in chemical bottles, ever-present cigar, coat stained with dyes, hunched over an open scientific journal, surrounded by piles of colored note papers and glass vials, circular inset showing pale corkscrew-shaped spirochetes alongside elongated trypanosomes with undulating membranes and flagella, late 1900s German laboratory cluttered with test tubes",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [7, 11],
+      "anchor_sentence": "He gave vast orders.",
+      "visual": {
+        "scene_description": "Ehrlich and Hata peer through a dark-field microscope at spirochetes swarming in a sample from an infected rabbit, the pivotal moment before the first injection of 606.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Paul Ehrlich with cigar-stained coat and a small diligent Japanese researcher Hata leaning over a dark-field microscope, caged rabbits on shelves behind them, a syringe of clear yellow fluid on the bench, circular inset showing silvery corkscrew spirochetes glowing against a black background darting and spinning, Georg Speyer House laboratory with brass instruments and glass flasks",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [12, 17],
+      "anchor_sentence": "Next day there was not one of those spiral devils to be found in the scrotum of that rabbit.",
+      "visual": {
+        "scene_description": "Ehrlich examines cured rabbits in their cages with amazement, but alone at night in his smoke-filled study, he whispers his doubts about whether 606 is truly safe for humans.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Paul Ehrlich sitting alone in a dim study thick with cigar smoke, surrounded by towering piles of books and journals casting jagged shadows, pads of blue green yellow orange note paper scattered on his desk, his round spectacles reflecting lamplight, expression shifting between triumph and worry, a healthy rabbit visible in a cage nearby, oil lamp casting warm glow",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [18, 22],
+      "anchor_sentence": "But, heigho!",
+      "visual": {
+        "scene_description": "In the bright morning laboratory, Ehrlich dictates a letter to his friend Dr. Alt, asking him to try 606 on human patients, surrounded by cured rabbits and the chemist Bertheim's flasks.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Paul Ehrlich standing in a sunlit laboratory dictating a letter with animated gestures, cigar in one hand, coat stained with chemical dyes, rows of glass flasks and chemical apparatus on shelves behind him, healthy rabbits in cages along the wall, a sealed envelope on the desk, morning light streaming through tall windows of the Georg Speyer House",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [23, 25],
+      "anchor_sentence": "Came 1910, and that was Paul Ehrlich's year.",
+      "visual": {
+        "scene_description": "Ehrlich stands at the podium of the Koenigsberg scientific congress in 1910, receiving a thunderous standing ovation after announcing the miraculous cures achieved by compound 606.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Paul Ehrlich at a grand podium in a packed ornate lecture hall, round spectacles and cigar-stained coat, arms raised addressing the crowd, rows of formally dressed scientists on their feet applauding, high arched ceiling with chandeliers, 1910 European congress hall with wooden paneling and tall windows",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [26, 31],
+      "anchor_sentence": "But, to every action there is an equal and opposite reaction.",
+      "visual": {
+        "scene_description": "An exhausted Ehrlich squats on his heels reading tiny scrawled records on a sheet of paper tacked inside a cupboard door, tracking thousands of salvarsan doses and their outcomes, his face lined with worry.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Paul Ehrlich gaunt and worn squatting before an open cupboard door covered top to bottom in tiny scrawled notes, round spectacles pushed up on his forehead straining to read, deep wrinkles and dark circles under gray eyes, playing cards with notes scribbled in margins scattered on the floor, chemical bottles and stacks of correspondence piled around him, dim office lamplight",
+        "mood": "sadness"
+      }
+    },
+    {
+      "segment_index": 6,
+      "paragraph_range": [32, 34],
+      "anchor_sentence": "But alas!",
+      "visual": {
+        "scene_description": "A symbolic scene of Ehrlich's legacy: a trail stretching forward from his laboratory into the future, with new researchers in a dye factory discovering Bayer 205, continuing the search for magic bullets.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a path leading from Paul Ehrlich's cluttered laboratory desk with chemical bottles and test tubes forward toward researchers in white coats working in a large industrial dye factory, shelves of colored chemical compounds lining the walls, a glowing vial of powder labeled in the foreground, microscopes and laboratory mice on benches, sense of continuation and hope",
+        "mood": "wonder"
+      }
+    },
+    {
+      "segment_index": 7,
+      "paragraph_range": [35, 38],
+      "anchor_sentence": "This plain history would not be complete if I were not to make a confession, and that is this: that I love these microbe hunters, from old Antony Leeuwenhoek to Paul Ehrlich.",
+      "visual": {
+        "scene_description": "A fond portrait of Ehrlich as de Kruif remembers him: a rumpled, owlish man with medals jumbled in a box, cigar in hand, grinning with warmth and humility despite his great achievement.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Paul Ehrlich with round spectacles and an owlish grin, rumpled dye-stained coat, cigar between his fingers, holding open a wooden box of jumbled medals and ribbons, standing in a doorway of his study with books and chemical bottles visible behind him, warm expression of self-deprecating humor, evening light",
+        "mood": "humor"
+      }
+    }
+  ]
+}

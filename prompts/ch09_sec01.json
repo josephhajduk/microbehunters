@@ -1,0 +1,40 @@
+{
+  "id": "ch09_sec01",
+  "chapter": 9,
+  "section": 1,
+  "scientist": "Bruce",
+  "subtitle": "Trail of the Tsetse",
+  "summary": "David Bruce, a headstrong young British Army doctor, defies his superiors to pursue microbe hunting. After joining the army simply to afford marriage, he is stationed on Malta where a mysterious fever plagues the garrison. With no lab training, he sets up a makeshift laboratory in an abandoned shack and enlists his wife as his assistant, and together they discover the microbe causing Malta fever — only to be ordered away before finishing their work.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "\"Young man!\"—the face of the Director-General of the British Army Medical Service changed from an irritated red to an indignant mauve-color—\"young man, I will send you to India, I will send you to Zanzibar, I will send you to Timbuctoo—I will send you anywhere I please\"—(the majestic old gentleman was shouting now, and his face was a positively furious purple) \"but you may be damned sure I shall not send you to Natal!...\"",
+      "visual": {
+        "scene_description": "A young David Bruce stands at attention before a furious red-faced Director-General in a grand British military office, being denied his request to go to Africa for microbe hunting.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a broad-shouldered young British Army officer with a thick dark mustache standing stiffly at attention before an ornate mahogany desk, behind which sits a red-faced elderly Director-General in decorated uniform pounding the desk, a large framed map of Africa and India on the paneled wall, gas lamps, leather chairs, scattered military papers",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 6],
+      "anchor_sentence": "In certain ways he was not a model soldier.",
+      "visual": {
+        "scene_description": "Bruce struggles in his improvised laboratory on Malta, covered in sticky agar-agar, while a lively monkey wriggles in his hands and Mrs. Bruce approaches from the doorway to help.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a burly man with thick dark mustache in a stained British Army uniform wrestling a small monkey in a cramped stone shack converted into a laboratory, glass flasks of beef broth and dishes of jelly-like agar on a rough wooden table, a woman in a long Victorian dress stepping through the doorway with rolled-up sleeves, Mediterranean sunlight through a small window",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [7, 8],
+      "anchor_sentence": "That was the way she became his assistant, and as you will see, for thirty years she remained his right hand, going with him into the most pestilential dirty holes any microbe hunter has ever seen, sharing his poverty, beaming on his obscure glories; she was so important to his tremendous but not notorious conquests....",
+      "visual": {
+        "scene_description": "Bruce and Mrs. Bruce work side by side at a laboratory bench on Malta, peering together through a microscope at the round cocci of Malta fever bacteria, triumphant but unrecognized.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a broad-shouldered man with thick dark mustache and a woman in Victorian dress standing together at a rough wooden bench in a stone shack laboratory, peering into a brass compound microscope, glass test tubes and culture dishes around them, a circular magnified inset showing tiny round cocci bacteria with visible cell walls, Mediterranean stone walls and an oil lamp",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

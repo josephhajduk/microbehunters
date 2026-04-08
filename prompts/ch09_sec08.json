@@ -1,0 +1,28 @@
+{
+  "id": "ch09_sec08",
+  "chapter": 9,
+  "section": 8,
+  "scientist": "Bruce",
+  "subtitle": "Trail of the Tsetse",
+  "summary": "Bruce's relentless pursuit of the sleeping sickness mystery continued into his late fifties, when a new fast-killing form broke out in Nyassaland. A German researcher named Taute injected himself with nagana trypanosomes to prove they could not infect humans, but Bruce coldly noted the negative result proved nothing. Bruce spent years in Nyassaland measuring trypanosomes to determine whether nagana and the new disease were the same, but never found the answer — concluding that only the impossible experiment of injecting a thousand people could settle the question.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 6],
+      "anchor_sentence": "The ten thousand smaller microbe hunters who work at lesser jobs to-day, as well as the dozen towering ones whose adventures this book tells, all of them have to take some risk of death.",
+      "visual": {
+        "scene_description": "Taute injects himself with trypanosome-laden blood from a dying animal while tsetse flies in mesh cages surround him, showing the desperate self-experimentation that Bruce observed with cold scientific detachment.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a determined man in early 1900s colonial clothing rolling up his sleeve and pressing a glass syringe into his own forearm in a sparse field laboratory tent, mesh cages holding tsetse flies on a wooden crate beside him, a circular magnified inset showing elongated trypanosomes with undulating membranes and flagella swimming among red blood cells."
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [7, 10],
+      "anchor_sentence": "Was Bruce shocked at this?",
+      "visual": {
+        "scene_description": "Bruce hunched over his brass microscope in Nyassaland, surrounded by glass slides and specimen jars, measuring trypanosomes during his final years-long campaign against sleeping sickness.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, an aging broad-shouldered man in British military shirt and sun helmet resting on the desk, leaning over a compound brass microscope in a dimly lit African field laboratory, stacks of glass slides and a ruled notebook surrounding him, a circular magnified inset showing rod-shaped trypanosomes of varying lengths lined up for measurement beside a microscope ruler scale."
+      }
+    }
+  ]
+}

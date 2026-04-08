@@ -1,0 +1,40 @@
+{
+  "id": "ch04_sec01",
+  "chapter": 4,
+  "section": 1,
+  "scientist": "Koch",
+  "subtitle": "The Death Fighter",
+  "summary": "Young Robert Koch dreams of adventure and exotic travel, but his wife Emmy convinces him to settle down as a country doctor in rural Prussia. Isolated from the exciting new science of microbes being debated across Europe, Koch grows restless and frustrated with his inability to truly cure his patients. When Emmy buys him a microscope for his birthday, it opens a door to discoveries more remarkable than any jungle expedition. Meanwhile, the medical establishment remains deeply ignorant about the causes of disease, dismissing Pasteur's germ theories with pompous nonsense.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "In those astounding and exciting years between 1860 and 1870, when Pasteur was saving vinegar industries and astonishing emperors and finding out what ailed sick silkworms, a small, serious, and nearsighted German was learning to be a doctor at the University of Göttingen.",
+      "visual": {
+        "scene_description": "Young Robert Koch as a medical student at Göttingen, daydreaming of adventure while studying anatomy, with Emmy Fraatz waiting outside the university.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a young nearsighted man with round wire spectacles and a thick dark mustache in a wool waistcoat sits at a wooden desk covered with anatomy textbooks and a human skull, gazing out a tall arched university window at ships on the horizon, 1860s German university study room with gas lamps and stone walls",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 8],
+      "anchor_sentence": "But Robert Koch was restless.",
+      "visual": {
+        "scene_description": "Emmy presents Koch with a brass microscope for his birthday in their small village office, and Koch peers through it with sudden intense fascination, his boredom replaced by wonder.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a sturdy German man with thick dark mustache and round wire spectacles in rolled shirtsleeves hunches over a brass compound microscope on a cluttered wooden desk in a small drug-reeking village doctor office, medicine bottles and prescriptions scattered around, a woman in 1870s Prussian dress watches from the doorway, oil lamp casting sharp shadows",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [9, 11],
+      "anchor_sentence": "But Koch was right.",
+      "visual": {
+        "scene_description": "A pompous Parisian doctor in brass-buttoned coat lectures dismissively about germs while Pasteur stands firm in the background, and Koch works alone at his microscope far away in rural Prussia.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, split scene showing a pompous French doctor in brass-buttoned frock coat gesturing dismissively at a grand Paris medical lecture hall podium on one side, and on the other side a lone determined German doctor with thick mustache and round spectacles peering into a brass microscope in a dim cramped Prussian village office by lamplight",
+        "mood": "tension"
+      }
+    }
+  ]
+}

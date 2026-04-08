@@ -1,0 +1,50 @@
+{
+  "id": "ch03_sec08",
+  "chapter": 3,
+  "section": 8,
+  "scientist": "Pasteur",
+  "subtitle": "Microbes Are a Menace!",
+  "summary": "Pasteur basks in praise from the English surgeon Lister, whose antiseptic surgery was inspired by Pasteur's germ theory. But when the great Claude Bernard dies and his unfinished work challenges Pasteur's fermentation theory, Pasteur erupts in fury, attacking his dead friend's legacy. He then redeems himself through a brilliant vineyard experiment proving that grapes cannot ferment into wine without yeasts from the air, and prophesies a future where diseases caused by microbes will be conquered. The chapter closes by introducing a young German doctor named Robert Koch, who is quietly learning to do things with microbes that even Pasteur could not.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Surely it looked then as if Pasteur had a right to his fantastic dreams of wiping out disease.",
+      "visual": {
+        "scene_description": "Pasteur proudly reading Lister's letter in his study, basking in recognition as Europe buzzes about microbes, while a newspaper headline about Bernard's death hints at trouble ahead.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in formal black frock coat standing in a 19th-century French study, holding an unfolded letter with both hands, expression of intense pride, tall bookshelves and glass flasks on a wooden desk behind him, a marble bust on a shelf, warm lamplight from a brass oil lamp casting sharp shadows across scattered scientific papers",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 5],
+      "anchor_sentence": "Pasteur could not believe his eyes.",
+      "visual": {
+        "scene_description": "Pasteur standing furiously at the podium of the French Academy, waving a manuscript and shouting objections, scandalized academicians recoiling in their seats.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in black frock coat standing at an ornate wooden podium in a grand 19th-century French lecture hall, one fist raised clutching a manuscript, mouth open mid-shout, rows of seated men in dark formal coats leaning back with shocked expressions, tall arched windows and chandeliers overhead, scattered papers on the podium",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [6, 7],
+      "anchor_sentence": "Finally he argued with Bernard by beautiful experiments—a thing most other men would have done without making unseemly remarks.",
+      "visual": {
+        "scene_description": "Pasteur crouching among glass hothouses in his vineyard at Arbois, examining grape bunches wrapped in cotton through a magnifying lens, with sealed glass structures glinting in summer sunlight.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in shirtsleeves and dark waistcoat crouching inside a glass hothouse structure in a hillside vineyard, carefully wrapping cotton around a bunch of grapes on the vine, glass panels fitted tightly around the vine rows, a brass microscope and heated glass flasks on a wooden crate nearby, rolling Jura mountains in the background under bright summer sky",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [8, 10],
+      "anchor_sentence": "Then at the next meeting Pasteur told the Academy of how he had quarantined his grape-vines against yeasts: \"Is it not worthy of attention,\" he shouted, \"that in this vineyard of Arbois, and this would be true of millions of acres of vineyards all over the world, there was at the moment I made these experiments, not a speck of soil which was not capable of fermenting grapes into wine; and is it not remarkable that, on the contrary, the soil of my hothouses could not do this?",
+      "visual": {
+        "scene_description": "A split scene: on one side Pasteur addresses the Academy with grape bunches on the lectern; on the other, a young Koch peers into a microscope in a small German village study, with caged mice nearby.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, split composition divided by a bold vertical line, left side shows neat-bearded man with round spectacles in black frock coat gesturing grandly before a lectern holding grape bunches in a grand hall, right side shows a sturdy young man with thick dark mustache and round wire spectacles hunched over a compound brass microscope in a dim cramped village study, small wooden cages with white mice on the desk beside him",
+        "mood": "adventure"
+      }
+    }
+  ]
+}

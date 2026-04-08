@@ -1,0 +1,70 @@
+{
+  "id": "ch06_sec02",
+  "chapter": 6,
+  "section": 2,
+  "scientist": "Roux",
+  "subtitle": "Massacre the Guinea-Pigs",
+  "summary": "Roux and Yersin set out to prove that the diphtheria bacillus kills by releasing a poison (toxin) into the body. After filtering living germs out of broth, they struggled for weeks to show the germ-free liquid was deadly. When sensible doses failed, Roux injected a near-drowning quantity into a guinea-pig — and it died with classic diphtheria symptoms. He then learned to let the germs brew longer, producing a toxin so concentrated that one ounce could kill six hundred thousand guinea-pigs. Roux had proven Loeffler's prophecy true, but he still had no cure.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Four years later Loeffler's words came true—by what seemed an utterly silly, but what was surely a most fantastical experiment you would have thought could only result in drowning a guinea-pig.",
+      "visual": {
+        "scene_description": "The bustling Pasteur Institute on Rue Dutot in the late 1880s, with Roux reading a mother's desperate letter while an aging Pasteur oversees construction in the background.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt dark-bearded man in rolled-up shirtsleeves reading a handwritten letter at a cluttered desk, behind him a half-built stone institute on a Paris street, an elderly bearded man with a cane supervising workers, glass flasks and microscopes on shelves, gaslight sconces on walls",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 6],
+      "anchor_sentence": "Roux and Yersin went to the Hospital for Sick Children—diphtheria was playing hell with Paris—and here they ran on to the same bacillus Loeffler had found.",
+      "visual": {
+        "scene_description": "Roux and Yersin in their laboratory examining dead rabbits, searching their tissues for bacilli but finding none, realizing the germs must produce a poison.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt bearded man and younger assistant dissecting a rabbit on a wooden laboratory bench, glass flasks of cloudy broth nearby, brass compound microscope, circular magnified inset showing rod-shaped diphtheria bacilli with club-shaped ends among empty tissue, gaslit Paris laboratory with bottle-loaded shelves",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [7, 9],
+      "anchor_sentence": "For a while the searcher came uppermost in him.",
+      "visual": {
+        "scene_description": "Roux carefully filtering diphtheria broth through a porcelain candle filter, collecting clear amber fluid into small flasks, then injecting it into guinea-pigs.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt dark-bearded man in rolled-up shirtsleeves pressing cloudy broth through a hollow porcelain candle filter mounted in a glass cylinder using air pressure apparatus, clear amber fluid dripping into small glass flasks on a laboratory bench, large-bellied bottles in background, syringe beside a docile guinea-pig in a cage",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [10, 13],
+      "anchor_sentence": "He became a murderer in his heart, this Émile Roux, and in his head as he came down to the laboratory each morning were half-mad wishes for the death of his beasts.",
+      "visual": {
+        "scene_description": "Roux frustrated in his lab as the guinea-pigs remain perfectly healthy after injection, hopping about in their cages while he stares at them in disbelief.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt hawk-faced bearded man slumped on a stool staring at wire cages full of lively guinea-pigs eating greens and hopping, empty syringes and glass flasks of amber liquid on the bench beside him, dusty bottle-loaded shelves lining the walls of a dim Paris laboratory",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [14, 16],
+      "anchor_sentence": "Then—I have told scientific searchers about this and they have held their noses at such an experiment—Roux nearly drowned a guinea-pig.",
+      "visual": {
+        "scene_description": "Roux injecting an enormous thirty-five cubic centimeter dose of filtered broth into a guinea-pig — a desperately oversized dose that ultimately proves the toxin exists when the animal dies days later.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt dark-bearded man with intense expression carefully injecting an enormous glass syringe full of amber liquid into a small guinea-pig held on a laboratory bench, rows of glass bottles and flasks behind him, circular magnified inset showing tiny rod-shaped diphtheria bacilli releasing clouds of dark toxin droplets into surrounding fluid",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [17, 19],
+      "anchor_sentence": "But Roux had got his start.",
+      "visual": {
+        "scene_description": "Roux triumphant in his laboratory with rows of large bottles that have brewed for forty-two days, watching tiny drops of ultra-concentrated toxin prove devastatingly potent.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt dark-bearded man with bright determined eyes holding up a tiny glass vial of concentrated amber toxin, rows of large-bellied glass bottles in a warm incubator behind him, a precise laboratory scale and notebook on the bench, circular magnified inset showing rod-shaped bacilli shedding dark toxin granules from their cell walls",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "ch04_sec05",
+  "chapter": 4,
+  "section": 5,
+  "scientist": "Koch",
+  "subtitle": "The Death Fighter",
+  "summary": "Koch accidentally discovers that bacteria landing on the solid surface of a boiled potato grow into pure, separated colonies -- each droplet containing only one kind of microbe. This breakthrough lets him grow germs unmixed for the first time. He demonstrates the technique to his assistants Loeffler and Gaffky, who confirm it works. When Koch presents the discovery to the famous Professor Virchow, the aging scientist dismisses him, but Koch is undeterred and sets out to hunt the microbe of tuberculosis.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Until, one day, Koch—who frankly admitted it was by accident—looked at the flat surface of half of a boiled potato left on a table in his laboratory.",
+      "visual": {
+        "scene_description": "Koch bends close to a halved boiled potato on a cluttered lab table, squinting through his spectacles at tiny colored droplets on its surface, his beard nearly touching it.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, stocky man with thick dark mustache and round wire spectacles hunched over a halved boiled potato on a wooden laboratory table, his face inches from the cut surface dotted with tiny gray red yellow and violet droplets, brass compound microscope and glass slides nearby, late 1800s German laboratory with tall windows and wooden shelves of glass flasks",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 5],
+      "anchor_sentence": "Then in a flash Koch saw the beautiful experiment nature had done for him.",
+      "visual": {
+        "scene_description": "Koch, Loeffler, and Gaffky sit on stools before three windows, each at a microscope, examining potato surfaces with isolated bacterial colonies. A circular inset shows distinct colonies of rod-shaped bacilli.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, three men in wool waistcoats seated on high stools before tall windows each peering into brass compound microscopes, halved boiled potatoes with colored dots on the table between them, circular magnified inset showing distinct clusters of rod-shaped bacilli and round cocci separated on a flat surface, 1880s German military laboratory with orderly glass equipment",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [6, 7],
+      "anchor_sentence": "Now Koch, who, by this simple experience of the old potato, had changed microbe hunting from a guessing game into something that came near the sureness of a science—Koch, I say, got ready to track down the tiny messengers that bring a dozen murderous diseases to mankind.",
+      "visual": {
+        "scene_description": "Koch stands small and humble before the imposing figure of Professor Virchow in a grand office lined floor to ceiling with stacks of scientific papers and heavy books.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, small stocky man with thick dark mustache round wire spectacles and wool waistcoat standing deferentially before a tall imperious elderly professor in a grand high-ceilinged study, towering bookshelves crammed with leather-bound volumes and stacked scientific papers, heavy wooden desk covered in manuscripts, gaslit 1880s Berlin university office",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [8, 12],
+      "anchor_sentence": "Properly awed—as any one would be—Koch tiptoed respectfully into this Presence.",
+      "visual": {
+        "scene_description": "Koch walks away from Virchow's office with a determined expression, rolling up his sleeves, while behind him Virchow waves dismissively. Koch carries a tray of gelatin-filled dishes.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, determined stocky man with thick dark mustache round wire spectacles and rolled shirtsleeves striding forward carrying a tray of glass dishes filled with gelatin, behind him an elderly professor in a doorway waving dismissively, cobblestone Berlin street with gas lamps and brick buildings, late 1800s winter dusk atmosphere",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

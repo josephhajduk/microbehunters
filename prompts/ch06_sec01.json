@@ -1,0 +1,50 @@
+{
+  "id": "ch06_sec01",
+  "chapter": 6,
+  "section": 1,
+  "scientist": "Roux and Behring",
+  "subtitle": "Massacre the Guinea-Pigs",
+  "summary": "This sub-section introduces Roux and Behring, two researchers who discovered diphtheria antitoxin through relentless experimentation on guinea-pigs. But their breakthrough depended on the earlier work of Frederick Loeffler, a meticulous microbe hunter who isolated strange club-shaped bacilli from the throats of children who died of diphtheria. Though Loeffler could not prove how these few germs killed, he predicted they must produce a poison — a toxin — and left that clue for Roux and Behring to follow.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "It was to save babies that they killed so many guinea-pigs!",
+      "visual": {
+        "scene_description": "Roux and Behring working feverishly in their respective laboratories, surrounded by cages of guinea-pigs and glassware, driven by the urgent mission to defeat diphtheria.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt dark-bearded man in rolled shirtsleeves and broad-shouldered blond-mustached man in formal coat, each at opposite ends of a cluttered laboratory bench, glass flasks and syringes between them, wire cages holding small guinea-pigs on lower shelves, oil lamp casting sharp shadows on stone walls, determined focused expressions on both faces",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 6],
+      "anchor_sentence": "They never could have done it without the modest discovery of Frederick Loeffler.",
+      "visual": {
+        "scene_description": "A melancholy children's hospital ward in the 1880s, with rows of small beds and helpless doctors walking between cots, introducing the diphtheria crisis that drove Loeffler's research.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, long dim hospital ward with rows of narrow iron-framed cots and white pillows, 19th-century doctors in dark frock coats walking between beds with stethoscopes, tall arched windows letting in pale light, a mustachioed man in military-style wool coat with round spectacles standing in doorway observing the ward, gas lamps along walls",
+        "mood": "sadness"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [7, 9],
+      "anchor_sentence": "Below in the dead house toiled Frederick Loeffler, boiling knives, heating platinum wires red hot and with them lifting grayish stuff from the still throats of those bodies the doctors had failed to keep alive; and this stuff he put into slim tubes capped with white fluffs of cotton, or he painted it with dyes, which showed him, through his microscope, that there were queer bacilli shaped like Indian clubs in those throats, microbes which the dye painted with pretty blue dots and stripes and bars.",
+      "visual": {
+        "scene_description": "Loeffler in the dead house laboratory, using heated platinum wires and staining techniques to discover club-shaped diphtheria bacilli under his microscope.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, mustachioed man in wool waistcoat holding platinum wire over spirit lamp flame in stone-walled dissection room, slim glass tubes with cotton plugs arrayed on bench, compound brass microscope beside him, circular magnified inset showing club-shaped bacilli stained blue with dark-banded granules against pale background, bottles of methylene blue dye on shelf",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [10, 14],
+      "anchor_sentence": "\"But how is it these few bacilli—sticking in one little corner of the body—how can they topple over a beast a million times larger than they are themselves?\" asked Loeffler.",
+      "visual": {
+        "scene_description": "Loeffler hunched over his careful scientific paper at a writing desk, puzzling over how a few throat-dwelling bacilli can kill an entire body, arriving at his prediction of an unseen toxin.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, mustachioed man in wool waistcoat seated at heavy wooden desk covered with stacked papers and open notebooks, quill pen in hand, compound brass microscope pushed to one side, glass flask of cloudy broth culture nearby, furrowed brow and perplexed expression, gas lamp illuminating the cluttered 19th-century German study",
+        "mood": "curiosity"
+      }
+    }
+  ]
+}

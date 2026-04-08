@@ -1,0 +1,28 @@
+{
+  "id": "ch08_sec03",
+  "chapter": 8,
+  "section": 3,
+  "scientist": "Theobald Smith",
+  "subtitle": "Ticks and Texas Fever",
+  "summary": "Theobald Smith had no freedom to choose his research — he investigated whatever problems plagued American farmers and stock-raisers. The most pressing crisis was Texas fever, a mysterious disease in which healthy-looking southern cattle somehow spread a lethal epidemic to northern herds, killing them within weeks. While scientists dissected carcasses looking for bacteria, plain-spoken cattlemen suspected a blood-sucking insect called a tick — an idea the scientific establishment dismissed as absurd.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "You talk about freedom of science!",
+      "visual": {
+        "scene_description": "Theobald Smith and colleagues at the Bureau of Animal Industry are called out to investigate a crisis: northern cattle lie dead in a field after grazing where southern cattle had been, while puzzled stockmen look on.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a quiet neat clean-shaven American man in a modest wool suit kneeling beside fallen cattle in a sun-scorched pasture, several stiff-legged cows lying on dry grass, a wooden fence and distant barn, a second man in a broad-brimmed hat gesturing at the dead herd, hot summer haze over open plains"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 6],
+      "anchor_sentence": "The whole country was excited about it; there was bad feeling between the meridional cowmen and their colleagues of the North; New York City went into a panic when carloads of stock shipped East for beef began to die in hundreds on the trains.",
+      "visual": {
+        "scene_description": "Distinguished veterinary doctors peer through microscopes at cow tissue while ignoring a grizzled cattleman who holds up a glass jar containing ticks, pointing at the insects as the obvious cause they refuse to consider.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a weathered Western cattleman in a broad hat holding a glass jar containing small dark ticks toward three formally dressed doctors clustered around a brass compound microscope and sliced cow organs on a table, the doctors wave dismissive hands, a circular inset shows a magnified tick with eight legs and oval body clinging to a hair follicle"
+      }
+    }
+  ]
+}

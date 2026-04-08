@@ -1,0 +1,50 @@
+{
+  "id": "ch08_sec05",
+  "chapter": 8,
+  "section": 5,
+  "scientist": "Theobald Smith",
+  "subtitle": "Ticks and Texas Fever",
+  "summary": "Theobald Smith and Kilborne set up an outdoor laboratory of fenced fields to test whether ticks spread Texas fever. They put tick-infested southern cattle with healthy northern cattle in one field, and tick-free southern cattle with healthy northern cattle in another. The northern cattle exposed to ticks sickened and died, while those without ticks stayed healthy. Smith discovered a pear-shaped parasite inside the destroyed blood cells of the dead cows, and ran further experiments with tick-infested grass to confirm ticks were responsible.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "With Kilborne, Theobald Smith now built an outlandish laboratory, not between four walls but under the hot sky, and the rooms of that place of science were nothing more than five or six little dusty fenced off fields.",
+      "visual": {
+        "scene_description": "Smith and Kilborne in a blazing sun-drenched fenced field, laboriously picking ticks off agitated southern cattle by hand, sweat and dust covering them.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, quiet neat clean-shaven man in rolled shirtsleeves and waistcoat crouching beside a restless spotted cow in a dusty fenced field under harsh midday sun, his fingers searching through matted hide for tiny brown ticks, second man holding the cow steady, wooden fence posts and dry grass, scattered engorged ticks visible on cow's flank",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 6],
+      "anchor_sentence": "But toward evening of that day they could find never a tick on any of those three North Carolina cows, and into Field No. 2 they put them, along with four healthy northern beasts.",
+      "visual": {
+        "scene_description": "Smith and a colleague studying ticks under magnification, with a diagram-like inset showing the tick life cycle from six-legged baby to engorged adult, set against the backdrop of the summer fields.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, clean-shaven man in waistcoat hunched over a magnifying lens at a rough wooden table examining small brown ticks in a glass jar, hot summer fields visible through open window, circular magnified inset showing detailed tick with eight legs and mouthparts embedded in cowhide, scattered field notebooks on the table",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [7, 8],
+      "anchor_sentence": "But on Field No. 2, where there were no ticks, the northern cows stayed as healthy as their North Carolina mates....",
+      "visual": {
+        "scene_description": "Smith peers through his brass compound microscope at blood from a dead cow, discovering pear-shaped parasites inside the red blood cells. A circular inset shows the microscope view of wrecked blood corpuscles with parasites inside.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, clean-shaven man in waistcoat peering intently through a brass compound microscope in a cramped attic laboratory, thin glass blood slides on the desk, a dead cow visible through a small window in the field beyond, circular magnified inset showing round red blood cells with pear-shaped parasites punched inside them bursting the cells apart",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [9, 10],
+      "anchor_sentence": "By now the hottest weather had passed, it was September, and in Field No. 2, the northern cattle, all four of them, kept on grazing and grew fat—there were no ticks there.",
+      "visual": {
+        "scene_description": "Smith methodically scattering tick-filled grass from large cans across a clean field, with healthy northern cattle being led in for the final confirming experiment.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, clean-shaven man in waistcoat and shirtsleeves walking across a fenced autumn field scattering grass from a large open tin can onto the ground, tiny brown ticks crawling in the scattered grass, four healthy cows being led through a gate by a second man in the background, cooler September light with long shadows",
+        "mood": "tension"
+      }
+    }
+  ]
+}

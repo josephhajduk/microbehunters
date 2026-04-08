@@ -1,0 +1,30 @@
+{
+  "id": "ch04_sec08",
+  "chapter": 4,
+  "section": 8,
+  "scientist": "Koch",
+  "subtitle": "The Death Fighter",
+  "summary": "Koch receives the Order of the Crown from the German Emperor but remains characteristically humble. Old Professor Pettenkofer of Munich, a stubborn skeptic, boldly swallows a tube full of Koch's virulent cholera bacilli to prove they are harmless -- and mysteriously survives. The debate between Koch and Pettenkofer reveals that both were partly right: cholera requires the comma bacillus, but some unknown resistance protects certain people. The section closes with a tribute to Koch as the partly forgotten captain who proved microbes are our deadliest enemies.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "From the German Emperor's own hand Koch now received the Order of the Crown, with Star, but in spite of that his countrified hat continued to fit his stubbly head, and when admirers adored him he only said to them: \"I have worked as hard as I could ... if my success has been greater than that of most ... the reason is that I came in my wanderings through the medical field upon regions where the gold was still lying by the wayside ... and that is no great merit.\"",
+      "visual": {
+        "scene_description": "Old Professor Pettenkofer defiantly drinks a tube of cholera bacilli in front of alarmed onlookers, while Koch's comma-shaped microbes swarm in a circular inset.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly bearded professor in 19th-century German academic robes tilting a small glass tube to his lips with defiant expression, alarmed colleagues in dark frock coats reaching toward him, grand Munich university hall with arched windows, circular magnified inset showing dense swarm of comma-shaped cholera bacilli with visible flagella wiggling in fluid",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 9],
+      "anchor_sentence": "Pettenkofer, who was foolhardy enough to try such a possibly suicidal experiment, was also sufficiently cocksure to believe that his drinking of the cholera soup had settled the question in his favor.",
+      "visual": {
+        "scene_description": "Koch stands resolute at his laboratory desk with his brass microscope, a solemn farewell scene as the narrative pays tribute to his legacy of proving microbes cause disease.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, stocky man with thick dark mustache and round wire spectacles in wool waistcoat standing beside a compound brass microscope on a heavy wooden desk, petri dishes and glass staining jars arranged neatly, late afternoon light through a tall 19th-century German laboratory window casting long shadows, solemn dignified posture with arms at his sides",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

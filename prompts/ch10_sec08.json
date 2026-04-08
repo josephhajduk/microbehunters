@@ -1,0 +1,30 @@
+{
+  "id": "ch10_sec08",
+  "chapter": 10,
+  "section": 8,
+  "scientist": "Ross",
+  "subtitle": "Ross vs. Grassi — Malaria",
+  "summary": "This closing section reflects on the aftermaths of Ross and Grassi's discoveries about malaria and mosquitoes. Healthy lands and the Panama Canal resulted from their work, Ross received the Nobel Prize and banquets, and Grassi became a Senator in Italy. But the two scientists also spent years bitterly attacking each other's reputations instead of continuing their research. De Kruif ends with a sobering reminder that malaria was still devastating communities decades later, with entire villages dying off.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 5],
+      "anchor_sentence": "Such was the fight of Ronald Ross and Battista Grassi against the assassins of the red blood corpuscles, the sappers of vigorous life, the destroyer of men, the chief scourge of the lands of the South—the microbe of malaria.",
+      "visual": {
+        "scene_description": "A split scene showing the two legacies of the malaria discovery: on one side, a lush tropical landscape with healthy families and the Panama Canal under construction; on the other, Ross and Grassi receiving their respective honors.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, split composition showing lush green tropical fields with healthy families on one side, and on the other side a thin-mustached British officer in sweat-stained shirt receiving a gold medal at a banquet table, a dark-featured Italian man in formal suit standing in a grand senate chamber, Panama Canal excavation visible in the background distance",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [6, 10],
+      "anchor_sentence": "All these are, for the most part, good, even if some of them are slightly ironical aftermaths.",
+      "visual": {
+        "scene_description": "Ross and Grassi face each other angrily across a desk piled with scientific papers, while in the background a desolate tropical village with empty huts shows malaria still ravaging populations.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, two men facing each other across a desk covered in scattered scientific papers, one a thin-mustached British officer gesturing accusingly, the other a dark-featured Italian man with clenched fists, behind them through a window a desolate tropical village with abandoned thatched huts and empty dirt paths stretching into barren hills",
+        "mood": "tension"
+      }
+    }
+  ]
+}

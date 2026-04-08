@@ -1,0 +1,60 @@
+{
+  "id": "ch02_sec05",
+  "chapter": 2,
+  "section": 5,
+  "scientist": "Spallanzani",
+  "subtitle": "Microbes Must Have Parents!",
+  "summary": "Spallanzani triumphs over Needham and the Vegetative Force, proving that microbes always come from parent microbes. His fame earns him a professorship at Pavia, where he fills an empty museum with specimens while continuing daring experiments on microbes, including the startling discovery that some can survive in a vacuum without air. Meanwhile, his cunning personal scheming contrasts sharply with his rigid scientific honesty. He eventually travels to Constantinople, where he confronts the Turks about fatalism, and returns through the Balkans to a glorious reception in Vienna.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "Triumphant he shouted his last experiment to Europe, and Needham and Buffon heard it, and had to sit sullenly amid the ruins of their silly theory, there was nothing to say—Spallanzani had spiked their guns with a simple fact.",
+      "visual": {
+        "scene_description": "Spallanzani stands triumphant at a writing desk, quill in hand, having just penned his devastating refutation of Needham's Vegetative Force theory, with sealed flasks of clear broth displayed before him as proof.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black Catholic priest cassock standing triumphantly at a wooden writing desk with quill raised in one dramatic gesturing hand, rows of sealed glass flasks containing clear broth lined up on the desk, scattered manuscript pages, 18th-century Italian study with arched stone window, afternoon light falling across the scene",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 7],
+      "anchor_sentence": "Spallanzani's name glittered in all the universities of Europe; the societies considered him the first scientist of the day; Frederick the Great wrote long letters to him and with his own hand made him a member of the Berlin Academy; and Frederick's bitter enemy, Maria Theresa, Empress of Austria, put it over the great king by offering Spallanzani the job of professor in her ancient and run-down University of Pavia, in Lombardy.",
+      "visual": {
+        "scene_description": "Spallanzani as energetic professor-collector at Pavia, surrounded by exotic specimens he has gathered for the empty museum — stuffed birds, mineral samples, glass jars of preserved creatures — while also blowing tobacco smoke at microbes through his microscope.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black cassock with rolled sleeves hunched over a brass microscope on a cluttered wooden table blowing tobacco smoke from a long clay pipe toward a glass slide, shelves behind him crowded with stuffed exotic birds and glass jars of preserved specimens and mineral rocks, 18th-century Italian university laboratory with high stone ceiling",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [8, 11],
+      "anchor_sentence": "\"The seeds or eggs of the little animals may be different from chicken eggs or frog's eggs or fish eggs—they may stand the heat of boiling water in my sealed flasks—but otherwise these little creatures are really no different from other animals!\"",
+      "visual": {
+        "scene_description": "Spallanzani peers through his lens at a hair-thin glass tube connected to a large vacuum pump, astonished to see the microbes still swimming vigorously despite having all air removed, his face showing pure disbelief.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black cassock pressing his eye against a lens mounted on a hair-thin glass tube connected by cord to a large brass-and-wood vacuum pump on the laboratory floor, his mouth open in astonishment, dramatic gesturing free hand, circular magnified inset showing rod-shaped bacilli and round cocci swimming actively with visible flagella in fluid, 18th-century Italian stone-walled laboratory",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [12, 14],
+      "anchor_sentence": "Spallanzani was very proud of his imagination and his quick brain and he was helped along in this conceit by the flattery and admiration of students and intelligent ladies and learned professors and conquering kings.",
+      "visual": {
+        "scene_description": "Spallanzani at his desk composing a scheming letter to the Vienna authorities about his supposedly failing health, while through the window the foggy marshes of Pavia are visible, contrasting his vigorous appearance with his whining complaints.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black cassock seated at a wooden desk writing with a quill pen with a sly grin on his face, official sealed documents and coins scattered on the desk, 18th-century Italian study with an arched window showing foggy marshland and stone buildings of Pavia, candlelight casting long shadows across stacked leather-bound books",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [15, 18],
+      "anchor_sentence": "So Spallanzani put his rows of flasks away and locked his laboratory and said a dramatic and tearful good-by to his students; on the journey down the Mediterranean he got frightfully sea-sick, he was shipwrecked—but didn't forget to try to save the specimens he had collected on some islands.",
+      "visual": {
+        "scene_description": "Spallanzani aboard a ship on the Mediterranean, clinging to specimen jars during rough seas on his voyage to Constantinople, with minarets visible on the distant horizon.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black cassock clutching glass specimen jars to his chest aboard a wooden sailing ship with billowing sails on rough Mediterranean seas, waves crashing against the hull, distant silhouette of domed mosques and minarets on the horizon, seabirds overhead, 18th-century merchant vessel with coiled ropes and wooden barrels on deck",
+        "mood": "adventure"
+      }
+    }
+  ]
+}

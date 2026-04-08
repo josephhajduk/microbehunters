@@ -1,0 +1,70 @@
+{
+  "id": "ch05_sec03",
+  "chapter": 5,
+  "section": 3,
+  "scientist": "Pasteur",
+  "subtitle": "And the Mad Dog",
+  "summary": "After accidentally discovering that weakened microbes can protect chickens from cholera, Pasteur races to develop vaccines for other diseases. His arrogance leads to a near-fistfight at the Academy of Medicine and a premature claim that one vaccine could protect against all diseases. Undeterred by errors, he develops an anthrax vaccine and accepts a dangerous public challenge to prove it works on a farm full of sheep, goats, and cattle at Pouilly-le-Fort.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "A lesser man than Pasteur might have done this same accidental experiment—for this was no test planned by the human brain—a lesser man might have done it and would have spent years trying to explain to himself the mystery of it, but Pasteur, stumbling on this chance protection of a couple of miserable chickens, saw at once a new way of guarding living things against virulent germs, of saving men from death.",
+      "visual": {
+        "scene_description": "Pasteur and his assistants in the laboratory confirm their vaccine discovery by injecting weakened cholera microbes into chickens, which survive while unvaccinated birds perish.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man in round spectacles and black frock coat watches intently as two younger assistants inject chickens with glass syringes in a 19th-century French laboratory, glass broth bottles on wooden bench, one group of healthy strutting chickens beside limp fallen ones, circular inset showing rod-shaped bacteria in ochre broth",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 7],
+      "anchor_sentence": "And now Pasteur, with his characteristic impetuousness—after all it was only chickens he had learned to guard from death so far—became more arrogant than ever with the old-fashioned doctors who talked Latin words and wrote shot-gun prescriptions.",
+      "visual": {
+        "scene_description": "Pasteur provokes an uproar at the Academy of Medicine, where the elderly surgeon Guerin nearly comes to blows with him before colleagues intervene.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, grand 19th-century French academy hall with tiered wooden seats, neat-bearded man in round spectacles and black frock coat stands gesturing defiantly at podium, very elderly blue-coated surgeon lunges forward from his seat with raised fist, several alarmed men in dark suits grab his arms to restrain him, gaslit chandeliers overhead",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [8, 10],
+      "anchor_sentence": "As I have told you before, Pasteur had a great deal of the mystic in him.",
+      "visual": {
+        "scene_description": "Pasteur, carried away by excitement, writes a letter to his old professor Dumas claiming his fowl-cholera vaccine might protect against all diseases—a premature claim soon proven wrong.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man in round spectacles and black frock coat hunched over a desk writing a letter by candlelight in a cluttered 19th-century French study, stacks of papers and sealed envelopes on desk, glass bottles of microbe cultures nearby, expression of wild excitement on his face, quill pen in hand",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [11, 14],
+      "anchor_sentence": "But one of Pasteur's most charming traits was his characteristic of a scientific Phoenix, who rose triumphantly from the ashes of his own mistakes.",
+      "visual": {
+        "scene_description": "Pasteur directs Roux and Chamberland as they develop the anthrax vaccine, carefully weakening deadly bacilli to different strengths and testing them on guinea pigs and sheep.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man in round spectacles and black frock coat directing two younger assistants in rolled shirtsleeves at a crowded laboratory bench, rows of labeled glass flasks and test tubes, brass compound microscope, small guinea pigs in wire cages, circular inset showing rod-shaped anthrax bacilli with visible endospores",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [15, 22],
+      "anchor_sentence": "But enemies were on Pasteur's trail again.",
+      "visual": {
+        "scene_description": "The veterinarian Rossignol schemes at the Agricultural Society of Melun to challenge Pasteur to a public experiment, and Pasteur confidently accepts without suspicion.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, sly-looking man in dark suit addressing a crowded 19th-century French agricultural meeting hall, seated farmers in work clothes and top-hatted gentlemen listen intently, a distinguished elderly baron stands nearby, through an arched window a pastoral French landscape with sheep grazing in green fields",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [23, 31],
+      "anchor_sentence": "They hurried back.",
+      "visual": {
+        "scene_description": "At the farm of Pouilly-le-Fort, Pasteur marches before a huge crowd of senators, scientists, veterinarians, and farmers as Roux and Chamberland inject the first vaccine doses into rows of sheep.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man in round spectacles and black frock coat bowing before a large outdoor crowd at a French farm, two assistants in shirtsleeves kneel injecting sheep with glass syringes beside lit alcohol lamps, flock of woolly sheep in fenced pen, senators in top hats and farmers in caps watching, rolling green countryside behind wooden sheds",
+        "mood": "adventure"
+      }
+    }
+  ]
+}

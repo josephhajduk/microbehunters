@@ -1,0 +1,60 @@
+{
+  "id": "ch02_sec04",
+  "chapter": 2,
+  "section": 4,
+  "scientist": "Spallanzani",
+  "subtitle": "Microbes Must Have Parents!",
+  "summary": "Spallanzani systematically dismantles Needham's 'Vegetative Force' theory through a series of increasingly clever experiments. He shows that boiling duration does not matter when flasks are merely corked, that seeds roasted to cinders still produce microbe-filled broth, and that the air inside sealed boiled flasks is actually more elastic than outside air. Along the way he pursues wild tangents studying bat navigation, toad reproduction, and his own digestion, revealing both his relentless curiosity and his commitment to testing even his own cherished ideas.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 5],
+      "anchor_sentence": "\"So Needham says heat damages the Force in the seeds, does he?",
+      "visual": {
+        "scene_description": "Spallanzani in his cluttered workroom surrounded by dozens of corked flasks boiled for different durations, pulling corks and peering through his lens at drops of broth teeming with microbes.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black Catholic priest cassock with dramatic gesturing hand pulling a cork from a glass flask in a cluttered 18th-century Italian workroom, shelves and tables crowded with dozens of corked glass flasks of amber broth, a small lens held to one eye, circular magnified inset showing darting rod-shaped bacilli and round cocci swimming in liquid",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [6, 8],
+      "anchor_sentence": "Spallanzani was triumphant, but then he did the curious thing that only born scientists ever do—he tried to beat his own idea, his darling theory—by experiments he honestly and shrewdly planned to defeat himself.",
+      "visual": {
+        "scene_description": "Spallanzani roasting seeds over a coffee-roaster until they become black cinders, then pouring distilled water over them into flasks, determined to test whether extreme heat can destroy the supposed Vegetative Force.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black Catholic priest cassock holding a metal coffee-roaster over open flames in a dim 18th-century Italian workroom, blackened charred seeds visible inside the roaster, nearby table with glass flasks and a pitcher of clear distilled water, soot-stained hands, smoke rising from the roaster",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [9, 13],
+      "anchor_sentence": "Then he relaxed from his hard pryings into the loves and battles and deaths of little animals by making deep studies of the digestion of food in the human stomach—and to do this he experimented cruelly on himself.",
+      "visual": {
+        "scene_description": "Spallanzani in a dark attic releasing blinded bats that fly expertly between hanging strings, while on his desk below sit hollowed wooden blocks, letters from Voltaire, and preserved toad specimens.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black Catholic priest cassock standing in a dark low-ceilinged attic with arms raised releasing small bats that fly between dangling strings without touching them, wooden beams overhead, a desk below holding hollowed wood blocks and sealed letters and glass jars with preserved specimens, single candle casting long shadows",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [14, 18],
+      "anchor_sentence": "\"But there is a Vegetative Force,\" cried Needham, \"a mysterious something—I'll admit you can't see it or weigh it—that can make life arise out of gravy or soup or out of nothing at all, perhaps.\"",
+      "visual": {
+        "scene_description": "Spallanzani cracking the sealed neck off a flask and holding a lit candle near the opening, watching the flame suck inward as air rushes into the bottle, his face showing alarm.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black Catholic priest cassock in an 18th-century Italian laboratory cracking the sealed glass neck off a round flask with one hand while holding a lit taper candle near the opening with the other, flame bending sharply inward toward the flask opening, rows of sealed glass flasks on wooden shelves behind him, expression of alarm and concentration",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [19, 22],
+      "anchor_sentence": "For a moment Spallanzani had a queer feeling at the pit of his stomach, his forehead was wet with nervous sweat, his world tottered around him....",
+      "visual": {
+        "scene_description": "Spallanzani at his workbench carefully heating a flask with a narrowed needle-fine neck in a tiny flame to seal it without expelling air, then later cracking the seal as the candle flame blows outward proving the air inside is more elastic than outside.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black Catholic priest cassock at a wooden workbench applying a tiny precise flame to the needle-fine drawn-out glass neck of a round flask to seal it, a lit candle nearby with flame blowing outward away from a second cracked-open flask, 18th-century Italian laboratory with broken flasks and scattered equipment on the bench, triumphant expression",
+        "mood": "discovery"
+      }
+    }
+  ]
+}

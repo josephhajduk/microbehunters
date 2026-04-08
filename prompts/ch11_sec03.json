@@ -1,0 +1,60 @@
+{
+  "id": "ch11_sec03",
+  "chapter": 11,
+  "section": 3,
+  "scientist": "Walter Reed",
+  "subtitle": "In the Interest of Science—and for Humanity!",
+  "summary": "Walter Reed leaves for Washington, entrusting Carroll and Lazear with secret, daring mosquito experiments in Cuba. After initial failures, James Carroll volunteers to be bitten by the most dangerous infected mosquito and nearly dies of yellow fever, becoming the first deliberate experimental case. A private soldier called X.Y. also falls ill after mosquito bites. Then tragedy strikes: a stray mosquito bites Jesse Lazear in the yellow fever ward, and he dies of the disease on September 25, 1900.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Then Walter Reed (he had been called home to Washington to make a report on work done in the Spanish War) gave elaborate instructions to Carroll and Lazear and Agramonte.",
+      "visual": {
+        "scene_description": "Lazear moves between beds of yellow fever patients in a military hospital ward, carefully holding glass tubes containing silver-striped mosquitoes against the arms of sick soldiers.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a gaunt determined man in rolled shirtsleeves moves between iron hospital beds holding a glass tube against a patient's arm, silver-striped Aedes aegypti mosquito visible inside the tube feeding through the open end, military hospital ward with shuttered windows and oil lamps, yellow-faced soldiers lying in narrow cots, glass jars with sugar water and mosquitoes on a side table",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 7],
+      "anchor_sentence": "But look at the bold face of Jesse Lazear, and tell me if that was a patient man!",
+      "visual": {
+        "scene_description": "James Carroll, a tough middle-aged soldier, sits with his sleeve rolled up as Lazear carefully places a mosquito on his bare forearm. Carroll watches stoically as the insect prepares to bite.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a stocky middle-aged soldier with weathered face and rolled shirtsleeves sits on a wooden stool extending his bare forearm, a younger man in shirtsleeves holds an inverted glass tube against the arm releasing a silver-striped mosquito, the mosquito settles on skin with proboscis extended, sparse military laboratory with glass tubes and cages of mosquitoes on wooden shelves",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [8, 11],
+      "anchor_sentence": "That soldier watched her while she felt around with her stinger....",
+      "visual": {
+        "scene_description": "Carroll lies gravely ill in a hospital bed with bloodshot eyes and flushed face, while Lazear stands beside him checking a thermometer. Carroll survived and later called these his proudest days.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a middle-aged man with dusky red face and bloodshot eyes lies in a narrow iron hospital bed under a thin sheet, a younger man in shirtsleeves stands beside him holding a glass thermometer and checking a pocket watch, military yellow fever ward with high ceilings and louvered shutters letting in tropical light, a brass compound microscope sits on a bedside table",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [12, 14],
+      "anchor_sentence": "Then there was that American private soldier they called \"X.Y.\"—these outlaw searchers called him \"X.Y.,\" though he was really William Dean, of Grand Rapids, Michigan.",
+      "visual": {
+        "scene_description": "Lazear feeds mosquitoes in the yellow fever ward while a stray mosquito lands unnoticed on the back of his hand. He dismisses it as harmless, not knowing it will seal his fate.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a young man in shirtsleeves holds inverted glass tubes against a patient's arm in a dim hospital ward, a single stray silver-striped mosquito perches on the back of his other hand feeding unnoticed, rows of iron beds with sick soldiers recede into shadow, louvered wooden shutters filter pale tropical light across the floor",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [15, 16],
+      "anchor_sentence": "\"On the evening of September 18th ... Dr. Lazear complained of feeling out of sorts, and had a chill at 8 P.M.,\" says a hospital record of Las Animas....",
+      "visual": {
+        "scene_description": "Lazear lies dying in the same yellow fever ward where he once collected mosquitoes, his face jaundiced, while a fellow doctor records his declining vital signs in a ledger.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a young man with jaundiced yellow skin and sunken eyes lies still in an iron hospital bed, a doctor in a dark coat sits beside him writing in a leather-bound ledger with a pen, dim military ward at evening with a single oil lamp casting long shadows, empty glass mosquito tubes and cages sit abandoned on a nearby wooden table",
+        "mood": "sadness"
+      }
+    }
+  ]
+}

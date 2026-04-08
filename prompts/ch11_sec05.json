@@ -1,0 +1,40 @@
+{
+  "id": "ch11_sec05",
+  "chapter": 11,
+  "section": 5,
+  "scientist": "Walter Reed",
+  "subtitle": "In the Interest of Science—and for Humanity!",
+  "summary": "Volunteer John J. Moran, a civilian clerk who refused any payment, finally gets his chance to prove that mosquitoes carry yellow fever. Reed builds a clean, well-ventilated house divided by a fine screen—Moran is placed on one side with fifteen infected mosquitoes, while two other men sleep safely on the other side. Moran falls gravely ill on Christmas Day 1900, nearly dying, but survives—proving definitively that mosquitoes, not filth, transmit yellow fever. Reed writes a joyful letter to his wife that his twenty-year prayer to alleviate human suffering has been answered.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "While these tests were going on John J. Moran, that civilian clerk from Ohio, whom Walter Reed had paid the honor of a salute, was a very disappointed man.",
+      "visual": {
+        "scene_description": "Walter Reed and James Carroll release fifteen mosquitoes from a glass jar inside a small, clean wooden house divided by a wire screen, as Moran in a nightshirt prepares to enter.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, US Army officer Walter Reed with kind weathered face in uniform opens a glass jar releasing mosquitoes inside a small clean wooden house with a fine wire screen dividing the room, a cot with white bedding on one side, jalousie windows letting in tropical breeze, a young man in a white nightshirt standing in the doorway, Cuban camp visible outside",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 6],
+      "anchor_sentence": "Clad only in a nightshirt and fresh from a bath, Moran—who knows of him now?—walked into the healthy little room and lay down on his clean cot.",
+      "visual": {
+        "scene_description": "Moran lies on his cot in the screened house being bitten by mosquitoes, while on the other side of the wire screen two men sleep safely untouched.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a young man in a white nightshirt lying on a clean cot swatting at mosquitoes buzzing around his head, fine wire mesh screen dividing the small wooden room, two men sleeping peacefully on cots on the opposite side of the screen with no mosquitoes, tropical daylight streaming through slatted windows, magnified circular inset showing a striped Aedes aegypti mosquito feeding",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [7, 9],
+      "anchor_sentence": "It was so simple.",
+      "visual": {
+        "scene_description": "Walter Reed sits at a desk in the Cuban camp writing a letter to his wife by lamplight, as military buglers sound taps outside under the stars on New Year's Eve 1900.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, US Army officer Walter Reed with kind weathered face sits at a wooden field desk writing a letter by oil lamp light in a Cuban military barracks, outside through an open window silhouettes of buglers sounding taps under a starlit sky, scattered papers and notes on the desk, expression of quiet relief and gratitude",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

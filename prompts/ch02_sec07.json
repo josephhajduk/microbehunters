@@ -1,0 +1,20 @@
+{
+  "id": "ch02_sec07",
+  "chapter": 2,
+  "section": 7,
+  "scientist": "Spallanzani",
+  "subtitle": "Microbes Must Have Parents!",
+  "summary": "In 1799, Spallanzani was struck by apoplexy and died shortly after, spending his final days reciting poetry to friends who had come to watch him die. His lasting memorial in Pavia is not a grand statue or painting but his own diseased bladder, preserved in a museum -- a fitting tribute to a man whose relentless curiosity stopped at nothing. Even on his deathbed, he urged doctors to examine his body for new facts, embodying the fearless spirit of scientific inquiry that paved the way for Pasteur and others.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "Early in the year 1799, as Napoleon started thoroughly smashing an old world to pieces, and just as Beethoven was knocking at the door of the nineteenth century with the first of his mighty symphonies, war-cries of that defiant spirit of which Spallanzani was one of the chief originators—in the year 1799, I say, the great microbe hunter was struck with apoplexy.",
+      "visual": {
+        "scene_description": "Spallanzani lying propped up in bed reciting poetry with animated gestures, while friends stand around him in a candlelit room, and a circular inset shows the modest stone bust of him displayed in the Pavia museum.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black Catholic priest's cassock propped up on pillows in an 18th-century Italian bed with carved wooden headboard, gesturing dramatically while reciting to three friends in dark coats standing at bedside, candlelight from brass holder on nightstand, small circular inset showing a modest stone portrait bust on a pedestal",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

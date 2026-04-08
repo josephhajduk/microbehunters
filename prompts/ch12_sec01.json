@@ -1,0 +1,40 @@
+{
+  "id": "ch12_sec01",
+  "chapter": 12,
+  "section": 1,
+  "scientist": "Paul Ehrlich",
+  "subtitle": "The Magic Bullet",
+  "summary": "This section introduces Paul Ehrlich, the final microbe hunter in the book, by contrasting him with Leeuwenhoek from the first chapter. Ehrlich was a cigar-smoking, beer-drinking maverick who dreamed of shooting microbes with 'magic bullets' and was mocked as 'Doktor Phantasus.' As a young student he ignored his classical studies and instead painted thin tissue slices with colorful aniline dyes, driven by an instinct he could not explain. He eventually witnessed Koch's landmark anthrax demonstration, became a devoted follower, invented an improved stain for the tubercle germ, and then accidentally infected himself with consumption.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "Two hundred and fifty years ago, Antony Leeuwenhoek, who was a matter-of-fact man, looked through a magic eye, saw microbes, and so began this history.",
+      "visual": {
+        "scene_description": "Split composition contrasting Leeuwenhoek on one side peering through his tiny lens with Ehrlich on the other side, cigar in hand, holding up a glowing vial of arsenic compound, a pale corkscrew-shaped spirochete microbe floating between them.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, split composition, left side shows round-faced man in white periwig and dark Dutch coat peering through tiny brass hand-held microscope, right side shows man with messy hair and ever-present lit cigar in stained coat holding a glowing glass vial, circular inset between them showing pale corkscrew-shaped spirochete bacterium with tight coils and flagella",
+        "mood": "wonder"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 9],
+      "anchor_sentence": "\"Life rests on normal oxidations,\" wrote that bright young Jew, Paul Ehrlich.",
+      "visual": {
+        "scene_description": "Young Paul Ehrlich at a medical school laboratory bench, surrounded by rows of colorful aniline dye bottles, carefully painting thin tissue slices on glass slides with vibrant pinks, blues, and purples while a professor looks on from behind him.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, young man with messy dark hair and coat stained with bright chemical dyes sits at wooden laboratory bench, rows of small glass bottles filled with vivid aniline dyes in pink blue violet and yellow, he paints thin tissue slices on glass slides with a fine brush, older bearded professor in academic robes watches from doorway, 19th-century German medical school dissection room with high windows",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [10, 11],
+      "anchor_sentence": "He hated classical training, he called himself a modern, but he had a fine knowledge of Latin, and with this Latin he used to coin his battle cries.",
+      "visual": {
+        "scene_description": "Ehrlich sitting in the audience of Koch's famous 1882 lecture in Berlin, leaning forward with intense excitement as Koch demonstrates the tubercle bacillus under a compound microscope, with a circular magnified inset showing rod-shaped acid-fast red tubercle bacilli.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, young man with messy hair and dye-stained coat leans forward excitedly in crowded Berlin lecture hall, at front a sturdy man with thick dark mustache and round wire spectacles stands beside a brass compound microscope gesturing at a glass slide, gas lamps illuminate wooden benches filled with seated scientists, circular magnified inset shows slender red-stained rod-shaped tubercle bacilli against pale background",
+        "mood": "discovery"
+      }
+    }
+  ]
+}

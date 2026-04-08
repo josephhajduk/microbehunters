@@ -1,0 +1,40 @@
+{
+  "id": "ch12_sec02",
+  "chapter": 12,
+  "section": 2,
+  "scientist": "Paul Ehrlich",
+  "subtitle": "The Magic Bullet",
+  "summary": "Ehrlich, a restless and visionary doctor, nearly died of tuberculosis in Egypt but survived and returned to Berlin. His experiments staining live animals with methylene blue led him to dream of a dye that could kill microbes without harming the body — his idea of a 'magic bullet.' Working in Koch's institute, he threw himself into precise experiments measuring immunity in mice, explaining his wild ideas to Koch with chaotic energy. Despite his undignified habits — scrawling diagrams on floors, shirt fronts, and shoe soles — he was the most exact experimenter of his time, and that exactness would eventually lead him to his magic bullet.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "Ehrlich was thirty-four years old then, and if he had died in Egypt, he would certainly have been forgotten, or been spoken of as a color-loving, gay, visionary failure.",
+      "visual": {
+        "scene_description": "Ehrlich in his cluttered laboratory injecting methylene blue dye into a rabbit's ear vein, watching the blue color spread through the animal and selectively stain the nerve endings.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a messy-haired man in a dye-stained frock coat hunched over a laboratory bench, injecting bright blue liquid from a syringe into the ear vein of a white rabbit, shelves of colorful dye bottles behind him, a circular magnified inset showing branching nerve endings stained vivid blue against unstained tissue, scattered papers and glass vials on the desk",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 9],
+      "anchor_sentence": "In 1890 Ehrlich came back from Egypt; he had not died from tuberculosis; Robert Koch shot his terrible cure for consumption into him, still he did not die from tuberculosis—and presently he went to work in the Institute of Robert Koch in Berlin, in those momentous days when Behring was massacring guinea-pigs to save babies from diphtheria and the Japanese Kitasato was doing miraculous things to mice with lockjaw.",
+      "visual": {
+        "scene_description": "Ehrlich excitedly explaining his immunity experiments to a stern Koch in Ehrlich's crammed, chaotic laboratory, waving test tubes of brick-red clotted mouse blood.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a wild-haired man with a cigar and dye-stained coat gesturing excitedly with test tubes of brick-red liquid toward a stern man with thick dark mustache and round wire spectacles, a cramped laboratory crammed with rows of shimmering colored dye bottles, cages of small white mice on shelves, papers and charts pinned to walls",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [10, 12],
+      "anchor_sentence": "\"Certainly, Herr Doktor! That I can do right off!\" Never for a moment does Ehrlich stop talking, but grabs a piece of chalk, gets down on his knees, and scrawls huge diagrams of his ideas over the laboratory floor—\"Now, do you see, is that clear?\"",
+      "visual": {
+        "scene_description": "Ehrlich on his knees scrawling huge chalk diagrams of chemical formulas and side-chain theories across the laboratory floor, surrounded by rows of dead white mice from his precise experiments.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a man with messy hair and a cigar clamped in his mouth kneeling on a stone laboratory floor, drawing large chalk diagrams of branching chemical chains, his coat sleeves and shirt front covered in colorful dye stains, rows of small white mice in numbered cages on the bench above him, chalk marks trailing across the floor in all directions",
+        "mood": "discovery"
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "ch05_sec02",
+  "chapter": 5,
+  "section": 2,
+  "scientist": "Pasteur",
+  "subtitle": "And the Mad Dog",
+  "summary": "Pasteur debunks a quack veterinarian's anthrax cure by designing a controlled experiment with four cows, proving the treatment is no better than chance. When the surviving cows resist a second, more virulent injection, Pasteur grasps the concept of immunity and becomes obsessed with finding a way to safely immunize animals. A lucky accident with old chicken cholera cultures that have lost their killing power gives him the answer: weakened microbes can protect against the full-strength disease, a discovery he calls vaccination.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 5],
+      "anchor_sentence": "Pasteur arrived there, escorted by his young assistants, and found that this miraculous cure consisted first, in having several farm hands rub the sick cow violently to make her as hot as possible; then long gashes were cut in the poor beast's skin and into these cuts Louvrier poured turpentine; finally the now bellowing and deplorably maltreated cow was covered—excepting her face!—with an inch thick layer of unmentionable stuff soaked in hot vinegar.",
+      "visual": {
+        "scene_description": "Pasteur stands before a commission of farmers watching four cows in a barn, two being treated with Louvrier's crude methods and two left alone, as he demonstrates the need for a controlled experiment.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in formal black frock coat standing in a rustic French barn before four cows in stalls, solemn group of farmers in work clothes and a veterinarian watching, one cow wrapped in cloth bandages, straw on the floor, wooden beams overhead, late 19th-century rural setting",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [6, 10],
+      "anchor_sentence": "Here were two cows left over from the experiment, beasts that had had a hard siege of anthrax and got better from it: \"What shall I do with these two cows?\"",
+      "visual": {
+        "scene_description": "Pasteur injects a powerful dose of anthrax into the two recovered cows and waits, astonished that the cows remain perfectly healthy, leading him to the concept of immunity.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in black frock coat holding a glass syringe near the shoulder of a healthy placid cow in a French farmyard, a second cow grazing calmly nearby, his expression intense and focused, circular magnified inset showing rod-shaped anthrax bacilli with visible cell walls and endospores",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [11, 16],
+      "anchor_sentence": "Meanwhile Pasteur and his faithful crew were training their microscopes on stuff from men and animals dead of a dozen different diseases; there was a kind of mixed-up fumbling in this work between 1878 and 1880—when one day fate, or God, put a marvelous way to immunize right under Pasteur's lucky nose.",
+      "visual": {
+        "scene_description": "Pasteur's cluttered laboratory with abandoned culture flasks on the benches, Roux dipping a platinum needle into chicken broth teeming with cholera microbes, while chickens that survived old cultures strut about healthy.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt man with dark pointed beard in rolled-up shirtsleeves dipping a thin platinum needle into a glass flask of cloudy broth at a wooden laboratory bench, rows of abandoned glass culture flasks of varying ages crowding the shelves, two fluffy chickens alive and alert in a wire cage nearby, 19th-century Parisian laboratory with tall windows",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [17, 24],
+      "anchor_sentence": "But at last one day Pasteur told the laboratory servant: \"Bring up some healthy birds, new chickens, and get them ready for inoculation.\"",
+      "visual": {
+        "scene_description": "Pasteur paces excitedly before chicken cages, pointing at the healthy vaccinated chickens beside the dead unvaccinated ones, proclaiming his discovery of vaccination to a stunned Roux and Chamberland.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in black frock coat pacing with arms raised before wire chicken cages in a stone-walled basement room, two lively chickens pecking grain in one cage, two assistants in shirtsleeves descending stairs with astonished expressions, glass flasks and syringes on a side table, dramatic lamplight",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "ch07_sec01",
+  "chapter": 7,
+  "section": 1,
+  "scientist": "Metchnikoff",
+  "subtitle": "The Nice Phagocytes",
+  "summary": "This section introduces Élie Metchnikoff, the excitable Russian-Jewish scientist who would eventually found the science of immunity. We learn about his turbulent youth: his reckless ambition at the University of Kharkoff, his emotional outbursts and thoughts of suicide, his conversion to Darwin's theory of evolution, and his decade of messy evolutionary research across Europe. After the death of his first wife Ludmilla and his own brush with self-destruction, he remarried, settled in Odessa, and finally began learning to do careful experiments.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "Microbe hunting has always been a queer humpty-dumpty business.",
+      "visual": {
+        "scene_description": "Young Metchnikoff at the University of Kharkoff, hunched over a borrowed microscope at a cluttered desk, surrounded by stacks of books and cups of tea, staying up late by candlelight.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, young man with wild hair and round spectacles hunched over a borrowed brass microscope at a cluttered wooden desk, stacks of leather-bound books and empty tea cups surrounding him, candlelight casting long shadows, 19th-century Russian university dormitory room with peeling plaster walls, ink-stained papers scattered across the table",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 7],
+      "anchor_sentence": "Metchnikoff was always trying to get ahead of himself.",
+      "visual": {
+        "scene_description": "Metchnikoff on a train reading Darwin's Origin of Species with intense absorption, the German countryside visible through the window, a satchel of books beside him.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, thin young man with round spectacles seated in a 19th-century railway carriage, gripping a thick open book with intense concentration, worn leather satchel stuffed with books on the wooden bench beside him, rolling German countryside with fields visible through the small window, gas lamp mounted on the carriage wall, his coat rumpled from travel",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [8, 9],
+      "anchor_sentence": "That conversion was Metchnikoff's real start in life, for now he set out (and kept at it for ten years), quarreling and expostulating his way from one laboratory to another, from Russia through Germany to Italy, and from Italy to the island of Heligoland.",
+      "visual": {
+        "scene_description": "Metchnikoff in a cluttered European laboratory dissecting specimens, surrounded by jars of worms and preserved creatures, gesturing dramatically while a dismayed colleague looks on.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, agitated man with bushy hair and round spectacles in a 19th-century zoology laboratory, dissecting tools scattered on a wooden bench, glass jars containing preserved worms and sponges and scorpions on shelves behind him, one hand raised in dramatic gesture, a startled colleague stepping back, open notebooks with sketches of evolutionary diagrams strewn about",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [10, 13],
+      "anchor_sentence": "Finally Ludmilla died; she had spent her last days solaced by morphine, and now Metchnikoff, who had caught the habit from her, wandered from her grave through Spain to Geneva, taking larger and larger doses of the drug—meanwhile, his eyes hurt him terribly, and what is a naturalist, a searcher, without eyes?",
+      "visual": {
+        "scene_description": "Metchnikoff standing outdoors at night, staring up in fascination at a swarm of insects circling around a glowing lantern, a moment of renewed scientific wonder pulling him back from despair.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, pale gaunt man with round spectacles standing alone on a dark cobblestone street at night, head tilted upward with an expression of sudden fascination, a cloud of moths and insects swirling around the bright flame of a wrought-iron street lantern, his long dark coat hanging loosely, stars visible in the night sky above rooftops",
+        "mood": "wonder"
+      }
+    }
+  ]
+}

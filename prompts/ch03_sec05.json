@@ -1,0 +1,60 @@
+{
+  "id": "ch03_sec05",
+  "chapter": 3,
+  "section": 5,
+  "scientist": "Pasteur",
+  "subtitle": "Microbes Are a Menace!",
+  "summary": "Pasteur meets Emperor Napoleon III and dazzles Parisian high society with a dramatic lecture revealing the invisible world of germs in dust. He then travels to Arbois to save the French wine industry, discovering that different microbes cause different wine diseases and astonishing skeptical winegrowers by diagnosing sick wines through his microscope alone. He invents pasteurization — gentle heating to kill harmful microbes — then repeats his success with the vinegar industry in Tours, growing ever bolder in his conviction that microbes are behind all manner of disease.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Pasteur was now presented to the Emperor Napoleon III.",
+      "visual": {
+        "scene_description": "Pasteur performs his dramatic Sorbonne lecture, shooting a single beam of light through a darkened hall to reveal thousands of dust motes dancing in the air, while fashionable Parisians watch in awe.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in formal black frock coat stands at lectern in grand vaulted Sorbonne lecture hall, single bright beam of light cuts diagonally through darkness revealing swirling dust particles, rows of well-dressed 19th-century Parisians in evening gowns and top hats lean forward wide-eyed, gas chandeliers dimmed, circular inset shows magnified dust particles with tiny rod-shaped and round bacteria clinging to them",
+        "mood": "wonder"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 6],
+      "anchor_sentence": "\"I beg you,\" he addressed the French people in a passionate pamphlet, \"take some interest in those sacred dwellings meaningly called laboratories.\"",
+      "visual": {
+        "scene_description": "Pasteur and his assistant Duclaux work in a makeshift laboratory set up in an old cafe in Arbois, examining bottles of diseased wine under a microscope while Duclaux pumps a charcoal brazier with bellows.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in black frock coat peers into brass compound microscope on rough wooden table inside converted provincial French cafe, younger assistant pumps bellows at glowing charcoal brazier nearby, shelves lined with bottles of murky wine in amber and brown, crude glass apparatus built by village craftsmen scattered about, circular inset shows chains of tiny round microbes linked like strings of beads among rod-shaped bacteria",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [7, 10],
+      "anchor_sentence": "\"Bring me a half dozen bottles of wine that has gone bad with different sicknesses,\" he asked them.",
+      "visual": {
+        "scene_description": "Pasteur hunches over his microscope examining a drop of wine on a glass slide while skeptical French winegrowers in work clothes nudge each other and wink, a row of unlabeled wine bottles lined up on the table.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in black frock coat hunches over brass microscope with drop of red wine between two glass slips, row of six unlabeled wine bottles on rough wooden cafe table, cluster of stocky French peasant winegrowers in caps and work aprons nudge elbows and smirk skeptically behind him, slender glass pipette rests beside microscope, afternoon light through dusty window",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [11, 12],
+      "anchor_sentence": "When they left, Pasteur and Duclaux worked triumphantly in their tumbledown laboratory; they tackled the question of how to keep these microbes out of healthy wines—they found at last that if you heat wine just after it has finished fermenting, even if you heat it gently, way below the point of boiling, the microbes that have no business in the wine will be killed—and the wine will not become sick.",
+      "visual": {
+        "scene_description": "Pasteur gently heats a flask of wine over a controlled flame in the old cafe laboratory, discovering pasteurization, while in Tours he examines a thick scum of vinegar-making microbes scraped from the surface of a barrel.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in black frock coat carefully holds sealed glass flask of pale wine over low flame on iron stand, thermometer inserted in liquid reads below boiling, open wooden vinegar barrels visible behind him with thick filmy scum on surface, assistant scrapes sheet of scum with spatula into glass dish, circular inset shows dense mat of tiny rod-shaped bacteria packed shoulder to shoulder",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [13, 14],
+      "anchor_sentence": "These successes made Pasteur drunk with confidence in his method of experiment; he began to dream impossible gaudy dreams—of immense discoveries and super-Napoleonic microbe huntings—and he did more than brood alone over these dreams; he put them into speeches and preached them.",
+      "visual": {
+        "scene_description": "An older professor Dumas visits Pasteur in his Paris laboratory, gesturing as he asks Pasteur to become a silkworm doctor, while Pasteur looks surprised and intrigued.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly distinguished professor in long 19th-century black academic coat gestures emphatically toward neat-bearded man with round spectacles in black frock coat who stands surprised beside his laboratory bench in Paris, swan-neck glass flasks and brass microscope on bench, tall windows with gray Parisian rooftops beyond, small wooden tray holding silk cocoons rests on table between them",
+        "mood": "adventure"
+      }
+    }
+  ]
+}

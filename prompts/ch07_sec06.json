@@ -1,0 +1,40 @@
+{
+  "id": "ch07_sec06",
+  "chapter": 7,
+  "section": 6,
+  "scientist": "Metchnikoff",
+  "subtitle": "The Nice Phagocytes",
+  "summary": "Metchnikoff proves that phagocytes devour living microbes, not just dead ones, by vaccinating guinea pigs and watching their wandering cells swallow dangerous bacilli whole. He risks his own life and the lives of his assistants by feeding them cholera germs, all to defend his beloved phagocyte theory. Meanwhile, a quiet young Belgian named Bordet, working right under Metchnikoff's nose, discovers important germ-killing powers in blood itself. By the end of the century, Metchnikoff finally receives recognition, and his stubbornly defended discovery of phagocytes proves to be a genuine contribution to medicine.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "It is amazing, when you remember that his brain was always inventing stories about nature, how often these stories turned out to be true when they were put to the test of experiment.",
+      "visual": {
+        "scene_description": "Metchnikoff in his Paris laboratory drawing fluid from a vaccinated guinea pig's belly with a slender glass tube, then peering through his microscope to see phagocytes crammed full of living bacilli.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy white-bearded man with round spectacles in dark coat drawing fluid with a slender glass tube from a small guinea pig on a laboratory bench, compound brass microscope beside him, glass tubes and specimen jars on wooden shelves, circular magnified inset showing large irregular phagocyte cells with visible nuclei crammed full of small rod-shaped bacilli, late nineteenth-century Paris laboratory with oil lamp",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 4],
+      "anchor_sentence": "By dozens of brilliant experiments of this kind, Metchnikoff forced his opponents to admit that phagocytes, sometimes, can eat vicious microbes.",
+      "visual": {
+        "scene_description": "Metchnikoff dramatically swallowing a glass tube of cholera bacilli alongside his devoted laboratory assistants, all gathered around a cluttered bench in a tense Paris lab, risking their lives for the phagocyte theory.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy white-bearded man with round spectacles tilting back a small glass tube to swallow its contents, three younger assistants in rolled shirtsleeves watching with tense expressions around a cluttered laboratory bench covered with glass tubes and flasks of cloudy liquid, shelves of specimen bottles behind them, late nineteenth-century Paris laboratory interior with tall windows",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [5, 6],
+      "anchor_sentence": "When some more than ordinarily independent student would come whispering to him that he had discovered a remarkable something about blood, Metchnikoff became magnificent like Moses coming down off Mt. Sinai—searchers for mere truth had a bad time in that laboratory, and you can imagine the great dauntless champion of phagocytes ordering a dissenter from his theory to be burned, and then weeping inconsolably over him afterwards.",
+      "visual": {
+        "scene_description": "Metchnikoff standing grandly with arms crossed while the quiet young Bordet works at a separate bench studying blood samples through a microscope, discovering germ-killing properties in serum that Metchnikoff reluctantly acknowledges.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy white-bearded man with round spectacles standing with arms crossed and stern proud expression in background, young timid clean-shaven man with watery-blue eyes seated at a bench peering into a compound brass microscope at blood serum in glass tubes, circular magnified inset showing rod-shaped bacilli dissolving in pale serum fluid, cluttered nineteenth-century Paris laboratory with tall shelves of bottles",
+        "mood": "curiosity"
+      }
+    }
+  ]
+}

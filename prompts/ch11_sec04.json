@@ -1,0 +1,70 @@
+{
+  "id": "ch11_sec04",
+  "chapter": 11,
+  "section": 4,
+  "scientist": "Walter Reed",
+  "subtitle": "In the Interest of Science—and for Humanity!",
+  "summary": "Reed returns to Cuba determined to prove mosquitoes carry yellow fever. He builds Camp Lazear and recruits volunteers, including Private Kissenger and civilian John J. Moran, who refuse payment and submit to mosquito bites—proving the theory when they and several others develop yellow fever. Reed then tests whether contaminated clothing can spread the disease by having brave soldiers sleep for weeks in bedding soiled with victims' vomit and blood. None of the nine men who slept in the filthy House No. 1 fell ill, demolishing the long-held belief that clothing transmitted yellow fever.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Then Reed came back to Cuba, and Carroll met him with enthusiasm, and Walter Reed was sad for Lazear, but very happy about those two successful cases of Carroll and X.Y.—and then, and then (brushing aside tears for Lazear) even in that there was the Hand of God, there was something for Science.",
+      "visual": {
+        "scene_description": "Reed and Carroll stand at the newly established Camp Lazear in Cuba, with rows of white canvas tents, a small flagpole flying the American flag, and two small wooden buildings under construction in the background.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a US Army officer with kind weathered face in military uniform stands beside a row of white canvas tents in tropical Cuban landscape, an American flag flies from a wooden flagpole, two small wooden shacks under construction nearby, palm trees and scrubland in background, harsh midday sun casting short shadows on dry ground",
+        "mood": "sadness"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 5],
+      "anchor_sentence": "Now, nothing is more sure than this: that every man of the great line of microbe hunters is different from every other man of them, but every man Jack of them has one thing in common: they are original.",
+      "visual": {
+        "scene_description": "Reed sits at a camp desk carefully writing out his experimental protocols, planning his meticulous quarantine procedures, while soldiers go about their routines in the sunbaked Camp Lazear tents behind him.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a US Army officer with kind weathered face sits at a wooden field desk inside a canvas tent writing on paper with pen and ink, stacks of documents and a kerosene lamp on the desk, through the open tent flap sunbaked camp grounds visible with screened quarantine tents and soldiers in the distance, Cuban tropical heat suggested by bright sky",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [6, 11],
+      "anchor_sentence": "Walter Reed was a thoroughly conscientious man.",
+      "visual": {
+        "scene_description": "Reed in his officer's uniform salutes Private Kissenger and civilian Moran, who stand at attention in his camp office, volunteering for the dangerous mosquito experiments without any compensation.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a US Army major with kind weathered face raises his hand in salute inside a wooden camp office toward two standing men one in army uniform one in civilian clothes, a glass jar on the desk containing silver-striped mosquitoes, documents spread on the desk, kerosene lamp glowing, screened windows showing Cuban camp beyond",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [12, 14],
+      "anchor_sentence": "Walter Reed was so thorough that you can call him original, as original as any of the microbe hunters of the great line—for he was certainly original in his thoroughness.",
+      "visual": {
+        "scene_description": "Carpenters build the small, sealed House No. 1 at Camp Lazear—a cramped fourteen-by-twenty-foot wooden shack with double doors, south-facing windows, a stove, and tubs of water—while soldiers carry suspicious nailed-shut crates from the yellow fever hospital.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, carpenters building a small wooden shack with double doors and two windows on one side at a military camp, soldiers carrying nailed wooden crates toward the building, a cast-iron stove and metal washtubs visible through the open doorway, canvas tents and a flagpole in background, oppressive tropical sky overhead",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [15, 21],
+      "anchor_sentence": "That night, of the thirtieth of November, Walter Reed and James Carroll were the witnesses of a miracle of bravery, for into this House No. 1 walked a young American doctor named Cooke, and two American soldiers, whose names—where are their monuments?—were Folk and Jernegan.",
+      "visual": {
+        "scene_description": "Three brave volunteers—Cooke, Folk, and Jernegan—make up their army cots with soiled sheets and pillows from yellow fever victims inside the stifling, sealed House No. 1, while Reed and Carroll stand guard outside the door ensuring no mosquitoes enter.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, three young soldiers inside a cramped sealed wooden room laying stained sheets and pillows on narrow army cots, a cast-iron stove glowing and tubs of water on the floor creating visible steam, two officers standing guard outside the double doorway holding a kerosene lantern, nailed-open wooden crates on the floor, oppressive enclosed atmosphere",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [22, 23],
+      "anchor_sentence": "But they all stayed fit as fiddles!",
+      "visual": {
+        "scene_description": "The healthy volunteers emerge from quarantine grinning and unharmed, proving that contaminated clothing does not transmit yellow fever—Reed's experiment is a success.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, nine healthy young soldiers stepping out of a quarantine tent into bright sunlight smiling and stretching, a US Army officer with kind weathered face shaking hands with the nearest soldier, the small sealed wooden shack visible in the background, an American flag on a pole overhead, Cuban palm trees and clear sky",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

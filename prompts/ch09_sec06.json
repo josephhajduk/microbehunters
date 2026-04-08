@@ -1,0 +1,40 @@
+{
+  "id": "ch09_sec06",
+  "chapter": 9,
+  "section": 6,
+  "scientist": "Bruce",
+  "subtitle": "Trail of the Tsetse",
+  "summary": "Bruce and his wife discover tsetse flies in the Botanical Garden at Entebbe and begin capturing them for experiments, feeding the flies on sleeping sickness patients and then on monkeys to prove transmission. Bruce enlists Apolo Kagwa, the Prime Minister of Uganda, by bluffing him about the deadly danger of tsetse bites. Apolo mobilizes his entire feudal network to collect flies across Uganda, and the results—pinned on a great map—prove conclusively that wherever tsetse flies are found, sleeping sickness follows, and wherever they are absent, no cases exist.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "And there were.",
+      "visual": {
+        "scene_description": "Mrs. Bruce spots two tsetse flies on her husband's back in the lush Botanical Garden at Entebbe, catching them with a deft pinch while David turns in surprise.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a small determined woman in Edwardian sun hat and long skirt reaching toward the broad back of a large man in British military khaki shirt and sun helmet, standing between dense tropical plants with broad leaves, two dark elongated tsetse flies visible on his back, dappled light filtering through overhead foliage, butterfly nets and glass-windowed cages tucked under his arm.",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 8],
+      "anchor_sentence": "Now they planned and did terrible experiments.",
+      "visual": {
+        "scene_description": "Bruce stands before the elaborately robed Apolo Kagwa, Prime Minister of Uganda, gesturing boldly as he explains the deadly link between tsetse flies and sleeping sickness, while Apolo listens with skeptical dignity.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a broad-shouldered British officer in khaki uniform and sun helmet gesturing emphatically toward a tall dignified African leader wearing elaborate plumed headdress and flowing ceremonial robes, inside a high-ceilinged colonial meeting room with wooden shuttered windows, a glass cage containing dark tsetse flies on the table between them, sunlight streaming across the floor.",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [9, 13],
+      "anchor_sentence": "\"Well, I must be dead sure I am right,\" Bruce told him.",
+      "visual": {
+        "scene_description": "Bruce and his wife study a large wall map of Uganda covered in red-headed and black-headed pins, surrounded by opened envelopes stuffed with collected fly specimens, showing the geographic correlation between tsetse flies and sleeping sickness cases.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a large man in British military khaki and a small woman in Edwardian dress lean over a large wall-mounted map studded with clusters of red and black pins, a wooden table below piled with opened brown paper envelopes and sorted dark insects, butterfly nets hanging on hooks, oil lamp casting amber light across the cluttered field laboratory room.",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

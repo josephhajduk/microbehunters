@@ -1,0 +1,70 @@
+{
+  "id": "ch06_sec03",
+  "chapter": 6,
+  "section": 3,
+  "scientist": "Behring",
+  "subtitle": "Massacre the Guinea-Pigs",
+  "summary": "Emil Behring, a poetic army doctor in Koch's Berlin laboratory, obsessively searches for a chemical cure for diphtheria, killing hundreds of guinea-pigs in the process. After stumbling upon iodine tri-chloride, which barely saves a few animals, he discovers that the blood serum of cured guinea-pigs can neutralize diphtheria poison. He scales up to sheep, produces antitoxin serum, and proves it can both prevent and cure diphtheria in animals. On Christmas night 1891, the first child receives an injection of antitoxin, launching a treatment that would save thousands of babies within three years.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "But away in Berlin there toiled another Émile—the Germans leave off the last \"e\"—Emil August Behring.",
+      "visual": {
+        "scene_description": "The bustling Triangel laboratory in Berlin where Koch's young scientists argue and experiment, with Behring, Ehrlich, and Kitasato all at work amid cigar smoke and chaos.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, cramped dilapidated 19th-century Berlin laboratory with peeling walls, several men in waistcoats and shirtsleeves crowded at wooden benches, one man with neat beard examining glass tubes, another with cigar and dye-stained coat, a round-faced Japanese man working with caged mice, compound brass microscopes and glass flasks scattered across every surface, gaslight overhead",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 8],
+      "anchor_sentence": "\"I will find a chemical to cure diphtheria!\" he cried, and inoculated herds of guinea-pigs with cultivations of virulent diphtheria bacilli.",
+      "visual": {
+        "scene_description": "Behring injects iodine tri-chloride into sick guinea-pigs, desperately poking collapsed animals to see if they can still get back on their feet.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, man with neat beard and Prussian military bearing in rolled shirtsleeves kneeling beside a wooden table lined with small guinea-pigs, one hand holding a glass syringe filled with amber liquid, the other gently poking a limp guinea-pig lying on its back, rows of labeled chemical bottles on shelves behind him, several guinea-pigs standing wobbly on straw bedding",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [9, 13],
+      "anchor_sentence": "In a fever he went at trying to cure more guinea-pigs with this iodine stuff; sometimes the diphtheria bacilli killed these poor beasts; sometimes the cure killed them; once in a while one or two of them survived and crawled painfully back to their feet.",
+      "visual": {
+        "scene_description": "Behring injects a massive dose of diphtheria bacilli into his surviving cured guinea-pigs to test their immunity, watching intently as they show no sign of illness.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, man with neat beard and determined expression in wool waistcoat leaning over a cage of scarred but lively guinea-pigs, holding a glass syringe, his face showing intense concentration, a few battered guinea-pigs scampering actively in the cage, a shelf of glass flasks containing cloudy bacterial cultures visible behind him, gaslight casting sharp shadows",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [14, 19],
+      "anchor_sentence": "He expected to see the germs shrivel up, to watch them die, but when he looked, through his microscope, he saw dancing masses of them—they were multiplying, \"exuberantly multiplying,\" he wrote in his notes with regret.",
+      "visual": {
+        "scene_description": "Behring carefully draws blood serum from a cured guinea-pig's neck with a syringe, then mixes the straw-colored serum with diphtheria poison in a glass tube.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, man with neat beard and spectacles in shirtsleeves delicately drawing pale straw-colored fluid with a thin glass pipette from a small tube of separated blood, a scarred guinea-pig held gently on the table beside him, several glass tubes in a wooden rack showing layers of dark red blood below and clear yellow serum above, brass microscope nearby",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [20, 25],
+      "anchor_sentence": "Then, with Koch the master blinking at him, and with the entire small band of maniacs in the laboratory breathless for the result, Behring made his famous critical experiment.",
+      "visual": {
+        "scene_description": "Behring demonstrates his critical experiment to Koch and the lab: guinea-pigs injected with immune serum scamper about healthy while unprotected ones lie still and cold.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, man with neat beard gesturing toward two groups of guinea-pigs on a laboratory bench, one group lively and fat on straw bedding, the other group lying motionless, an older man with round wire spectacles and thick mustache observing from behind, several younger men crowded in a doorway watching, glass flasks and syringes on the bench, dim gaslit Berlin laboratory",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [26, 31],
+      "anchor_sentence": "Carefully he shot fatal doses of diphtheria bacilli into a lot of guinea-pigs.",
+      "visual": {
+        "scene_description": "On Christmas night 1891, a doctor injects the first dose of antitoxin serum into a small child sick with diphtheria in a Berlin hospital ward.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaslit hospital ward at night with iron-framed beds, a man with neat beard in dark frock coat carefully injecting serum from a glass syringe into the arm of a small child bundled in white sheets, a nurse in long dark dress and white cap standing nearby holding a glass bottle of pale serum, a frosted window suggesting winter outside, solemn hopeful atmosphere",
+        "mood": "tension"
+      }
+    }
+  ]
+}

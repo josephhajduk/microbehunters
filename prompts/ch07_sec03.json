@@ -1,0 +1,40 @@
+{
+  "id": "ch07_sec03",
+  "chapter": 7,
+  "section": 3,
+  "scientist": "Metchnikoff",
+  "subtitle": "The Nice Phagocytes",
+  "summary": "Metchnikoff rushes to Vienna to announce his theory that wandering cells in our bodies devour germs, and his friend Professor Claus coins the Greek name 'phagocytes' for these devouring cells. He preaches his phagocyte theory everywhere but lacks real proof until he studies transparent water fleas, where he watches phagocytes surround and digest dangerous yeast spores. When the phagocytes fail, the water flea dies, confirming his theory of natural immunity.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 5],
+      "anchor_sentence": "With Olga and the children flapping along and keeping up as best they could, Metchnikoff hurried to Vienna to proclaim his theory that we are immune to germs because our bodies have wandering cells to gobble germs up; he made a bee-line for the laboratory of his friend, Professor Claus—who was a zoölogist, and knew nothing about microbes either, and so was properly amazed:",
+      "visual": {
+        "scene_description": "Metchnikoff arrives at Professor Claus's study in Vienna, excitedly explaining his phagocyte theory while Claus and colleagues consult Greek dictionaries to coin the new scientific term.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy white-bearded man with round spectacles in dark coat gesturing excitedly at a desk where a bespectacled professor peers into a thick open Greek dictionary, 19th-century Viennese university study with tall bookshelves, leather-bound volumes, oil lamp, wooden desk cluttered with papers and specimen jars",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [6, 7],
+      "anchor_sentence": "He went from Vienna to Odessa, and there he gave a great scientific speech on \"The Curative Forces of the Organism\" to the astonished doctors of the town.",
+      "visual": {
+        "scene_description": "Metchnikoff peers through his microscope at a transparent water flea, inside which phagocytes can be seen flowing toward and engulfing needle-like yeast spores.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy white-bearded man with round spectacles hunched over brass compound microscope examining glass dish of pond water, circular magnified inset showing transparent water flea with visible internal organs and large irregular white blood cells surrounding sharp needle-shaped yeast spores, cluttered laboratory bench with aquarium jars and specimen dishes",
+        "mood": "wonder"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [8, 10],
+      "anchor_sentence": "When—and this happened often too and so made his theory perfect—the phagocytes failed to go out to battle against the deadly yeast needles, these invaders budded rapidly into swarming yeasts, which in their turn ate the water flea, poisoned him—and that meant good-by to him!",
+      "visual": {
+        "scene_description": "A split view contrasting a healthy water flea with phagocytes defeating yeast spores versus a doomed water flea overwhelmed by budding yeast, while Metchnikoff writes his landmark paper.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, two circular microscope insets side by side, left showing transparent water flea with large irregular phagocyte cells engulfing needle-shaped spores, right showing water flea overrun by budding oval yeast cells with dissolved phagocytes, below the insets a bushy white-bearded man with round spectacles writing with quill pen at a wooden desk",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

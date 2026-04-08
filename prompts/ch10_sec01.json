@@ -1,0 +1,20 @@
+{
+  "id": "ch10_sec01",
+  "chapter": 10,
+  "section": 1,
+  "scientist": "Ross & Grassi",
+  "subtitle": "Ross vs. Grassi — Malaria",
+  "summary": "This opening section sets the stage for the malaria story. After Theobald Smith exposed ticks and David Bruce tracked down the tsetse fly, the hunt turned to mosquitoes. By 1899, two rival microbe hunters—Ronald Ross, a modest British officer in India, and Battista Grassi, a distinguished Italian zoologist—had proved that one specific kind of mosquito spread malaria. Though they needed each other's work, they ended up in a bitter, very human quarrel over credit.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "The last ten years of the nineteenth century were as unfortunate for ticks, bugs, and gnats as they were glorious for the microbe hunters.",
+      "visual": {
+        "scene_description": "A dramatic split-composition showing the two rival scientists—Ross in India and Grassi in Italy—with a large mosquito looming between them, setting up the malaria mystery.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, split scene with Ronald Ross in sweat-stained shirt and thin mustache on the left against a hot Indian bungalow backdrop, and Battista Grassi with dark Italian features and animated expression on the right against an Italian village, a large detailed Anopheles mosquito centered between them with veined wings spread wide, both men pointing accusingly at the mosquito, late 1890s period clothing",
+        "mood": "adventure"
+      }
+    }
+  ]
+}

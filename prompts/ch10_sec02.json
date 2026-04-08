@@ -1,0 +1,30 @@
+{
+  "id": "ch10_sec02",
+  "chapter": 10,
+  "section": 2,
+  "scientist": "Ross",
+  "subtitle": "Ross vs. Grassi — Malaria",
+  "summary": "Ronald Ross spent the first thirty-five years of his life dabbling in everything except microbe hunting. Born in India, he failed at music, epic poetry, novels, and mathematics before reluctantly practicing medicine. After marrying Rosa Bloxam, he finally turned a microscope on the blood of malaria patients in India, trying to find the parasite Laveran had discovered years earlier. His unconventional methods led to failure, and he even published papers denying the malaria germ existed.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "For the first thirty-five years of his life Ronald Ross tried his best not to be a microbe hunter.",
+      "visual": {
+        "scene_description": "Young Ronald Ross on the deck of a steamship, writing poetry while ignoring a medical bag at his feet, capturing his restless early years of failed artistic ambitions.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, young British man with thin mustache in 1870s ship doctor coat leaning against railing of an Anchor Line steamship, scribbling in a notebook of verse, leather medical bag unopened at his feet, Atlantic ocean horizon behind him, coiled ropes and deck planking visible, seagulls overhead",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 5],
+      "anchor_sentence": "Not that there was no chance for him to hunt microbes in India.",
+      "visual": {
+        "scene_description": "Ross in a hot Indian bungalow finally peering through a microscope at a blood smear, surrounded by the tropical setting he long ignored, with a circular inset showing an empty microscope field — he finds nothing.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, thin-mustached British officer in sweat-stained shirt hunched over a brass compound microscope in a cramped hot Indian bungalow, glass blood slides scattered on wooden desk, shuttered window showing palm trees and stinking water tank outside, circular magnified inset showing only empty red blood cells with no parasites visible",
+        "mood": "curiosity"
+      }
+    }
+  ]
+}

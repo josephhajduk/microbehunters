@@ -1,0 +1,40 @@
+{
+  "id": "ch10_sec07",
+  "chapter": 10,
+  "section": 7,
+  "scientist": "Grassi",
+  "subtitle": "Ross vs. Grassi — Malaria",
+  "summary": "After proving that Anopheles mosquitoes transmit malaria, Grassi became a tireless evangelist for mosquito prevention in Italy, urging people to avoid twilight strolls and to use screens and protective clothing. Most people laughed at him, so in the summer of 1900 he set up a dramatic experiment along a deadly railroad line in the plain of Capaccio: he screened the homes of 112 railroad workers and their families while 415 people in nearby unscreened houses lived as before. Nearly all the unscreened group fell ill with malaria, while only five of the screened group got mild cases, proving that keeping mosquitoes out could make even the deadliest region safe.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "What is more, Battista Grassi was a practical man, and as I have said, an excessively patriotic man.",
+      "visual": {
+        "scene_description": "Grassi stands in an Italian village street at dusk, passionately lecturing bewildered townspeople about avoiding mosquitoes, while they snicker behind gloved hands and veils he has forced on them.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a tall thin animated Italian man in a black priest's cassock gesturing dramatically in a dusky Italian village street, lecturing a cluster of amused townspeople wearing awkward cotton gloves and face veils, Mediterranean stone buildings and cypress trees in background, twilight sky fading to purple, mosquitoes hovering in evening air",
+        "mood": "humor"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 6],
+      "anchor_sentence": "But Battista Grassi was a practical man!",
+      "visual": {
+        "scene_description": "Grassi installs fine wire screens on the windows and doors of small railroad station houses on the swampy plain of Capaccio, while railroad workers and their families watch from inside.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a tall thin man in black cassock nailing fine wire mesh screens onto window frames of a small Italian railroad station house, swampy flat plain stretching behind with railroad tracks, humid summer haze, clouds of tiny mosquitoes visible outside the screens, Italian railroad workers and families watching from inside the doorway",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [7, 9],
+      "anchor_sentence": "All around those screen-protected station houses the zanzarone swarmed in humming thousands—it was a frightful year for mosquitoes.",
+      "visual": {
+        "scene_description": "A split scene contrasting two railroad station houses: one protected by screens with a healthy family inside, the other unscreened with swarms of mosquitoes pouring through open windows while a sick person lies in bed.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, split composition showing two small Italian railroad houses side by side on a flat swampy plain, left house has fine mesh screens on windows with a healthy family visible inside, right house has open windows with dense swarms of mosquitoes entering, a figure lying sick in bed visible through the window, railroad tracks running between them, humid summer night sky",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

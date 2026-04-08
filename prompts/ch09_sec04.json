@@ -1,0 +1,20 @@
+{
+  "id": "ch09_sec04",
+  "chapter": 9,
+  "section": 4,
+  "scientist": "Bruce",
+  "subtitle": "Trail of the Tsetse",
+  "summary": "After Bruce's discovery, Governor Hely-Hutchinson spread the word to farmers about fighting nagana by clearing tsetse fly habitat and exterminating the antelope that carried trypanosomes. Then the Boer War broke out and Bruce was trapped in the siege of Ladysmith. With no trained surgeon available, Bruce taught himself surgery from a textbook and became Chief Surgeon, saving soldiers' lives with the same steady hands he had used in his laboratory. Years later, Bruce recalled these adventures with as much pride as his microbe hunting discoveries.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "And Hely-Hutchinson saw how right he had been about David Bruce.",
+      "visual": {
+        "scene_description": "Bruce, now repurposed as a wartime surgeon during the siege of Ladysmith, reads a surgery textbook in one room while a wounded soldier lies on a table in the next, shell explosions visible through a window.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, stocky British military officer David Bruce in sun-stained field uniform, reading an open surgery textbook at a rough wooden table, oil lamp casting sharp shadows, next room visible through doorway with a soldier on a makeshift operating table attended by medics, crumbling stone garrison walls, a distant shell burst illuminating a barred window, scattered surgical instruments on a metal tray beside him",
+        "mood": "tension"
+      }
+    }
+  ]
+}

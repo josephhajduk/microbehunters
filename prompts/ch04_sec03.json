@@ -1,0 +1,50 @@
+{
+  "id": "ch04_sec03",
+  "chapter": 4,
+  "section": 3,
+  "scientist": "Koch",
+  "subtitle": "The Death Fighter",
+  "summary": "Koch expands his anthrax experiments from mice to guinea-pigs, rabbits, and sheep, proving the bacilli kill them all. He becomes obsessed with a mystery: how do fragile anthrax bacilli survive for years in cursed fields when they die on glass slides in two days? He discovers that the bacilli transform into tough, glassy spores that can survive indefinitely and hatch back into deadly germs. Armed with this breakthrough, he travels to Breslau to present his findings to the university professors.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 5],
+      "anchor_sentence": "Cool and stolid, Koch, now that he had come through these perils, never thought himself a hero; he did not even think of publishing his experiments!",
+      "visual": {
+        "scene_description": "Koch in his cramped home laboratory, inoculating a guinea-pig with fluid from a hanging-drop while cages of rabbits and a sheep crowd the small room around him.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a stocky man with thick dark mustache, round wire spectacles, wool waistcoat and rolled shirtsleeves, hunched over a wooden table using a thin wooden splinter to inoculate a guinea-pig, cramped eight-by-ten room cluttered with wire cages holding rabbits and a small sheep, oil lamp casting stark shadows, brass compound microscope and glass hanging-drop slides on shelf behind him.",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [6, 10],
+      "anchor_sentence": "There were superstitions among the farmers and horse doctors of Europe about this disease, strange beliefs in regard to the mysterious power of this plague that hung always over their flocks and herds like some cruel invisible sword.",
+      "visual": {
+        "scene_description": "European farmers standing anxiously in a green mountain pasture with dead sheep lying in the grass, while Koch sits alone in his laboratory puzzling over glass slides where the bacilli have faded and died.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, split scene: left side shows 19th-century European farmers in wool coats and caps standing in a rolling green pasture with several sheep lying motionless in the grass; right side shows Koch with thick dark mustache and round wire spectacles peering at a glass slide held to the light in his small laboratory, expression puzzled, a dead mouse on the table beside dried glass slides.",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [11, 14],
+      "anchor_sentence": "Then one day he ran on to a curious sight under his microscope—a strange transformation of his microbes that gave him a clew to his question; and Koch sat down on his stool in his eight-by-ten laboratory in East Prussia and solved the mystery of the cursed fields and mountains of France.",
+      "visual": {
+        "scene_description": "Koch staring wide-eyed into his brass microscope at the spore discovery, with a circular inset showing anthrax threads studded with bright oval spores like a string of pearls.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Koch with thick dark mustache and round wire spectacles seated on a wooden stool peering into a brass compound microscope, eyes wide, mouth open in surprise, oil lamp beside him on a crowded table with glass hanging-drop cells; circular magnified inset showing long rod-shaped anthrax threads speckled with bright oval endospores arranged like a string of pearls, stained with methylene blue against a pale field.",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [15, 19],
+      "anchor_sentence": "Then Koch launched himself into thorough, ingenious tests to see if his quick guess was right.",
+      "visual": {
+        "scene_description": "Koch in his best suit boarding a train with a cage of white mice and his microscope case, heading to Breslau to present his spore discovery to the university.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Koch with thick dark mustache, round gold-rimmed spectacles, wearing a formal dark suit, standing on a 19th-century German train platform beside a steam locomotive, carrying a wooden microscope case in one hand and a wire cage of white mice in the other, small glass vials visible in his coat pocket, determined expression on his face.",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

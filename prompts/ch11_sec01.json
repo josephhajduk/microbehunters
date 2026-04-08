@@ -1,0 +1,30 @@
+{
+  "id": "ch11_sec01",
+  "chapter": 11,
+  "section": 1,
+  "scientist": "Walter Reed",
+  "subtitle": "In the Interest of Science—and for Humanity!",
+  "summary": "This opening section introduces the yellow fever story and its key players: Walter Reed, the courteous and logical head of the Yellow Fever Commission; James Carroll, a fearless ex-lumberjack; Jesse Lazear, who let a mosquito bite him and died; and brave volunteer soldiers. It also introduces Dr. Carlos Finlay, a Cuban doctor ridiculed as a fool for claiming mosquitoes caused yellow fever, at a time when nobody agreed on how the disease spread and the only accepted remedy was to flee infected towns.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 5],
+      "anchor_sentence": "With yellow fever it was different—there were no brawls about it.",
+      "visual": {
+        "scene_description": "The key figures of the Yellow Fever Commission gathered in a sparse military office in Cuba: Walter Reed reviewing documents, James Carroll standing ready, and Jesse Lazear examining a mosquito on his hand, with volunteer soldiers visible through the doorway.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, three men in a bare wooden military office in Cuba, Walter Reed in US Army uniform with kind weathered face studying papers at a desk, James Carroll broad-shouldered standing with arms crossed, Jesse Lazear holding up his hand examining a small mosquito, bright tropical light through shuttered window, volunteer soldiers visible outside through open doorway",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [6, 8],
+      "anchor_sentence": "It was a grand coöperative fight, that scotching of the yellow jack.",
+      "visual": {
+        "scene_description": "Dr. Carlos Finlay, an older Cuban doctor with mutton chop whiskers, holds up a glass jar containing a mosquito while surrounded by dismissive doctors who gesture in disagreement, each pointing in different directions with their own conflicting remedies.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly Cuban doctor Carlos Finlay with large mutton chop whiskers and rumpled suit holding up a glass jar with a single mosquito inside, surrounded by five dismissive 19th-century physicians in dark coats waving hands and turning away, one pointing at a fumigation pot trailing sulphur smoke, another gesturing at a pile of burning silks, tropical Havana street visible behind them",
+        "mood": "curiosity"
+      }
+    }
+  ]
+}

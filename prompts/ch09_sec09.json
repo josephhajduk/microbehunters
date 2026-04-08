@@ -1,0 +1,20 @@
+{
+  "id": "ch09_sec09",
+  "chapter": 9,
+  "section": 9,
+  "scientist": "Bruce",
+  "subtitle": "Trail of the Tsetse",
+  "summary": "The chapter closes with Bruce's defiant hope that someday people will volunteer to fight disease with the same bravery soldiers show in battle. De Kruif calls Bruce a captain who could lead such an army, connecting his legacy to a later story about American volunteers.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 1],
+      "anchor_sentence": "But there was grisly hope left in the old Viking.",
+      "visual": {
+        "scene_description": "An aging David Bruce stands tall in silhouette against an African horizon, gazing forward with resolve, evoking the spirit of a leader who inspired others to risk their lives fighting disease.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, aging broad-shouldered man in British military uniform and sun helmet standing on a hilltop overlooking vast African savanna at dusk, arms folded, jaw set in determination, tall dry grass bending in wind, silhouettes of acacia trees along the horizon, fading golden sky behind him, sense of resolve and legacy.",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

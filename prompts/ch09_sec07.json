@@ -1,0 +1,55 @@
+{
+  "id": "ch09_sec07",
+  "chapter": 9,
+  "section": 7,
+  "scientist": "Bruce",
+  "subtitle": "Trail of the Tsetse",
+  "summary": "Bruce devises a bold plan to defeat sleeping sickness by convincing Chief Apolo to move the entire population away from the tsetse-infested Lake Victoria shore. The plan works at first, but nature fights back as new outbreaks appear in unexpected places. Bruce returns to Uganda and through painstaking experiments discovers that trypanosomes hide in wild animals like cattle and antelope, not just humans. With this knowledge, he finally eradicates sleeping sickness from the Lake shore.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "But now for action!",
+      "visual": {
+        "scene_description": "Bruce presents his plan to Chief Apolo and other Ugandan chiefs, pointing at a large map of Lake Victoria Nyanza showing the tsetse fly zone along the shore.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British military officer in sun helmet and khaki uniform pointing at large unrolled map on wooden table showing lake shoreline, dignified African chief in flowing robes seated across from him, lesser chiefs standing behind, thatched-roof meeting hall with bright equatorial light streaming through open doorway, tropical vegetation visible outside"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 8],
+      "anchor_sentence": "\"Not one of you,\" commanded Apolo, \"may live within fifteen miles of the Lake shore—not one of you is to visit the Lake again.",
+      "visual": {
+        "scene_description": "The mass evacuation of Ugandan villagers from the Lake Victoria shore, with families carrying belongings and paddling loaded canoes inland while the lush tropical jungle begins reclaiming the abandoned villages.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, long procession of African families carrying rolled mats and earthen pots walking single file along dirt path away from lakeshore, loaded canoes on glittering water, abandoned thatched huts in background being overtaken by dense tropical vines and tall grasses, crocodile resting on empty riverbank, hippopotamus near deserted shore"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [9, 11],
+      "anchor_sentence": "Africa looked safe for the black men, and open to the benevolent white men.",
+      "visual": {
+        "scene_description": "Bruce returns to Uganda after learning the sleeping sickness has reappeared in unexpected places, looking determined but troubled as he arrives at the lakeshore where tsetse flies still buzz in the overgrown jungle.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British military officer with sun helmet and kit-bag stepping off small boat onto overgrown jungle lakeshore, woman in long expedition dress beside him, dense tangled vegetation reclaiming former village, tsetse flies buzzing in dark green canopy dotted with scarlet flowers, determined expression on officer's weathered face"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [12, 14],
+      "anchor_sentence": "Now if Bruce had theories that were a little too simple he was just the same an exceedingly crafty experimenter; if he had a foolish faith in his experiments, he had the persistence to claw his way out of the bogs of disappointment that his simplicity and love of gorgeous deeds got him into.",
+      "visual": {
+        "scene_description": "Bruce and his wife sit on the sand at Crocodile Point surrounded by a ring of paddlers, catching tsetse flies and dissecting them, examining smeared blood on glass slides under intense tropical heat.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British officer in sun helmet sitting on sandy shore beside woman, surrounded by ring of seated bare-backed paddlers, officer dissecting tiny tsetse fly with fine needle, glass slides and brass compound microscope on wooden field crate, circular magnified inset showing elongated trypanosomes with undulating membranes and flagella among blood cells"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [15, 17],
+      "anchor_sentence": "Washouts, most of these experiments; but one day, in the blood of a native cow from the Island of Kome, not hurting that cow at all, but ready to be sucked up by the tsetse for stabbing under the skin of the first man it meets, Bruce found the trypanosome of sleeping sickness.",
+      "visual": {
+        "scene_description": "Bruce discovers trypanosomes in cattle blood, directing experiments in dusty livestock pens where tsetse flies feed on cattle and antelope, finally proving wild animals are the hidden reservoir of sleeping sickness.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British officer in rolled shirtsleeves and sun helmet holding glass slide up to light in hot dusty cattle pen, native cows and fresh-caught antelope restrained with ropes nearby, circular magnified inset showing elongated trypanosomes with flagella swimming among round red blood cells, tsetse flies in mesh cage on wooden post, bright African sun overhead"
+      }
+    }
+  ]
+}

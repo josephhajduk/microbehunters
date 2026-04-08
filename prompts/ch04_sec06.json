@@ -1,0 +1,70 @@
+{
+  "id": "ch04_sec06",
+  "chapter": 4,
+  "section": 6,
+  "scientist": "Koch",
+  "subtitle": "The Death Fighter",
+  "summary": "Koch undertakes his most grueling investigation yet: tracking down the invisible bacillus of tuberculosis, the deadliest disease of his era. Through painstaking staining experiments he discovers the tiny curved rods lurking in diseased tissue, then invents a special blood-serum jelly to grow them pure outside the body. After months of relentless animal experiments — injecting guinea pigs, rabbits, cats, chickens, monkeys, and even a goldfish — he forges an unbreakable chain of proof that the tubercle bacillus is the true cause of consumption.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 5],
+      "anchor_sentence": "Compared to this sly murderer the bacillus of anthrax had been reasonably easy to discover—it was a large bug as microbes go, and the bodies of sick animals were literally alive with anthrax germs when the beasts were about to die.",
+      "visual": {
+        "scene_description": "Koch alone in his dim laboratory, injecting consumptive tissue from a dead workman into a guinea pig with a small syringe, surrounded by cages of rabbits and guinea pigs awaiting inoculation.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a sturdy man with thick dark mustache round wire spectacles wool waistcoat and rolled shirtsleeves carefully injecting a small guinea pig with a glass syringe at a wooden laboratory bench, cages holding rabbits and guinea pigs line the shelves behind him, oil lamp casting sharp shadows, two heated knives and crushed yellowish tissue on a porcelain dish nearby",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [6, 12],
+      "anchor_sentence": "For days he saw nothing.",
+      "visual": {
+        "scene_description": "Koch peers through his compound brass microscope and for the first time sees the tiny curved blue-stained tuberculosis bacilli among shattered lung cells, a breakthrough moment of discovery.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a sturdy man with thick dark mustache round wire spectacles wool waistcoat leans intently over a compound brass microscope on a cluttered bench with glass slides stained blue and violet, circular magnified inset shows tiny curved rod-shaped bacilli stained methylene blue clustered in bunches among broken gray lung cells, bottles of dye and strips of glass scattered on the bench",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [13, 18],
+      "anchor_sentence": "Now he went to hospitals everywhere in Berlin, and begged the bodies of men or women that had died of consumption, he spent dreary days in dead houses and every evening before his microscope in his laboratory where the stillness was broken only by the eerie purrings and scurryings of guinea-pigs.",
+      "visual": {
+        "scene_description": "Koch's laboratory has become a chaotic menagerie — cages of guinea pigs, rabbits, cats, chickens, and pigeons fill every surface while Koch works at his microscope, his hands darkened from constant bichloride of mercury washing.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a sturdy man with thick dark mustache round wire spectacles wool waistcoat sits at a brass microscope surrounded by an overwhelming menagerie of caged guinea pigs rabbits cats chickens and pigeons stacked on shelves and floor, his darkened wrinkled hands rest on the bench, rows of glass syringes and staining bottles crowd the workspace, single gas lamp overhead",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [19, 27],
+      "anchor_sentence": "Testing every possible combination that his head could invent, Koch set out to try to grow his bacilli pure on beef-broth jelly.",
+      "visual": {
+        "scene_description": "Koch discovers glistening colonies of tubercle bacilli on his slanted blood-serum jelly tubes on the fifteenth day, peering through his pocket lens at the tiny dry flaky specks growing on the clear jelly surface.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a sturdy man with thick dark mustache round wire spectacles holds a slanted glass test tube of clear amber serum jelly up to the light examining tiny glistening white specks on its surface through a small pocket magnifying lens, an open incubating oven behind him with rows of identical slanted tubes inside, a Bunsen burner with blue flame and platinum wire loop on the bench",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [28, 33],
+      "anchor_sentence": "Now Koch, in taut intent months, confirmed his first success—he went after proving it with a patience and a detail that made me sick of his everlasting thoroughness and prudence as I read the endlessly multiplied experiments in his classic report on tuberculosis—from consumptive monkeys and consumptive oxen and consumptive guinea-pigs Koch grew forty-three different families of these deadly rods on his slanted tubes of serum jelly!",
+      "visual": {
+        "scene_description": "Koch's laboratory transformed into a bizarre zoo — he injects pure cultivated bacilli into an astonishing variety of animals including a tortoise, sparrows, frogs, eels, and even a goldfish in a round bowl.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a sturdy man with thick dark mustache round wire spectacles wool waistcoat stands amid a crowded laboratory zoo holding a syringe near a round glass fishbowl containing a goldfish, cages and jars on shelves hold frogs tortoises sparrows and guinea pigs, rows of slanted serum-jelly test tubes in wooden racks on the bench, a rack of sterilized syringes gleaming",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [34, 39],
+      "anchor_sentence": "But while his injections worked no harm to these creatures, that do not in the course of nature get consumption anyway—at the same time the guinea-pigs began to droop, to lie pitifully on their sides, gasping.",
+      "visual": {
+        "scene_description": "Koch's final inhalation experiment: a large wooden box sits in a garden with guinea pigs and rabbits inside, connected by a lead pipe to bellows inside the laboratory window, Koch pumping a mist of bacilli into the box.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a sturdy man with thick dark mustache round wire spectacles wool waistcoat operates a pair of bellows connected to a lead pipe running through a window into a large wooden box in a garden outside, guinea pigs and rabbits visible through the open side of the box, a fine mist sprays from a nozzle inside the box, green garden plants and brick wall in background",
+        "mood": "tension"
+      }
+    }
+  ]
+}

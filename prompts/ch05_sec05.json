@@ -1,0 +1,20 @@
+{
+  "id": "ch05_sec05",
+  "chapter": 5,
+  "section": 5,
+  "scientist": "Pasteur",
+  "subtitle": "And the Mad Dog",
+  "summary": "De Kruif compares Pasteur's public triumph at Pouilly-le-Fort to biblical miracles and other great turning points in human history. Former skeptics now bow before the half-paralyzed chemist who proved he could protect animals from deadly invisible germs. The author reflects that most great discoverers, from Prometheus to Galileo to the inventors of the wheel, were never celebrated this way.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 1],
+      "anchor_sentence": "The Bible does not go into details about what the great wedding crowd thought of Jesus when he turned water into wine, but Pasteur, that second of June, was the impresario of a modern miracle as amazing as any of the marvels wrought by the Man of Galilee, and that day Pasteur's whole audience—who many of them had been snickering skeptics—bowed down before this excitable little half-paralyzed man who could so perfectly protect living creatures from the deadly stings of sub-visible invaders.",
+      "visual": {
+        "scene_description": "Pasteur stands triumphant before a stunned crowd at Pouilly-le-Fort, the audience of skeptics now awed as they witness the vaccinated sheep alive and healthy while unvaccinated ones have perished.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a small determined man with neat trimmed beard and round spectacles in formal black frock coat stands on a raised platform before a crowd of astonished 19th-century French gentlemen in top hats, behind him a fenced field with healthy sheep grazing, afternoon sunlight across a rural French countryside with stone buildings",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

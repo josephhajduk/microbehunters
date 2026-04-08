@@ -1,0 +1,30 @@
+{
+  "id": "ch11_sec07",
+  "chapter": 11,
+  "section": 7,
+  "scientist": "Walter Reed",
+  "subtitle": "In the Interest of Science—and for Humanity!",
+  "summary": "Walter Reed died of appendicitis in 1902, just as the world recognized his achievement, leaving his wife and daughter with almost nothing. Congress granted meager pensions to the widows of Reed, Lazear, and Carroll. Private Kissenger survived yellow fever but was left paralyzed, given only a gold watch and a small sum. Yet this crew's work meant that by 1926, yellow fever had nearly vanished from the earth.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "And in 1902, five years before that, Walter Reed, in the prime of his life, but tired, so tired, died—just as the applause of nations grew thunderous—of appendicitis.",
+      "visual": {
+        "scene_description": "Walter Reed lies on a hospital bed, exhausted and frail, while his wife stands nearby; a folded American flag and a modest pension document sit on a side table, underscoring the bittersweet irony of his sacrifice.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a kind weathered man in US Army uniform lying on a simple iron hospital bed, white sheets, his wife in a long dark Edwardian dress standing beside him holding his hand, a dim gas lamp casting soft shadows, a folded American flag on a wooden nightstand, sparse military hospital room with bare walls and a single window",
+        "mood": "sadness"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 5],
+      "anchor_sentence": "And what of the others?",
+      "visual": {
+        "scene_description": "A wide view of the now-quiet Cuban military camp at Columbia Barracks, empty mosquito cages stacked and abandoned, symbolizing that yellow fever has been conquered and the era of experimentation is over.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, an empty wooden military barracks in tropical Cuba, palm trees swaying, stacked wire mosquito cages sitting unused on a dusty table outside, a setting sun casting long shadows across the dirt parade ground, no people present, a single gold pocket watch resting atop a closed leather-bound journal on a bench",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

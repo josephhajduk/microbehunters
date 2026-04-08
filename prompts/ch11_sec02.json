@@ -1,0 +1,50 @@
+{
+  "id": "ch11_sec02",
+  "chapter": 11,
+  "section": 2,
+  "scientist": "Walter Reed",
+  "subtitle": "In the Interest of Science—and for Humanity!",
+  "summary": "In 1900, yellow fever was devastating American soldiers in Cuba despite intense sanitation efforts. Major Walter Reed arrived with his Yellow Fever Commission—Carroll, Lazear, and Agramonte—but they completely failed to find any bacillus causing the disease. Their failure led them to the long-ridiculed Dr. Carlos Finlay, who believed mosquitoes carried yellow fever. After observing strange patterns in how the disease spread and realizing nurses who handled patients never caught it, Reed decided to test Finlay's mosquito theory—but since no animal could catch yellow fever, the experiments would require human volunteers, and Lazear and Carroll bravely stepped forward.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "There was a bad state of affairs in San Cristobal de Habana in Cuba in 1900.",
+      "visual": {
+        "scene_description": "Walter Reed arrives in Havana, Cuba, where yellow fever has been killing American soldiers despite extreme sanitation efforts. The city is scrubbed but the disease persists.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, US Army officer with kind weathered face in uniform stepping off a boat onto a Cuban dock, colonial buildings of Havana in background, American soldiers carrying stretchers, tropical palm trees, hot glaring sun overhead, wooden crates stamped with military markings on the wharf",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 4],
+      "anchor_sentence": "So Walter Reed came to Quemados, and as he went into the yellow fever hospital there, more than enough young American soldiers passed him, going out, on their backs, feet first....",
+      "visual": {
+        "scene_description": "The Yellow Fever Commission works in their laboratory at Las Animas hospital, drawing blood and making cultures but finding no bacillus. Their repeated failure eventually leads them toward Finlay's mosquito theory.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, four men in a sparse tropical military hospital laboratory, Reed in US Army uniform peers through a compound brass microscope, Carroll and Lazear examine glass culture dishes on a wooden table, glass vials of blood samples lined up, shuttered windows letting in hot light, overhead fan motionless in the humid air",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [5, 8],
+      "anchor_sentence": "The Commission went to call on Dr. Finlay, and that old gentleman—everybody had laughed at him, nobody had listened to him—was very glad to explain his fool theory to the Commission.",
+      "visual": {
+        "scene_description": "The Commission visits elderly Dr. Carlos Finlay in Havana, who eagerly shows them his cigar-shaped mosquito eggs and explains his ridiculed theory that mosquitoes carry yellow fever.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly Cuban doctor with white hair in a cluttered study gesturing excitedly at a glass jar containing small dark cigar-shaped eggs, Reed in US Army uniform listening intently across a wooden desk, books and papers piled high, a silver-marked Aedes aegypti mosquito in a circular magnified inset showing lyre-shaped markings on its thorax",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [9, 13],
+      "anchor_sentence": "\"So we will try Finlay's notion about mosquitoes,\" said Walter Reed, for all of the just mentioned reasons, but particularly because there was nothing else for the Commission to do.",
+      "visual": {
+        "scene_description": "On a hot night, Reed faces his Commission and asks them to volunteer as human test subjects for mosquito bites. Lazear and Carroll both bravely agree despite having families.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, three men gathered around an oil lamp in a dim wooden military barracks at night, Reed in US Army uniform standing with grave expression, two seated men looking up with determined faces, a glass cage containing mosquitoes visible on the table beside the lamp, tropical darkness pressing at the shuttered windows",
+        "mood": "tension"
+      }
+    }
+  ]
+}

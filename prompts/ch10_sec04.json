@@ -1,0 +1,60 @@
+{
+  "id": "ch10_sec04",
+  "chapter": 10,
+  "section": 4,
+  "scientist": "Ross",
+  "subtitle": "Ross vs. Grassi — Malaria",
+  "summary": "Ross returns to Secunderabad in 1897, enduring brutal heat and dust, and begins fresh mosquito experiments on his patient Husein Khan using a new brown species of mosquito. After days of feeding mosquitoes on Husein's blood and dissecting them one by one, Ross discovers strange circular cells with jet-black pigment dots in the mosquito stomach walls — cells that grow larger each day, suggesting malaria parasites developing inside the mosquito. He celebrates with triumphant poetry but writes cautiously in his scientific paper, admitting uncertainties. Just as he gains momentum, the Indian Medical Service reassigns him to remote doctoring duty far from his mosquitoes.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "So passed two years, until, in June of 1897 Ronald Ross came back to Secunderabad, to the steamy hospital of Begumpett.",
+      "visual": {
+        "scene_description": "Ross in his sweltering Secunderabad laboratory, sweating over his rusted microscope while dust blows through the window, preparing to begin new mosquito experiments on Husein Khan under a mosquito net.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British officer with thin mustache in sweat-stained shirt hunched over rusted brass compound microscope in cramped Indian bungalow, gritty dust clouds blowing through open window, cracked eyepiece visible, glass bottles of mosquitoes on wooden table, a patient lying under white mosquito netting in background, oil lamp casting harsh shadows, punka fan hanging still overhead",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 6],
+      "anchor_sentence": "On the nineteenth of August he had only three of the brown beasts left.",
+      "visual": {
+        "scene_description": "Ross peers through his microscope at the dissected stomach wall of a brown mosquito and discovers mysterious circular cells containing jet-black pigment granules — twelve of them — among the regular paving-stone pattern of stomach cells.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British man with thin mustache peering intently into brass microscope in dim Indian laboratory, dissected mosquito pinned on glass slide, circular magnified inset showing regular paving-stone pattern of stomach wall cells with twelve distinct round cyst-like structures containing clusters of jet-black pigment granules scattered among the uniform cells",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [7, 9],
+      "anchor_sentence": "And as he awoke—so he says in his memoirs—a thought struck him: \"Those circles in the wall of the stomach of the mosquito—those circles with their dots of black pigment, they can't be anything else than the malaria parasite, growing there....\"",
+      "visual": {
+        "scene_description": "Ross excitedly dissects his very last mosquito on August 21st and discovers that the circular cells with black dots have grown larger overnight, confirming the parasites are alive and developing inside the mosquito stomach.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British officer with thin mustache wide-eyed with excitement gripping brass microscope in cramped Indian bungalow, one hand raised in triumph, circular magnified inset showing mosquito stomach wall with twenty large round oocysts containing dense jet-black pigment clusters visibly bigger than before, dissecting needles and glass slides scattered on wooden table",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [10, 13],
+      "anchor_sentence": "At least that is what Ronald Ross, in those memoirs of his, says he wrote on the night of the day of his first little success.",
+      "visual": {
+        "scene_description": "Ross sits writing by oil lamp late at night — composing both triumphant poetry and a cautious scientific paper to send to England, his personality split between poetic exuberance and scientific restraint.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British man with thin mustache writing furiously by flickering oil lamp at wooden desk in Indian bungalow at night, scattered papers and envelopes addressed to England, quill pen in hand, brass microscope pushed aside, open notebook filled with dense handwriting, moths circling the lamp flame, expression intense and determined",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [14, 14],
+      "anchor_sentence": "Then came one of those deplorable interludes.",
+      "visual": {
+        "scene_description": "Ross is forced to leave his laboratory, packed off to a remote northern posting where he can only fish for trout and treat minor ailments, far from his mosquito research.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British officer with thin mustache standing frustrated beside packed trunks and crated equipment on a dusty Indian railway platform, cold mountainous landscape in background replacing tropical setting, a telegram crumpled in his fist, empty mosquito cages stacked on luggage cart, expression of helpless anger",
+        "mood": "sadness"
+      }
+    }
+  ]
+}

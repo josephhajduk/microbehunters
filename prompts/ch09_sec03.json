@@ -1,0 +1,50 @@
+{
+  "id": "ch09_sec03",
+  "chapter": 9,
+  "section": 3,
+  "scientist": "Bruce",
+  "subtitle": "Trail of the Tsetse",
+  "summary": "Bruce returns to Ubombo after nearly a year lost to typhoid fever and a failed military expedition. He tests competing theories about nagana: Europeans blame tsetse flies, while Zulu chiefs blame big game. By muzzling horses so they cannot eat or drink and exposing them to flies, then by carrying flies uphill to bite horses that never left the safe hilltop, Bruce proves definitively that tsetse flies alone transmit the disease. He and his wife then discover that wild game animals serve as a hidden reservoir for the trypanosomes, opening the way to understanding how to fight nagana across Africa.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "Only five weeks they had been at this work, when they started back to Pietermaritzburg, ten miles a day by ox-team through the jungle.",
+      "visual": {
+        "scene_description": "Bruce, gaunt and haggard, marches out of the African jungle with a few surviving soldiers after the failed expedition, the landscape littered with dead horses and mules behind them.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a tall broad-shouldered man in British military uniform and sun helmet, gaunt and exhausted, trudging along a dirt trail through dense African bush, a dead mule collapsed beside the path, three thin soldiers straggling behind him, low hills and thorny scrub stretching to the horizon under a pale sky.",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 7],
+      "anchor_sentence": "\"It is the tsetse flies cause nagana,\" said some experienced Europeans.",
+      "visual": {
+        "scene_description": "Bruce leads muzzled horses down the hillside into the tsetse-infested mimosa thickets, swarms of brown-gold flies landing on the horses while Bruce waves his arms trying to endure them.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a broad man in British military uniform and sun helmet leading two horses wearing heavy canvas nose bags down a steep hillside into thorny mimosa thickets, dozens of brown-and-gold tsetse flies swarming around the kicking horses, Zulu assistants in traditional garb following behind, harsh midday African sun overhead casting short shadows.",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [8, 11],
+      "anchor_sentence": "Then, in a little more than fifteen days, to the delight of Bruce and his wife, the first of those horses who had served as a fly-restaurant turned up seedy in the morning and hung his head.",
+      "visual": {
+        "scene_description": "Bruce examines a drop of sick horse blood under his microscope on the hilltop, a circular inset showing tiny elongated trypanosomes with flagella wrestling among round red blood cells.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a sturdy man in rolled shirtsleeves and sun helmet peers into a compound brass microscope on a rough wooden table outside a field tent atop an African hill, a drooping sick horse tied to a post nearby, circular magnified inset showing elongated trypanosomes with undulating membranes and flagella darting among round red blood cells.",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [12, 13],
+      "anchor_sentence": "How they worked, Bruce and his wife!",
+      "visual": {
+        "scene_description": "Bruce in the bush slashes open a freshly shot zebra and draws blood with a syringe from its heart, while his wife back at the hilltop lab sterilizes silk threads for experiments.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a broad-shouldered man in British military shirt with cartridge belt kneels beside a fallen Burchell's zebra in African scrubland, drawing blood into a glass syringe from the animal's chest, a rifle propped against a thorn tree, glass specimen jars and a muslin fly cage on the ground beside him, distant flat-topped hills on the horizon.",
+        "mood": "adventure"
+      }
+    }
+  ]
+}

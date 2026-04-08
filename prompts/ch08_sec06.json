@@ -1,0 +1,60 @@
+{
+  "id": "ch08_sec06",
+  "chapter": 8,
+  "section": 6,
+  "scientist": "Theobald Smith",
+  "subtitle": "Ticks and Texas Fever",
+  "summary": "Theobald Smith proved that ticks spread Texas fever through ingenious field experiments, then dug deeper to understand exactly how. After failed attempts to infect cows by feeding them ticks, a lucky accident revealed the astonishing truth: it was not the adult ticks but their baby offspring who carried the deadly microbe, passed from mother tick through her eggs. Smith confirmed this discovery with tireless experiments over four summers and wrote one of the greatest papers in the history of microbe hunting.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "So, first of all microbe hunters, Theobald Smith traced out the exact path by which a sub-visible assassin goes from one animal to another.",
+      "visual": {
+        "scene_description": "Smith surveys three fenced pastures with different experimental conditions — one with southern cattle and ticks where northern cows lie sick, one with healthy northern cows grazing safely, and one with only ticks where northern cows are also falling ill.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, quiet neat clean-shaven American man in modest 1890s work clothes standing at a wooden fence post, surveying three fenced pastures stretching behind him, one pasture with healthy upright cattle, another with cattle lying down sick, small dark ticks visible on fence rails, USDA field station landscape with flat grass and split-rail fences under hazy summer sky.",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 5],
+      "anchor_sentence": "\"It must be,\" he meditated, \"that ticks, when they have sucked enough blood, and are ripe, drop off, and are crushed, and leave the little pear-shaped microbes on the grass—to be eaten by the northern cattle!\"",
+      "visual": {
+        "scene_description": "Smith in a stable tries feeding a northern cow hay mixed with crushed ticks, but the cow eats happily and stays healthy — his hypothesis about oral transmission has failed.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, clean-shaven American scientist in rolled shirtsleeves and wool waistcoat inside a dim wooden stable, holding a bucket of hay mixed with dark crushed ticks toward a plump contented cow eating from a trough, tin cans labeled with shipping tags on a shelf behind him, straw-covered floor, oil lantern hanging from a beam overhead.",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [6, 8],
+      "anchor_sentence": "Then one day in this summer of 1890, by the most strange, the most completely unforeseen of accidents, every jagged piece of the puzzle fell into its proper place.",
+      "visual": {
+        "scene_description": "Smith peers through his microscope in his cramped attic laboratory, discovering pear-shaped microbes inside wrecked blood cells from the heifer infected by clean baby ticks — a circular inset shows the damaged corpuscles with parasites inside.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, clean-shaven American scientist hunched over a brass compound microscope in a cramped attic laboratory, glass slides and glass dishes of tiny hatching ticks on the wooden desk, a circular magnified inset showing jagged broken red blood cells with small pear-shaped protozoan parasites inside them, afternoon light from a small dormer window, expression of sudden astonishment.",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [9, 12],
+      "anchor_sentence": "In a flash all those mysterious questions cleared up for Theobald Smith.",
+      "visual": {
+        "scene_description": "A diagram-like scene showing the tick life cycle: a mother tick drops off a cow, lays eggs in the grass, baby ticks hatch and climb up onto a new cow — revealing how the microbe passes from generation to generation of ticks.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a visual cycle showing a large engorged mother tick dropping from a cow into grass, a cluster of round eggs among blades of grass, tiny baby ticks hatching from eggs, baby ticks climbing up a cow's leg, a coal stove in a stable corner with glass dishes of ticks nearby, neat clean-shaven scientist placing ticks on a cow's hide with tweezers.",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [13, 14],
+      "anchor_sentence": "For two more summers Smith and Kilborne tramped about their fields, caulking up every seam in the ship of their research, answering every argument, devising astounding simple but admirably adequate answers to every objection the savant horse doctors might make—before these critics ever had a chance to make objections.",
+      "visual": {
+        "scene_description": "Smith sits at a desk writing his landmark 1893 paper, with his years of field notes, glass tick dishes, and microscope slides spread around him — the culmination of four summers of painstaking research.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, quiet neat clean-shaven American scientist seated at a wooden desk writing with a dip pen on stacked manuscript pages, surrounded by glass jars containing preserved tick specimens, a brass compound microscope, neat rows of glass slides, field notebooks, a modest USDA office with a window showing autumn trees, calm determined expression on his face.",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

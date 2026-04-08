@@ -1,0 +1,60 @@
+{
+  "id": "ch06_sec04",
+  "chapter": 6,
+  "section": 4,
+  "scientist": "Roux and Behring",
+  "subtitle": "Massacre the Guinea-Pigs",
+  "summary": "Roux returns to the fight against diphtheria by developing a way to produce antitoxin serum from horses. Torn between the scientific need for a controlled experiment and the moral impossibility of withholding treatment from dying children, he chooses to treat every child. He presents hopeful results at a Budapest medical congress, but the death rate remains stubbornly high, and de Kruif questions whether the serum was truly proven. Still, the work of Roux and Behring laid the foundation for immunization programs that would eventually tame diphtheria.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "But there were still criticisms and muttered complaints, and this was natural, for the serum was no sure-fire, one hundred per cent curative stuff for babies—any more than it was for guinea-pigs.",
+      "visual": {
+        "scene_description": "Roux in the hospital stables, immunizing horses to produce large quantities of diphtheria antitoxin, with big-bellied flasks of straw-colored serum nearby.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt man with dark pointed beard and rolled-up shirtsleeves injecting a large syringe into the neck of a patient draft horse in a dim stable, big-bellied glass flasks of straw-colored serum on a wooden shelf, hay on the stone floor, lantern light casting long shadows, 1890s Paris",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 5],
+      "anchor_sentence": "In his study in the Institute in the Rue Dutot with a gleam in his eye that made his dear ones forget he was marked for death, there sat a palsied man, who must know, before he died, whether one of his boys had wiped out another pestilence.",
+      "visual": {
+        "scene_description": "An aging Pasteur sits trembling in his study at the Rue Dutot, awaiting word from Roux, while Roux and his assistants prepare syringes in the children's hospital ward.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly man with neat trimmed beard and round spectacles sitting in a book-lined study, trembling hands resting on a desk, split scene showing a gaunt bearded man in rolled shirtsleeves preparing glass syringes beside a small alcohol lamp in a hospital ward, 1894 Paris",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [6, 13],
+      "anchor_sentence": "Roux looked at his syringes—did this serum really save life?",
+      "visual": {
+        "scene_description": "Roux stands torn at the bedside of sick children, syringe in hand, wrestling with the moral dilemma of treating everyone versus running a proper scientific experiment.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt man with dark pointed beard holding a filled glass syringe, standing between two rows of small iron hospital beds with children under white sheets, his shadow splitting two directions on the floor, gas lamp on the wall, 1894 Paris children's hospital ward",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [14, 19],
+      "anchor_sentence": "\"The general condition of the children receiving the serum improves rapidly ... in the wards there are to be seen hardly any more faces pale and lead-blue ... instead, the demeanor of the children is lively and gay!\"",
+      "visual": {
+        "scene_description": "Roux addresses the packed Budapest medical congress, presenting his serum results to cheering physicians who rise to their feet, though the data is more ambiguous than the applause suggests.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt man with dark pointed beard standing at a podium in a grand ornate lecture hall, rows of seated physicians in formal black frock coats rising from their chairs applauding, tall arched windows, chandelier overhead, 1894 Budapest medical congress",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [20, 24],
+      "anchor_sentence": "But the doctors at Buda-Pesth did not think of figures and they carried home the tidings of the antitoxin to all corners of the world, in a few years the antitoxin treatment of diphtheria became orthodox, and now there is not one doctor out of a thousand who will not swear that this antitoxin is a beautiful cure.",
+      "visual": {
+        "scene_description": "A doctor gently vaccinates a small child with a syringe while the mother holds the child steady, representing the future of widespread diphtheria immunization that grew from Roux and Behring's work.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a doctor in a dark waistcoat giving a small injection to a calm seated child held by a mother in a modest early 1900s clinic, glass vial of serum on a metal tray, bright window light, row of children waiting on a wooden bench behind them",
+        "mood": "wonder"
+      }
+    }
+  ]
+}

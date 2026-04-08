@@ -1,0 +1,28 @@
+{
+  "id": "ch08_sec01",
+  "chapter": 8,
+  "section": 1,
+  "scientist": "Theobald Smith",
+  "subtitle": "Ticks and Texas Fever",
+  "summary": "This opening section introduces Theobald Smith as the greatest of the American microbe hunters. It recaps how Pasteur, Koch, Roux, Behring, and Metchnikoff each made progress against disease but none managed to make plagues vanish as promised. Then young Theobald Smith arrived and solved the riddle of Texas fever in cattle, and his 1893 report inspired Bruce, Manson, Grassi, and Walter Reed in their own quests against insect-borne diseases.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "It was Theobald Smith who made mankind turn a corner.",
+      "visual": {
+        "scene_description": "A parade of famous microbe hunters (Pasteur, Koch, Roux, Behring, Metchnikoff) are shown in a line receding into the distance, each at their laboratory station, while disease still lingers. This captures the recap of earlier scientists whose promises fell short.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a row of five 19th-century scientists at separate wooden laboratory benches receding in perspective, first figure holds sealed glass flask, second peers through brass compound microscope, third grips a syringe, fourth holds a serum vial, fifth gestures excitedly with wild white beard, dark moody background suggesting persistent unsolved disease"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 4],
+      "anchor_sentence": "Then arose a young man, Theobald Smith, at the opening of the last ten years of the eighteen hundreds, to show why northern cows get sick and die of Texas fever when they go south, and to explain why southern cows, though healthy, go north and trail along with them a mysterious death for northern cattle.",
+      "visual": {
+        "scene_description": "Theobald Smith stands confidently holding his written report, with cattle in a fenced pasture behind him and faint silhouettes of future explorers (Bruce, Reed, Grassi) stretching into the distance, representing how his work inspired others.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, a quiet clean-shaven young American man in modest wool waistcoat and rolled shirtsleeves holds a bound research report at a wooden fence, longhorn cattle graze in a dusty pasture behind him, a lone tick crawls on a fencepost in foreground detail, distant silhouettes of several explorers with field gear stretch along the horizon"
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "ch09_sec02",
+  "chapter": 9,
+  "section": 2,
+  "scientist": "Bruce",
+  "subtitle": "Trail of the Tsetse",
+  "summary": "Bruce meets the Governor of Natal and Zululand and together they plan an expedition to investigate nagana, a mysterious disease killing horses and cattle across South Africa. Bruce and his wife travel by ox-team to Ubombo in Zululand, set up a tiny hilltop laboratory, and begin examining blood from sick animals. In the blood they discover trypanosomes — writhing, whip-tailed parasites swarming through every infected animal. Just as Bruce begins wondering how the parasites spread, he is ordered away to deal with a typhoid epidemic.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 2],
+      "anchor_sentence": "Then he was ordered back to England, to the Army Medical School at Netley, to teach microbe hunting there—for hadn't he discovered the germ of an important disease?",
+      "visual": {
+        "scene_description": "Bruce and Mrs. Bruce traveling by ox-team through the African bush toward Zululand, tsetse flies swarming around them, with a distant hilltop settlement visible ahead.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British military officer in sun helmet and khaki uniform and determined woman sitting on ox-drawn wagon on dusty African trail, swarms of dark flies buzzing around them, dry grassland stretching to distant flat-topped hill, double canvas tent lashed to wagon, hyena silhouettes in scrub brush"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [3, 4],
+      "anchor_sentence": "They were commanded to find out everything about the disease called nagana—the pretty native name for an unknown something that made great stretches of South Africa into a desolate place, impossible to farm in, dangerous to hunt big game in, suicidal to travel in.",
+      "visual": {
+        "scene_description": "Bruce and Mrs. Bruce on the hilltop at Ubombo setting up their small field laboratory, with sick emaciated horses being led up from the green plain below.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British officer in sun helmet and rolled shirtsleeves and woman with microscope on rough wooden table atop barren African hilltop, two gaunt bony horses with dull staring coats led by rope, olive-green mimosa thickets on vast plain below stretching to distant ocean, glass slides and syringes and scalpel on table"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [5, 7],
+      "anchor_sentence": "It was hot.",
+      "visual": {
+        "scene_description": "Bruce peering through his microscope and seeing trypanosomes for the first time — elongated whip-tailed parasites darting among red blood cells, shown in a circular magnified inset.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, British officer in sun helmet hunched over brass compound microscope on wooden table in open-air African hilltop laboratory, sweat on brow, red-rimmed eyes, circular magnified inset showing elongated cigar-shaped trypanosomes with undulating membrane and single anterior flagellum darting among round pale red blood cells"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [8, 10],
+      "anchor_sentence": "\"Trypanosomes—these are!\" cried Bruce, and he hurried to show them to his wife.",
+      "visual": {
+        "scene_description": "Bruce excitedly showing Mrs. Bruce a glass slide while she looks through the microscope, surrounded by their simple hilltop lab equipment, with a distant military dispatch rider approaching.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, excited British officer in sun helmet gesturing toward determined woman peering into brass microscope in sparse African hilltop laboratory, glass slides and test tubes on rough table, sick cattle in background pen, distant mounted rider approaching on horseback carrying military dispatch"
+      }
+    }
+  ]
+}

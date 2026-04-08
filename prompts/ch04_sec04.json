@@ -1,0 +1,60 @@
+{
+  "id": "ch04_sec04",
+  "chapter": 4,
+  "section": 4,
+  "scientist": "Koch",
+  "subtitle": "The Death Fighter",
+  "summary": "Koch presents his anthrax research at Breslau over three days, stunning the professors with his meticulous demonstrations rather than lectures. Professor Cohnheim is so impressed he sends all his students to see Koch's work. Though Koch gains champions in Cohn and Cohnheim, his move to Breslau as city physician fails to attract patients, so he returns to Wollstein where he pioneers microphotography and staining techniques. Eventually called to Berlin's Imperial Health Office, Koch must navigate the chaos of germ-theory mania while developing methods to grow pure cultures of individual microbe species.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 6],
+      "anchor_sentence": "And they came.",
+      "visual": {
+        "scene_description": "Koch demonstrating his anthrax experiments to astonished professors at Breslau, while Professor Cohnheim rushes out of the hall in excitement to tell his students.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, sturdy man with thick dark mustache and round wire spectacles in wool waistcoat and rolled shirtsleeves demonstrating at a brass compound microscope before rows of seated professors in a gaslit university lecture hall, one tall professor in dark coat rushing toward the door with arms raised in excitement, glass slides and specimen jars on the demonstration table",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [7, 9],
+      "anchor_sentence": "Seven years before, Pasteur had foretold: \"It is within the power of man to make parasitic maladies disappear from the face of the earth....\"",
+      "visual": {
+        "scene_description": "Koch standing before his audience delivering his final conclusion about anthrax bacilli and spores, the weight of his discovery changing medicine from superstition to science.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, sturdy man with thick dark mustache round wire spectacles and wool waistcoat standing confidently beside a table holding glass slides and a brass compound microscope, circular magnified inset showing rod-shaped anthrax bacilli with visible cell walls and oval endospores, gaslit lecture hall with rows of amazed professors leaning forward in wooden chairs",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [10, 14],
+      "anchor_sentence": "Koch fell among friends—among honest generous men—at Breslau.",
+      "visual": {
+        "scene_description": "Koch back in his small Wollstein office, alone but determined, attaching a camera to his microscope to photograph bacteria, with colored staining dyes on the bench beside him.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, sturdy man with thick dark mustache round wire spectacles and rolled shirtsleeves hunched over a brass compound microscope with a boxy wooden camera attached to the eyepiece, small bottles of colored staining dyes in blue and violet on a cluttered wooden desk, oil lamp casting long shadows in a cramped provincial office",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [15, 17],
+      "anchor_sentence": "Meanwhile his friends at Breslau had not forgotten him and in 1880—it was like some bush-leaguer breaking into the big team—he was told by the government to come to Berlin and be Extraordinary Associate of the Imperial Health Office.",
+      "visual": {
+        "scene_description": "Koch in his grand new Berlin laboratory surrounded by apparatus and assistants, while across Europe excited but confused scientists peer into microscopes making wild claims about germs.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, sturdy man with thick dark mustache round wire spectacles and wool waistcoat standing in a large well-equipped laboratory with shelves of glass flasks and test tubes, two assistants working at separate benches with brass microscopes, caged guinea pigs on a side table, tall windows letting in bright daylight",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [18, 20],
+      "anchor_sentence": "And yet to-day we demand with a great hue and cry more laboratories, more microbe hunters, better paid searchers to free us from the diseases that scourge us.",
+      "visual": {
+        "scene_description": "Koch sitting calmly at his bench pondering how to isolate a single species of microbe, surrounded by the complicated failed apparatus other scientists had built, focusing on the problem of pure cultures.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, sturdy man with thick dark mustache round wire spectacles and wool waistcoat sitting thoughtfully at a laboratory bench chin resting on hand, surrounded by glass flasks sealed bottles and strange tangled contraptions of tubes and valves, circular magnified inset showing several different shaped bacteria crowded together rod-shaped and round",
+        "mood": "curiosity"
+      }
+    }
+  ]
+}

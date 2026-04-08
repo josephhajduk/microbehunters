@@ -1,0 +1,40 @@
+{
+  "id": "ch07_sec04",
+  "chapter": 7,
+  "section": 4,
+  "scientist": "Metchnikoff",
+  "subtitle": "The Nice Phagocytes",
+  "summary": "Metchnikoff is appointed Scientific Director of a new institute in Odessa, funded by public enthusiasm for Pasteur's rabies cure. But the practical work of making vaccines goes badly wrong: staff quarrel, vaccines fail, and the public turns hostile. After a disastrous telegram reporting thousands of sheep killed by faulty anthrax vaccine, Metchnikoff flees to Paris, where Pasteur welcomes him and gives him his own laboratory at the new Pasteur Institute.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "Then Metchnikoff went to see if this same battle took place in frogs and rabbits, and suddenly, in 1886, the Russian people were thrilled by Pasteur's saving of sixteen of their folk from the bite of the mad wolf.",
+      "visual": {
+        "scene_description": "Metchnikoff newly installed as director of the Odessa institute, while his colleague Gamaléia prepares glass flasks of anthrax vaccine for sheep farmers lining up outside.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, wild bushy white beard scientist with round spectacles in a cluttered Russian laboratory, a younger doctor in dark coat holding sealed glass flasks of cloudy vaccine over a gas flame, wooden shelves lined with specimen jars, sheep farmers in heavy coats visible through a frosted window, oil lamp casting long shadows across a worn wooden bench",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 7],
+      "anchor_sentence": "Then the shambles began.",
+      "visual": {
+        "scene_description": "The Odessa laboratory descends into chaos as staff quarrel, vaccines spill, and angry townspeople gather outside demanding results from Metchnikoff.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, chaotic Russian laboratory with overturned glass flasks and spilled cultures on a wooden bench, two doctors in dark coats arguing with raised hands, a bushy white-bearded scientist with round spectacles clutching his head in dismay, an angry crowd of farmers in fur hats visible through an open doorway, scattered papers and broken test tubes on the floor",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [8, 13],
+      "anchor_sentence": "The old captain of the microbe hunters looked at Metchnikoff out of tired gray eyes that now and then sparkled a little:",
+      "visual": {
+        "scene_description": "Metchnikoff meets the aging Pasteur at the Pasteur Institute in Paris, where Pasteur offers him his own laboratory and a fresh start away from the Odessa disasters.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, an elderly man with neat trimmed beard and round spectacles in a formal black frock coat shaking hands with an excitable bushy white-bearded scientist with round spectacles, grand Parisian laboratory with tall arched windows, swan-neck glass flasks on shelves, polished brass compound microscope on a marble-topped bench, afternoon light streaming through the windows",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "ch05_sec04",
+  "chapter": 5,
+  "section": 4,
+  "scientist": "Pasteur",
+  "subtitle": "And the Mad Dog",
+  "summary": "On May 31, all the sheep, goats, and cattle in Pasteur's public experiment receive a fatal dose of anthrax, and Pasteur spends a sleepless night terrified his vaccination will fail. On June 2, an enormous crowd including senators and dignitaries gathers to witness the result: every vaccinated sheep is perfectly healthy, while twenty-two of twenty-four unvaccinated sheep lie dead or dying. It is a spectacular triumph that silences all doubters.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 3],
+      "anchor_sentence": "Then on the fateful thirty-first of May all of the forty-eight sheep, two goats, and several cattle—those that were vaccinated and those to which nothing whatever had been done—all of these received a surely fatal dose of virulent anthrax bugs.",
+      "visual": {
+        "scene_description": "Roux kneels in the dirt injecting sheep with anthrax while Pasteur watches anxiously, surrounded by a crowd. Later that night, Pasteur tosses and turns in bed, unable to sleep.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, gaunt man with dark pointed beard in rolled-up shirtsleeves kneeling in dirt among penned sheep and cattle, holding a glass syringe, alcohol lamps and bottles on a low table beside him, a man with neat trimmed beard and round spectacles in black frock coat standing behind gripping his own hands with an expression of dread, crowd of onlookers in 19th-century French dress pressing against wooden fence rails",
+        "mood": "tension"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [4, 7],
+      "anchor_sentence": "The crowd that came to judge Pasteur on the famous second day of June, 1881, made the previous ones look like mere assemblages at country baseball games.",
+      "visual": {
+        "scene_description": "On June 2, a huge crowd watches as the vaccinated sheep frisk about healthily while the unvaccinated sheep lie dead in a row, with dark blood visible. Pasteur stands vindicated amid cheering spectators.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, large outdoor field with a massive crowd of 19th-century French dignitaries in top hats and frock coats cheering behind fence rails, man with neat trimmed beard and round spectacles in black frock coat standing upright with arms raised, lively woolly sheep grazing on one side of the field, a somber row of motionless sheep lying on the ground on the other side, bright open sky above",
+        "mood": "triumph"
+      }
+    }
+  ]
+}

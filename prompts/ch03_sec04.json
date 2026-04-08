@@ -1,0 +1,64 @@
+{
+  "id": "ch03_sec04",
+  "chapter": 3,
+  "section": 4,
+  "scientist": "Pasteur",
+  "subtitle": "Microbes Are a Menace!",
+  "summary": "Pasteur tackles the ancient question of where microbes come from, battling believers in spontaneous generation. After getting stuck trying to disprove them, his colleague Professor Balard suggests the ingenious swan-neck flask: a bottle whose curving tube lets air in but traps dust and germs. The experiment works perfectly, and Pasteur follows it with a grand journey across France and up into the Alps, opening sealed flasks at different altitudes to show that microbes ride in on dust. His rivals Pouchet, Joly, and Musset try to refute him from the Pyrenees but are undone by a lucky accident: they used hay soup, which harbors heat-resistant spores, a fact not discovered until years later.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "So he prepared the stage for his dangerous experiments—years before he entered on them.",
+      "visual": {
+        "scene_description": "Pasteur demonstrating his three-year preservation experiment to an audience, showing sealed glass flasks of milk and urine that have remained perfectly clear, while imagining a world choked with unrotted carcasses without microbes.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in formal black frock coat standing at a lectern before seated 19th-century French academics in a vaulted stone hall, holding up two sealed round glass flasks with slender necks containing clear pale liquid, a blast lamp and boiling water pot on the table beside him, gaslight sconces on the walls"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 9],
+      "anchor_sentence": "Like Spallanzani, Pasteur could not believe that the microbes rose from the dead stuff of the milk or butter.",
+      "visual": {
+        "scene_description": "Pasteur in his cramped laboratory at the Normal School, surrounded by increasingly complicated glass apparatus and gun-cotton tubes, looking frustrated as his experiments grow unwieldy and his opponents shout from armchairs.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in black frock coat with rolled shirtsleeves hunched over a cluttered worktable in a tiny stone-walled laboratory, tangled glass tubes and round flasks and gun-cotton plugs and a brass suction pump scattered across the bench, a sputtering blue blast lamp flame, open notebook with dense scrawls, single tall window casting harsh light"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [10, 17],
+      "anchor_sentence": "Then one day old Professor Balard walked into his workroom.",
+      "visual": {
+        "scene_description": "Old Professor Balard sketching the swan-neck flask design for Pasteur, showing the round bottle with its neck drawn out and curved downward like a swan, while Pasteur's face lights up with sudden understanding.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, elderly stout French professor in rumpled 19th-century coat drawing a diagram of a round flask with a long curving downward-bent neck on a slate board, beside him a younger neat-bearded man with round spectacles in black frock coat leaning forward with wide eyes and raised hands in sudden realization, small cluttered laboratory with glass flasks and blast lamp visible behind them"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [18, 24],
+      "anchor_sentence": "Pasteur had bottle washers and assistants now, and he ordered them to hurry and prepare the flasks.",
+      "visual": {
+        "scene_description": "Pasteur crawling on hands and knees through a low cubby hole under the stairs carrying a swan-neck flask to his incubating oven, then emerging later with shining eyes to find every flask perfectly clear.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in black frock coat crawling on hands and knees through a low arched doorway under wooden stairs carrying a round glass flask with a long curving swan-neck tube, a row of identical clear swan-neck flasks glowing on shelves inside a brick incubating oven behind him, battered notebook tucked under his arm, dim gaslight in the corridor"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [25, 28],
+      "anchor_sentence": "Then Pasteur invented an experiment that was—so far as one can tell from a careful search through the records—really his own.",
+      "visual": {
+        "scene_description": "Pasteur high on the slopes of Mont Blanc with his assistants, cracking open sealed flasks with red-hot forceps as alpine air hisses in, snow-covered peaks behind them and a wooden crate of glass bottles at their feet.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, neat-bearded man with round spectacles in heavy dark overcoat and scarf standing on a rocky glacier ledge high in the Alps, holding a round sealed glass flask while an assistant in 19th-century climbing clothes cracks its neck with red-hot iron forceps over an alcohol lamp flame, wooden crate of sealed bottles at their feet, jagged snow-covered peaks and pale sky behind them"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [29, 32],
+      "anchor_sentence": "Many times Pasteur won his arguments by brilliant experiments that simply floored every one, but sometimes his victories were due to the weakness or silliness of his opponents, and again they were the result of—luck.",
+      "visual": {
+        "scene_description": "The rival naturalists Pouchet, Joly, and Musset on a windswept ledge high in the Pyrenees, opening their hay-soup flasks while one nearly slides off the edge and a guide grabs his coat tail, their flasks destined to betray them with heat-resistant spores.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, three bundled 19th-century French naturalists in heavy coats and hats on a narrow rocky mountain ledge in howling wind, one man slipping toward the edge while a mountain guide grabs his coat tail, another man holding open a round glass flask as air rushes in, a crate of sealed bottles between them, jagged Pyrenees glacier peaks and swirling clouds behind them"
+      }
+    }
+  ]
+}

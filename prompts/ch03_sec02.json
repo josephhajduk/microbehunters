@@ -1,0 +1,70 @@
+{
+  "id": "ch03_sec02",
+  "chapter": 3,
+  "section": 2,
+  "scientist": "Pasteur",
+  "subtitle": "Microbes Are a Menace!",
+  "summary": "Young Pasteur marries the dean's daughter and throws himself into ambitious but failed crystal experiments. He moves to Lille as professor and dean, where local businessmen demand practical science. When a distiller named Bigo asks for help with failing fermentations, Pasteur examines healthy and sick vats under his microscope and discovers that tiny living rods — not just chemical reactions — are responsible for fermentation, a breakthrough that consumes the rest of his life.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 5],
+      "anchor_sentence": "In a month he was praised by gray-haired chemists and became the companion of learned men three times his age.",
+      "visual": {
+        "scene_description": "Pasteur as a young newlywed working obsessively late at night in his Strasbourg laboratory, his wife waiting up for him, surrounded by crystal apparatus and magnets.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, young Pasteur with neat trimmed beard and round spectacles in black frock coat, hunched over a laboratory table covered with crystal specimens and a large horseshoe magnet, candlelight casting long shadows, a doorway behind him where a woman in a long 19th-century dress stands holding a candle, Strasbourg laboratory with stone walls and wooden shelves of glass apparatus",
+        "mood": "curiosity"
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [6, 9],
+      "anchor_sentence": "Then Pasteur was made Professor and Dean of the Faculty of Sciences in Lille and there he settled down in the Street of the Flowers, and it was here that he ran, or rather stumbled for the first time, upon microbes; it was in this good solid town of distillers and sugar-beet raisers and farm implement dealers that he began his great campaign, part science, part drama and romance, part religion and politics, to put microbes on the map.",
+      "visual": {
+        "scene_description": "Pasteur arriving in the industrial city of Lille, greeted by a committee of businessmen outside a brick factory with smokestacks and sugar-beet wagons in the background.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Pasteur with neat trimmed beard and round spectacles wearing formal black frock coat, standing before a group of portly 19th-century French businessmen in top hats and waistcoats, industrial brick buildings with tall smokestacks behind them, horse-drawn wagons loaded with sugar beets on a cobblestone street, northern French cityscape",
+        "mood": "adventure"
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [10, 14],
+      "anchor_sentence": "Pasteur listened politely and then proceeded to show them the stuff he was made of.",
+      "visual": {
+        "scene_description": "Pasteur in Bigo's distillery examining samples from healthy fermentation vats, peering through his microscope at yeast globules for the first time.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Pasteur with neat trimmed beard and round spectacles in black frock coat, leaning over a brass compound microscope in a cluttered laboratory, glass bottles of grayish liquid on the bench beside him, circular magnified inset showing round yellowish yeast globules in clusters and chains with small buds sprouting from their sides, gaslight illumination",
+        "mood": "discovery"
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [15, 21],
+      "anchor_sentence": "He looked again and saw the wee spheres alone; he saw some in bunches, others in chains, and then to his wonder he came on some with queer buds sprouting from their sides—they looked like sprouts on infinitely tiny seeds.",
+      "visual": {
+        "scene_description": "Pasteur's pivotal discovery — examining the sick vat sample under his microscope and finding tiny dancing rods instead of yeast, realizing these living rods cause sour-milk acid.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Pasteur with round spectacles pushed up on forehead and intense focused expression, gripping a glass bottle of cloudy liquid up to gaslight, laboratory bench with litmus paper strips and microscope, circular magnified inset showing tangled masses of tiny rod-shaped bacteria vibrating and drifting in chains against a pale field, sharp contrast between rods and round yeast globules",
+        "mood": "wonder"
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [22, 27],
+      "anchor_sentence": "His head buzzed with a hundred confused plans to see if he was really right, but he never neglected the business men and their troubles, or the authorities or the farmers or his students.",
+      "visual": {
+        "scene_description": "Pasteur watching his incubator bottle by gaslight as gray specks sprout bubbles in his clear yeast soup, proving the rods are alive and multiplying.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, Pasteur with neat trimmed beard and round spectacles holding a glass flask up to a single gaslight flame, grotesque shadows of laboratory apparatus on stone walls behind him, murky gray spirals curling up inside the flask with streams of tiny bubbles rising, a small incubating oven on the bench, expression of astonished concentration on his face",
+        "mood": "triumph"
+      }
+    },
+    {
+      "segment_index": 5,
+      "paragraph_range": [28, 31],
+      "anchor_sentence": "Time and again in the days that followed he did the same experiment, putting a tiny drop from a flask that swarmed with rods into a fresh clear flask of yeast soup that had none at all—and every time the rods appeared in billions and each time they made new quantities of the acid of sour milk.",
+      "visual": {
+        "scene_description": "Madame Pasteur sitting at a small table late at night, writing out her husband's scientific papers in careful handwriting while Pasteur works downstairs among his flasks and bottles.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, split scene showing Madame Pasteur in a long 19th-century dress seated at a small wooden table writing with a dip pen on paper by candlelight upstairs, and below Pasteur with round spectacles and black frock coat surrounded by rows of glass flasks and bottles in his laboratory, gaslight glow, notebooks and scrawled pages scattered on the bench",
+        "mood": "discovery"
+      }
+    }
+  ]
+}

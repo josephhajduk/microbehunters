@@ -1,0 +1,55 @@
+{
+  "id": "ch02_sec03",
+  "chapter": 2,
+  "section": 3,
+  "scientist": "Spallanzani",
+  "subtitle": "Microbes Must Have Parents!",
+  "summary": "Spallanzani carefully examines his boiled and sealed flasks under the microscope and discovers that properly sealed, long-boiled flasks have no living creatures, while corked flasks teem with microbes. This proves that microorganisms enter from the air rather than arising spontaneously. However, his rival Needham teams up with the wealthy Count Buffon to promote a made-up 'Vegetative Force' theory that becomes wildly popular, and Spallanzani must wait for a chance to fight back with more experiments.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "He went to the row of sealed flasks first, and one by one he cracked open their necks, and fished down with a slender hollow tube to get some of the soup inside them, in order to see whether any little animals at all had grown in these bottles that he had heated so long, and closed so perfectly against the microscopic creatures that might be floating in the dust of the outside air.",
+      "visual": {
+        "scene_description": "Spallanzani methodically cracks open sealed glass flasks and examines drops of seed soup under his microscope, discovering that briefly boiled flasks still contain tiny swimming creatures.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black Catholic priest cassock hunched over a brass microscope at a wooden bench, one hand cracking the neck of a sealed glass flask, rows of sealed flasks on the table, 18th-century Italian stone laboratory with arched window, circular inset showing tiny rod-shaped animalcules swimming in gray liquid."
+      }
+    },
+    {
+      "segment_index": 1,
+      "paragraph_range": [5, 7],
+      "anchor_sentence": "He went with nervous hands to the long row of flasks he had only stoppered with corks—as his enemy Needham had done—and he pulled out the corks, one by one, and fished in the bottles once more with his tubes.",
+      "visual": {
+        "scene_description": "Spallanzani discovers that corked flasks are teeming with microbes of all sizes, proving that organisms entered through the imperfect cork seals from the outside air.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin priest in black cassock standing excitedly at a cluttered laboratory bench, pulling cork from a glass flask, battered notebook open beside him, rows of corked and sealed flasks arranged on wooden table, circular magnified inset showing dense swarm of round cocci and rod-shaped bacilli of various sizes swimming vigorously."
+      }
+    },
+    {
+      "segment_index": 2,
+      "paragraph_range": [8, 9],
+      "anchor_sentence": "Excited, Spallanzani called his brother Nicolo, and his sister, and told them his pretty experiment.",
+      "visual": {
+        "scene_description": "Spallanzani excitedly shares his discovery with his brother and sister, then presents his findings to students, declaring that life only comes from life. The scientific world erupts in debate.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured man in black cassock gesturing dramatically with both hands before a small group of students in 18th-century Italian lecture hall, glass flasks arranged on a demonstration table, high arched ceiling with candle chandelier, students leaning forward with engaged expressions."
+      }
+    },
+    {
+      "segment_index": 3,
+      "paragraph_range": [10, 14],
+      "anchor_sentence": "Meanwhile the good Needham had not been resting on his oars exactly; he was an expert at publicity, and to help his cause along he went to Paris and lectured about his mutton gravy, and in Paris he fell in with the famous Count Buffon.",
+      "visual": {
+        "scene_description": "Needham and the lavishly dressed Count Buffon sit together in Buffon's perfumed Parisian study, inventing the grand-sounding 'Vegetative Force' theory from pure imagination rather than experiments.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, two 18th-century men in an ornate Parisian study, one in purple coat with lace cuffs seated at a polished desk writing with a quill, the other a stout priest standing beside him gesturing broadly, perfume bottles and gilt furniture visible, tall window with heavy drapes, no laboratory equipment in sight."
+      }
+    },
+    {
+      "segment_index": 4,
+      "paragraph_range": [15, 18],
+      "anchor_sentence": "Worst of all, the Royal Society tumbled over itself to get ahead of the men in the street, and elected Needham a Fellow, and the Academy of Sciences of Paris made him an Associate.",
+      "visual": {
+        "scene_description": "Spallanzani paces angrily in his Italian laboratory, frustrated by Needham's undeserved fame, then seizes on Needham's objection as a chance to fight back and rolls up his sleeves to begin new experiments.",
+        "animation_prompt": "Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration, tall thin sharp-featured priest with wide sleeves rolled up, standing determinedly at a stone laboratory bench, glass flasks and seed jars and a brass microscope arrayed before him, 18th-century Italian laboratory with arched stone walls, expression of fierce concentration on his gaunt face."
+      }
+    }
+  ]
+}
