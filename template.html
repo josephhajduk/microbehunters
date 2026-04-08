@@ -107,8 +107,12 @@ body {
   opacity: 0.5;
 }
 
-.nav-chapter:hover,
 .nav-chapter.active {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+.nav-chapter:hover {
   opacity: 1;
   background: rgba(139, 109, 92, 0.15);
   color: var(--color-accent);
@@ -490,9 +494,9 @@ body.line-spacing-relaxed { --reading-line-height: 2.15; }
 <nav class="chapter-nav" id="chapter-nav">
 {{CHAPTER_NAV}}
 <div class="text-size-controls">
-  <button class="text-size-btn" data-group="spacing" data-val="compact" onclick="setLineSpacing('compact')" title="Compact spacing">≡</button>
-  <button class="text-size-btn active" data-group="spacing" data-val="default" onclick="setLineSpacing('default')" title="Default spacing">☰</button>
-  <button class="text-size-btn" data-group="spacing" data-val="relaxed" onclick="setLineSpacing('relaxed')" title="Relaxed spacing">⋮</button>
+  <button class="text-size-btn" data-group="spacing" data-val="compact" onclick="setLineSpacing('compact')" title="Compact spacing"><svg width="16" height="14" viewBox="0 0 16 14"><line x1="0" y1="2" x2="16" y2="2" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="7" x2="16" y2="7" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="1.5"/></svg></button>
+  <button class="text-size-btn active" data-group="spacing" data-val="default" onclick="setLineSpacing('default')" title="Default spacing"><svg width="16" height="16" viewBox="0 0 16 16"><line x1="0" y1="1" x2="16" y2="1" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="8" x2="16" y2="8" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="15" x2="16" y2="15" stroke="currentColor" stroke-width="1.5"/></svg></button>
+  <button class="text-size-btn" data-group="spacing" data-val="relaxed" onclick="setLineSpacing('relaxed')" title="Relaxed spacing"><svg width="16" height="20" viewBox="0 0 16 20"><line x1="0" y1="1" x2="16" y2="1" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="19" x2="16" y2="19" stroke="currentColor" stroke-width="1.5"/></svg></button>
 </div>
 <div class="text-size-controls" style="border-top:none; padding-top:0.25rem">
   <button class="text-size-btn active" data-group="size" data-val="default" onclick="setTextSize('default')">A</button>
