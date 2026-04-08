@@ -5128,10 +5128,26 @@ function init() {
   segments = Array.from(document.querySelectorAll('.segment'));
   buildMediaPanel();
   reflowWithPretext();
-  if (segments.length > 0) activateSegment(segments[0].dataset.media);
 
-  // Scroll sync via rAF — driven by pretext measurements
-  window.addEventListener('scroll', onScroll, { passive: true });
+  // Restore scroll position from URL hash, or default to first segment
+  const hash = location.hash.replace('#', '');
+  const hashTarget = hash ? document.getElementById(hash) : null;
+
+  if (hashTarget) {
+    // Suppress URL updates until we've scrolled to the right place
+    activateSegment(hash, true);
+    // Use setTimeout to let layout settle before scrolling
+    setTimeout(() => {
+      hashTarget.scrollIntoView({ block: 'center' });
+      buildSegmentMap(); // rebuild after scroll
+      // Now enable scroll sync
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }, 100);
+  } else {
+    if (segments.length > 0) activateSegment(segments[0].dataset.media);
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   window.addEventListener('resize', () => {
     reflowWithPretext();
     syncFromScroll();
@@ -5142,16 +5158,6 @@ function init() {
     reflowWithPretext();
     syncFromScroll();
   };
-
-  // Restore scroll position from URL hash
-  const hash = location.hash.replace('#', '');
-  if (hash) {
-    const target = document.getElementById(hash);
-    if (target) {
-      target.scrollIntoView({ block: 'center' });
-      activateSegment(hash);
-    }
-  }
 }
 
 // ============================================
@@ -5299,11 +5305,11 @@ function mediaHTML(mediaId, mood) {
 // ============================================
 // Segment activation + transitions
 // ============================================
-function activateSegment(mediaId) {
+function activateSegment(mediaId, skipURL) {
   const prev = activeSegmentId;
   activeSegmentId = mediaId;
   window._activeSegmentId = mediaId;
-  updateURL();
+  if (!skipURL) updateURL();
 
   if (prev && mediaElements[prev]) {
     mediaElements[prev].classList.remove('active');
