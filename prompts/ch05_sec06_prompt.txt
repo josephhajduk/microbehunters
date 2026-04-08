@@ -1,0 +1,415 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch05_sec06
+**Chapter 5:** Pasteur — And the Mad Dog
+**Section 6 of this chapter**
+**Word count:** 2081
+**Total paragraphs:** 31
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "But here stood Louis Pasteur, while his twenty-four immune sheep scampered about among the carcasses..."
+  P2: "Now the experiment turned into the likeness of a revival. Doctor Biot, a healer in horses who had be..."
+  P3: "“It is true,” said another humbled enemy, “that I have made jokes about microbes, but I am a repenta..."
+  P4: "“Well, allow me to remind you of the words of the Gospel,” Pasteur answered him. “Joy shall be in he..."
+  P5: "The great de Blowitz cheered and rushed off to file his telegram to the London Times  and to the new..."
+  P6: "The world received this news and waited, confusedly believing that Pasteur was a kind of Messiah who..."
+  P7: "In answer to these telegrams Pasteur turned the little laboratory in the Rue d’Ulm into a vaccine fa..."
+  P8: "In moments snatched from this making of vaccine Roux and Chamberland and Thuillier scurried up and d..."
+  P9: "He wanted to try to find the deadly virus of hydrophobia."
+  P10: "And now at night the chittering of the guinea-pigs and the scurrying fights of the buck-rabbits in t..."
+  P11: "Gradually, it was hardly a year after the miracle of Pouilly-le-Fort, it began to be evident that Pa..."
+  P12: "Pasteur began to hate to open his letters; he wanted to stop his ears against snickers that sounded ..."
+  P13: "There is no doubt that Pasteur lost some sleep from this aftermath of his glorious discovery, but, G..."
+  P14: "“Have not I said that my vaccines made sheep a little sick with anthrax, but never killed them, and ..."
+  P15: "VACCINATING SHEEP FOR ANTHRAX"
+  P16: "What a searcher this Pasteur was, and yet how little of that fine selfless candor of Socrates or Rab..."
+  P17: "In 1882, while his desk was loaded with reports of disasters, Pasteur went to Geneva, and there befo..."
+  P18: "“We are all animated with a superior passion, the passion for progress and for truth!” he shouted—bu..."
+  P19: "At this meeting Robert Koch sat blinking at Pasteur behind his gold-rimmed spectacles and smiling un..."
+  P20: "In a little while this reply appeared. It was dreadful. In this serio-comic answer Dr. Koch began by..."
+  P21: "Did Mr. Pasteur say that his first vaccine would kill mice, but not guinea-pigs? Dr. Koch had tested..."
+  P22: "Did Mr. Pasteur maintain that his second vaccine killed guinea-pigs but not rabbits? Dr. Koch had ca..."
+  P23: "Did Mr. Pasteur really believe that his vaccines were really pure cultivations containing nothing bu..."
+  P24: "Finally, was Mr. Pasteur really burning so with a passion for truth? Then why hadn’t he told of the ..."
+  P25: "“Such goings-on are perhaps suitable for the advertising of a business house, but science should rej..."
+  P26: "Then Pasteur went through the roof and answered Koch’s cool facts in an amazing paper with arguments..."
+  P27: "The French nation, even the great men of the nation, patriotically refused to believe that Koch had ..."
+  P28: "Regard these two fantastically opposite men facing each other on this solemn day. Pasteur the go-get..."
+  P29: "Renan called Pasteur a genius and compared him to some of the greatest men that ever lived and then ..."
+  P30: "“Truth, Sir, is a great coquette; she will not be sought with too much passion, but often is most am..."
+  P31: "Surely Renan was too wise to think that his lovely words would ever change Pasteur one jot from the ..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VI
+
+But here stood Louis Pasteur, while his twenty-four immune
+sheep scampered about among the carcasses of the same
+number of pitiful dead ones, here stood this man, I say, in a
+gruesomely gorgeous stage-setting of an immortal drama, and
+all the world was there to see and to record and to be converted
+to his own faith in his passionate fight against needless death.
+
+Now the experiment turned into the likeness of a revival.
+Doctor Biot, a healer in horses who had been one of the most
+sarcastic of the Pasteur-baiters, rushed up to him as the last
+of the not-vaccinated sheep was dying, and cried: “Inoculate
+me with your vaccines, Mr. Pasteur—just as you have done
+to those sheep you have saved so wonderfully——Then I
+will submit to the injection of the murderous virus! All men
+must be convinced of this marvelous discovery!”
+
+“It is true,” said another humbled enemy, “that I have made
+jokes about microbes, but I am a repentant sinner!”
+
+“Well, allow me to remind you of the words of the Gospel,”
+Pasteur answered him. “Joy shall be in heaven over one sinner
+that repenteth, more than over ninety and nine just persons
+that need no repentance.”
+
+The great de Blowitz cheered and rushed off to file his telegram
+to the London Times  and to the newspapers of the world:
+“The experiment at Pouilly-le-Fort is a perfect, an unprecedented
+success.”
+
+The world received this news and waited, confusedly believing
+that Pasteur was a kind of Messiah who was going to
+lift from men the burden of all suffering. France went wild
+and called him her greatest son and conferred on him the Grand
+Cordon of the Legion of Honor. Agricultural societies, horse
+doctors, poor farmers whose fields were cursed with the poisonous
+virus of anthrax—all these sent telegrams begging him
+for thousands of doses of the life-saving vaccine. And Pasteur,
+with Roux and Chamberland and Thuillier, responded
+to them with a magnificent disregard of their own health—and
+of science. For Pasteur, poet that he was, had more faith than
+the wildest of his new converts in this experiment.
+
+In answer to these telegrams Pasteur turned the little laboratory
+in the Rue d’Ulm into a vaccine factory—huge kettles
+bubbled and simmered with the broth in which the tame, the
+life-saving, anthrax bacilli were to grow. Delicately—but so
+frantically that it was not quite delicate enough—Roux and
+Chamberland worked at weakening the murderous bacilli just
+enough to make the sheep of France a little sick, but not too
+sick from anthrax. Then all of them sweat at pouring
+numerous gallons of this bacillus-swarming soup which was the
+vaccine, into little bottles, a few ounces to each bottle, into
+clean bottles that had to be absolutely free from all other
+germs. And they had to do this subtle job without any proper
+apparatus whatever. I marvel that Pasteur ever attempted it;
+surely there never has been such blind confidence raised by
+one clear—but Lord! it might be simply a lucky—experiment.
+
+In moments snatched from this making of vaccine Roux and
+Chamberland and Thuillier scurried up and down the land of
+France, and even to Hungary. They inoculated two hundred
+sheep in this place and five hundred and seventy-six in that—in
+less than a year hundreds of thousands of beasts had got
+this life-saving stuff. These wandering vaccinators would drag
+themselves back into the laboratory from their hard trips,
+they would get back to Paris probably wanting to get a few
+drinks or spend an evening with a pretty girl or loaf over a
+pipe—but Pasteur could not stand the smell of tobacco smoke,
+and as for wine and women, were not the sheep of France
+literally baa-ing to be saved? So these young men who were
+slaves of this battler whose one insane thought was “find-the-microbe-kill-the-microbe”—these
+faithful fellows took off their
+coats and peered at anthrax bacilli through the microscopes
+until their eye rims got red and their eyelashes fell out. In
+the middle of this work—with the farmers of France yelling
+for more vaccine—they began to have strange troubles: contaminating
+germs that had no business there began to pop up
+among the anthrax bacilli; all at once a weak vaccine that
+should have just killed a mouse began to knock off large rabbits....
+Then, just as the scientific desperadoes got these
+messes straightened out, Pasteur would come in, nagging at
+them, fuming, fussing because they took so long at their experiments.
+
+He wanted to try to find the deadly virus of hydrophobia.
+
+And now at night the chittering of the guinea-pigs and the
+scurrying fights of the buck-rabbits in their cages were
+drowned by the eerie noise of mad dogs howling—sinister
+howls that kept Roux and Chamberland and Thuillier from
+sleep.... What would Pasteur ever have done—he surely
+would never have got far in his fight with the messengers of
+death—without those fellows Roux and Chamberland and
+Thuillier?
+
+Gradually, it was hardly a year after the miracle of Pouilly-le-Fort,
+it began to be evident that Pasteur, though a most
+original microbe hunter, was not an infallible God. Disturbing
+letters began to pile up on his desk; complaints from Montpothier
+and a dozen towns of France, and from Packisch and
+Kapuvar in Hungary. Sheep were dying from anthrax—not
+natural anthrax they had picked up in dangerous fields, but
+anthrax they had got from those vaccines that were meant to
+save them! From other places came sinister stories of how
+the vaccine had failed to work—the vaccine had been paid for,
+whole flocks of sheep had been injected, the farmers had gone
+to bed breathing Thank-God-For-Our-Great-Man-Pasteur, only
+to wake up in the morning to find their fields littered with the
+carcasses of dead sheep, and these sheep—which ought to
+have been immune—had died from the lurking anthrax spores
+that lay in their fields....
+
+Pasteur began to hate to open his letters; he wanted to stop
+his ears against snickers that sounded from around corners,
+and then—the worst thing that could possibly happen—came
+a cold terribly exact scientific report from the laboratory of
+that nasty little German Koch in Berlin, and this report ripped
+the practicalness of the anthrax vaccine to tatters. Pasteur
+knew that Koch was the most accurate microbe hunter in the
+world.
+
+There is no doubt that Pasteur lost some sleep from this
+aftermath of his glorious discovery, but, God rest him, he was
+a gallant man. It was not in him to admit, either to the public
+or to himself, that his sweeping claims were wrong.
+
+“Have not I said that my vaccines made sheep a little sick
+with anthrax, but never killed them, and protected them perfectly?
+Well, I must stick to that,” you can hear him mutter
+between his teeth.
+
+  
+  
+      VACCINATING SHEEP FOR ANTHRAX
+
+  
+
+What a searcher this Pasteur was, and yet how little of that
+fine selfless candor of Socrates or Rabelais is to be found in
+him. But he is not in any way to be blamed for that, for
+those two last were only, in their way, looking for truth, while
+Pasteur’s work carried him more and more into the frantic
+business of saving lives, and in this matter truth is not of the
+first importance....
+
+In 1882, while his desk was loaded with reports of disasters,
+Pasteur went to Geneva, and there before the cream of disease-fighters
+of the world he gave a thrilling speech, subject:
+“How to guard living creatures from virulent maladies by
+injecting them with weakened microbes.” Pasteur assured
+them that: “The general principles have been found and one
+cannot refuse to believe that the future is rich with the greatest
+hopes.”
+
+“We are all animated with a superior passion, the passion
+for progress and for truth!” he shouted—but unhappily he
+said no word about those numerous occasions when his vaccine
+had killed sheep instead of protecting them.
+
+At this meeting Robert Koch sat blinking at Pasteur behind
+his gold-rimmed spectacles and smiling under his weedy beard
+at such an unscientific inspirational address. Pasteur seemed
+to feel something hanging over him, and he challenged Koch
+to argue with him publicly—knowing that Koch was a much
+better microbe hunter than an argufier. “I will content myself
+with replying to Mr. Pasteur’s address in a written paper,
+in the near future,” said Koch—who coughed, and sat down.
+
+In a little while this reply appeared. It was dreadful. In
+this serio-comic answer Dr. Koch began by remarking that he
+had obtained some of this precious so-called anthrax vaccine
+from the agent of Mr. Pasteur.
+
+Did Mr. Pasteur say that his first vaccine would kill mice,
+but not guinea-pigs? Dr. Koch had tested it, and it wouldn’t
+even kill mice. But some queer samples of it killed sheep!
+
+Did Mr. Pasteur maintain that his second vaccine killed
+guinea-pigs but not rabbits? Dr. Koch had carefully tested
+this one too, and found that it often killed rabbits very
+promptly—and sometimes sheep, poor beasts! which Mr. Pasteur
+claimed it would guard from death.
+
+Did Mr. Pasteur really believe that his vaccines were really
+pure cultivations containing nothing but anthrax microbes?
+Dr. Koch had studied them carefully and found them to be
+veritable menageries of hideous scum-forming bacilli and
+strange cocci and other foreign creatures that had no business
+there.
+
+Finally, was Mr. Pasteur really burning so with a passion
+for truth? Then why hadn’t he told of the bad results as well
+as the good ones, that had followed the wholesale use of his
+vaccine?
+
+“Such goings-on are perhaps suitable for the advertising of
+a business house, but science should reject them vigorously,”
+finished Koch, drily, devastatingly.
+
+Then Pasteur went through the roof and answered Koch’s
+cool facts in an amazing paper with arguments that would not
+have fooled the jury of a country debating society. Did Koch
+dare to make believe that Pasteur’s vaccines were full of contaminating
+microbes? “For twenty years before Koch’s
+scientific birth in 1876, it has been my one occupation to isolate
+and grow microbes in a pure state, and therefore Koch’s
+insinuation that I do not know how to make pure cultivations
+cannot be taken seriously!” shouted Pasteur.
+
+The French nation, even the great men of the nation, patriotically
+refused to believe that Koch had demoted their hero
+from the rank of God of Science—what could you expect from
+a German anyway?—and they promptly elected Pasteur to the
+Académie Française, the ultimate honor to bestow on a Frenchman.
+And on the day of Pasteur’s admission this fiery yes-man
+was welcomed to his place among the Immortal Forty by the
+skeptical genius, Ernest Renan, the author who had changed
+Jesus from a God into a good human being, a man who could
+forgive everything because he understood everything. Renan
+knew that even if Pasteur sometimes did suppress the truth,
+he was still sufficiently marvelous. Renan was not a scientist
+but he was wise enough to know that Pasteur had done a wonderful
+thing when he showed that weak bugs may protect living
+beings against virulent ones—even if they would not do
+it one hundred times out of one hundred.
+
+Regard these two fantastically opposite men facing each
+other on this solemn day. Pasteur the go-getter, an energetic
+fighter full of a mixture of faiths that interfered, sometimes,
+with ultimate—and maybe ugly—truth. And talking to him
+loftily sits the untroubled Renan with the massiveness of
+Mount Everest, such a dreadful skeptic that he probably was
+never quite convinced that he was himself alive, so firmly doubting
+the value of doing anything that he had become one of the
+fattest men in France.
+
+Renan called Pasteur a genius and compared him to some
+of the greatest men that ever lived and then gave the excited,
+paralyzed, gray-haired, microbe hunter this mild admonition:
+
+“Truth, Sir, is a great coquette; she will not be sought with
+too much passion, but often is most amenable to indifference.
+She escapes when apparently caught, but gives herself up if
+patiently waited for; revealing herself after farewells have
+been said, but inexorable when loved with too much fervor.”
+
+Surely Renan was too wise to think that his lovely words
+would ever change Pasteur one jot from the headlong untruthful
+hunter after truth that he was. But just the same, these
+words sum up the fundamental sadness of Pasteur’s life, they
+tell of the crown of thorns that madmen wear whose dream it
+is to change a world in the little seventy years they are allowed
+to live.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

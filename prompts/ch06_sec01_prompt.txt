@@ -1,0 +1,276 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch06_sec01
+**Chapter 6:** Roux and Behring — Massacre the Guinea-Pigs
+**Section 1 of this chapter**
+**Word count:** 1163
+**Total paragraphs:** 14
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "It was to save babies that they killed so many guinea-pigs!"
+  P2: "Émile Roux, the fanatical helper of Pasteur, in 1888 took up the tools his master had laid down, and..."
+  P3: "What experiments these two young men made to discover this diphtheria antitoxin! They went at it fra..."
+  P4: "But they discovered the diphtheria antitoxin."
+  P5: "They never could have done it without the modest discovery of Frederick Loeffler. He was that microb..."
+  P6: "Five out of ten of these cots sent their tenants to the morgue."
+  P7: "Below in the dead house toiled Frederick Loeffler, boiling knives, heating platinum wires red hot an..."
+  P8: "There is little doubt Koch led Loeffler by the hand in this discovery. “There is no use to jump at c..."
+  P9: "One dead child after another Loeffler examined; he poked into every part of each pitiful body; he st..."
+  P10: "“But how is it these few bacilli—sticking in one little corner of the body—how can they topple over ..."
+  P11: "Never was there a more conscientious searcher than this Loeffler, nor one with less of a wild imagin..."
+  P12: "He even went so far as to underestimate the importance of his exact fine searching, but at the end o..."
+  P13: "“This bacillus stays on a little patch of dead tissue in the throat of a baby; it lurks on a little ..."
+  P14: "“It must make a poison—a toxin that leaks out of it, sneaking from it to some vital spot in the body..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+I
+
+It was to save babies that they killed so many guinea-pigs!
+
+Émile Roux, the fanatical helper of Pasteur, in 1888 took
+up the tools his master had laid down, and started on searches
+of his own. In a little while he discovered a strange poison
+seeping from the bacillus of diphtheria—one ounce of the pure
+essence of this stuff was enough to kill seventy-five thousand
+big dogs. A few years later, while Robert Koch was bending
+under the abuse and curses of sad ones who had been disappointed
+by his supposed cure for consumption, Emil Behring,
+the poetical pupil of Koch, spied out a strange virtue, an unknown
+something in the blood of guinea-pigs. It could make
+that powerful diphtheria poison completely harmless....
+These two Emils revived men’s hopes after Koch’s disaster,
+and once more people believed for a time that microbes were
+going to be turned from assassins into harmless little pets.
+
+What experiments these two young men made to discover
+this diphtheria antitoxin! They went at it frantic to save
+lives; they groped at it among bizarre butcherings of countless
+guinea-pigs; in the evenings their laboratories were shambles
+like the battlefields of old days when soldiers were mangled by
+spears and pierced by arrows. Roux dug ghoulishly into the
+spleens of dead children—Behring bumped his nose in the
+darkness of his ignorance against facts the gods themselves
+could not have predicted. For each brilliant experiment these
+two had to pay with a thousand failures.
+
+But they discovered the diphtheria antitoxin.
+
+They never could have done it without the modest discovery
+of Frederick Loeffler. He was that microbe hunter whose mustache
+was so militaristic that he had to keep pulling it down to
+see through his microscope; he sat working at Koch’s right
+hand in that brave time when the little master was tracking
+down the tubercle bacillus. It was in the early eighteen eighties,
+and diphtheria, which several times each hundred years
+seems to have violent ups and downs of viciousness—diphtheria
+was particularly murderous then. The wards of the hospitals
+for sick children were melancholy with a forlorn wailing;
+there were gurgling coughs foretelling suffocation; on the sad
+rows of narrow beds were white pillows framing small faces
+blue with the strangling grip of an unknown hand. Through
+these rooms walked doctors trying to conceal their hopelessness
+with cheerfulness; powerless they went from cot to cot—trying
+now and again to give a choking child its breath by pushing
+a tube into its membrane-plugged windpipe....
+
+Five out of ten of these cots sent their tenants to the
+morgue.
+
+Below in the dead house toiled Frederick Loeffler, boiling
+knives, heating platinum wires red hot and with them lifting
+grayish stuff from the still throats of those bodies the doctors
+had failed to keep alive; and this stuff he put into slim tubes
+capped with white fluffs of cotton, or he painted it with dyes,
+which showed him, through his microscope, that there were
+queer bacilli shaped like Indian clubs in those throats, microbes
+which the dye painted with pretty blue dots and stripes and
+bars. In nearly every throat he discovered these strange bacilli;
+he hurried to show them to his master, Koch.
+
+There is little doubt Koch led Loeffler by the hand in this
+discovery. “There is no use to jump at conclusions,” you can
+hear Koch telling him. “You must grow these microbes pure—then
+you must inject the cultivations into animals.... If
+those beasts come down with a disease exactly like human
+diphtheria, then....” How could Loeffler have gone wrong,
+with that terribly pedantic, but careful, truth-hunting little czar
+of microbe hunters squinting at him from behind those eternal
+spectacles?
+
+One dead child after another Loeffler examined; he poked
+into every part of each pitiful body; he stained a hundred different
+slices of every organ; he tried—and quickly succeeded—in
+growing those queer barred bacilli pure. But everywhere
+he searched, in every part of each body, he found no microbes—except
+in the membrane-cluttered throat. And always here,
+in every child but one or two, he came on those Indian club-shaped
+rods. “How can these few microbes, growing nowhere
+in the body but the throat—how can these few germs, staying
+in that one place, kill a child so quickly?” pondered Loeffler.
+“But I must follow Herr Koch’s directions!” and he proceeded
+to shoot the germs of his pure cultivations into the windpipes
+of rabbits and beneath the skins of guinea-pigs. Quickly these
+animals died—in two or three days, like a child, or even more
+quickly—but the microbes, which Loeffler had shot into them
+in millions, could only be found at the spot where he had injected
+them.... And sometimes there were none to be found
+even here, or at best a few feeble ones hardly strong enough,
+you would think, to hurt a flea....
+
+“But how is it these few bacilli—sticking in one little corner
+of the body—how can they topple over a beast a million times
+larger than they are themselves?” asked Loeffler.
+
+Never was there a more conscientious searcher than this
+Loeffler, nor one with less of a wild imagination to liven—or to
+spoil—his almost automatic exactness. He sat himself down;
+he wrote a careful scientific paper; it was modest, it was cold,
+it was not hopeful, it was a most unlawyer-like report reciting
+all of the fors and againsts on the question of whether or no
+this new bacillus was the cause of diphtheria. He leaned over
+backward to be honest—he put last the facts that were against
+it! “This microbe may be the cause,” you can hear him mumbling
+as he wrote, “but in a few children dead of diphtheria I
+could not find these germs ... none of my inoculated animals
+get paralysis as children do ... what is most against me is
+that I’ve discovered this same microbe—it was vicious against
+guinea-pigs and rabbits too!—in the throat of a child with
+never a sign of diphtheria.”
+
+He even went so far as to underestimate the importance of
+his exact fine searching, but at the end of his treatise he gave
+a clew to the more imaginative Roux and Behring who came
+after him. A strange man, this Loeffler! Without seeming to
+be able to make a move to do it himself, he predicted what
+others must find:
+
+“This bacillus stays on a little patch of dead tissue in the
+throat of a baby; it lurks on a little point under a guinea-pig’s
+skin; it never swarms in millions—yet it kills! How?
+
+“It must make a poison—a toxin that leaks out of it, sneaking
+from it to some vital spot in the body. Such a toxin must
+be found, in the organs of a dead child, in the carcass of a
+guinea-pig dead of the disease—yes—and in the broth where
+the bacillus grows so well.... The man finding this poison
+will prove what I have failed to demonstrate.” Such was the
+dream Loeffler put into Roux’s head....
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

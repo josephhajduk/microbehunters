@@ -1,0 +1,267 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch07_sec06
+**Chapter 7:** Metchnikoff — The Nice Phagocytes
+**Section 6 of this chapter**
+**Word count:** 1194
+**Total paragraphs:** 6
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "It is amazing, when you remember that his brain was always inventing stories about nature, how often..."
+  P2: "“Now I shall prove that these microbes inside the phagocytes are still alive!” cried Metchnikoff. He..."
+  P3: "By dozens of brilliant experiments of this kind, Metchnikoff forced his opponents to admit that phag..."
+  P4: "The devotion of the workers in his laboratory was amazing. They let him feed them virulent cholera b..."
+  P5: "When some more than ordinarily independent student would come whispering to him that he had discover..."
+  P6: "Toward the end of the nineteenth century, when romantic microbe hunting began to turn into a regular..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VI
+
+It is amazing, when you remember that his brain was always
+inventing stories about nature, how often these stories turned
+out to be true when they were put to the test of experiment.
+A German hunter had claimed: “There is nothing to Metchnikoff’s
+theory of phagocytes. Everybody knows that you can
+see microbes inside of phagocytes—they have undoubtedly
+been gobbled up by the phagocytes. But these wandering
+cells are not defenders, they are mere scavengers—they will
+only swallow dead microbes!” The London Congress of 1891
+was drawing near; Metchnikoff shouted for some guinea-pigs,
+vaccinated them with some cholera-like bacilli that his old
+friend, the unfortunate Gamaléia, had discovered. Then, a
+week or so later, the big-bearded philosopher shot some of
+these living, dangerous bacilli into the bellies of vaccinated
+beasts. Every few minutes, during the next hours, he ran
+slender glass tubes into their abdomens, sucked out a few
+drops of the fluid there, and put it before the more or less
+dirty lens of his microscope, to see whether the phagocytes of
+the immune beasts were eating up Gamaléia’s bacilli. Presto!
+These roundish crawling cells were crammed full of the microbes!
+
+“Now I shall prove that these microbes inside the phagocytes
+are still alive!” cried Metchnikoff. He killed the guinea-pig,
+slashed it open, and sucked into another little glass tube
+some of the grayish slime of wandering cells which had gathered
+in the creature’s belly to make meals off the microbes. In a
+little while—for they are very delicate when you try to keep
+them alive outside the body—the phagocytes had died, burst
+open, and the live bacilli they had swallowed galloped out of
+them! Promptly, when Metchnikoff injected them, these microbes
+that had been swallowed, murdered guinea-pigs who
+were not immune.
+
+By dozens of brilliant experiments of this kind, Metchnikoff
+forced his opponents to admit that phagocytes, sometimes, can
+eat vicious microbes. But the pitiful waste of this brainy
+Metchnikoff’s life was that he was always doing experiments
+to defend an idea, and not to find the hidden truths of nature.
+His experiments were weird, they were often fantastically entertaining,
+but they were so artificial—they were so far away
+from the point of what it is that makes us immune. You
+would think that his brain, which seemed to be able to hold
+all knowledge, would have dreamed of subtle tests to find out
+just how it is that one child can be exposed to consumption
+and never get it, while some carefully and hygienically raised
+young girl dies from consumption at twenty. There is the
+riddle of immunity (and it is still completely a riddle!). “Oh!
+it is doubtless due to the fact that her phagocytes are not working!”
+Metchnikoff would have exclaimed, and then he might
+rush off to flabbergast some opponent by proving that the
+phagocytes of an alligator eat up typhoid fever bacilli—which
+never bother alligators anyway.
+
+The devotion of the workers in his laboratory was amazing.
+They let him feed them virulent cholera bacilli (even one of
+those pretty inspirational girls swallowed them!) to prove that
+the blood has nothing to do with our immunity to cholera.
+For years—he himself said that it was an insanity of his—he
+was fond of toying with the lives of his researching slaves, and
+the only thing that excused him was his perfect readiness to
+risk death along with them. He swallowed more tubes of
+cholera bacilli than any of them. In the midst of this
+dangerous business, one of the assistants, Jupille, became violently
+sick with real Asiatic cholera and Metchnikoff’s remorse
+was immoderate. “I shall never survive the death of Jupille!”
+he moaned, and Olga, that good wife, had to be on her guard
+day and night to keep her famous husband from one of his
+(always fruitless) attempts at suicide. At the end of these
+strange experiments, Metchnikoff jabbed needles into the arms
+of the survivors, drew blood from them, and triumphantly
+found that this blood did not protect guinea-pigs from doses
+of virulent cholera germs. How he hated the idea of blood
+having any importance! “Human cholera gives us another
+example,” he wrote, “of a malady whose cure cannot be explained
+by the preventive properties of the blood.”
+
+When some more than ordinarily independent student would
+come whispering to him that he had discovered a remarkable
+something about blood, Metchnikoff became magnificent like
+Moses coming down off Mt. Sinai—searchers for mere truth
+had a bad time in that laboratory, and you can imagine the
+great dauntless champion of phagocytes ordering a dissenter
+from his theory to be burned, and then weeping inconsolably
+over him afterwards. But, just the same, Metchnikoff—so
+great was the number of experiments made by an always
+changing crowd of eager experimenters in his laboratory—this
+Metchnikoff was partly responsible for the discovery of
+some of the most astounding virtues of blood. For, in the
+midst of his triumphs, Jules Bordet came to work with the
+master. This Bordet was the son of the schoolmaster of the
+village of Soignies in Belgium. He was timid, he seemed insignificant,
+he had careless ways and watery-blue, absent-minded
+eyes—eyes that saw things nobody else was looking for. Bordet
+set to work there, and right in the shadow of the master’s
+beard, while the walls shook with the slogan “Phagocytes!”—the
+Belgian pried into the mystery of how blood kills
+germs; he laid the foundation for those astounding delicate
+tests which tell whether blood is human blood, in murder cases.
+It was here too, that Bordet began the work which led, years
+later, to the famous blood test for syphilis—the Wassermann
+reaction. Metchnikoff was often annoyed with Bordet, but
+he was proud of him too, and whenever Bordet found anything
+in blood that was harmful to microbes, and might help to make
+people immune to them, Metchnikoff consoled himself by inventing
+more or less accurate experiments which showed that
+these microbe-killing things came from the phagocytes, after
+all. Bordet did not remain long in Metchnikoff’s laboratory....
+
+Toward the end of the nineteenth century, when romantic
+microbe hunting began to turn into a regular profession, recruited
+from good steady law-abiding young doctors who were
+not prophets or reckless searchers—in those days Metchnikoff’s
+bitter trials with people who didn’t believe him began
+to be less terrible. He received medals and prizes of money,
+and even the Germans clapped their hands and were respectful
+when he walked majestically into some congress. A thousand
+searchers had spied phagocytes in the act of gobbling
+harmful germs—and although that did not explain at all why
+one man dies from an attack of pneumonia microbes, while
+another breaks into a sweat and gets better—just the same
+there is no doubt that pneumonia germs are sometimes eaten
+and so got rid of by phagocytes. So Metchnikoff, after you
+discount his amazing illogic, his intolerance, his bullheadedness,
+really did discover a fact which may make life easier for
+suffering mankind. Because, some day, a dreamer, an experimenting
+genius like the absent-minded Bordet may come along—and
+he may solve the riddle of why phagocytes sometimes
+gobble germs and sometimes do not—he might even teach
+phagocytes always to eat them....
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

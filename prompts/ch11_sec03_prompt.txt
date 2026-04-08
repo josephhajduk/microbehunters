@@ -1,0 +1,285 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch11_sec03
+**Chapter 11:** Walter Reed — In the Interest of Science—and for Humanity!
+**Section 3 of this chapter**
+**Word count:** 1220
+**Total paragraphs:** 16
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Then Walter Reed (he had been called home to Washington to make a report on work done in the Spanish..."
+  P2: "Lazear went down between the rows of beds on which lay men, doomed men with faces yellow as the leav..."
+  P3: "“We should remember malaria,” Reed had told Lazear and Carroll. “In that disease it takes two or thr..."
+  P4: "But look at the bold face of Jesse Lazear, and tell me if that was a patient man! Not he. Somehow he..."
+  P5: "But alas, they all stayed fit as fiddles, and that discouraged Lazear."
+  P6: "But there was James Carroll. For years he had been the right-hand man of Walter Reed. He had come in..."
+  P7: "So James Carroll reminded the discouraged Lazear: “I am ready!” He told Lazear to bring out the most..."
+  P8: "That soldier watched her while she felt around with her stinger.... What did he think as he watched ..."
+  P9: "“If there is anything in the mosquito theory, I should get a good dose of yellow fever!” He did."
+  P10: "Two days later he felt tired and didn’t want to visit patients in the yellow fever ward. Two days af..."
+  P11: "He always said those were the proudest days of his life. “I was the first case to come down with yel..."
+  P12: "Then there was that American private soldier they called “X.Y.”—these outlaw searchers called him “X..."
+  P13: "Now everything was fine with the experiments of Quemados. Eight men had been bitten, it is true, and..."
+  P14: "That was September 13th."
+  P15: "“On the evening of September 18th ... Dr. Lazear complained of feeling out of sorts, and had a chill..."
+  P16: "“September 19: Twelve o’clock noon,” goes on that laconic record, “temperature 102.4 degrees, pulse ..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+III
+
+Then Walter Reed (he had been called home to Washington
+to make a report on work done in the Spanish War) gave elaborate
+instructions to Carroll and Lazear and Agramonte. They
+were secret instructions, and savage instructions, when you
+consider the mild man he was. It was an immoral business—it
+was a breach of discipline in its way, for Walter Reed then
+had no permission from the high military authorities to start it.
+So Reed left for Washington, and Lazear and Carroll set off on
+the wildest, most daring journey any two microbe hunters had
+ever taken. Lazear? You could not see the doom in his eyes—the
+gleam of the searcher outshone it. Carroll? That was
+a soldier who cared no damn for death or courts-martial—Carroll
+was a microbe hunter of the great line....
+
+Lazear went down between the rows of beds on which lay
+men, doomed men with faces yellow as the leaves of autumn,
+delirious men with bloodshot eyes. He bit those men with his
+silver-striped she-mosquitoes; carefully he carried these blood-filled
+beasts back to their glass homes, in which were little
+saucers of water and little lumps of sugar. Here the she-mosquitoes
+digested their meal of yellow fever blood, and buzzed a
+little, and waited for the test.
+
+“We should remember malaria,” Reed had told Lazear and
+Carroll. “In that disease it takes two or three weeks for the
+mosquito to become dangerous—maybe it’s the same here.”
+
+But look at the bold face of Jesse Lazear, and tell me if that
+was a patient man! Not he. Somehow he collected seven
+volunteers, who so far as I can find have remained nameless,
+since the test was done in dark secrecy. To these seven men—whom
+for all I know he may have shanghaied—but first of all
+to himself, Lazear applied those mosquitoes who a few days
+before had fed on men who now were dead....
+
+But alas, they all stayed fit as fiddles, and that discouraged
+Lazear.
+
+But there was James Carroll. For years he had been the
+right-hand man of Walter Reed. He had come into the army
+as a buck private and had been a corporal and a sergeant for
+years—obeying orders was burned into his very bones—and
+Major Reed had said: “Try mosquitoes!” What is more, what
+Major Reed thought was right, James Carroll thought was
+right, too, and Major Reed thought there was something in the
+notion of that Old Theorizing Fool. But in the army,
+thoughts are secondary—Major Reed had left them saying:
+“Try mosquitoes!”
+
+So James Carroll reminded the discouraged Lazear: “I am
+ready!” He told Lazear to bring out the most dangerous mosquito
+in his collection—not one that had bitten only a single
+case, but he must use a mosquito that had bitten many cases—and
+they must be bad cases—of yellow fever. That mosquito
+must be as dangerous as possible! On the twenty-seventh of
+August, Jesse Lazear picked out what he thought to be his
+champion mosquito, and this creature, which had fed on four
+cases of yellow fever, two of them severe ones, settled down on
+the arm of James Carroll.
+
+That soldier watched her while she felt around with her
+stinger.... What did he think as he watched her swell into a
+bright balloon with his blood? Nobody knows. But he could
+think, what everybody knows: “I am forty-six years old, and
+in yellow fever the older the fewer—get better.” He was forty-six
+years old. He had a wife and five children, but that evening
+James Carroll wrote to Walter Reed:
+
+“If there is anything in the mosquito theory, I should get a
+good dose of yellow fever!” He did.
+
+Two days later he felt tired and didn’t want to visit patients
+in the yellow fever ward. Two days after that he was really
+sick: “I must have malaria!” he cried, and went to the laboratory
+under his own power, to squint at his own blood under the
+microscope. But no malaria. That night his eyes were bloodshot,
+his face a dusky red. The next morning Lazear packed
+Carroll off to the yellow fever wards, and there he lay, near to
+death for days and days.... There was one minute when he
+thought his heart had stopped ... and that, as you will see,
+was a bad minute for Assistant-Surgeon Carroll.
+
+He always said those were the proudest days of his life. “I
+was the first case to come down with yellow fever after the experimental
+bite of a mosquito!” said Carroll.
+
+Then there was that American private soldier they called
+“X.Y.”—these outlaw searchers called him “X.Y.,” though he
+was really William Dean, of Grand Rapids, Michigan. While
+James Carroll was having his first headaches, they bit this
+X.Y. with four mosquitoes—the one that nearly killed Carroll,
+and then three other silver-striped beauties besides, who had
+fed on six men that were fairly sick, and four men that were
+very sick with yellow fever and two men that died.
+
+Now everything was fine with the experiments of Quemados.
+Eight men had been bitten, it is true, and were fit as fiddles—but
+the last two, James Carroll and X.Y., they were real experimental
+guinea-pigs, those two, they had both got yellow fever—and
+James Carroll’s heart had nearly stopped, but now they
+were both getting better, and Carroll was on the heights, writing
+to Walter Reed, waiting proudly for his chief to come back—to
+show him the records. Only Jesse Lazear was a little
+cynical about these two cases, because Lazear was a fine experimenter,
+a tight one, a man who had to have every condition
+just so, like a real searcher—and, thought Lazear, “It is
+too bad seeing the nerve of Carroll and X.Y.—but both of
+them exposed themselves in dangerous zones once or twice, before
+they came down. It wasn’t an absolutely perfect experiment—it
+isn’t sure that my mosquitoes gave them yellow
+fever!” So Lazear was skeptical, but orders were orders, and
+every afternoon he went to those rows of beds at Las Animas,
+in the room with the faint strange smell, and here he turned
+his test-tubes upside-down on the arms of boys with bloodshot
+eyes, and let his she-mosquitoes suck their fill. But September
+13th was a bad day, it was an unlucky day for Jesse Lazear,
+for while he was at this silly job of feeding his mosquitoes, a
+stray mosquito settled down on the back of his hand. “Oh!
+that’s nothing!” he thought. “That wouldn’t be the right kind
+of mosquito anyway!” he muttered, and he let the mosquito
+drink her fill—though, mind you, she was a stray beast that
+lived in this ward where men were dying!
+
+That was September 13th.
+
+“On the evening of September 18th ... Dr. Lazear complained
+of feeling out of sorts, and had a chill at 8 P.M.,” says
+a hospital record of Las Animas....
+
+“September 19: Twelve o’clock noon,” goes on that laconic
+record, “temperature 102.4 degrees, pulse 112. Eyes injected,
+face suffused. [That means bloodshot and red] ... 6 P.M.
+temperature 103.8 degrees, pulse, 106. Jaundice appeared on
+the third day. The subsequent history of this case was one of
+progressive and fatal yellow fever” [and the record softens a
+little], “the death of our lamented colleague having occurred on
+the evening of September 25, 1900.”
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

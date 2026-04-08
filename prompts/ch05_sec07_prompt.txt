@@ -1,0 +1,760 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch05_sec07
+**Chapter 5:** Pasteur — And the Mad Dog
+**Section 7 of this chapter**
+**Word count:** 4796
+**Total paragraphs:** 72
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "And now Pasteur began—God knows why—to stick little hollow glass tubes into the gaping mouths of dog..."
+  P2: "Why did Pasteur set out to trap the germ of rabies? That is a mystery, because there were a dozen ot..."
+  P3: "It must have been the artist, the poet in him that urged him on to this most hard and dangerous hunt..."
+  P4: "And then, in this most magnificent and truest of all his searchings, Pasteur started out, as he so o..."
+  P5: "Presently, late in 1882, he ran on to his first clew. “Mad dogs are scarce just now, old Bourrel the..."
+  P6: "He was more than sixty, and he was tired."
+  P7: "Then one day, a lassoed mad dog was brought into the laboratory; dangerously he was slid into a big ..."
+  P8: "Then one day a little idea came to Pasteur, and he hurried to tell it to Roux."
+  P9: "“This rabies virus that gets into people by bites, it settles in their brains and spinal cords.... A..."
+  P10: "“That’s where we have to look for the unknown microbe ... that’s where we can grow it maybe, even wi..."
+  P11: "“When we inject it under the skin—the virus may get lost in the body before it can travel to the bra..."
+  P12: "Roux listened to these dreamings of Pasteur, he listened bright-eyed to these fantastic imaginings....."
+  P13: "“But why not put the virus right into a dog’s brain, master, I can trephine a dog—I can drill a litt..."
+  P14: "Pasteur shut Roux up, furiously. He was no doctor, and he did not know that surgeons can do this ope..."
+  P15: "So near was Pasteur, by reason of his tender-heartedness, so close was he to failing completely in w..."
+  P16: "For, a few days later when Pasteur left the laboratory to go to some meeting or other, Roux took a h..."
+  P17: "Next morning Roux told Pasteur about it——“What!” shouted Pasteur. “Where is the poor creature ... he..."
+  P18: "But Roux was already down the stairs, and in an instant he was back, his operated dog prancing in ah..."
+  P19: "Sure enough, less than two weeks later the good creature began to howl mournful cries and tear up hi..."
+  P20: "Now Pasteur and Roux and Chamberland had a sure way, that worked one hundred times out of one hundre..."
+  P21: "Never was there a more fantastic experiment in all of microbe hunting, or in any science, for that m..."
+  P22: "Then Pasteur and his assistants started on their outlandish—any wise man would say their impossible—..."
+  P23: "Pasteur mounted guard over his young men and kept their backs bent over their benches as if they wer..."
+  P24: "Months—gray months went by during which it seemed to all of them that there was no possible way of w..."
+  P25: "“It’s no go, master,” said they, making limp waves of their hands toward the cages with their paraly..."
+  P26: "Then Pasteur’s eyebrows cocked at them, and his thinning gray hair seemed to stiffen: “Do the same e..."
+  P27: "Indeed, why wasn’t this setting out to tame the hydrophobia virus—why wasn’t it a nonsensical wild-g..."
+  P28: "Then, one exciting day, the first sweet music of encouragement came to these gropers in the dark—one..."
+  P29: "“Now we know it—we know we have a chance.... When a beast once has rabies and gets better from it, t..."
+  P30: "But Pasteur began inventing experiments that no god would have attempted; his desk was strewn with h..."
+  P31: "“Try this experiment to-day!” Pasteur would tell them."
+  P32: "“But that is technically impossible!” they protested."
+  P33: "“No matter—plan it any way you wish, provided you do it well,” Pasteur replied. (He was, those days,..."
+  P34: "And at last they found a way of weakening the savage hydrophobia virus—by taking out a little sectio..."
+  P35: "“The virus is dead—or better still very much weakened,” said Pasteur, jumping at the latter conclusi..."
+  P36: "Savagely they fell to this long will o’ the wisp of an experiment. For fourteen days Pasteur walked ..."
+  P37: "For weeks they waited—hair graying again—for signs of rabies in these animals, but none ever came. T..."
+  P38: "Pasteur dreaded it—if this failed all of these years of work had gone for nothing, and “I am getting..."
+  P39: "Then one day Roux bored little holes through the skulls of two vaccinated dogs—and two not vaccinate..."
+  P40: "One month later, Pasteur and his men, at the end of three years of work, knew that victory over hydr..."
+  P41: "Now immediately—the life-saver in this man was always downing the mere searcher—Pasteur’s head buzze..."
+  P42: "“Your father is absorbed in his thoughts, talks little, sleeps little, rises at dawn, and, in one wo..."
+  P43: "At first Pasteur thought of shooting his weakened rabies virus into all the dogs of France in one st..."
+  P44: "“There are more than a hundred thousand dogs and hounds and puppies in the city of Paris alone,” Noc..."
+  P45: "Then finally there dawned on Pasteur a simple way out of his trouble: “It’s not the dogs we must giv..."
+  P46: "“How easy!... After a person has been bitten by a mad dog, it is always weeks before the disease dev..."
+  P47: "They put mad dogs in cages with healthy ones, and the mad dogs bit the normal ones."
+  P48: "Roux injected virulent stuff from rabid rabbits into the brains of other healthy dogs."
+  P49: "Then they gave these beasts, certain to die if they were left alone—they shot the fourteen stronger ..."
+  P50: "“Once a dog is made immune with the gradually more virulent spinal cords of rabbits dead of rabies, ..."
+  P51: "From all over the world came letters, urgent telegrams, from physicians, from poor fathers and mothe..."
+  P52: "And you may guess how Pasteur was worried! This was no affair like anthrax, where, if the vaccine wa..."
+  P53: "And then sleep once more was not to be had by this poor searcher who had made a too wonderful discov..."
+  P54: "For a moment the actor, the maker of grand theatric gestures, rose in him again: “I am much inclined..."
+  P55: "At last, mercifully, the worried Mrs. Meister from Meissengott in Alsace took the dreadful decision ..."
+  P56: "“Save my little boy—Mr. Pasteur,” this woman begged him."
+  P57: "Pasteur told the woman to come back at five in the evening, and meanwhile he went to see the two phy..."
+  P58: "And that night of July 6, 1885, they made the first injection of the weakened microbes of hydrophobi..."
+  P59: "And the boy went home to Alsace and had never a sign of that dreadful disease."
+  P60: "Then all fears left Pasteur—it was very much like the case of that first dog that Roux had injected ..."
+  P61: "The tortured bitten people of the world began to pour into the laboratory of the miracle-man of the ..."
+  P62: "And this man who was no physician—who used to say with proud irony: “I am only a chemist,”—this man ..."
+  P63: "From Smolensk in Russia came nineteen peasants, moujiks who had been set upon by a mad wolf nineteen..."
+  P64: "Then Paris went mad—as only Paris can—with excited concern about these bitten Russians who must sure..."
+  P65: "“Maybe,” said every one, “they will all die—it is more than two weeks since they were attacked, poor..."
+  P66: "Perhaps, indeed, it was too late. Pasteur could not eat nor did he sleep at all. He took a terrible ..."
+  P67: "And at last a great shout of pride went up for this man Pasteur, went up from the Parisians, and all..."
+  P68: "The laboratory was built, but Pasteur’s own work was done; his triumph was too much for him; it was ..."
+  P69: "That was the perfect end of this so human, so passionately imperfect hunter of microbes and saver of..."
+  P70: "But there is another end of his career that I like to think of more—and that was the day, in 1892, o..."
+  P71: "Lister, the prince of surgeons, rose from his seat and hugged Pasteur and the gray-bearded important..."
+  P72: "“... Do not let yourselves be tainted by a deprecating and barren skepticism, do not let yourselves ..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VII
+
+And now Pasteur began—God knows why—to stick little
+hollow glass tubes into the gaping mouths of dogs writhing
+mad with rabies. While two servants pried apart and held
+open the jowls of a powerful bulldog, Pasteur stuck his beard
+within a couple of inches of those fangs whose snap meant the
+worst of deaths, and, sprinkled sometimes with a maybe fatal
+spray, he sucked up the froth into his tube—to get a specimen
+in which to hunt for the microbe of hydrophobia. I wish to
+forget, now, everything that I have said about his showmanship,
+his unsearcherlike go-gettings. This business of his
+gray eyes looking that bulldog in the mouth—this was no
+grandstand stuff.
+
+Why did Pasteur set out to trap the germ of rabies? That
+is a mystery, because there were a dozen other serious diseases,
+just then, whose microbes had not yet been found, diseases
+that killed many more people than rabies had ever put
+to death, diseases that were not nearly so surely deadly to an
+adventurous experimenter as rabies would be—if one of those
+dogs should get loose....
+
+It must have been the artist, the poet in him that urged him
+on to this most hard and dangerous hunting, for Pasteur himself
+said: “I have always been haunted by the cries of those
+victims of the mad wolf that came down the street of Arbois
+when I was a little boy....” Pasteur knew the way the yells
+of a mad dog curdle the blood of every one. He remembered
+that less than a hundred years before in France, laws had to
+be passed against the poisoning, the strangling, the shooting of
+wretched people whom frightened fellow-townsmen just suspected
+of having rabies. Doubtless he saw himself the deliverer
+of men from such crazy fear—such hopeless suffering.
+
+And then, in this most magnificent and truest of all his
+searchings, Pasteur started out, as he so often did, by making
+mistakes. In the saliva of a little child dying from hydrophobia
+he discovered a strange motionless germ that he gave
+the unscientific name of “microbe-like-an-eight.” He read
+papers at the Academy that hinted about this figure-eight germ
+having something to do with the mysterious cause of hydrophobia.
+But in a little while this trail proved to be a blind
+one, for with Roux and Chamberland he found—after he had
+settled down and got his teeth into this search—that this eight-microbe
+could be found in the mouths of many healthy people
+who had never been anywhere near a mad dog.
+
+Presently, late in 1882, he ran on to his first clew. “Mad
+dogs are scarce just now, old Bourrel the veterinarian brings
+me very few of them, and people with hydrophobia are still
+harder to get hold of—we’ve got to produce this rabies in animals
+in our laboratory and keep it going there—otherwise we
+won’t be able to go on studying it steadily,” he pondered.
+
+He was more than sixty, and he was tired.
+
+Then one day, a lassoed mad dog was brought into the laboratory;
+dangerously he was slid into a big cage with healthy
+dogs and allowed to bite them. Roux and Chamberland fished
+froth out of the mouth of this mad beast and sucked it up into
+syringes and injected this stuff into rabbits and guinea-pigs.
+Then they waited eagerly to see this menagerie develop the
+first signs of madness. Sometimes—alas—the experiment
+worked, but other very irritating times it did not; four healthy
+dogs had been bitten and six weeks later they came in one
+morning to find two of these creatures lashing about their
+cages, howling—but for months after that the other two showed
+no sign of rabies; there was no rime or reason to this business,
+no regularity, confound it! this was not science! And it was
+the same with the guinea-pigs and rabbits: two of the rabbits
+might drag out their hind legs with a paralysis—then die in
+dreadful convulsions, but the other four would go on chewing
+their greens as if there were no mad-dog virus within a million
+miles of them.
+
+Then one day a little idea came to Pasteur, and he hurried
+to tell it to Roux.
+
+“This rabies virus that gets into people by bites, it settles
+in their brains and spinal cords.... All the symptoms of
+hydrophobia show that it’s the nervous system that this virus—this
+bug we can’t find—attacks....
+
+“That’s where we have to look for the unknown microbe ... that’s
+where we can grow it maybe, even without seeing
+it ... maybe we could use the living animal’s brain instead
+of a bottle of soup ... a funny culture-bottle that would be,
+but....
+
+“When we inject it under the skin—the virus may get lost in
+the body before it can travel to the brain—if I could only stick
+it right into a dog’s brain...!”
+
+Roux listened to these dreamings of Pasteur, he listened
+bright-eyed to these fantastic imaginings.... Another man
+than Roux might have thought Pasteur completely crazy....
+The brain of a dog or rabbit instead of a bottle of broth, indeed!
+What nonsense! But not to Roux!
+
+“But why not put the virus right into a dog’s brain, master,
+I can trephine a dog—I can drill a little hole in his skull—without
+hurting him—without damaging his brain at all ... it
+would be easy ...” said Roux.
+
+Pasteur shut Roux up, furiously. He was no doctor, and he
+did not know that surgeons can do this operation on human
+beings even, quite safely. “What! bore a hole right through
+a dog’s skull—why, you’d hurt the poor beast terribly ... you
+would damage his brain ... you would paralyze him.... No!
+I will not permit it!”
+
+So near was Pasteur, by reason of his tender-heartedness,
+so close was he to failing completely in winning to the most
+marvelous of his gifts to men. He quailed before the stern experiment
+that his weird idea demanded. But Roux—the faithful,
+the now almost forgotten Roux—saved him by disobeying
+him.
+
+For, a few days later when Pasteur left the laboratory to
+go to some meeting or other, Roux took a healthy dog, put him
+easily out of pain with a little chloroform, and bored a hole
+in the beast’s head and exposed his palpitating, living brain.
+Then up into a syringe he drew a little bit of the ground-up
+brain of a dog just dead with rabies: “This stuff must be
+swarming with those rabies microbes that are maybe too small
+for us to see,” he pondered; and through the hole in the sleeping
+dog’s skull went the needle of the syringe, and into the living
+brain Roux slowly, gently shot the deadly rabid stuff....
+
+Next morning Roux told Pasteur about it——“What!”
+shouted Pasteur. “Where is the poor creature ... he must
+be dying ... paralyzed....”
+
+But Roux was already down the stairs, and in an instant he
+was back, his operated dog prancing in ahead of him, jumping
+gayly against Pasteur, sniffing ’round among the old broth bottles
+under the laboratory benches. Then Pasteur realized
+Roux’s cleverness—and the new road of experiment that lay
+before him, and though he was not fond of dogs, his joy made
+him fuss over this one: “Good dog, excellent beast!” Pasteur
+said, and dreamed: “This beast will show that my idea will
+work....”
+
+Sure enough, less than two weeks later the good creature
+began to howl mournful cries and tear up his bed and gnaw at
+his cage—and in a few days more he was dead, and this brute
+died, as you will see, so that thousands of mankind might live.
+
+Now Pasteur and Roux and Chamberland had a sure way,
+that worked one hundred times out of one hundred, of giving
+rabies to their dogs and guinea-pigs and rabbits. “We cannot
+find the microbe—surely it must be too tiny for the strongest
+microscope to show us—there’s no way to grow it in flasks of
+soup ... but we can keep it alive—this deadly virus—in the
+brains of rabbits ... that is the only way to grow it,” you
+can hear Pasteur telling Roux and Chamberland.
+
+Never was there a more fantastic experiment in all of microbe
+hunting, or in any science, for that matter; never was there a
+more unscientific feat of science than this struggling, by Pasteur
+and his boys, with a microbe they couldn’t see—a weird
+bug of whose existence they only knew by its invisible growth
+in the living brains and spinal cords of an endless succession
+of rabbits and guinea-pigs and dogs. Their only knowledge
+that there was such a thing as the microbe of rabies was the
+convulsive death of the rabbits they injected, and the fearful
+cries of their trephined dogs....
+
+Then Pasteur and his assistants started on their outlandish—any
+wise man would say their impossible—adventure of taming
+this vicious virus that they could not see. There were little
+interruptions; Roux went with Thuillier to fight the cholera in
+Egypt and there, you will remember, Thuillier died; and Pasteur
+went out into the rural pig-sties of France to discover the
+microbe and find a vaccine against a disease that was just then
+murdering French swine. But Pasteur stopped getting entangled
+in those vulgar arguments which were so often to his
+discredit, and the three of them locked themselves in their
+laboratory in the Rue d’Ulm with their poor paralyzed and
+dangerous animals. They sweat through endless experiments.
+
+Pasteur mounted guard over his young men and kept their
+backs bent over their benches as if they were some higher kind
+of galley slave. He watched their perilous experiments with
+one eye and kept the other on the glass door of the workroom,
+and when he saw some of Roux’s and Chamberland’s friends
+approaching, to ask them maybe to come out for a glass of beer
+on the terrace of a near-by café, the master would hurry out
+and tell the interlopers: “No. No! Not now! Cannot you
+see? They are busy—it is a most important experiment they
+are doing!”
+
+Months—gray months went by during which it seemed to
+all of them that there was no possible way of weakening the
+invisible virus of rabies.... One hundred animals, alas, out
+of every hundred that they injected—died. You would think
+that Roux and Chamberland, still youngsters, would have been
+the indomitable ones, the never-say-die men of this desperate
+crew. But on the contrary!
+
+“It’s no go, master,” said they, making limp waves of their
+hands toward the cages with their paralyzed beasts—toward
+the tangled jungles of useless tubes and bottles....
+
+Then Pasteur’s eyebrows cocked at them, and his thinning
+gray hair seemed to stiffen: “Do the same experiment over
+again—no matter if it failed last time—it may look foolish to
+you, but the important thing is not to leave the subject!” Pasteur
+shouted, in a fury. So it was that this man scolded his
+monkish disciples and prodded them to do useless tests over
+and over and over—with no reasons, with complete lack of
+logic. With every fact against him Pasteur searched and tried
+and failed and tried again with that insane neglect of common
+sense that sometimes turns hopeless causes into victories.
+
+Indeed, why wasn’t this setting out to tame the hydrophobia
+virus—why wasn’t it a nonsensical wild-goose chase? There
+was in all human history no single record of any man or beast
+getting better from this horrible malady, once the symptoms
+had declared themselves, once the mysterious messengers of
+evil had wormed their unseen way into the spinal cord and
+brain. It was this kind of murderous stuff that Pasteur and
+his men balanced on the tips of their knives, sucked up into
+their glass pipettes within an inch from the lips—stuff that was
+separated from their mouths by a thin little wisp of cotton....
+
+Then, one exciting day, the first sweet music of encouragement
+came to these gropers in the dark—one of their dogs
+inoculated with the surely fatal stuff from a rabid rabbit’s brain—this
+dog came down with his weird barkings and portentous
+shiverings and slatherings—and then miraculously got completely
+better! Excitedly, a few weeks later, they shot this
+first of all recovered beasts with a deadly virus, directly into his
+brain they injected the wee murderers. The little wound on
+his head healed quickly—anxiously Pasteur waited for his
+doomful symptoms to come on him, but these signs never came.
+For months the dog romped about his cage. He was absolutely
+immune!
+
+“Now we know it—we know we have a chance.... When
+a beast once has rabies and gets better from it, there will be
+no recurrence.... We must find a way to tame the virus
+now,” said Pasteur to his men, who agreed, but were perfectly
+certain that there was no way to tame that virus.
+
+But Pasteur began inventing experiments that no god would
+have attempted; his desk was strewn with hieroglyphic scrawls
+of them. And at eleven in the morning, when the records of
+the results of the day before had been carefully put down, he
+would call Roux and Chamberland, and to them he would read
+off some wild plan for groping after this unseen unreachable
+virus—some fantastic plan for getting his fingers on it inside
+the body of a rabbit—to weaken it.
+
+“Try this experiment to-day!” Pasteur would tell them.
+
+“But that is technically impossible!” they protested.
+
+“No matter—plan it any way you wish, provided you do it
+well,” Pasteur replied. (He was, those days, like old Ludwig
+van Beethoven writing unplayable horn parts for his symphonies—and
+then miraculously discovering hornblowers to
+play those parts.) For, one way or another, the ingenious
+Roux and Chamberland devised tricks to do those crazy experiments....
+
+And at last they found a way of weakening the savage hydrophobia
+virus—by taking out a little section of the spinal cord
+of a rabbit dead of rabies, and hanging this bit of deadly stuff
+up to dry in a germ-proof bottle for fourteen days. This
+shriveled bit of nervous tissue that had once been so deadly
+they shot into the brains of healthy dogs—and those dogs did
+not die....
+
+“The virus is dead—or better still very much weakened,”
+said Pasteur, jumping at the latter conclusion with no sense or
+reason. “Now we’ll try drying other pieces of virulent stuff for
+twelve days—ten days—eight days—six days, and see if we
+can’t just give our dogs a little rabies ... then they ought to
+be immune....”
+
+Savagely they fell to this long will o’ the wisp of an experiment.
+For fourteen days Pasteur walked up and down the
+bottle and microscope and cage-strewn unearthly workshop and
+grumbled and fretted and made scrawls in that everlasting
+notebook of his. The first day the dogs were dosed with the
+weakened—the almost extinct virus that had been dried for
+fourteen days; the second day they received a shot of the
+slightly stronger nerve stuff that had been thirteen days in its
+bottle; and so on until the fourteenth day—when each beast
+was injected with one-day-dried virus that would have surely
+killed a not-inoculated animal.
+
+For weeks they waited—hair graying again—for signs of
+rabies in these animals, but none ever came. They were happy,
+these ghoulish fighters of death! Their clumsy terrible fourteen
+vaccinations had not hurt the dogs—but were they immune?
+
+Pasteur dreaded it—if this failed all of these years of work
+had gone for nothing, and “I am getting old, old ...” you can
+hear him whispering to himself. But the test had to be made.
+Would the dogs stand an injection of the most deadly rabid
+virus—right into their brains—a business that killed an ordinary
+dog one hundred times out of one hundred?
+
+Then one day Roux bored little holes through the skulls of
+two vaccinated dogs—and two not vaccinated ones: and into
+all four went a heavy dose of the most virulent virus....
+
+One month later, Pasteur and his men, at the end of three
+years of work, knew that victory over hydrophobia was in their
+hands. For, while the two vaccinated dogs romped and sniffed
+about their cages with never a sign of anything ailing them—the
+two that had not received the fourteen protective doses of
+dried rabbit’s brain—these two had howled their last howls and
+died of rabies.
+
+Now immediately—the life-saver in this man was always
+downing the mere searcher—Pasteur’s head buzzed with plans
+to wipe hydrophobia from the earth, he had a hundred foolish
+projects, and he walked in a brown world of thought, in a mist
+of plans that Roux and Chamberland, and not even Madame
+Pasteur could penetrate. It was 1884, and when Pasteur forgot
+their wedding anniversary, the long-suffering lady wrote to
+her daughter:
+
+“Your father is absorbed in his thoughts, talks little, sleeps
+little, rises at dawn, and, in one word, continues the life I began
+with him this day thirty-five years ago.”
+
+At first Pasteur thought of shooting his weakened rabies
+virus into all the dogs of France in one stupendous Napoleonic
+series of injections: “We must remember that no human being
+is ever attacked with rabies except after being bitten by a rabid
+dog.... Now if we wipe it out of dogs with our vaccine ...”
+he suggested to the famous veterinarian, Nocard, who laughed,
+and shook his head.
+
+“There are more than a hundred thousand dogs and hounds
+and puppies in the city of Paris alone,” Nocard told him, “and
+more than two million, five hundred thousand dogs in all of
+France—and if each of these brutes had to get fourteen shots
+of your vaccine fourteen days in a row ... where would you
+get the men? Where would you get the time? Where the
+devil would you get the rabbits? Where would you get sick
+spinal cord enough to make one-thousandth enough vaccine?”
+
+Then finally there dawned on Pasteur a simple way out of
+his trouble: “It’s not the dogs we must give our fourteen doses
+of vaccine,” he pondered, “it’s the human beings that have
+been bitten by mad dogs....”
+
+“How easy!... After a person has been bitten by a mad
+dog, it is always weeks before the disease develops in him....
+The virus has to crawl all the way from the bite to the brain....
+While that is going on we can shoot in our fourteen doses ... and
+protect him!” and hurriedly Pasteur called Roux and
+Chamberland together, to try it on the dogs first.
+
+They put mad dogs in cages with healthy ones, and the mad
+dogs bit the normal ones.
+
+Roux injected virulent stuff from rabid rabbits into the
+brains of other healthy dogs.
+
+Then they gave these beasts, certain to die if they were
+left alone—they shot the fourteen stronger and stronger doses
+of vaccine into them. It was an unheard-of triumph! For
+every one of these creatures lived—threw off perfectly, mysteriously,
+the attacks of their unseen assassins, and Pasteur—who
+had had a bitter experience with his anthrax inoculations—asked
+that all of his experiments be checked by a commission
+of the best medical men of France, and at the end of these
+severe experiments the commission announced:
+
+“Once a dog is made immune with the gradually more virulent
+spinal cords of rabbits dead of rabies, nothing on earth
+can give him the disease.”
+
+From all over the world came letters, urgent telegrams, from
+physicians, from poor fathers and mothers who were waiting
+terror-smitten for their children, mangled by mad dogs, to die—frantic
+messages poured in on Pasteur, begging him to send
+them his vaccine to use on threatened humans. Even the magnificent
+Emperor of Brazil condescended to write Pasteur, begging
+him....
+
+And you may guess how Pasteur was worried! This was no
+affair like anthrax, where, if the vaccine was a little, just a
+shade too strong, a few sheep would die. Here a slip meant
+the lives of babies.... Never was any microbe hunter faced
+with a worse riddle. “Not a single one of all my dogs has ever
+died from the vaccine,” Pasteur pondered. “All of the bitten
+ones have been perfectly protected by it.... It must work
+the same way on humans—it must ... but....”
+
+And then sleep once more was not to be had by this poor
+searcher who had made a too wonderful discovery.... Horrid
+pictures of babies crying for the water their strangled
+throats would not let them drink—children killed by his own
+hands—such visions floated before him in the dark....
+
+For a moment the actor, the maker of grand theatric gestures,
+rose in him again: “I am much inclined to begin on myself—inoculating
+myself with rabies, and then arresting the
+consequences; for I am beginning to feel very sure of my results,”
+he wrote to his old friend, Jules Vercel.
+
+At last, mercifully, the worried Mrs. Meister from Meissengott
+in Alsace took the dreadful decision out of Pasteur’s unsure
+hands. This woman came crying into the laboratory,
+leading her nine-year-old boy, Joseph, gashed in fourteen
+places two days before by a mad dog. He was a pitifully whimpering,
+scared boy—hardly able to walk.
+
+“Save my little boy—Mr. Pasteur,” this woman begged him.
+
+Pasteur told the woman to come back at five in the evening,
+and meanwhile he went to see the two physicians, Vulpian and
+Grancher—admirers who had been in his laboratory, who had
+seen the perfect way in which Pasteur could guard dogs from
+rabies after they had been terribly bitten. That evening they
+went with him to see the boy, and when Vulpian saw the angry
+festering wounds he urged Pasteur to start his inoculations:
+“Go ahead,” said Vulpian, “if you do nothing it is almost sure
+that he will die.”
+
+And that night of July 6, 1885, they made the first injection
+of the weakened microbes of hydrophobia into a human being.
+Then, day after day, the boy Meister went without a hitch
+through his fourteen injections—which were only slight pricks
+of the hypodermic needle into his skin.
+
+And the boy went home to Alsace and had never a sign of
+that dreadful disease.
+
+Then all fears left Pasteur—it was very much like the case
+of that first dog that Roux had injected years before, against
+the master’s wishes. So it was now with human beings; once
+little Meister came through unhurt, Pasteur shouted to the
+world that he was prepared to guard the people of the world
+from hydrophobia. This one case had completely chased his
+fears, his doubts—those vivid but not very deep-lying doubts
+of the artist that was in Louis Pasteur.
+
+The tortured bitten people of the world began to pour into
+the laboratory of the miracle-man of the Rue d’Ulm. Research
+for a moment came to an end in the messy small suite
+of rooms, while Pasteur and Roux and Chamberland sorted out
+polyglot crowds of mangled ones, babbling in a score of tongues:
+“Pasteur—save us!”
+
+And this man who was no physician—who used to say with
+proud irony: “I am only a chemist,”—this man of science who
+all his life had wrangled bitterly with doctors, answered these
+cries and saved them. He shot his complicated, illogical fourteen
+doses of partly weakened germs of rabies—unknown microbes
+of rabies—into them and sent these people healthy back
+to the four corners of the earth.
+
+From Smolensk in Russia came nineteen peasants, moujiks
+who had been set upon by a mad wolf nineteen days before,
+and five of them were so terribly mangled they could not walk
+at all, and had to be taken to the Hotel Dieu. Strange figures
+in fur caps they came, saying: “Pasteur—Pasteur,” and this
+was the only word of French they knew.
+
+Then Paris went mad—as only Paris can—with excited concern
+about these bitten Russians who must surely die—it was
+so long since they had been attacked—and the town talked of
+nothing else while Pasteur and his men started their injections.
+The chances of getting hydrophobia from the bites of mad
+wolves are eight out of ten: out of these nineteen Russians,
+fifteen were sure to die....
+
+“Maybe,” said every one, “they will all die—it is more than
+two weeks since they were attacked, poor fellows; the malady
+must have a terrible start, they have no chance....” Such
+was the gabble of the Boulevards.
+
+Perhaps, indeed, it was too late. Pasteur could not eat nor
+did he sleep at all. He took a terrible risk, and morning and
+night, twice as quickly as he had ever made the fourteen injections—twice
+a day to make up for lost time—he and his men
+shot the vaccine into the arms of the Russians.
+
+And at last a great shout of pride went up for this man Pasteur,
+went up from the Parisians, and all of France and all the
+world raised a pæan of thanks to him—for the vaccine marvelously
+saved all but three of the doomed peasants. The moujiks
+returned to Russia and were welcomed with the kind of awe
+that greets the return of hopeless sick ones who have been
+healed at some miraculous shrine. And the Tsar of All the
+Russias sent Pasteur the diamond cross of Ste. Anne, and a
+hundred thousand francs to start the building of that house of
+microbe hunters in the Rue Dutot in Paris—that laboratory
+now called the Institut Pasteur. From all over the world—it
+was the kind of burst of generosity that only great disasters
+usually call out—from every country in the earth came money,
+piling up into millions of francs for the building of a laboratory
+in which Pasteur might have everything needed to track
+down other deadly microbes, to invent weapons against
+them....
+
+The laboratory was built, but Pasteur’s own work was done;
+his triumph was too much for him; it was a kind of trigger,
+perhaps, that snapped the strain of forty years of never before
+heard-of ceaseless searching. He died in 1895 in a little house
+near the kennels where they now kept his rabid dogs, at Villeneuve
+l’Etang, just outside of Paris. His end was that of the
+devout Catholic, the mystic he had always been. In one hand
+he held a crucifix and in the other lay the hand of the most
+patient, obscure and important of his collaborators—Madame
+Pasteur. Around him, too, were Roux and Chamberland and
+those other searchers he had worn to tatters with his restless
+energy, those faithful ones he had abused, whom he had above
+all inspired; and these men who had risked their lives in the
+carrying out of his wild forays against death would now have
+died to save him, if they could.
+
+That was the perfect end of this so human, so passionately
+imperfect hunter of microbes and saver of lives.
+
+But there is another end of his career that I like to think of
+more—and that was the day, in 1892, of Pasteur’s seventieth
+birthday—when a medal was given to him at a great meeting
+held to honor him, at the Sorbonne in Paris. Lister was there,
+and many other famous men from other nations, and in tier
+upon tier, above these magnificoes who sat in the seats of honor,
+were the young men of France—the students of the Sorbonne
+and the colleges and the high schools. There was a great buzz
+of young voices—all at once a hush, as Pasteur limped up the
+aisle, leaning on the arm of the President of the French Republic.
+And then—it is the kind of business that is usually
+pulled off to welcome generals and that kind of hero who has
+directed the futile butchering of thousands of enemies—the
+band of the Republican Guard blared out into a triumphal
+march.
+
+Lister, the prince of surgeons, rose from his seat and hugged
+Pasteur and the gray-bearded important men and the boys in
+the top galleries cried and shook the walls with the roar of
+their cheering. At last the old microbe hunter gave his speech—the
+voice of the fierce arguments was gone and his son had to
+speak it for him—and his last words were a hymn of hope, not
+so much for the saving of life as a kind of religious cry for a
+new way of life for men. It was to the students, to the boys
+of the high schools he was calling:
+
+“... Do not let yourselves be tainted by a deprecating and
+barren skepticism, do not let yourselves be discouraged by the
+sadness of certain hours which pass over nations. Live in the
+serene peace of laboratories and libraries. Say to yourselves
+first: What have I done for my instruction? and, as you gradually
+advance, What have I done for my country? until the
+time comes when you may have the immense happiness of
+thinking that you have contributed in some way to the progress
+and good of humanity....”
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

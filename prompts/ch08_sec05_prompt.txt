@@ -1,0 +1,283 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch08_sec05
+**Chapter 8:** Theobald Smith — Ticks and Texas Fever
+**Section 5 of this chapter**
+**Word count:** 1376
+**Total paragraphs:** 10
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "With Kilborne, Theobald Smith now built an outlandish laboratory, not between four walls but under t..."
+  P2: "Into securely fenced Field No. 1, Smith and Kilborne drove four of these tick-loaded southern cattle..."
+  P3: "So Theobald Smith did his first little trick—call it an experiment if you wish—it was a stunt a shre..."
+  P4: "But toward evening of that day they could find never a tick on any of those three North Carolina cow..."
+  P5: "July and the first of August were two months of hot but strenuous waiting. Smith, with a Government ..."
+  P6: "Meanwhile, every day—it was a relief to get out of that cockroachy attic even to those burning field..."
+  P7: "But on Field No. 2, where there were no ticks, the northern cows stayed as healthy as their North Ca..."
+  P8: "Each day the fever of the northern beasts in Field No. 1 went higher—then one by one they died; the ..."
+  P9: "By now the hottest weather had passed, it was September, and in Field No. 2, the northern cattle, al..."
+  P10: "But there never was a man who needed more experiences to convince him of something he wanted to beli..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+V
+
+With Kilborne, Theobald Smith now built an outlandish
+laboratory, not between four walls but under the hot sky, and
+the rooms of that place of science were nothing more than five
+or six little dusty fenced off fields. On June 27 of 1889, seven
+rather thin but perfectly healthy cows came off a little boat
+which brought them from farms in North Carolina, from the
+heart of the Texas fever country, where it was death for northern
+cattle to go. And these seven cows were, one and all of
+them, decorated, infested and plagued by several thousands of
+ticks, assorted sizes of them, some so tiny they needed a
+magnifying glass to be seen—and then there were splendid
+female ticks half an inch long, puffed up with blood sucked
+from their long-suffering hosts.
+
+Into securely fenced Field No. 1, Smith and Kilborne drove
+four of these tick-loaded southern cattle, and with them they
+put six healthy northern beasts——“Pretty soon the northerners
+will be getting the ticks on them too, they have never
+been near Texas fever.... They are susceptible, and
+then...?” said Smith. “And now for a little trick to see if
+it is the ticks we have to blame!”
+
+So Theobald Smith did his first little trick—call it an experiment
+if you wish—it was a stunt a shrewd cattleman might
+have thought of if he hadn’t been too busy to try it; it was
+an experiment all other American scientists considered it silly
+to attempt. Smith and Kilborne set out to pick off, with their
+hands, every single tick from the remaining three southern
+cattle! The beasts kicked and switched their tails in these
+strange experimenters’ faces; it was way over a hundred in
+the sun, and the dust from the rampaging of the offended cows
+hung in clouds around them and stuck to their sweaty foreheads.
+Buried away under the matted hair of the cattle hid
+those ticks, and the little ones out in the open seemed to crawl
+away under the hair when the cramped fingers of the searchers
+went after them. And how those damned parasites stuck to
+their cow-hosts—there were magnificent blood-gorged lady
+ticks who mashed up into nasty messes when you tried to pull
+them off—it was a miserable business!
+
+But toward evening of that day they could find never a tick
+on any of those three North Carolina cows, and into Field
+No. 2 they put them, along with four healthy northern beasts.
+“These northerners, perfectly fit for a fatal attack of Texas
+fever, will be rubbing noses with the southerners, will be
+nibbling the same grass, drinking from the same water, sniffing
+at the North Carolina cow’s excretions—but they’ll get no
+ticks from them. Well—now to wait and see if it’s the ticks
+who are to blame!”
+
+July and the first of August were two months of hot but
+strenuous waiting. Smith, with a Government bug-expert
+named Cooper Curtice, kept himself busy with vast studies of
+the lives and works and ways of ticks. They discovered how
+a six-legged baby tick climbs up onto a cow, how it fastens itself
+to the cow’s hide, begins to suck blood, sheds its skin,
+proudly acquires two more legs, sheds its skin again; they
+found out the eight-legged females then marry (on the cow’s
+back) each of them a little male, how the lady-ticks then have
+great feasts of blood, grow to tick womanhood—and at last
+drop off the cow to the ground to lay their two thousand or
+more eggs; so, hardly more than twenty days after their
+journey up the leg of the cow, their mission in life is done, and
+they shrivel up and die—while strange doings begin in each
+of those two thousand eggs....
+
+Meanwhile, every day—it was a relief to get out of that
+cockroachy attic even to those burning fields—Theobald Smith
+journeyed out to his open air laboratory where Kilborne the
+future hardware dealer was in command. He went to Field No. 1
+to see if ticks had got on to any of the northern cattle yet, to see
+if they were getting hot, if their heads drooped; he crossed
+over to Field No. 2 to pick a few more ticks off those three
+North Carolina cows—a few new ones always seemed to be
+popping up, grown from ones too small to see that first day!—it
+was nervous business, making sure those three cows stayed
+clean of ticks.... It was, to tell the truth, a perspiring and
+not too interesting waiting until that day a little past the middle
+of August, when the first northern cow began to show ticks,
+and presently to stand with her back arched, refusing to eat.
+Then the ticks appeared on all the northerners; they burned
+with fever, their blood turned to water, their ribs stuck out
+and their flanks grew bony—and ticks? They seemed to be
+alive with ticks!
+
+But on Field No. 2, where there were no ticks, the northern
+cows stayed as healthy as their North Carolina mates....
+
+Each day the fever of the northern beasts in Field No. 1
+went higher—then one by one they died; the barns ran red
+with the blood of the post mortems, and there were rushings
+to and fro between the dead beasts on the field and the microscopes
+in the attic—even Alexander, dimly sensing the momentous
+things afoot, even Alexander got busy. And Theobald
+Smith looked at the thin blood of the dead cows. “It is
+the blood the unknown Texas fever microbe attacks—something
+seems to get into the blood corpuscles of the cows and
+burst them open—it is inside the blood cells I must look for
+the germ,” pondered Smith. Now, though he distrusted the
+reports of alleged microscope experts, he was nevertheless himself
+mighty sharp with this machine. He turned his most
+powerful lens onto the blood of the first cow that died, and—here
+was luck!—in the very first specimen he spied queer little
+punched-out pear-shaped spaces in the otherwise solid discs
+of the blood corpuscles. At first they simply looked like holes,
+but he focussed up and down, and fussed, and looked at a dozen
+thin bits of glass with blood between them. Presently these
+spaces began to turn into queer pear-shaped living creatures
+for him. In the blood of every beast dead of Texas fever he
+found them—always inside the corpuscles, wrecking the
+corpuscles, turning the blood to water. Never did he find them
+in the blood of a healthy northern cow.... “It may be the
+microbe of Texas fever,” he whispered, but like a good peasant
+he did not jump to conclusions—he must look at the blood of
+a hundred cows, sick and healthy, he must examine millions
+of red blood cells to be sure....
+
+By now the hottest weather had passed, it was September,
+and in Field No. 2, the northern cattle, all four of them, kept
+on grazing and grew fat—there were no ticks there. And
+Smith muttered: “We’ll see if it’s the ticks who are to blame!”
+and he took two of these unharmed northern beasts and led
+them into Field No. 1, where so many beasts had died—in a
+week a few of the little red-brown bugs were crawling up these
+new cow’s legs. In a little more than two weeks one of these
+cows was dead, and the other sick, of Texas fever.
+
+But there never was a man who needed more experiences to
+convince him of something he wanted to believe. He must
+be sure! And there was still another simple trick he could try—call
+it an experiment if you wish. From North Carolina,
+from the fatal fields down there, came large cans and these
+cans were filled with grass, that swarmed with ticks, crawling,
+thirsty for the blood of cows. These cans Theobald Smith
+took on to Field No. 3, where no southern cattle or their blood-sucking
+parasites had ever been, and he plodded up and down
+this field, and all over it he sowed his maybe fatal seed—of
+ticks. Then four northern cattle were led by Kilborne on to
+this field—and in a few weeks their blood ran thin, and one
+died, and two of the remaining three had severe bouts of Texas
+fever but recovered.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

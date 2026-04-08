@@ -1,0 +1,323 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch05_sec01
+**Chapter 5:** Pasteur — And the Mad Dog
+**Section 1 of this chapter**
+**Word count:** 1613
+**Total paragraphs:** 15
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Do not think for a moment that Pasteur allowed his fame and name to be forgotten in the excitement k..."
+  P2: "It was in the late eighteen-seventies—Koch had just swept the German doctors off their feet by his f..."
+  P3: "One day, at the Academy of Medicine in Paris, a famous physician was holding an oration, with plenty..."
+  P4: "“The thing that kills women with child-bed fever—it isn’t anything like that! It is you doctors that..."
+  P5: "“Possibly you are right, but I fear you will never find that microbe——” The orator tried to start hi..."
+  P6: "“You say I will not find the microbe? Man, I have found it! Here’s the way it looks!” And Pasteur sc..."
+  P7: "Pasteur was in his late fifties now, but he was still as impetuous and enthusiastic as he had been a..."
+  P8: "Then suddenly he found Koch had done the trick ahead of him. He must catch up with this Koch. “Micro..."
+  P9: "In the first place, Pasteur had never felt a pulse or told a bilious man to stick out his tongue, it..."
+  P10: "Nothing is truer than that there is no one orthodox way of hunting microbes, and the differences bet..."
+  P11: "Pasteur started hunting microbes of disease and punched into a boil on the back of the neck of one o..."
+  P12: "In this variety of simultaneous goings-on you can fairly feel Pasteur fumbling at a way of getting a..."
+  P13: "To understand Pasteur, it is important to know his wild stabs and his failures as well as his triump..."
+  P14: "At once Pasteur jumped to a fine idea: “If the harmless bugs from the air choke out the anthrax baci..."
+  P15: "Pasteur gravely announced: “That there were high hopes for the cure of disease from this experiment,..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+I
+
+Do not think for a moment that Pasteur allowed his fame and
+name to be forgotten in the excitement kicked up by the sensational
+proofs of Koch that microbes murder men. It is certain
+that less of a hound for sniffing out microbes, less of a
+poet, less of a master at keeping people wide-eyed with their
+mouths open, would have been shoved off into a fairly complete
+oblivion by such events—but not Pasteur!
+
+It was in the late eighteen-seventies—Koch had just swept
+the German doctors off their feet by his fine discovery of the
+spores of anthrax—that Pasteur who was only a chemist, had
+the effrontery to dismiss with a grunt, a shrug, and a wave of
+his hand, the ten thousand years of experience of doctors in
+studying and fighting diseases. At this time, in spite of Semmelweis,
+the Austrian who had proved child-bed fever was
+contagious, the Lying-In hospitals of Paris were pest-holes.
+Out of every nineteen women who went hopeful into their
+doors, one was sure to die of child-bed fever, to leave her
+baby motherless. One of these places, where ten young mothers
+perished in succession, was called the House of Crime.
+Women hardly dared to trust themselves to the most expensive
+physicians; they were beginning to boycott the hospitals.
+Large numbers of them—with reason—no longer cared to risk
+the grim danger of having babies. Even the doctors themselves—accustomed
+though they were helplessly but sympathetically
+to preside at the demise of their patients—even the
+physicians themselves, I say, were scandalized at this dreadful
+presence of death at the birth of new life.
+
+One day, at the Academy of Medicine in Paris, a famous
+physician was holding an oration, with plenty of long Greek
+and elegant Latin words, on the cause—alas, completely unknown
+to him—of child-bed fever. Suddenly one of his
+learned and stately sentences was interrupted by a voice bellowing
+from the rear of the hall:
+
+“The thing that kills women with child-bed fever—it isn’t
+anything like that! It is you doctors that carry deadly microbes
+from sick women to healthy ones...!” It was Pasteur
+who said this; he was out of his seat; his eyes flamed excitement.
+
+“Possibly you are right, but I fear you will never find that
+microbe——” The orator tried to start his speech again, but by
+this time Pasteur was charging up the aisle, dragging his partly
+paralyzed left leg behind him a little. He reached the blackboard,
+grabbed a piece of chalk and shouted to the annoyed
+orator and the scandalized Academy:
+
+“You say I will not find the microbe? Man, I have found
+it! Here’s the way it looks!” And Pasteur scrawled a chain
+of little circles on the blackboard. The meeting broke up in
+confusion.
+
+Pasteur was in his late fifties now, but he was still as impetuous
+and enthusiastic as he had been at twenty-five. He
+had been a chemist and an expert on beet-sugar fermentations,
+he had shown the vintners how to keep their wines from spoiling,
+he had rushed from this job into the saving of sick silkworms,
+he had preached the slogan of Better Beer for France
+and had really made the French beer better; but during all
+these hectic years while he was doing the life work of a dozen
+men Pasteur dreamed about the tracking down of microbes
+that he knew must be the scourges of the human race, the authors
+of disease.
+
+Then suddenly he found Koch had done the trick ahead of
+him. He must catch up with this Koch. “Microbes are in
+a way mine—I was the first to show how important they were,
+twenty years ago, when Koch was a child....” you can
+imagine Pasteur muttering. But there were difficulties in the
+way of his catching up.
+
+In the first place, Pasteur had never felt a pulse or told a
+bilious man to stick out his tongue, it is doubtful if he could
+have told a lung from a liver, and it is certain that he did not
+know the first thing about how to hold a scalpel. As for those
+cursed hospitals—phew! The smell of them gave him nasty
+feelings at the pit of his stomach, and he wanted to stop his
+ears and run away from the moans that floated down their
+dingy corridors. But presently—it was ever the way with
+this unconquerable man—he got around his medical ignorance.
+Three physicians, Joubert at first, and then Roux and Chamberland
+became his assistants; youngsters they were, these
+three, radicals who were Bolshevik against ancient idiotic
+medical doctrines. They sat worshiping Pasteur at his unpopular
+lectures in the Academy of Medicine, believing every
+one of his laughed-at prophecies of dreadful scourges caused
+by sub-visible bugs. He took these boys into his laboratory
+and in return they explained the machinery of animals’ insides
+to Pasteur, they taught him the difference between the needle
+and the plunger of a hypodermic syringe and convinced him—he
+was very squeamish about such things—that animals
+like guinea-pigs and rabbits hardly felt the prick of the syringe
+needle when he injected them. Privately these three men
+swore to be his slaves—and the priests of this new
+science....
+
+Nothing is truer than that there is no one orthodox way of
+hunting microbes, and the differences between the ways Koch
+and Pasteur went at their work are the best illustrations of
+this. Koch was as coldly logical as a text-book of geometry—he
+searched out his bacillus of tuberculosis with systematic
+experiments, and he thought of all the objections that doubters
+might make before such doubters knew that there was anything
+to have doubts about. Koch always recited his failures
+with just as much and no more enthusiasm than he did his triumphs.
+There was something inhumanly just and right about
+him and he looked at his own discoveries as if they had been
+those of another man of whom he was a little over-critical.
+But Pasteur! This man was a passionate groper whose head
+was incessantly inventing right theories and wrong guesses—shooting
+them out like a display of village fireworks going off
+bewilderingly by accident.
+
+Pasteur started hunting microbes of disease and punched
+into a boil on the back of the neck of one of his assistants and
+grew a germ from it and was sure it was the cause of boils;
+he hurried from these experiments to the hospital to find his
+chain microbes in the bodies of women dying with child-bed
+fever; from here he rushed out into the country to discover—but
+not to prove it precisely—that earthworms carry anthrax
+bacilli from the deep buried carcasses of cattle to the
+surface of the fields. He was a strange genius who seemed
+to need the energetic, gusto-ish doing of a dozen things at
+the same time—more or less accurately—in order to discover
+that grain of truth which lies at the bottom of most of his
+work.
+
+In this variety of simultaneous goings-on you can fairly
+feel Pasteur fumbling at a way of getting ahead of Koch.
+Koch had shown with beautiful clearness that germs cause disease,
+there is no doubt about that—but this isn’t the most important
+thing to do ... this is nothing, this proof, the thing
+to do is to find a way to prevent the germs from killing people,
+to protect mankind from death! “What impossible, what
+absurd experiments didn’t we discuss,” said Roux long after
+this distressing time when Pasteur was stumbling about in the
+dark. “We would laugh at them ourselves, next day.”
+
+To understand Pasteur, it is important to know his wild
+stabs and his failures as well as his triumphs. He had not the
+precise methods of growing microbes pure—it took the patience
+of Koch to devise such things—and one day to his disgust,
+Pasteur observed that a bottle of boiled urine in which he had
+planted anthrax bacilli was swarming with unbidden guests,
+contaminating microbes of the air that had sneaked in. The
+following morning he observed that there were no anthrax
+germs left at all; they had been completely choked out by the
+bacilli from the air.
+
+At once Pasteur jumped to a fine idea: “If the harmless
+bugs from the air choke out the anthrax bacilli in the bottle,
+they will do it in the body too! It is a kind of dog-eat-dog!”
+shouted Pasteur, and at once he put Roux and Chamberland
+to work on the fantastic experiment of giving guinea-pigs
+anthrax and then shooting doses of billions of harmless microbes
+into them—beneficent germs which were to chase the
+anthrax bacilli round the body and devour them—they were
+to be like the mongoose which kills cobras....
+
+Pasteur gravely announced: “That there were high hopes
+for the cure of disease from this experiment,” but that is the
+last you hear of it, for Pasteur was never a man to give the
+world of science the benefit of studying his failures. But a
+little later the Academy of Sciences sent him on a queer errand,
+and on this mission he stumbled across a fact that gave him
+the first clew to a genuine, a remarkable way of turning savage
+microbes into friendly ones. It was an outlandish plan he
+began to devise, to dream about, of turning living microbes
+of disease against their own kind, so guarding animals and
+men from invisible deaths. At this time there was a great to-do
+about a cure for anthrax, invented by the horse doctor, Louvrier,
+in the Jura mountains in the east of France. Louvrier
+had cured hundreds of cows who were at death’s door, said
+the influential men of the district: it was time that this treatment
+received scientific approval.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

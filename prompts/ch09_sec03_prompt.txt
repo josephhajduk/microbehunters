@@ -1,0 +1,289 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch09_sec03
+**Chapter 9:** Bruce — Trail of the Tsetse
+**Section 3 of this chapter**
+**Word count:** 1346
+**Total paragraphs:** 13
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Only five weeks they had been at this work, when they started back to Pietermaritzburg, ten miles a ..."
+  P2: "Nearly a year had been wasted. But who can blame those natural enemies of David Bruce, the High Auth..."
+  P3: "“It is the tsetse flies cause nagana,” said some experienced Europeans. “Flies bite domestic animals..."
+  P4: "“Nagana is caused by big game,” said the wise Zulu chiefs and medicine men. “The discharges of the b..."
+  P5: "“But why do we always fail to get our horses safe through the fly country—why is nagana called the f..."
+  P6: "“Why, it’s easy to get animals through the fly belt so long as you don’t let them eat or drink!” ans..."
+  P7: "Bruce listened, and then proceeded to try out both ideas. He took good healthy horses, and tied heav..."
+  P8: "Then, in a little more than fifteen days, to the delight of Bruce and his wife, the first of those h..."
+  P9: "So it was with every horse taken down into the mimosa—and not one of them had eaten a blade of grass..."
+  P10: "“Good, but it is not proved yet, one way or another,” said Bruce. “Even if the horses didn’t eat or ..."
+  P11: "So he bought more healthy horses, kept them safe on the hill, thousands of feet above the dangerous ..."
+  P12: "How they worked, Bruce and his wife! They post-mortemed dead horses; they named a sick horse “The Un..."
+  P13: "“But where do the tsetses of the plain get the trypanosomes they stick into cows and horses? In thos..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+III
+
+Only five weeks they had been at this work, when they
+started back to Pietermaritzburg, ten miles a day by ox-team
+through the jungle. He started treating soldiers for typhoid
+fever, but as usual—thief that he was—he stole time to try
+to find out something about typhoid fever, in a laboratory set
+up, since there was no regular one, of all places—in the morgue.
+There in the sickening vapors of the dead house Bruce puttered
+in snatched moments, got typhoid fever himself, nearly died,
+and before he got thoroughly better was sent out as medical
+officer to a filibustering expedition got up to “protect” a few
+thousand square miles more of territory for the Queen. It
+looked like the end for him, Hely-Hutchinson’s wires got tangled—there
+seemed no chance ever to work at nagana again;
+when the expedition had pierced a couple of hundred miles into
+the jungle, all of the horses and mules of this benevolent little
+army up and died, and what was left of the men had to try to
+hoof it back. A few came out, and David Bruce was among
+the lustiest of those gaunt hikers....
+
+Nearly a year had been wasted. But who can blame those
+natural enemies of David Bruce, the High Authorities, for
+keeping him from research? They looked at him; they secretly
+trembled at his burliness and his mustaches and his
+air of the Berserker. This fellow was born for a soldier! But
+they were so busy, or forgot, and presently Hely-Hutchinson
+did his dirty work again, and in September, 1895, Bruce and
+his wife got back to Ubombo, to try to untangle the knot of
+how nagana gets from a sick animal to a healthy one. And
+here Bruce followed, for the first time, Theobald Smith around
+that corner.... Like Theobald Smith, Bruce was a man to
+respect and to test folk-hunches and superstitions. He respected
+the beliefs of folks, himself he had no fancy super-scientific
+thoughts and never talked big words—yes, he respected
+such hunches—but he must test them!
+
+“It is the tsetse flies cause nagana,” said some experienced
+Europeans. “Flies bite domestic animals and put some kind of
+poison in them.”
+
+“Nagana is caused by big game,” said the wise Zulu chiefs
+and medicine men. “The discharges of the buffalo, the quagga,
+and waterbuck, the koodoo—these contaminate the grass and
+the watering places—so it is horses and cattle are hit by the
+nagana.”
+
+“But why do we always fail to get our horses safe through
+the fly country—why is nagana called the fly disease?” asked
+the Europeans.
+
+“Why, it’s easy to get animals through the fly belt so long
+as you don’t let them eat or drink!” answered the Zulus.
+
+Bruce listened, and then proceeded to try out both ideas.
+He took good healthy horses, and tied heavy canvas bags
+round their noses so they couldn’t eat nor drink; he led them
+down the hill to the pleasant-looking midday hell in the mimosa
+thickets; here he kept them for hours. While he watched
+to see they didn’t slip their nose bags, swarms of pretty brown
+and gold tsetses buzzed around them—flopped on to the
+kicking horses and in twenty seconds swelled themselves up
+into bright balloons of blood.... The world seemed made
+of tsetse flies, and Bruce waved his arms. “They were
+enough to drive one mad!” he told me, thirty years afterward
+I can see him, talking to those pests in the language of a dock-foreman,
+to the wonder of his Zulus. Day after day
+this procession of Bruce, the Zulus, and the experimental
+horses went down into the thorns, and each afternoon, as the
+sun went down behind Ubombo, Bruce and his migrating experiment
+grunted and sweated back up the hill.
+
+Then, in a little more than fifteen days, to the delight of
+Bruce and his wife, the first of those horses who had served
+as a fly-restaurant turned up seedy in the morning and hung his
+head. And in the blood of this horse appeared the vanguard
+of the microscopic army of finned wee devils—that tussled so
+intelligently with the red blood cells....
+
+So it was with every horse taken down into the mimosa—and
+not one of them had eaten a blade of grass nor had one
+swallow of water down there; one and all they died of the
+nagana.
+
+“Good, but it is not proved yet, one way or another,” said
+Bruce. “Even if the horses didn’t eat or drink, they may
+have inhaled those trypanosomes from the air—that’s the way
+the greatest medical authorities think malaria is passed on
+from one man to the next—though it sounds like rot to me.”
+But for Bruce nothing was rot until experiment proved it rot.
+“Here’s the way to see,” he cried. “Instead of taking the
+horses down, I’ll bring the flies up!”
+
+So he bought more healthy horses, kept them safe on the
+hill, thousands of feet above the dangerous plain, then once
+more he went down the hill—how that man loved to hunt,
+even for such idiotic game as flies!—and with him he took a
+decoy horse. The tsetses landed on the horse; Bruce and the
+Zulus picked them off gently, hundreds of them, and stuck
+them into an ingenious cage, made of muslin. Then back up
+the hill, to clap the cage buzzing with flies on to the back of
+a healthy horse. Through a clever glass window in one of the
+cage-sides they watched the greedy brutes make their meal by
+sticking their stingers through the muslin. And in less than a
+month it was the same with these horses, who had never eaten,
+nor drunk, nor even inhaled the air of the plain—every one
+died of the nagana.
+
+How they worked, Bruce and his wife! They post-mortemed
+dead horses; they named a sick horse “The Unicorn”
+and tried to keep him alive with arsenic. To find out
+how long a tsetse fly can carry the trypanosomes on his stinger
+they put cages of flies on sick dogs and then at intervals of
+hours, and days, let them feed on healthy ones. They fed
+dying heifers hot pails of coffee, mercifully they shot dogs
+thinned by the nagana to sad bags of bones. Mrs. Bruce
+sterilized silk threads, to dip in blood swarming with trypanosomes,
+then sewed these threads under the hides of healthy
+dogs—to find out how long such blood might remain
+deadly.... There was now no doubt the tsetse flies, and
+only the flies, could carry the nagana, and now Bruce asked:
+
+“But where do the tsetses of the plain get the trypanosomes
+they stick into cows and horses? In those fly belts there are
+often no horses or cattle sick with nagana, for months. Surely
+the flies [he was wrong here] can’t stay infected for months—it
+must be they get them from the wild animals, the big
+game!” That was a possibility after his heart. Here was a
+chance to do something else than sit at a microscope. He
+forgot instantly about the more patient, subtle jobs that demanded
+to be done—teasing jobs, for a little man, jobs
+like tracing the life of the trypanosomes in the flies....
+“The microbes must be in game!” and he buckled on his
+cartridge belt and loaded his guns. Into the thickets he went,
+and shot Burchell’s zebras; he brought down koodoos and
+slaughtered water-bucks. He slashed open the dead beasts and
+from their hot hearts sucked up syringes full of blood, and
+jogged back up the hill with them. He looked through his
+microscopes for trypanosomes in these bloods—but didn’t find
+them. But there was a streak of the dreamer in him. “They
+may be there, too few to see,” he muttered, and to prove they
+were there he shot great quantities of the blood from ten
+different animals into healthy dogs. So he discovered that the
+nagana microbes may lurk in game, waiting to be carried to
+gentler beasts by the tsetse. So it was Bruce made the first
+step towards the opening up of Africa.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

@@ -1,0 +1,313 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch04_sec03
+**Chapter 4:** Koch — The Death Fighter
+**Section 3 of this chapter**
+**Word count:** 1449
+**Total paragraphs:** 19
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Cool and stolid, Koch, now that he had come through these perils, never thought himself a hero; he d..."
+  P2: "But Koch plugged on, and it is doubtful whether this hesitating, entirely modest genius of a German ..."
+  P3: "He plugged on. He must know more! He went pell-mell at the inoculating of guinea-pigs and rabbits, a..."
+  P4: "At one fantastic jump Koch had soared out of the vast anonymous rank and file of pill-rollers and la..."
+  P5: "How, in nature, do these little weak anthrax bacilli that fade away and die so easily on my slides, ..."
+  P6: "There were superstitions among the farmers and horse doctors of Europe about this disease, strange b..."
+  P7: "“Your little germ may be what kills our herds, all right, Herr Doktor,” the cattle men told Koch, “b..."
+  P8: "Koch knew of this troublesome, mysterious fact too. He knew that in Auvergne in France there were gr..."
+  P9: "These things bothered Koch—how could his tiny bacilli live over winter, even for years, in the field..."
+  P10: "“What keeps them alive in the fields, then,” muttered Koch, “when they die on my clean glasses in tw..."
+  P11: "Then one day he ran on to a curious sight under his microscope—a strange transformation of his micro..."
+  P12: "The outlines of the threads had grown dim, and each thread was speckled, through its whole length, w..."
+  P13: "To himself Koch muttered guttural curses. “Other microbes have doubtless gotten into my hanging-drop..."
+  P14: "“Those queer shiny beads have turned back into ordinary anthrax bacilli again,” cried Koch, “the bea..."
+  P15: "Then Koch launched himself into thorough, ingenious tests to see if his quick guess was right. Exper..."
+  P16: "Then in experiments that kept him incessantly in his dirty little room he found that the spores rema..."
+  P17: "“These spores never form in an animal while he is still alive—they only appear after he has died, an..."
+  P18: "It was now the year 1876, and Koch was thirty-four years old, and at last he emerged out of the bush..."
+  P19: "Professor Cohn, who had been amazed at the marvelous experiments about which the lonely Koch had wri..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+III
+
+Cool and stolid, Koch, now that he had come through these
+perils, never thought himself a hero; he did not even think of
+publishing his experiments! To-day it would be inconceivable
+for a man to do such magnificent work and discover such momentous
+secrets, and keep his mouth shut about it.
+
+But Koch plugged on, and it is doubtful whether this hesitating,
+entirely modest genius of a German country doctor
+realized the beauty or the importance of his lonely experiments.
+
+He plugged on. He must know more! He went pell-mell
+at the inoculating of guinea-pigs and rabbits, and at last even
+sheep, with the innocent looking but fatal fluid from the hanging-drops;
+and in each one of these beasts, in the sheep just
+as quickly and horribly as the mouse, the few thousands of
+microbes on the splinter multiplied into billions in the animals,
+in a few hours they teemed poisonously in what had been
+robust tissues, choking the little veins and arteries with their
+myriads, turning to a sinister black the red blood—so killing
+the sheep, the guinea-pigs, and the rabbits.
+
+At one fantastic jump Koch had soared out of the vast
+anonymous rank and file of pill-rollers and landed among the
+most original of the searchers, and the more ingeniously he
+hunted microbes, the more miserably he tended to the important
+duties of his practice. Babies in far-off farms howled, but
+he did not come; peasants, with jumping aches in their teeth,
+waited sullen hours for him—and at last he had to turn over
+part of his practice to another doctor. Mrs. Koch saw little
+of him and worried and wished he would not go on his calls
+smelling of germicides and of his menagerie of animals. But
+so far as he was concerned his suffering patients and his wife
+might have been inhabitants of the other side of the moon—for
+a new mysterious question was worrying at his head, tugging
+at him, keeping him awake:
+
+How, in nature, do these little weak anthrax bacilli that fade
+away and die so easily on my slides, how do they get from sick
+animals to healthy ones?
+
+There were superstitions among the farmers and horse doctors
+of Europe about this disease, strange beliefs in regard to
+the mysterious power of this plague that hung always over
+their flocks and herds like some cruel invisible sword. Why,
+this disease is too terrible to be caused by such a wretched little
+creature as a twenty-thousandth-of-an-inch-long bacillus!
+
+“Your little germ may be what kills our herds, all right,
+Herr Doktor,” the cattle men told Koch, “but how is it that
+our cows or sheep can be all right in one pasture—perfectly
+healthy, and then, when we take them into another field, with
+fine grazing in it, they die like flies?”
+
+Koch knew of this troublesome, mysterious fact too. He
+knew that in Auvergne in France there were green mountains,
+horrible mountains where no flock of sheep could go without
+being picked off, one by one, or in dozens and even hundreds
+by the black disease, anthrax. And in the country of the
+Beauce there were fertile fields where sheep grew fat—only to
+die of anthrax. The peasants shivered at night by their fires:
+“Our fields are cursed,” they whispered.
+
+These things bothered Koch—how could his tiny bacilli live
+over winter, even for years, in the fields and on the mountains?
+How could they, indeed, when he had smeared a little bacillus-swarming
+spleen from a dead mouse on a clean slip of glass,
+and watched the microbes grow dim, break up, and fade from
+view? And when he put the nourishing watery fluid of ox-eyes
+on these bits of glass, the bacilli would no longer grow;
+when he washed the dried blood off and injected it into mice—these
+little beasts continued to scamper gayly about in their
+cages. The microbes, which two days before could have killed
+a heavy cow, were dead!
+
+“What keeps them alive in the fields, then,” muttered Koch,
+“when they die on my clean glasses in two days?”
+
+Then one day he ran on to a curious sight under his microscope—a
+strange transformation of his microbes that gave him
+a clew to his question; and Koch sat down on his stool in his
+eight-by-ten laboratory in East Prussia and solved the mystery
+of the cursed fields and mountains of France. He had
+kept a hanging-drop, in its closed glass well, at the temperature
+of a mouse’s body for twenty-four hours. “Ah, this ought
+to be full of nice long threads of bacilli,” he muttered, and
+looked down the tube of his microscope—“What’s this?” he
+cried.
+
+The outlines of the threads had grown dim, and each thread
+was speckled, through its whole length, with little ovals that
+shone brightly like infinitely tiny glass beads, and these beads
+were arranged along the threads as perfectly as a string of
+pearls.
+
+To himself Koch muttered guttural curses. “Other microbes
+have doubtless gotten into my hanging-drop,” he grumbled, but
+when he looked very carefully he saw that wasn’t true, for the
+shiny little beads were inside the threads—the bacilli that make
+up the threads have turned into these beads! He dried this
+hanging-drop, and put it away carefully, for a month or so,
+and then as luck would have it, looked at it once more through
+his lens. The strange strings of beads were still there, shining
+as brightly as ever. Then an idea for an experiment got hold
+of him—he took a drop of pure fresh watery fluid from the
+eye of an ox. He placed it on the dried-up smear with its
+months-old bacilli that had turned into beads. His head swam
+with confused surprise as he looked, and watched the beads
+grow back into the ordinary bacilli, and then into long threads
+once more. It was outlandish!
+
+“Those queer shiny beads have turned back into ordinary
+anthrax bacilli again,” cried Koch, “the beads must be the
+spores of the microbe—the tough form of them that can stand
+great heat, and cold, and drying.... That must be the way
+the anthrax microbe can keep itself alive in the fields for so
+long—the bacilli must turn into spores....”
+
+Then Koch launched himself into thorough, ingenious tests
+to see if his quick guess was right. Expertly now he took
+spleens out of mice which had perished of anthrax—he lifted
+this deadly stuff out carefully with heated knives and forceps.
+Protected from all chance of contamination by stray microbes
+of the air, he kept the spleens for a day at the temperature of
+a mouse’s body, and, sure enough, the microbes, every thread
+of them, turned into glassy spores.
+
+Then in experiments that kept him incessantly in his dirty
+little room he found that the spores remained alive for months,
+ready to hatch out into deadly bacilli the moment he put them
+into a fresh drop of the watery fluid of ox-eyes, or the instant
+he stuck them, on one of his thin slivers, into the root of a
+mouse’s tail.
+
+“These spores never form in an animal while he is still alive—they
+only appear after he has died, and then only when he is
+kept very warm,” said Koch, and he proved this beautifully by
+clapping spleens into an ice chest—and in a few days this
+stuff, smeared on splinters, was no more dangerous than if he
+had shot so much beefsteak into his mice.
+
+It was now the year 1876, and Koch was thirty-four years
+old, and at last he emerged out of the bush of Wollstein, to
+tell the world—stuttering a little—that it was at last proved
+that microbes were the cause of disease. Koch put on his best
+suit and his gold-rimmed spectacles and packed up his microscope,
+a few hanging-drops in their glass cells, swarming with
+murderous anthrax bacilli; and besides these things he bundled
+a cage into the train with him, a cage that bounced a little with
+several dozen healthy white mice. He took a train for Breslau
+to exhibit his anthrax microbes and the way they kill mice, and
+the weird way in which they turn into glassy spores—he
+wanted to demonstrate these things to old Professor Cohn, the
+botanist at the University, who had sometimes written him encouraging
+letters.
+
+Professor Cohn, who had been amazed at the marvelous experiments
+about which the lonely Koch had written him, old
+Cohn snickered when he thought of how this greenhorn doctor—who
+had no idea, himself, of how original he was—would
+surprise the highbrows of the University. He sent out invitations
+to the most eminent medicoes of the school to come to
+the first night of Koch’s show.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

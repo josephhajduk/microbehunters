@@ -1,0 +1,385 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch10_sec03
+**Chapter 10:** Ross vs. Grassi — Malaria
+**Section 3 of this chapter**
+**Word count:** 2195
+**Total paragraphs:** 17
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "He went back to London in 1894, plotting to throw up medicine and science. He was thirty-six. “Every..."
+  P2: "But as you will see, Ronald Ross knew nothing of himself, for when he got going at his proper work, ..."
+  P3: "When Ross returned to London he met Patrick Manson, an eminent and mildly famous English doctor. Man..."
+  P4: "Manson took Ross to his office, and there he set Ross right about the malaria microbe of Laveran tha..."
+  P5: "“That, Ross, is the parasite of malaria—you never find it in people without malaria—but the thing th..."
+  P6: "Of course that didn’t really bother Patrick Manson at all. Every cell in that man’s brain had in it ..."
+  P7: "Then the old doctor from Shanghai poured his fantastic theory over this young man whom he wanted to ..."
+  P8: "This, mind you, was a story, a romance, a purely trumped-up guess on the part of Patrick Manson. But..."
+  P9: "“It is my duty to solve the problem,” Ross said. Fictioneer that he was, he called it: “The Great Pr..."
+  P10: "“Before you go, you should find out something about mosquitoes,” advised Manson, who himself didn’t ..."
+  P11: "He left his wife and children in England, and on the twenty-eighth of March, 1895, he set sail for I..."
+  P12: "He started out to follow Manson’s orders. He captured mosquitoes, any kind of mosquito, he couldn’t ..."
+  P13: "He bungled. He was like any tyro searcher—only his innate hastiness made him worse—and he was consta..."
+  P14: "But he was beginning to know just exactly what a malaria parasite looked like—he could spot its weir..."
+  P15: "What an incredible pair of searchers they were! Away in London Patrick Manson kept answering Ross’s ..."
+  P16: "So Ross fed some of this malaria-mosquito soup to Lutchman, his servant, and almost danced with exci..."
+  P17: "He wrote shrieking poems called “Wraths.” He was ordered to Bangalore to try to stop the cholera epi..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+III
+
+He went back to London in 1894, plotting to throw up medicine
+and science. He was thirty-six. “Everything I had tried
+had failed,” he wrote, but he consoled himself by imagining
+himself a sad defiant lone wolf: “But my failure did not depress
+me ... it drove me aloft to peaks of solitude....
+Such a spirit was a selfish spirit but nevertheless a high one.
+It desired nothing, it sought no praise ... it had no friends,
+no fears, no loves, no hates.”
+
+But as you will see, Ronald Ross knew nothing of himself,
+for when he got going at his proper work, there was never a
+less calm and more desirous spirit than his. Nor a more enthusiastic
+one. And how he could hate!
+
+When Ross returned to London he met Patrick Manson, an
+eminent and mildly famous English doctor. Manson had got
+himself medically notorious by discovering that mosquitoes can
+suck worms out of the blood of Chinamen (he had practiced in
+Shanghai); Manson had proved—this is remarkable!—that
+these worms can even develop in the stomachs of mosquitoes.
+Manson was obsessed by mosquitoes, he believed they were
+among the peculiar creatures of God, he was convinced they
+were important to the destinies of man, he was laughed at,
+and the medical wiseacres of Harley Street called him a “pathological
+Jules Verne.” He was sneered at. And then he met
+Ronald Ross—whom the world had sneered at. What a pair
+of men these two were! Manson knew so little about mosquitoes
+that he believed they could only suck blood once in
+their lives, and Ross talked vaguely about mosquitoes and
+gnats not knowing that mosquitoes were gnats. And yet——
+
+Manson took Ross to his office, and there he set Ross right
+about the malaria microbe of Laveran that Ross did not believe
+in. He showed Ronald Ross the pale malaria parasites, peppered
+with a blackish pigment. Together they watched these
+germs, fished out of the blood of sailors just back from the equator,
+turn into little squads of spheres inside the red blood cells,
+then burst out the blood cells. “That happens just when the
+man has his chill,” explained Manson. Ross was amazed at
+the mysterious transformations and cavortings of the malaria
+germs in the blood. After those spheres had galloped out of
+the corpuscles, they turned suddenly into crescent shapes, then
+those crescents would shoot out two, three, four, sometimes six
+long whips, which lashed and curled about and made the beast
+look like a microscopic octopus.
+
+“That, Ross, is the parasite of malaria—you never find it in
+people without malaria—but the thing that bothers me is:
+How does it get from one man to another?”
+
+Of course that didn’t really bother Patrick Manson at all.
+Every cell in that man’s brain had in it a picture of a mosquito
+or the memory of a mosquito or a speculation about a
+mosquito. He was a mild man, not a terrific worker himself,
+but intensely prejudiced on this subject of mosquitoes. And he
+appreciated Ronald Ross’s energy of a dynamo, he knew
+Ronald Ross adored him, and he remembered Ross was presently
+returning to India. So one day, as they walked along
+Oxford Street, Patrick Manson took his jump: “Do you know,
+Ross,” he said, “I have formed the theory that mosquitoes
+carry malaria...?” Ronald Ross did not sneer or laugh.
+
+Then the old doctor from Shanghai poured his fantastic
+theory over this young man whom he wanted to make his
+hands: “The mosquitoes suck the blood of people sick with
+malaria ... the blood has those crescents in it ... they
+get into the mosquito’s stomach and shoot out those whips ...
+the whips shake themselves free and get into the mosquito’s
+carcass.... The whips turn into some tough form like the
+spore of an anthrax bacillus.... The mosquitoes die ...
+they fall into water ... people drink a soup of dead mosquitoes....”
+
+This, mind you, was a story, a romance, a purely trumped-up
+guess on the part of Patrick Manson. But it was a passionate
+guess, and by this time you have learned, maybe, that one
+guess, guessed enthusiastically enough—one guess in a billion
+may lead to something in this strange game of microbe hunting.
+So this pair walked down Oxford Street. And Ross?
+Well, he talked about gnats and mosquitoes and did not know
+that mosquitoes were gnats. But Ross listened to Manson....
+Mosquitoes carry malaria? That was an ancient superstition—but
+here was Doctor Manson, thinking about nothing
+else. Mosquitoes carry malaria? Well, Ross’s books had not
+sold; his mathematics were ignored.... But here was a
+chance, a gamble! If Ronald Ross could prove mosquitoes
+were to blame for malaria! Why, a third of all the people
+in the hospitals in India were in bed with malaria. More
+than a million a year died, directly or indirectly, because of
+malaria, in India alone! But if mosquitoes were really to
+blame—it would be easy!—malaria could be absolutely wiped
+out.... And if he, Ronald Ross, were the man to prove
+that!
+
+“It is my duty to solve the problem,” Ross said. Fictioneer
+that he was, he called it: “The Great Problem.” And he threw
+himself at Manson’s feet. “I am only your hands—it is your
+problem!” he assured the doctor from China.
+
+“Before you go, you should find out something about mosquitoes,”
+advised Manson, who himself didn’t know whether
+there were ten different kinds of mosquitoes, or ten thousand,
+who thought mosquitoes could live only three days after they
+had bitten. So Ross (who didn’t know mosquitoes were gnats)
+looked all over London for books about mosquitoes—and
+couldn’t find any. Too little of a scholar, then, to think of
+looking in the library of the British Museum, Ross was sublimely
+ignorant, but maybe that was best, for he had nothing
+to unlearn. Never has such a green searcher started on such a
+complicated quest....
+
+He left his wife and children in England, and on the twenty-eighth
+of March, 1895, he set sail for India, with Patrick Manson’s
+blessing, and full of his advice. Manson had outlined
+experiments—but how did one go about doing an experiment?
+But mosquitoes carry malaria! On with the mosquito hunt!
+On the ship Ross pestered the passengers, begging them to let
+him prick their fingers for a drop of blood.... He looked for
+mosquitoes, but they were not among the discomforts of the
+ship, so he dissected cockroaches—and he made an exciting
+discovery of a new kind of microbe in an unfortunate flying
+fish that had flopped on the deck. He was ordered to Secunderabad,
+a desolate military station that sat between hot little
+lakes in a huge plain dotted with horrid heaps of rocks, and
+here began to work with mosquitoes. He had to take care of
+patients too, he was only a doctor and the Indian Government—who
+can blame them?—would not for a moment recognize
+Ronald Ross as an official authentic microbe hunter or mosquito
+expert. He was alone. Everybody was against him from
+his colonel who thought him an insane upstart to the black-skinned
+boys who feared him for a dangerous nuisance (he
+was always wanting to prick their fingers!). The other doctors!
+They did not even believe in the malaria parasite.
+When they challenged him to show them the germs in the
+patient’s blood, Ross went to the fray full of confidence, dragging
+after him a miserable Hindu whose blood was rotten with
+malaria microbes, but when the fatal test was made—curse it!—that
+wretched Hindu suddenly felt fit as a fiddle. His microbes
+had departed from him. The doctors roared with
+laughter. But Ronald Ross kept at it.
+
+He started out to follow Manson’s orders. He captured
+mosquitoes, any kind of mosquito, he couldn’t for the life of
+him have told you what kind they were. He let the pests loose
+under nets over beds on which lay naked and foolishly superstitious
+dark-skinned people of a caste so low that they had
+no proper right to have emotions. The blood of these people
+was charmingly full of malaria microbes. The mosquitoes
+hummed under the nets—and wouldn’t bite. Curse it! They
+could not be made to bite! “They are stubborn as mules,”
+wrote Ross, in agony, to Patrick Manson. But he kept at it.
+He cajoled the mosquitoes. He pestered the patients. He
+put them in the hot sun “to bring their flavor out.” The mosquitoes
+kept on humming and remained sniffish. But, eureka!
+At last he hit on the idea of pouring water over the nets, soaking
+the nets—also the patients, but that was no matter—and
+finally the mosquitoes got to work and sucked their fill of Hindu
+blood. Ronald Ross caught them then, put them gingerly in
+bottles, then day after day killed them and peeped into their
+stomachs to see if those malaria microbes they had sucked in
+with the blood might be growing. They didn’t grow!
+
+He bungled. He was like any tyro searcher—only his innate
+hastiness made him worse—and he was constantly making
+momentous discoveries that turned out not to be discoveries
+at all. But his bunglings had fire in them. To read his letters
+to Patrick Manson, you would think he had made himself
+miraculously small and crawled under the lens into that blood
+among the objects he was learning to spy upon. And what
+was best, everything was a story to him, no, more than a story,
+a melodrama. Manson had told him to watch those strange
+whips that grew out of the crescent malaria germs and made
+them look like octopuses. In vast excitement he wrote a long
+letter to Manson, telling of a strange fight between a whip
+that had shaken itself free, and a white blood cell—a phagocyte.
+He was a vivid man, was Ronald Ross. “He [Ross called
+that whip “he”] kept poking the phagocyte in the ribs (!) in
+different parts of his body, until the phagocyte finally turned
+and ran off howling ... the fight between the whip and the
+phagocyte was wonderful.... I shall write a novel on it in
+the style of the ‘Three Musketeers.’” That was the way he
+kept himself at it and got himself past the first ambushes and
+disappointments of his ignorance and inexperience. He collected
+malarious Hindus as a terrier collects rats. He loved
+them if they were shot full of malaria, he detested them when
+they got better. He gloried in the wretched Abdul Wahab, a
+dreadful case. He pounced on Abdul and dragged him from
+pillar to post. He put fleas on him. He tortured him with
+mosquitoes. He failed. He kept at it. He wrote to Manson:
+“Please send me advice....” He missed important truths
+that lay right under his nose—that yelled to be discovered.
+
+But he was beginning to know just exactly what a malaria
+parasite looked like—he could spot its weird black grains of
+pigment, and tell them apart from all of the unknown tiny blobs
+and bubbles and balloons that drifted before his eyes under
+his lens. And the insides of the stomachs of mosquitoes? They
+were becoming as familiar as the insides of his nasty hot
+quarters!
+
+What an incredible pair of searchers they were! Away in
+London Patrick Manson kept answering Ross’s tangled tortured
+letters, felt his way and gathered hope from his mixed-up
+accounts of unimportant experiments. “Let mosquitoes bite
+people sick with malaria,” wrote Manson, “then put those mosquitoes
+in a bottle of water and let them lay eggs and hatch
+out grubs. Then give that mosquito-water to people to
+drink....”
+
+So Ross fed some of this malaria-mosquito soup to Lutchman,
+his servant, and almost danced with excitement as the
+man’s temperature went up—but it was a false alarm, it wasn’t
+malaria, worse luck.... So dragged the dreary days, the
+months, the years, feeding people mashed-up mosquitoes and
+writing to Manson: “I have a sort of feeling it will succeed—I
+feel a kind of religious excitement over it!” But it never
+succeeded. But he kept at it. He intrigued to get to places
+where he might find more malaria; he discovered strange new
+mosquitoes and from their bellies he dredged up unheard-of
+parasites—that had nothing to do with malaria. He tried
+everything. He was illogical. He was anti-scientific. He was
+like Edison combing the world to get proper stuff out of which
+to make phonograph needles. “There is only one method of
+solution,” he wrote, “that is, by incessant trial and exclusion.”
+He wrote that, while the simple method lay right under his
+hand, unfelt.
+
+He wrote shrieking poems called “Wraths.” He was ordered
+to Bangalore to try to stop the cholera epidemic, and
+didn’t stop it. He became passionate about the Indian authorities.
+“I wish I might rub their noses in the filth and disease
+which they so impotently let fester in Hindustan,” Ronald
+Ross cried. But who can blame him? It was hot there. “I
+was now forty years old,” he wrote, “but, though I was well
+known in India, both for my sanitary work at Bangalore and
+for my researches on malaria I received no advancement at all
+for my pains.”
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

@@ -1,0 +1,330 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch03_sec01
+**Chapter 3:** Pasteur — Microbes Are a Menace!
+**Section 1 of this chapter**
+**Word count:** 1709
+**Total paragraphs:** 15
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "In 1831, thirty-two years after the magnificent Spallanzani died, microbe hunting had come to a stan..."
+  P2: "On a day in October in 1831, a nine-year-old boy ran frightened away from the edge of a crowd that b..."
+  P3: "Days and weeks passed and eight victims of the mad wolf died in the choking throat-parched agonies o..."
+  P4: "“What makes a wolf or a dog mad, father—why do people die when mad dogs bite them?” asked Louis. His..."
+  P5: "I am not going to try to make believe that this terrible event made the nine-year-old Louis Pasteur ..."
+  P6: "Meanwhile it seemed perfectly certain that the little animals were going to be put permanently on th..."
+  P7: "Pasteur kept plugging at his books though, and it was while he was still at the little college of Ar..."
+  P8: "“To will is a great thing, dear sisters,” he wrote, “for Action and Work usually follow Will, and al..."
+  P9: "When he was seventy his sermons had lost their capital letters, but they were exactly the same kind ..."
+  P10: "His father sent him up to Paris to the Normal School and there he resolved to do great things, but h..."
+  P11: "Presently he began to make his first stumbling independent researches with stinking bottles and rows..."
+  P12: "Just then, as Pasteur was bending his snub nose and broad forehead over confused piles of crystals, ..."
+  P13: "In the same year in Germany Doctor Schwann published a short paper in long sentences, and these mudd..."
+  P14: "How Leeuwenhoek would have opened his large eyes at this! Spallanzani would have dismissed his congr..."
+  P15: "When he was twenty-six years old he made it. After long peerings at heaps of tiny crystals he discov..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+I
+
+In 1831, thirty-two years after the magnificent Spallanzani
+died, microbe hunting had come to a standstill once more.
+The sub-visible animals were despised and forgotten while
+other sciences were making great leaps ahead; clumsy horribly
+coughing locomotives were scaring the horses of Europe
+and America; the telegraph was getting ready to be invented.
+Marvelous microscopes were being devised, but no man had
+come to squint through these machines—no man had come to
+prove to the world that miserable little animals could do useful
+work which no complicated steam engine could attempt;
+there was no hint of the somber fact that these wretched microbes
+could kill their millions of human beings mysteriously
+and silently, that they were much more efficient murderers
+than the guillotine or the cannon of Waterloo.
+
+On a day in October in 1831, a nine-year-old boy ran
+frightened away from the edge of a crowd that blocked the
+door of the blacksmith shop of a village in the mountains of
+eastern France. Above the awed excited whispers of the people
+at the door this boy had heard the crackling “s-s-s-s-z” of
+a white hot iron on human flesh, and this terrifying sizzling
+had been followed by a groan of pain. The victim was the
+farmer Nicole. He had just been mangled by a mad wolf that
+charged howling, jaws dripping poison foam, through the
+streets of the village. The boy who ran away was Louis Pasteur,
+son of a tanner of Arbois and great-grandson of a serf
+of the Count of Udressier.
+
+Days and weeks passed and eight victims of the mad wolf
+died in the choking throat-parched agonies of hydrophobia.
+Their screams rang in the ears of this timid—some called him
+stupid—boy; and the iron that had seared the farmer’s
+wound burned a deep scar in his memory.
+
+“What makes a wolf or a dog mad, father—why do people
+die when mad dogs bite them?” asked Louis. His father the
+tanner was an old sergeant of the armies of Napoleon. He
+had seen ten thousand men die from bullets, but he had no
+notion of why people die from disease. “Perhaps a devil got
+into the wolf, and if God wills you are to die, you will die,
+there is no help for it,” you can hear the pious tanner answer.
+That answer was as good as any answer from the wisest
+scientist or the most expensive doctor in the world. In 1831
+no one knew what caused people to die from mad dog bites—the
+cause of all disease was completely unknown and mysterious.
+
+I am not going to try to make believe that this terrible event
+made the nine-year-old Louis Pasteur determine to find out
+the cause and cure of hydrophobia some day—that would be
+very romantic—but it wouldn’t be true. It is true though that
+he was more scared by it, haunted by it for a longer time,
+brooded over it more, that he smelled the burned flesh and
+heard the screams a hundred times more vividly than an ordinary
+boy would—in short, he was of the stuff of which artists
+are made; and it was this stuff in him, as much as his science,
+that helped him to drag microbes out of that obscurity into
+which they had passed once more, after the gorgeous Spallanzani
+died. Indeed, for the first twenty years of his life he
+showed no signs at all of becoming a great searcher. This
+Louis Pasteur was only a plodding, careful boy whom nobody
+noticed particularly. He spent his playtime painting pictures
+of the river that ran by the tannery, and his sisters posed for
+him until their necks grew stiff and their backs ached grievously;
+he painted curiously harsh unflattering pictures of his
+mother—they didn’t make her look pretty, but they looked
+like his mother....
+
+Meanwhile it seemed perfectly certain that the little animals
+were going to be put permanently on the shelf along with
+the dodo and other forgotten beasts. The Swede Linnæus,
+most enthusiastic pigeonholer, who toiled at putting all living
+things in a neat vast card catalogue, threw up his hands at
+the very idea of studying the wee beasts. “They are too small,
+too confused, no one will ever know anything exact about them,
+we will simply put them in the class of Chaos!” said Linnæus.
+They were only defended by the famous round-faced German
+Ehrenberg who had immense quarrels—in moments when he
+wasn’t crossing oceans or receiving medals—futile quarrels
+about whether  the little animals had stomachs, strange arguments
+about whether they were really complete little animals
+or only parts of larger animals; or whether perchance they
+might be little vegetables instead of little animals.
+
+Pasteur kept plugging at his books though, and it was while
+he was still at the little college of Arbois that the first of his
+masterful traits began to stick out—traits good and bad, that
+made him one of the strangest mixtures of contradictions that
+ever lived. He was the youngest boy at the college, but he
+wanted to be a monitor; he had a fiery ambition to teach other
+boys, particularly to run other boys. He became a monitor.
+Before he was twenty he had become a kind of assistant
+teacher in the college of Bezançon, and here he worked like
+the devil and insisted that everybody else work as hard as he
+worked himself; he preached in long inspirational letters to
+his poor sisters—who, God bless them, were already trying their
+best——
+
+“To will is a great thing, dear sisters,” he wrote, “for
+Action and Work usually follow Will, and almost always Work
+is accompanied by Success. These three things, Work, Will,
+Success, fill human existence. Will opens the door to success
+both brilliant and happy; Work passes these doors, and at the
+end of the journey Success comes to crown one’s efforts.”
+
+When he was seventy his sermons had lost their capital
+letters, but they were exactly the same kind of simple earnest
+sermons.
+
+His father sent him up to Paris to the Normal School and
+there he resolved to do great things, but he was carried away
+by a homesickness for the smell of the tannery yard and he
+came back to Arbois abandoning his high ambition.... In
+another year he was back at the same school in Paris and this
+time he stuck at it; and then one day he passed in a tear-stained
+trance out of the lecture room of the chemist Dumas.
+“What a science is chemistry,” he muttered, “and how marvelous
+is the popularity and glory of Dumas.” He knew then
+that he was going to be a great chemist too; the misty gray
+streets of the Latin Quarter dissolved into a confused and
+frivolous world that chemistry alone could save. He had left
+off his painting but he was still the artist.
+
+Presently he began to make his first stumbling independent
+researches with stinking bottles and rows of tubes filled with
+gorgeous colored fluids. His good friend Chappuis, a mere
+student of philosophy, had to listen for hours to Pasteur’s lectures
+on the crystals of tartaric acid, and Pasteur told Chappuis:
+“It is sad that you are not a chemist too.” He would
+have made all students chemists just as forty years later he
+tried to turn all doctors into microbe hunters.
+
+Just then, as Pasteur was bending his snub nose and broad
+forehead over confused piles of crystals, the sub-visible living
+microbes were beginning to come back into serious notice,
+they were beginning to be thought of as important serious fellow
+creatures, just as useful as horses or elephants, by two
+lonely searchers, one in France and one in Germany. A modest
+but original Frenchman, Cagniard de la Tour, in 1837
+poked round in beer vats of breweries. He dredged up a few
+foamy drops from such a vat and looked at them through a
+microscope and noticed that the tiny globules of the yeasts he
+found in them sprouted buds from their sides, buds like seeds
+sprouting. “They are alive then, these yeasts, they multiply
+like other creatures,” he cried. His further searchings made
+him see that no brew of hops and barley ever changed into
+beer without the presence of the yeasts, living growing yeasts.
+“It must be their life that changes barley into alcohol,” he
+meditated, and he wrote a short clear paper about it. The
+world refused to get excited about this fine work of the wee
+yeasts—Cagniard was no propagandist, he had no press agent
+to offset his own modesty.
+
+In the same year in Germany Doctor Schwann published a
+short paper in long sentences, and these muddy phrases told
+a bored public the exciting news that meat only becomes putrid
+when sub-visible animals get into it. “Boil meat thoroughly
+and put it in a clean bottle and lead air into it that has passed
+through red-hot pipes—the meat will remain perfectly fresh
+for months. But in a day or two after you remove the stopper
+and let in ordinary air, with its little animals, the meat will begin
+to smell dreadfully; it will teem with wriggling, cavorting
+creatures a thousand times smaller than a pinhead—it is these
+beasts that make meat go bad.”
+
+How Leeuwenhoek would have opened his large eyes at
+this! Spallanzani would have dismissed his congregation and
+rushed from his masses to his laboratory; but Europe hardly
+looked up from its newspapers, and young Pasteur was getting
+ready to make his own first great chemical discovery.
+
+When he was twenty-six years old he made it. After long
+peerings at heaps of tiny crystals he discovered that there are
+four distinct kinds of tartaric acid instead of two; that there
+are a variety of strange compounds in nature that are exactly
+alike—excepting that they are mirror-images of each other.
+When he stretched his arms and straightened up his lame
+back and realized what he had done, he rushed out of
+his dirty dark little laboratory into the hall, threw his arms
+around a young physics assistant—he hardly knew him—and
+took him out under the thick shade of the Gardens of the
+Luxembourg. There he poured mouthfuls of triumphant explanation
+at him—he must tell some one. He wanted to tell
+the world!
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

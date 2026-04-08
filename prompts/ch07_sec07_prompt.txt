@@ -1,0 +1,327 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch07_sec07
+**Chapter 7:** Metchnikoff — The Nice Phagocytes
+**Section 7 of this chapter**
+**Word count:** 1624
+**Total paragraphs:** 15
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "At last Metchnikoff began really to be happy. His opponents were partly convinced, and partly they s..."
+  P2: "His fame made him take a real delight in being alive. Twenty years before, detesting the human race,..."
+  P3: "“Disease is only an episode!” he wrote. “It is not enough to cure (he had discovered no cures) ... i..."
+  P4: "ÉLIE METCHNIKOFF"
+  P5: "Metchnikoff dreaded the idea of dying but knew that he and everybody else would have to—so he set ou..."
+  P6: "Then he set out on a thorough search for more of such lucky old ladies, he visited old ladies’ homes..."
+  P7: "He studied old age in animals; and people were always sending him gray-haired dogs and dilapidated a..."
+  P8: "But to push back old age? What is at the bottom of it? A Scandinavian scientist, Edgren, had made a ..."
+  P9: "“A man is as old as his arteries, that is true,” muttered Metchnikoff, and he decided to study the r..."
+  P10: "So they bought apes with this money. French governors in the Congo sent black boys to scour the jung..."
+  P11: "Almost at once Roux and Metchnikoff made an important find; their experiments were ingenious and the..."
+  P12: "“That means,” cried Metchnikoff, “that the germ lingers for hours at the spot where it gets into the..."
+  P13: "So Metchnikoff, with Roux always being careful and insisting upon good check experiments—so Metchnik..."
+  P14: "Then for the last time Metchnikoff’s strange insanity got hold of him. He forgot his vows and induce..."
+  P15: "Moralists—and there were many doctors among these, mind you—raised a great clamor against these expe..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VII
+
+At last Metchnikoff began really to be happy. His opponents
+were partly convinced, and partly they stopped arguing
+with him because they found it was no use—he could always
+experiment more tirelessly than they, he could talk longer,
+he could expostulate more loudly. So Metchnikoff, at the beginning
+of the twentieth century, sat down to write a great
+book on all that he had found out about why we are immune.
+It was an enormous treatise you would think it would take
+a lifetime to write. It was written in a style Flaubert might
+have envied. He made every one of the ten thousand facts
+in it vivid, and every one of them was twisted prettily to prove
+his point. It is a strange novel with a myriad of heroes—the
+wandering cells, the phagocytes of all the animals of the earth.
+
+His fame made him take a real delight in being alive.
+Twenty years before, detesting the human race, sorry for himself,
+and hating life, he had told Olga: “It is a crime to have
+children—no human being should consciously reproduce himself.”
+But now that he had begun to take delight in existence,
+the children of Sèvres, the suburb where he lived, called him
+“Grandpa Christmas” as he patted their heads and gave them
+candy. “Life is good!” he told himself. But how to hang onto
+it, now that it was slipping away so fast? In only one way,
+of course—by science!
+
+“Disease is only an episode!” he wrote. “It is not enough
+to cure (he had discovered no cures) ... it is necessary to
+find out what the destiny of man is, and why he must grow old
+and die when his desire to live is strongest.” Then Metchnikoff
+abandoned work on his dead phagocytes and set out to
+found fantastic sciences to explain man’s destiny, and to avoid
+it. To one of these, the science of old age, he gave the sonorous
+name “Gerontology,” and he gave the name “Thanatology”
+to the science of death. What awful sciences they were;
+the ideas were optimistic; the observations he made in
+them were so inaccurate that old Leeuwenhoek would have
+turned over in his grave had he known about them; the experiments
+Metchnikoff made, to support these sciences, would have
+caused Pasteur to foam with indignation that he had ever welcomed
+this outlandish Russian to his laboratory. And yet—and
+yet—the way really to prevent one of the most hideous
+microbic diseases came out of them....
+
+  
+  
+      ÉLIE METCHNIKOFF
+
+  
+
+Metchnikoff dreaded the idea of dying but knew that he and
+everybody else would have to—so he set out to devise a hope
+(there was not one particle of science in this) for an easy death.
+Somewhere in his vast hungry readings, he had run across the
+report of two old ladies who had become so old that they felt
+no more desire for life—they wanted to die, just as all of us
+want to go to sleep at the end of a hard day’s work. “Ha!”
+cried Metchnikoff, “that shows that there is an instinct for
+death just as there is an instinct for sleep! The thing to do is
+to find a way to live long enough in good health until we shall
+really crave to die!”
+
+Then he set out on a thorough search for more of such lucky
+old ladies, he visited old ladies’ homes, he rushed about questioning
+old crones, with their teeth out, who were too deaf to
+hear him. He went all the way from Paris to Rouen to interview
+(on the strength of a newspaper rumor) a dame reported
+to be a hundred and six. But, alas, all of the oldsters he talked
+to were strong for life, he never found any one like the two
+legendary old ladies. Just the same he cried: “There is a
+death instinct!” Contrary facts never worried him.
+
+He studied old age in animals; and people were always sending
+him gray-haired dogs and dilapidated ancient cats; he
+published a solemn research on why a superannuated parrot
+lived to be seventy. He owned an ancient he-turtle, who lived
+in his garden, and Metchnikoff was overjoyed when this venerable
+beast—at the great age of 86—mated with two lady
+turtles and became the father of broods of little turtles. He
+dreaded the passing of the delights of love, and exclaimed, remembering
+his turtle: “Senility is not so profoundly seated as
+we suppose!”
+
+But to push back old age? What is at the bottom of it? A
+Scandinavian scientist, Edgren, had made a deep study of the
+hardening of the arteries—that was the cause of old age, suggested
+Edgren, and among the causes of the hardening of the
+arteries were the drinking of alcohol, syphilis, and certain
+other diseases.
+
+“A man is as old as his arteries, that is true,” muttered
+Metchnikoff, and he decided to study the riddle of how that
+loathsome disease hardens the arteries. It was in 1903. He
+had just received a prize of five thousand francs, and Roux—who,
+though so different, so much more the searcher, had always
+stuck by this wild Metchnikoff—Roux had got the grand
+Osiris prize of one hundred thousand francs. Never were there
+two men so different in their ways of doing science, but they
+were alike in caring little for money, and together they decided
+to use all of these francs—and thirty thousand more which
+Metchnikoff had wheedled out of some rich Russians—to study
+that venereal plague, to attempt to give it to apes, to try to
+discover its then mysterious virus, to prevent it, to cure it if
+possible. And Metchnikoff wanted to study how syphilis hardened
+the arteries.
+
+So they bought apes with this money. French governors
+in the Congo sent black boys to scour the jungles for them,
+and presently large rooms at the Pasteur Institute were a-chatter
+with chimpanzees and orang-outangs, and the cries of these
+were drowned out by the shrieking of the sacred monkey of the
+Hindoos, and the caterwaulings of the comical little Macacus
+cynemolgus.
+
+Almost at once Roux and Metchnikoff made an important
+find; their experiments were ingenious and they had about
+them a certain tautness and clearness that was strangely un-Metchnikoffian.
+Their laboratory began to be the haunt of
+unfortunate men who had just got syphilis; from one of these
+they inoculated an ape—and the very first experiment was a
+success. The chimpanzee developed the disease. From then
+on, for more than four years they toiled, transmitting the diseases
+from one ape to another, looking for the sneaking
+slender microbe but not finding it, trying to find ways to
+weaken the virus—as Pasteur had done with the unknown
+germ of rabies—in order to discover a preventive vaccine.
+Their monkeys died miserably of pneumonia and consumption,
+they got loose and ran away. While Metchnikoff, not too
+deftly, scratched the horrible virus into them, the apes bit
+him and scratched him back—and then Metchnikoff did a
+strange and clever experiment. He scratched a little syphilitic
+virus into the ear of an ape, and twenty-four hours later he cut
+off that ear! The ape never showed one sign of the disease in
+any other part of his body....
+
+“That means,” cried Metchnikoff, “that the germ lingers
+for hours at the spot where it gets into the body—now, as in
+men we know exactly where the virus gets in, maybe we can kill
+it before it ever spreads—since in this disease we know just
+when it gets in, too!”
+
+So Metchnikoff, with Roux always being careful and insisting
+upon good check experiments—so Metchnikoff, after all of his
+theorizing about why we are immune, performed one of the
+most profoundly practical of all the experiments of microbe
+hunting. He sat himself down and invented the famous calomel
+ointment—that now is chasing syphilis out of armies and
+navies the world over. He took two apes, inoculated them
+with the syphilitic virus fresh from a man, and then, one hour
+later, he rubbed the grayish ointment into that scratched spot
+on one of his apes. He watched the horrid signs of the disease
+appear on the unanointed beast, and saw all signs of the
+disease stay away from the one that had got the calomel.
+
+Then for the last time Metchnikoff’s strange insanity got
+hold of him. He forgot his vows and induced a young medical
+student, Maisonneuve, to volunteer to be scratched with
+syphilis from an infected man. Before a committee of the
+most distinguished medical men of France, this brave Maisonneuve
+stood up, and into six long scratches he watched the
+dangerous virus go. It was a more severe inoculation than any
+man would ever get in nature. The results of it might make
+him a thing for loathing, might send him, insane, to his
+death.... For one hour Maisonneuve waited, then Metchnikoff,
+full of confidence, rubbed the calomel ointment into the
+wounds—but not into those which had been made at the same
+time on a chimpanzee and a monkey. It was a superb success,
+for Maisonneuve showed never a sign of the ugly ulcer, while
+the simians, thirty days afterwards, developed the disease—there
+was no doubt about it.
+
+Moralists—and there were many doctors among these, mind
+you—raised a great clamor against these experiments of
+Metchnikoff. “It will remove the penalty of immorality!”
+said they, “to spread abroad such an easy and a perfect means
+of prevention!” But Metchnikoff only answered: “It has been
+objected that the attempt to prevent the spread of this disease
+is immoral. But since all means of moral prophylaxis
+have not prevented the great spread of syphilis and the contamination
+of innocents, the immoral thing is to restrain any
+available means we have of combating this plague.”
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

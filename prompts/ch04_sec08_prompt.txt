@@ -1,0 +1,221 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch04_sec08
+**Chapter 4:** Koch — The Death Fighter
+**Section 8 of this chapter**
+**Word count:** 701
+**Total paragraphs:** 9
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "From the German Emperor’s own hand Koch now received the Order of the Crown, with Star, but in spite..."
+  P2: "The hunters who believed that microbes were the chief foes of man, these men were brave, but there w..."
+  P3: "Koch sent him on a tube that swarmed with wee virulent comma microbes. And so Pettenkofer—to the gre..."
+  P4: "Pettenkofer, who was foolhardy enough to try such a possibly suicidal experiment, was also sufficien..."
+  P5: "“There can be no cholera without the comma bacillus!” said Koch in reply."
+  P6: "“But I have just swallowed millions of your alleged fatal bacilli, and have not even had a cramp in ..."
+  P7: "As it is so often the case, alas, in violent scientific controversies, both sides were partly right ..."
+  P8: "For, make no mistake, Pettenkofer walked within an inch of death; other microbe hunters have since t..."
+  P9: "But we come to the end of the great days of Robert Koch, and the exploits of Louis Pasteur begin onc..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VIII
+
+From the German Emperor’s own hand Koch now received
+the Order of the Crown, with Star, but in spite of that his
+countrified hat continued to fit his stubbly head, and when admirers
+adored him he only said to them: “I have worked as
+hard as I could ... if my success has been greater than that
+of most ... the reason is that I came in my wanderings
+through the medical field upon regions where the gold was still
+lying by the wayside ... and that is no great merit.”
+
+The hunters who believed that microbes were the chief foes
+of man, these men were brave, but there was careless heroism
+too among some of the ancient doctors and old-fogey sanitarians
+who thought that all this new stuff about microbes was
+claptrap and nonsense. Old Professor Pettenkofer of Munich
+was the leader of the skeptics who were not convinced by
+Koch’s clear experiments, and when Koch came back from
+India with those comma bacilli that he was sure were the authors
+of cholera Pettenkofer wrote him something like this:
+“Send me some of your so-called cholera germs, and I’ll show
+you how harmless they are!”
+
+Koch sent him on a tube that swarmed with wee virulent
+comma microbes. And so Pettenkofer—to the great alarm of
+all good microbe hunters—swallowed the entire contents of
+the tube. There were enough billions of wiggling comma germs
+in this tube to infect a regiment. Then he growled his scorn
+through his magnificent beard, and said: “Now let us see if
+I get cholera!” Mysteriously, nothing happened, and the
+failure of the mad Pettenkofer to come down with cholera remains
+to this day an enigma, without even the beginning of
+an explanation.
+
+Pettenkofer, who was foolhardy enough to try such a possibly
+suicidal experiment, was also sufficiently cocksure to believe
+that his drinking of the cholera soup had settled the
+question in his favor. “Germs are of no account in cholera!”
+shouted the old doctor. “The important thing is the disposition
+(whatever that means) of the individual!”
+
+“There can be no cholera without the comma bacillus!”
+said Koch in reply.
+
+“But I have just swallowed millions of your alleged fatal
+bacilli, and have not even had a cramp in my stomach!” came
+back Pettenkofer in rebuttal.
+
+As it is so often the case, alas, in violent scientific controversies,
+both sides were partly right and partly wrong.
+Every event of the past forty years has shown that Koch was
+right when he said that people can never have cholera without
+swallowing his comma bacillus. And the years that have gone
+by have revealed that Pettenkofer’s experiment pointed out a
+mystery behind the curtains of the unknown, and these obscuring
+draperies have not now even begun to be lifted by
+modern microbe hunters. Murderous germs are everywhere,
+sneaking into all of us, yet they are able to assassinate only
+some of us, and that question of the strange resistance of the
+rest of us is still just as much an unsolved puzzle as it was in
+those days of the roaring eighteen-eighties when men were
+ready to risk dying to prove that they were right.
+
+For, make no mistake, Pettenkofer walked within an inch
+of death; other microbe hunters have since then swallowed
+cultures of virulent cholera microbes by accident—and died
+horribly.
+
+But we come to the end of the great days of Robert Koch,
+and the exploits of Louis Pasteur begin once more to push
+Koch and all other microbe hunters into the background of
+the world’s attention. Let us leave Koch while his ambitious
+but well-meaning countrymen prepare, without knowing it, a
+disaster for him, a tragedy that, alas, has partly tarnished
+the splendor of his trapping of the microbes that murder animals
+and men with anthrax and cholera and tuberculosis. But
+before you read the perfect and brilliant finale of the gorgeous
+career of Pasteur, I beg leave to remove my hat and make
+bows of respect to Koch—the man who really proved that microbes
+are our most deadly enemies, who brought microbe
+hunting near to being a science, the man who is now the partly
+forgotten captain of an obscure heroic age.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

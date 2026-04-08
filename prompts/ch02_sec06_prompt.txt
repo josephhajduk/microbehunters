@@ -1,0 +1,381 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch02_sec06
+**Chapter 2:** Spallanzani — Microbes Must Have Parents!
+**Section 6 of this chapter**
+**Word count:** 2087
+**Total paragraphs:** 21
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "While Spallanzani was on his triumphant voyage a dark cloud gathered away to the south, at his unive..."
+  P2: "Spallanzani by tireless expeditions and through many fatigues and dangers had made the once empty Na..."
+  P3: "His bright world came down around his ears; in a moment he saw his gorgeous career in ruins; in hide..."
+  P4: "But in a few days he came back on his feet, the center of a dreadful scandal, it is true, but on his..."
+  P5: "He returned to Pavia and on his way there I wonder what his thoughts were—did he see himself slinkin..."
+  P6: "Then the investigating committee had him and his accusers appear before it, and knowing Spallanzani ..."
+  P7: "The judges cleared him of all guilt—though it is to-day not perfectly sure that he wasn’t a little g..."
+  P8: "Many times in his long years of looking at the animalcules he had wondered how they multiplied. Ofte..."
+  P9: "Bonnet told Spallanzani’s perplexity about the way little animals multiplied to his friend, the clev..."
+  P10: "Reading this paper, Spallanzani rushed to his microscope hardly believing such a strange event could..."
+  P11: "Then Spallanzani was forced into one of the most devilishly ingenious researches of his life. He was..."
+  P12: "“What is more,” Ellis went on, “little animals are born from each other just as larger beasts come f..."
+  P13: "“Rot!” thought Spallanzani. All this stuff smelled very fishy to him, but how to show it wasn’t true..."
+  P14: "He was first of all a hard scientist, and he knew that it was one thing to say Ellis was feeble-mind..."
+  P15: "Then this Spallanzani, this fellow who reveled in gaudy celebrations and vast enthusiastic lecturing..."
+  P16: "He went to his laboratory and carefully put a drop of seed soup swarming with animalcules on a clean..."
+  P17: "“Now I shall trap one,” he muttered, as he trained his lens on the drop that held the little animals..."
+  P18: "“God!” he cried. “I’ve done it—no one’s ever done this before—I’ve got one animalcule all by himself..."
+  P19: "Then a strange sight startled him, not less dramatic for its unbelievable littleness. The beast—it w..."
+  P20: "Spallanzani did this ingenious trick a dozen times and got the same result and saw the same thing; a..."
+  P21: "A scientist, a really original investigator of nature, is like a writer or a painter or a musician. ..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VI
+
+While Spallanzani was on his triumphant voyage a dark
+cloud gathered away to the south, at his university, the school
+at Pavia that he had done so much to bring back to life. For
+years the other professors had watched him take their students
+away from them, they had watched—and ground their tusks
+and sharpened their razors—and waited.
+
+Spallanzani by tireless expeditions and through many fatigues
+and dangers had made the once empty Natural History
+Cabinet the talk of Europe. Besides he had a little private
+collection of his own at his old home in Scandiano. One day,
+Canon Volta, one of his jealous enemies, went to Scandiano and
+by a trick got into Spallanzani’s private museum; he sniffed
+around, then smiled an evil grin—here were some jars, and
+there a bird and in another place a fish, and all of them were
+labeled with the red tags of the University museum of Pavia!
+Volta sneaked away hidden in the dark folds of his cloak, and
+on the way home worked out his malignant plans to cook the
+brilliant Spallanzani’s goose; and just before Spallanzani got
+home from Vienna, Volta and Scarpa and Scopoli let hell loose
+by publishing a tract and sending it to every great man and
+society in Europe, and this tract accused Spallanzani of the
+nasty crime of stealing specimens from the University of
+Pavia and hiding them in his own little museum at Scandiano.
+
+His bright world came down around his ears; in a moment
+he saw his gorgeous career in ruins; in hideous dreams he heard
+the delighted cackles of men who praised him and envied him;
+he pictured the triumph of men whom he had soundly licked
+with his clear facts and experiments—he imagined even the return
+to life of that fool Vegetative Force....
+
+But in a few days he came back on his feet, the center of a
+dreadful scandal, it is true, but on his feet with his back to the
+wall ready to face his accusers. Gone now was the patient
+hunter of microbes and gone the urbane correspondent of Voltaire.
+He turned into a crafty politician, he demanded an investigating
+committee and got it, he founded Ananias Clubs,
+he fought fire with fire.
+
+He returned to Pavia and on his way there I wonder what
+his thoughts were—did he see himself slinking into the town,
+avoided by old admirers and a victim of malignant hissing
+whispers? Possibly, but as he got near the gates of Pavia a
+strange thing happened—for a mob of adoring students came
+out to meet him, told him they would stick by him, escorted
+him with yells of joy to his old lecture chair. The once self-sufficient,
+proud man’s voice became husky—he blew his nose—he
+could only stutteringly tell them what their devotion meant
+to him.
+
+Then the investigating committee had him and his accusers
+appear before it, and knowing Spallanzani as you already do,
+you may imagine the shambles that followed! He proved
+to the judges that the alleged stolen birds were miserably
+stuffed, draggle-feathered creatures which would have disgraced
+the cabinet of a country school—they had been
+merely pitched out. He had traded the lost snakes and the
+armadillo to other museums and Pavia had profited by the
+trade; not only so, but Volta, his chief accuser, had himself
+stolen precious stones from the museum and given them to his
+friends....
+
+The judges cleared him of all guilt—though it is to-day not
+perfectly sure that he wasn’t a little guilty; Volta and his complotters
+were fired from the University, and all parties, including
+Spallanzani, were ordered by the Emperor to stop their deplorable
+brawling and shut up—this thing was getting to be a
+smell all over Europe—students were breaking up the classroom
+furniture about it, and other universities were snickering
+at such an unparalleled scandal. Spallanzani took a last crack
+at his routed enemies; he called Volta a perfect bladder full of
+wind and invented hideous and unprintably improper names
+for Scarpa and Scopoli; then he returned peacefully to his microbe
+hunting.
+
+Many times in his long years of looking at the animalcules
+he had wondered how they multiplied. Often he had seen two
+of the wee beasts stuck together, and he wrote to Bonnet:
+“When you see two individuals of any animal kind united, you
+naturally think they are engaged in reproducing themselves.”
+But were they? He jotted his observations down in old notebooks
+and made crude pictures of them, but, impetuous as he
+was in many things, when it came to experiments or drawing
+conclusions—he was almost as cagy as old Leeuwenhoek had
+been.
+
+Bonnet told Spallanzani’s perplexity about the way little
+animals multiplied to his friend, the clever but now unknown
+de Saussure. And this fellow turned his sharp eye through his
+clear lenses onto the breeding habits of animalcules. In a short
+while he wrote a classic paper, telling the fact that when you
+see two of the small beasts stuck together, they haven’t come
+together to breed. On the contrary—marvelous to say—these
+coupled beasts are nothing more nor less than an old animalcule
+which is dividing into two parts, into two new little animals!
+This, said de Saussure, was the only way the microbes
+ever multiplied—the joys of marriage were unknown to them!
+
+Reading this paper, Spallanzani rushed to his microscope
+hardly believing such a strange event could be so—but careful
+looking showed that de Saussure was right. The Italian wrote
+the Swiss a fine letter congratulating him; Spallanzani was a
+fighter and something of a plotter; he was infernally ambitious
+and often jealous of the fame of other men, but he lost
+himself in his joy at the prettiness of de Saussure’s sharp observations.
+Spallanzani and these naturalists of Geneva were
+bound by a mysterious cement—a realization that the work of
+finding facts and fitting facts together to build the high cathedral
+of science is greater than any single finder of facts or
+mason of facts. They were the first haters of war—the first
+citizens of the world, the first genuine internationalists.
+
+Then Spallanzani was forced into one of the most devilishly
+ingenious researches of his life. He was forced into this by his
+friendship for his pals in Geneva and by his hatred of another
+piece of scientific claptrap almost as bad as the famous Vegetative
+Force. An Englishman named Ellis wrote a paper
+saying de Saussure’s observations about the little animals
+splitting into two was all wrong. Ellis admitted that the little
+beasts might occasionally break into two. “But that,” cried
+Ellis, “doesn’t mean they are multiplying! It simply means,”
+he said, “that one little animal, swimming swiftly along in the
+water, bangs into another one amidships—and breaks him in
+half! That’s all there is to de Saussure’s fine theory.
+
+“What is more,” Ellis went on, “little animals are born from
+each other just as larger beasts come from their mothers.
+When I look carefully with my microscope, I can actually see
+young ones inside the old ones, and looking still more closely—you
+may not believe it—I can see grandchildren inside
+these young ones.”
+
+“Rot!” thought Spallanzani. All this stuff smelled very
+fishy to him, but how to show it wasn’t true, and how to show
+that animalcules multiplied by breaking in two?
+
+He was first of all a hard scientist, and he knew that
+it was one thing to say Ellis was feeble-minded, but quite another
+to prove that the little animals didn’t bump into each
+other and so knock each other apart. In a moment the one way
+to decide it came to him——“All I have to do,” he meditated,
+“is to get one little beast off by itself, away from every
+other one where nothing whatever can bump into it—and then
+just sit and watch through the microscope to see if it breaks
+into two.” That was the simple and the only way to do it, no
+doubt, but how to get one of these infernally tiny creatures
+away from his swarms of companions? You can separate one
+puppy from a litter, or even a little minnow from its myriads
+of brothers and sisters. But you can’t reach in with your
+hands and take one animalcule by the tail—curse it—it is a
+million times too small for that.
+
+Then this Spallanzani, this fellow who reveled in gaudy
+celebrations and vast enthusiastic lecturings, this hero of the
+crowd, this magnifico, crawled away from all his triumphs and
+pleasures to do one of the cleverest and most marvelously ingenious
+pieces of patient work in his hectic life. He did no
+less a thing than to invent a sure method of getting one animalcule—a
+few twenty-five thousandths of an inch long—a
+living animalcule, off by itself.
+
+He went to his laboratory and carefully put a drop of seed
+soup swarming with animalcules on a clean piece of crystal
+glass. Then with a clean hair-fine tube he put a drop of pure
+distilled water—that had not a single little animal in it—on
+the same glass, close to the drop that swarmed with microbes.
+
+“Now I shall trap one,” he muttered, as he trained his lens
+on the drop that held the little animals. He took a fine clean
+needle, he stuck it carefully into the drop of microbe soup—and
+then made a little canal with it across to the empty water
+drop. Quickly he turned his lens onto the passageway between
+the two drops, and grunted satisfaction as he saw the
+wriggling cavorting little creatures begin to drift through this
+little canal. He grabbed for a little camel’s-hair brush——“There!
+there’s one of the wee ones—just one, in the water
+drop!” Deftly he flicked the little brush across the small
+canal, wiping it out, so cutting off the chance of any other wee
+beast getting into the water drop to join its lonely little
+comrade.
+
+“God!” he cried. “I’ve done it—no one’s ever done this before—I’ve
+got one animalcule all by himself; now nothing can
+bump him, now we’ll see if he’ll turn into two new ones!” His
+lens hardly quivered as he sat with tense neck and hands and
+arms, back bent, eye squinting through the glass at the drop
+with its single inhabitant. “How tiny he is,” he thought—“he
+is like a lone fish in the spacious abysses of the sea.”
+
+Then a strange sight startled him, not less dramatic for its
+unbelievable littleness. The beast—it was shaped like a small
+rod—began to get thinner and thinner in the middle. At last
+the two parts of it were held together by the thickness of a
+spider web thread, and the two thick halves began to wriggle
+desperately—and suddenly they jerked apart. There they
+were, two perfectly formed, gently gliding little beasts, where
+there had been one before. They were a little shorter but
+otherwise they couldn’t be told from their parent. Then,
+what was more marvelous to see, these two children of the
+first one in a score of minutes split up again—and now there
+were four where there had been one!
+
+Spallanzani did this ingenious trick a dozen times and got
+the same result and saw the same thing; and then he descended
+on the unlucky Ellis like a ton of brick and flattened
+into permanent obscurity Ellis and his fine yarn about the
+children and the grandchildren inside the little animals.
+Spallanzani was sniffish, he condescended, he advised, he told
+Ellis to go back to school and learn his a b c’s of microbe
+hunting. He hinted that Ellis wouldn’t have made his mistake
+if he’d read the fine paper of de Saussure carefully, instead
+of inventing preposterous theories that only cluttered up the
+hard job of getting genuine new facts from a stingy Nature.
+
+A scientist, a really original investigator of nature, is like
+a writer or a painter or a musician. He is part artist, part cool
+searcher. Spallanzani told himself stories, he conceived himself
+the hero of a new epic exploration, he compared himself—in
+his writings even—to Columbus and Vespucci. He told
+of that mysterious world of microbes as a new universe, and
+thought of himself as a daring explorer making first groping
+expeditions along its boundaries only. He said nothing about
+the possible deadliness of the little animals—he didn’t like to
+engage, in print, in wild speculations—but his genius whispered
+to him that the fantastic creatures of this new world
+were of some sure but yet unknown importance to their big
+brothers, the human species....
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

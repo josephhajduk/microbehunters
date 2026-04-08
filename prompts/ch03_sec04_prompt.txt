@@ -1,0 +1,538 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch03_sec04
+**Chapter 3:** Pasteur — Microbes Are a Menace!
+**Section 4 of this chapter**
+**Word count:** 3458
+**Total paragraphs:** 32
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "So he prepared the stage for his dangerous experiments—years before he entered on them. He prepared ..."
+  P2: "He did curious tests that waited three years to be completed. He took flasks and filled them part wa..."
+  P3: "Now Pasteur ran hard up against a question that was bound to pop up and look him in the face sooner ..."
+  P4: "“How is it,” Pasteur’s opponents asked him, “how is it that yeasts appear from nowhere every year of..."
+  P5: "Like Spallanzani, Pasteur could not believe that the microbes rose from the dead stuff of the milk o..."
+  P6: "But Pasteur answered: “My philosophy is of the heart and not of the mind, and I give myself up, for ..."
+  P7: "Then Pasteur dropped philosophy and set to work. He believed that his yeasts and rods and little ani..."
+  P8: "“But you have heated the air in your flask when you boiled the yeast soup—what yeast soup needs to g..."
+  P9: "Pasteur, in a muddle, tried to invent ways of getting unheated air into a boiled yeast soup—and yet ..."
+  P10: "Then one day old Professor Balard walked into his workroom. Balard had started life as a druggist; h..."
+  P11: "“You say you’re stuck, you say you do not see how to get air and boiled yeast soup together without ..."
+  P12: "“Yes,” answered Pasteur, “but——”"
+  P13: "“Wait a minute!” interrupted Balard. “Why don’t you just try the trick of putting some yeast soup in..."
+  P14: "“But how?” asked Pasteur."
+  P15: "“Easy,” replied the now forgotten Balard. “Take one of your round flasks, put the yeast soup into it..."
+  P16: "Pasteur looked, then suddenly saw the magnificent ingeniousness of this little experiment. “Why, the..."
+  P17: "“Exactly,” smiled Balard. “Try it and find out if it works—see you later,” and he left to continue h..."
+  P18: "Pasteur had bottle washers and assistants now, and he ordered them to hurry and prepare the flasks. ..."
+  P19: "The flasks ready, Pasteur crawled on his hands and knees, back and forth with a comical dignity on h..."
+  P20: "Had you still been there a half hour later, you would have seen him come crawling out, his eyes shin..."
+  P21: "Balard came back and smiled as Pasteur poured the news of the experiment over him. “I thought it wou..."
+  P22: "“Yes, but how can we prove that?” puzzled Pasteur."
+  P23: "“Just take one of those flasks that has been in your oven all these days, a flask where no living th..."
+  P24: "Pasteur tried it, and it was so! A little later at a brilliant meeting where the brains and wit and ..."
+  P25: "Then Pasteur invented an experiment that was—so far as one can tell from a careful search through th..."
+  P26: "Armed with these dozens of flasks, and fussing about them, Pasteur started on his travels. He went d..."
+  P27: "A few days later Pasteur might have been seen squatting before his oven, handling his rows of flasks..."
+  P28: "He gathered up the rest of the bottles and hurried to the train—it was the time of the summer vacati..."
+  P29: "Many times Pasteur won his arguments by brilliant experiments that simply floored every one, but som..."
+  P30: "Like Pasteur they filled up some flasks, but unlike him they used a soup of hay instead of yeast, th..."
+  P31: "Now the fight was on. Pasteur became publicly sarcastic about the experiments of Pouchet, Joly and M..."
+  P32: "Luckily for Pasteur, but alas for Truth, both sides happened to be right. Pouchet and his friends ha..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+IV
+
+So he prepared the stage for his dangerous experiments—years
+before he entered on them. He prepared a public stage-setting.
+His proposed heroism thrilled the calm men of science
+that were his audience. As they returned home through the
+gray streets of the ancient Latin Quarter they could imagine
+Pasteur bidding them a farewell full of emotion, they could
+see him marching with set lips—wanting to hold his nose but
+bravely not doing it—into the midst of stinking pestilences
+where perilous microbes lay in wait for him.... It is so that
+Pasteur proved himself much more useful than Leeuwenhoek
+or Spallanzani—he did excellent experiments, and then had a
+knack of presenting them in a way to heat up the world about
+them. Grave men of science grew excited. Simple people saw
+clear visions of the yeasts that made the wine that was their
+staff of life and they were troubled at nights by thoughts of
+hovering invisible putrid microbes in the air....
+
+He did curious tests that waited three years to be completed.
+He took flasks and filled them part way full with milk or urine.
+He doused them in boiling water and sealed their slender necks
+shut in a blast flame—then for years he guarded them. At
+last he opened them, to show that the urine and the milk were
+perfectly preserved, that the air above the fluid in the bottles
+still had almost all of its oxygen; no microbes, no destruction
+of the milk! He allowed germs to grow their silent swarms in
+other flasks of urine and milk that he had left unboiled, and
+when he tested these for oxygen he found that the oxygen had
+been completely used up—the microbes had used it to burn up,
+to destroy the stuff on which they fed. Then like a great bird
+Pasteur spread his wings of fancy and soared up to fearsome
+speculations—he imagined a weird world without microbes,
+a world whose air had plenty of oxygen, but this oxygen would
+be of no use, alas, to destroy dead plants and animals, because
+there were no microbes to do the oxidations. His hearers had
+nightmare glimpses of vast heaps of carcasses choking deserted
+lifeless streets—without microbes life would not be
+possible!
+
+Now Pasteur ran hard up against a question that was
+bound to pop up and look him in the face sooner or later. It
+was an old question. Adam had without doubt asked it of
+God, while he wondered where the ten thousand living beings
+of the garden of Eden came from. It was the question that
+had all thinkers by the ears for a hundred centuries, that had
+given Spallanzani so much exciting fun a hundred years before.
+It was the simple but absolutely insoluble question:
+Where do microbes come from?
+
+“How is it,” Pasteur’s opponents asked him, “how is it that
+yeasts appear from nowhere every year of every century in
+every corner of the earth, to turn grape juice into wine?
+Where do the little animals come from, these little animals
+that turn milk sour in every can and butter rancid in every jar,
+from Greenland to Timbuctoo?”
+
+Like Spallanzani, Pasteur could not believe that the microbes
+rose from the dead stuff of the milk or butter. Surely microbes
+have to have parents! He was, you see, a good Catholic.
+It is true that he lived among the brainy skeptics on the
+left bank of the Seine in Paris, where God is as popular as a
+Soviet would be in Wall Street, but the doubts of his colleagues
+didn’t touch Pasteur. It was beginning to be the fashion of
+the doubters to believe in Evolution: the majestic poem that
+tells of life, starting as a formless stuff stirring in a steamy
+ooze of a million years ago, unfolding through a stately procession
+of living beings until it gets to monkeys and at last—triumphantly—to
+men. There doesn’t have to be a God to
+start that parade or to run it—it just happened, said the new
+philosophers with an air of science.
+
+But Pasteur answered: “My philosophy is of the heart and
+not of the mind, and I give myself up, for instance, to those
+feelings about eternity that come naturally at the bedside of
+a cherished child drawing its last breath. At those supreme
+moments there is something in the depths of our souls which
+tells us that the world may be more than a mere combination
+of events due to a machine-like equilibrium brought out of the
+chaos of the elements simply through the gradual action of the
+forces of matter.” He was always a good Catholic.
+
+Then Pasteur dropped philosophy and set to work. He
+believed that his yeasts and rods and little animals came from
+the air—he imagined an air full of these invisible things.
+Other microbe hunters had shown there were germs in the air,
+but Pasteur made elaborate machines to prove it all over again.
+He poked gun cotton into little glass tubes, put a suction pump
+on one end of them and stuck the other end out of the window,
+sucked half the air of the garden through the cotton—and
+then gravely tried to count the number of living beings in this
+cotton. He invented clumsy machines for getting these microbe-loaded
+bits of cotton into yeast soup, to see whether
+the microbes would grow. He did the good old experiment of
+Spallanzani over; he got himself a round bottle and put some
+yeast soup in it, and sealed off the neck of the bottle in the
+stuttering blast lamp flame, then boiled the soup for a few
+minutes—and no microbes grew in this bottle.
+
+“But you have heated the air in your flask when you boiled
+the yeast soup—what yeast soup needs to generate little animals
+is natural air—you can’t put yeast soup together with
+natural unheated air without its giving rise to yeasts or molds
+or torulas or vibrions or animalcules!” cried the believers in
+spontaneous generation, the evolutionists, the doubting botanists,
+cried all Godless men from their libraries and their armchairs.
+They shouted, but made no experiments.
+
+Pasteur, in a muddle, tried to invent ways of getting unheated
+air into a boiled yeast soup—and yet keep it from
+swarming with living sub-visible creatures. He fumbled at
+getting a way to do this; he muddled—keeping all the time a
+brave face toward the princes and professors and publicists
+that were now beginning to swarm to watch his miracles. The
+authorities had promoted him from his rat-infested attic to a
+little building of four or five two-by-four rooms at the gate
+of the Normal School. It would not be considered good enough
+to house the guinea-pigs of the great Institutes of to-day, but
+it was here that Pasteur set out on his famous adventure to
+prove that there was nothing to the notion that microbes could
+arise without parents. It was an adventure that was part good
+experiment, part unseemly scuffle—a scuffle that threatened at
+certain hilariously vulgar moments to be settled by a fist fight.
+He messed around, I say, and his apparatus kept getting more
+and more complicated, and his experiments kept getting easier
+to object to and less clear, he began to replace his customary
+easy experiments that convinced with sledge-hammer force, by
+long drools of words. He was stuck.
+
+Then one day old Professor Balard walked into his workroom.
+Balard had started life as a druggist; he had been an
+owlish original druggist who had amazed the scientific world
+by making the discovery of the element bromine, not in a fine
+laboratory, but on the prescription counter in the back room of
+a drugstore. This had got him fame and his job of professor
+of chemistry in Paris. Balard was not ambitious; he had no
+yearning to make all the discoveries in the world—discovering
+bromine was enough for one man’s lifetime—but Balard did
+like to nose around to watch what went on in other laboratories.
+
+“You say you’re stuck, you say you do not see how to get
+air and boiled yeast soup together without getting living creatures
+into the yeast soup, my friend?” you can hear the lazy
+Balard asking the then confused Pasteur. “Look here, you
+and I both believe there is no such thing as microbes rising in
+a yeast soup by themselves—we both believe they fall in or
+creep in with the dust of the air, is it not so?”
+
+“Yes,” answered Pasteur, “but——”
+
+“Wait a minute!” interrupted Balard. “Why don’t you just
+try the trick of putting some yeast soup in a bottle, boiling it,
+then fixing the opening so the dust can’t fall in. At the same
+time the air can get in all it wants to.”
+
+“But how?” asked Pasteur.
+
+“Easy,” replied the now forgotten Balard. “Take one of
+your round flasks, put the yeast soup into it, then soften the
+glass of the flask neck in your blast lamp—and draw the neck
+out and downward into a thin little tube—turn this little tube
+down the way a swan bends his neck when he’s picking something
+out of the water. Then just leave the end of the tube
+open. It’s like this——” and Balard sketched a diagram:
+
+  
+
+Pasteur looked, then
+suddenly saw the magnificent
+ingeniousness of
+this little experiment.
+“Why, then microbes
+can’t fall into the flask,
+because the dust they
+stick to can’t very well
+fall upward—marvelous!
+I see it now!”
+
+“Exactly,” smiled Balard. “Try it and find out if it works—see
+you later,” and he left to continue his genial round of
+the laboratories.
+
+Pasteur had bottle washers and assistants now, and he ordered
+them to hurry and prepare the flasks. In a moment the
+laboratory was buzzing with the stuttering ear-shattering
+b-r-r-r-r-r of the enameler’s lamps; he fell to work savagely.
+He took flasks and put yeast soup into them and then melted
+their necks and drew them out and curved them downward—into
+swan’s necks and pigtails and Chinaman’s queues and a half-dozen
+fantastic shapes. Next he boiled the soup in them—that
+drove out all the air—but as the flasks cooled down new
+air came in—unheated air, perfectly clean air.
+
+The flasks ready, Pasteur crawled on his hands and knees,
+back and forth with a comical dignity on his hands and knees,
+carrying one flask at a time, through a low cubby hole under
+the stairs to his incubating oven. Next morning he was first at
+the laboratory, and in a jiffy, battered notebook in his hand,
+if you had been there you would have seen his rear elevation
+disappearing underneath the stairway. Like a beagle to its
+rabbit Pasteur was drawn to this oven with its swan neck
+flasks. Family, love, breakfast, and the rest of a silly world
+no longer existed for him.
+
+Had you still been there a half hour later, you would have
+seen him come crawling out, his eyes shining through his fogged
+glasses. He had a right to be happy, for every one of the long
+twisty necked bottles in which the yeast soup had been boiled
+was perfectly clear—there was not a living creature in them.
+The next day they remained the same and the next. There
+was no doubt now that Balard’s scheme had worked. There
+was no doubt that spontaneous generation was nonsense.
+“What a fine experiment is this experiment of mine—this
+proves that you can leave any kind of soup, after you’ve boiled
+it, you can leave it open to the ordinary air, and nothing will
+grow in it—so long as the air gets into it through a narrow
+twisty tube.”
+
+Balard came back and smiled as Pasteur poured the news
+of the experiment over him. “I thought it would work—you
+see, when the air comes back in, as the flask cools, the dusts
+and their germs start in through the narrow neck—but they
+get caught on the moist walls of the little tube.”
+
+“Yes, but how can we prove that?” puzzled Pasteur.
+
+“Just take one of those flasks that has been in your oven
+all these days, a flask where no living things have appeared,
+and shake that flask so that the soup sloshes over and back
+and forth into the swan’s neck part of it. Put it back in the
+oven, and next morning the soup will be cloudy with thick
+swarms of little beasts—children of the ones that were caught
+in the neck.”
+
+Pasteur tried it, and it was so! A little later at a brilliant
+meeting where the brains and wit and art of Paris fought to
+get in, Pasteur told of his swan neck flask experiment in rapturous
+words. “Never will the doctrine of Spontaneous Generation
+recover from the mortal blow that this simple experiment
+has dealt it,” he shouted. If Balard was there you may
+be sure he applauded as enthusiastically as the rest. A rare
+soul was Balard.
+
+Then Pasteur invented an experiment that was—so far as
+one can tell from a careful search through the records—really
+his own. It was a grand experiment, a semi-public experiment,
+an experiment that meant rushing across France in
+trains, it was a test in which he had to slither around on
+glaciers. Once more his laboratory became a shambles of
+cluttered flasks and hurrying assistants and tinkling glassware
+and sputtering, bubbling pots of yeast soup. Pasteur and his
+enthusiastic slaves—they were more like fanatic monks than
+slaves—were getting ready hundreds of round bellied bottles.
+They filled each one of them part full of yeast soup and then,
+during many hours that shot by like moments—such was
+their excitement—they doused each bottle for a few minutes in
+boiling water. And while the soup was boiling they drew the
+flask necks out in a spitting blue flame until they were sealed
+shut. Each one of this regiment of bottles held boiled yeast
+soup—and a vacuum.
+
+Armed with these dozens of flasks, and fussing about them,
+Pasteur started on his travels. He went down first into the
+dank cellars of the Observatory of Paris, that famous Observatory
+where worked the great Le Verrier, who had done
+the proud feat of prophesying the existence of the planet Neptune.
+“Here the air is so still, so calm,” said Pasteur to his
+boys, “that there will be hardly any dust in it, and almost no
+microbes.” Then, holding the flasks far away from their
+bodies, using forceps that had been heated red hot in a flame,
+they cracked the necks of ten of the flasks in succession; as
+the neck came off each one, there was a hissing “s-s-s-s” of
+air rushing in. At once they sealed the bottles shut again in
+the flickering flame of an alcohol lamp. They did the same
+stunt in the yard of the observatory with another ten bottles,
+then hurried back to the little laboratory to crawl under the
+stairs to put the bottles in the incubating oven.
+
+A few days later Pasteur might have been seen squatting
+before his oven, handling his rows of flasks lovingly, laughing
+his triumph with one of those extremely rare laughs of his—he
+only laughed when he found out he was right. He put down
+tiny scrawls in his notebook, and then crawled out of his
+cubby-hole to tell his assistants: “Nine out of ten of the bottles
+we opened in the cellar of the Observatory are perfectly
+clear—not a single germ got into them. All the bottles we
+opened in the yard are cloudy—swarming with living creatures.
+It’s the air that sucks them into the yeast soup—it’s the dust
+of the air they come in with!”
+
+He gathered up the rest of the bottles and hurried to the
+train—it was the time of the summer vacation when other
+professors were resting—and he went to his old home in the
+Jura mountains and climbed the hill of Poupet and opened
+twenty bottles there. He went to Switzerland and perilously
+let the air hiss into twenty flasks on the slopes of Mont Blanc;
+and found, as he had hoped, that the higher he went, the fewer
+were the flasks of yeast soup that became cloudy with swarms
+of microbes. “That is as it ought to be,” he cried, “the higher
+and clearer the air, the less dust—and the fewer the microbes
+that always stick to particles of the dust.” He came back
+proudly to Paris and told the Academy—with proofs that
+would astonish everybody!—that it was now sure that air
+alone could never cause living things to rise in yeast soup.
+“Here are germs, right beside them there are none, a little
+further on there are different ones ... and here where the
+air is perfectly calm there are none at all,” he cried. Then
+once more he set a new stage for possible magnificent exploits:
+“I would have liked to have gone up in a balloon to
+open my bottles still higher up!” But he didn’t go up in that
+balloon, for his hearers were already sufficiently astonished.
+Already they considered him to be more than a man of science;
+he became for them a composer of epic searchings, a Ulysses
+of microbe hunters—the first adventurer of that heroic age
+to which you will soon come in this story.
+
+Many times Pasteur won his arguments by brilliant experiments
+that simply floored every one, but sometimes his victories
+were due to the weakness or silliness of his opponents, and
+again they were the result of—luck. Before a society of chemists
+Pasteur had insulted the scientific ability of naturalists;
+he was astonished, he shouted, that naturalists didn’t stretch
+out a hand to the real way of doing science—that is, to experiments.
+“I am of the persuasion that that would put a new sap
+into their science,” he said. You can imagine how the naturalists
+liked that kind of talk; particularly Mr. Pouchet, director
+of the Museum of Rouen, did not like it and he was enthusiastically
+joined in not liking it by Professor Joly and Mr. Musset,
+famous naturalists of the College of Toulouse. Nothing
+could convince these enemies of Pasteur that microscopic
+beasts did not come to life without parents. They were sure
+there was such a thing as life arising spontaneously; they decided
+to beat Pasteur on his own ground at his own game.
+
+Like Pasteur they filled up some flasks, but unlike him they
+used a soup of hay instead of yeast, they made a vacuum in
+their bottles and hastened to high Maladetta in the Pyrenees,
+and they kept climbing until they had got up many feet higher
+than Pasteur had been on Mont Blanc. Here, beaten upon by
+nasty breezes that howled out of the caverns of the glaciers
+and sneaked through the thick linings of their coats, they
+opened their flasks—Mr. Joly almost slid off the edge of the
+ledge and was only saved from a scientific martyr’s death when
+a guide grabbed him by the coat tail! Out of breath and
+chilled through and through they staggered back to a little
+tavern and put their flasks in an improvised incubating oven—and
+in a few days, to their joy, they found every one of their
+bottles swarming with little creatures. Pasteur was wrong!
+
+Now the fight was on. Pasteur became publicly sarcastic
+about the experiments of Pouchet, Joly and Musset; he made
+criticisms that to-day we know are quibbles. Pouchet came
+back with the remark that Pasteur “had presented his own
+flasks as an ultimatum to science to astonish everybody.” Pasteur
+was furious, denounced Pouchet as a liar and bawled for a
+public apology. It seemed, alas, as if the truth were going to
+be decided by the spilling of blood, instead of by calm experiment.
+Then Pouchet and Joly and Musset challenged Pasteur
+to a public experiment before the Academy of Sciences, and
+they said that if one single flask would fail to grow microbes
+after it had been opened for an instant, they would admit they
+were wrong. The fatal day for the tests dawned at last—what
+an interesting day it would have been—but at the last moment
+Pasteur’s enemies backed down. Pasteur did his experiments
+before the Commission—he did them confidently with ironical
+remarks—and a little while later the Commission announced:
+“The facts observed by Mr. Pasteur and contested by Messrs.
+Pouchet, Joly and Musset, are of the most perfect exactitude.”
+
+Luckily for Pasteur, but alas for Truth, both sides happened
+to be right. Pouchet and his friends had used hay instead of
+yeast soup, and a great Englishman, Tyndall, found out years
+later that hay holds wee stubborn seeds of microbes that will
+stand boiling for hours! It was really Tyndall that finally settled
+this great quarrel; it was Tyndall that proved Pasteur was
+right.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

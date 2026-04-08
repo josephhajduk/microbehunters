@@ -1,0 +1,257 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch12_sec03
+**Chapter 12:** Paul Ehrlich — The Magic Bullet
+**Section 3 of this chapter**
+**Word count:** 1146
+**Total paragraphs:** 7
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Such was the gayety of Paul Ehrlich, and such his modesty—for he was always making straight-faced jo..."
+  P2: "But laws? He would make an experiment. It would turn out beautifully. “You see! here is the reason o..."
+  P3: "So, in 1899, when he was forty-five, if he had died then, Ehrlich would certainly still have been ca..."
+  P4: "Reading this history, you might think there was only one good kind of microbe hunter: the kind of se..."
+  P5: "He lived among scientific books and subscribed to every chemical journal in every language he could ..."
+  P6: "So now, in 1901, at the beginning of his eight-year search for the magic bullet he read of the resea..."
+  P7: "But reading this was enough to get Ehrlich started. “Ho! here is an excellent microbe to work with! ..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+III
+
+Such was the gayety of Paul Ehrlich, and such his modesty—for
+he was always making straight-faced jokes at his own
+ridiculousness—that he easily won friends, and he was a crafty
+man too and saw to it that certain of these friends were men in
+high places. Presently, in 1896, he was director of a laboratory
+of his own; it was called the Royal Prussian Institute for
+Serum Testing. It was at Steglitz, near Berlin, and it had one
+little room that had been a bakery and another little room that
+had been a stable. “It is because we are not exact that we
+fail!” cried Ehrlich, remembering the bubble of the vaccines
+of Pasteur which had burst, and the balloon of the serums of
+Behring which had been pricked. “There must be mathematical
+laws to govern the doings of these poisons and vaccines and
+antitoxins!” he insisted, so this man with the erratic imagination
+walked up and down in those two dark rooms, smoking,
+explaining, expostulating, and measuring as accurately as God
+would let him with drops of poison broth and calibrated tubes
+of healing serum.
+
+But laws? He would make an experiment. It would turn
+out beautifully. “You see! here is the reason of it!” he would
+say, and draw a queer picture of what a toxin must look like
+and what the chemistry of a body cell must look like, but as he
+went on working, as regiments of guinea-pigs marched to their
+doom, Paul Ehrlich found more exceptions to his simple
+theories than agreements with them. That didn’t bother him,
+for, such was his imagination, that he invented new little supporting
+laws to take care of the exceptions, he drew stranger
+and stranger pictures, until his famous “Side-Chain” theory of
+immunity became a crazy puzzle, which could explain hardly
+anything, which could predict nothing at all. To his dying day
+Paul Ehrlich believed in his silly side-chain theory of immunity;
+from all parts of the world critics knocked that theory to smithereens—but
+he never gave it up; when he couldn’t find experiments
+to destroy his critics he argued at them with enormous
+hair-splittings like Duns Scotus and St. Thomas Aquinas.
+When he was beaten in these arguments at medical congresses
+it was his custom to curse—gayly—at his antagonist all the
+way home. “You see, my dear colleague!” he would cry, “that
+man is a SHAMELESS BADGER!” Every few minutes, at
+the top of his voice he yelled this, defying the indignant conductor
+to put him off the train.
+
+So, in 1899, when he was forty-five, if he had died then,
+Ehrlich would certainly still have been called a failure. His
+efforts to find laws for serums had resulted in a collection of
+fantastic pictures that nobody took very seriously, they certainly
+had done nothing to turn feebly curative serums into
+powerful ones—what to do? First, this to do, thought Ehrlich,
+and he pulled his wires and cajoled his influential friends, and
+presently the indispensable and estimable Mr. Kadereit, his
+chief cook and bottle-washer, was dismounting that laboratory
+at Steglitz—they were moving to Frankfort-on-the-Main, away
+from the vast medical schools and scientific buzzings of Berlin.
+What to do? Well, Frankfort was near those factories where
+the master-chemists turned out their endless bouquets of pretty
+colors—what could be more important for Paul Ehrlich? Then
+there were rich Jews in Frankfort, and these rich Jews were
+famous for their public spirit, and money—Geld, that was one
+of his four big “G’s,” along with Geduld—patience, Geshick—cleverness
+and Glück—luck, which Ehrlich always said were
+needed to find the magic bullet. So Paul Ehrlich came to
+Frankfort-on-the-Main, or rather, “WE came to Frankfort-on-the-Main,”
+said the valuable Mr. Kadereit, who had the very
+devil of a time moving all of those dyes and that litter of be-penciled
+and dog-eared chemical journals.
+
+Reading this history, you might think there was only one
+good kind of microbe hunter: the kind of searcher who stood
+on his own absolutely, who paid little attention to the work of
+other microbe hunters, who read nature and not books. But
+Paul Ehrlich was not that kind of man! He rarely observed
+nature, unless it was the pet toad in his garden, whose activities
+helped Ehrlich to prophesy the weather—it was Mr. Kadereit’s
+first duty to bring plenty of flies to that toad.... No,
+Paul Ehrlich got his ideas out of books.
+
+He lived among scientific books and subscribed to every
+chemical journal in every language he could read, and in several
+he couldn’t read. Books littered his laboratory so that
+when visitors came and Ehrlich said: “I beg you, be seated!”
+there was no place for them to sit at all. Journals stuck out
+of the pockets of his overcoat—when he remembered to wear
+one—and the maid, bringing his coffee in the morning, fell over
+ever-growing mountains of books in his bedroom. Books, with
+the help of those expensive cigars, kept Paul Ehrlich poor.
+Mice built nests in the vast piles of books on the old sofa in
+his office. When he wasn’t painting the insides of his animals
+and the outside of himself with his dyes, he was peering in
+these books. And what was important inside of those books,
+was in the brain of Paul Ehrlich, ripening, changing itself into
+those outlandish ideas of his, waiting to be used. That was
+where Paul Ehrlich got his ideas—you would never accuse him
+of stealing the ideas of others!—and queer things happened to
+those ideas of others when they stewed in Ehrlich’s brain.
+
+So now, in 1901, at the beginning of his eight-year search
+for the magic bullet he read of the researches of Alphonse
+Laveran. Laveran was the man, you remember, who discovered
+the malaria microbe, and very lately Laveran had taken
+to fussing with trypanosomes. He had shot those finned devils,
+which do evil things to the hind-quarters of horses and give
+them a disease called the mal de Caderas, into mice. Laveran
+had watched those trypanosomes kill those mice, one hundred
+times out of one hundred. Then Laveran had injected arsenic
+under the skins of some of those suffering mice. That had
+helped them a little, and killed many of the trypanosomes that
+gnawed at them, but not one of these mice ever got really better;
+one hundred out of one hundred died and that was as far
+as Alphonse Laveran ever got.
+
+But reading this was enough to get Ehrlich started. “Ho!
+here is an excellent microbe to work with! It is large and easy
+to see. It is easy to grow in mice. It kills them with the most
+beautiful regularity! It always kills mice! What could be a
+better microbe than this trypanosome to use to try to find a
+magic bullet to cure? Because, if I could find a dye that would
+save, completely save, just one mouse!”
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

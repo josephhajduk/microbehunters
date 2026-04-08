@@ -1,0 +1,495 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch10_sec06
+**Chapter 10:** Ross vs. Grassi — Malaria
+**Section 6 of this chapter**
+**Word count:** 2773
+**Total paragraphs:** 38
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "You might know Giovanni Battista Grassi would be the man to do what Ronald Ross had not quite succee..."
+  P2: "Before Ronald Ross knew that anybody had ever thought of mosquitoes carrying malaria, Grassi had had..."
+  P3: "In 1898, the year of the triumph of Ronald Ross, Grassi, knowing nothing of Ross, never having heard..."
+  P4: "Koch was an extremely grumpy, quiet, and restless man now; sad because of the affair of his consumpt..."
+  P5: "“There are places in Italy where mosquitoes are absolutely pestiferous—but there is no malaria at al..."
+  P6: "“Well—what of it?”"
+  P7: "“Right off, that would make you think mosquitoes had nothing to do with malaria,” said Battista Gras..."
+  P8: "“So?”... Koch was enough to throw cold water on any logic!"
+  P9: "“Yes—but here is the point,” persisted Grassi, “I have not found a single place where there is malar..."
+  P10: "“What of that?”"
+  P11: "“This of that!” shouted Battista Grassi. “Either malaria is carried by one special particular blood-..."
+  P12: "“Hrrrm-p,” said Koch."
+  P13: "So Grassi made no hit with Robert Koch, and so Koch and Grassi went their two ways, Grassi muttering..."
+  P14: "That was the homely reasoning of Battista Grassi. He compared himself to a village policeman trying ..."
+  P15: "His lectures for the year 1898 at the University of Rome over, he was a conscientious man who always..."
+  P16: "So it was he cleared a dozen or twenty different mosquitoes of the suspicion of the crime of malaria..."
+  P17: "You will grant this was a most outlandish microbe hunting of Grassi’s. He went around making a nuisa..."
+  P18: "“No,” the indignant head of the house might tell him, “we suffer from malaria—but we are not bothere..."
+  P19: "So it was—it is most fantastical—that Battista Grassi went more than two-thirds of the way to solvin..."
+  P20: "“Zan-za-ro-ne, we call that kind of mosquito,” the householders told him."
+  P21: "Always, where the “zan-za-ro-ne” buzzed, there Grassi found deep flushed faces on rumpled beds, or f..."
+  P22: "There was no mistaking this mosquito, zanzarone, once you had spotted her; she was a frivolous gnat ..."
+  P23: "“I’ll try them on myself!” Grassi cried. He went up north to his home in Rovellasca. He taught boys ..."
+  P24: "Then Grassi went back to Rome to his lectures, and on September 28th of 1898, before ever he had don..."
+  P25: "Then came an exciting autumn for Battista Grassi and an entertaining autumn for the wits of Rome, an..."
+  P26: "Grassi and Bignami and Bastianelli started off, strangely enough, with those two minor mosquito susp..."
+  P27: "Nothing happened. Sola was a tough man. Sola showed not a sign of malaria."
+  P28: "(It is not clear why Grassi did not start off by loosing his zanzarone at this Mr. Sola.)"
+  P29: "Maybe it was because Robert Koch had laughed publicly at this idea of the zanzarone—Grassi does admi..."
+  P30: "But, one fine morning, Grassi hurried out of Rome to Moletta and came back with a couple of little b..."
+  P31: "“The rest of the history of Sola’s case has no interest for us,” wrote Grassi, “but it is now certai..."
+  P32: "Over the country went Grassi once more, chasing zanzarone, hoarding zanzarone: in his laboratory he ..."
+  P33: "It was an itchy autumn and an exciting one. The newspapers became sarcastic and hinted that the bloo..."
+  P34: "By now Grassi had read of those experiments of Ronald Ross with birds. “Pretty crude stuff!” thought..."
+  P35: "“By following my own way I have discovered that a special mosquito carried human malaria!” he cried,..."
+  P36: "So Grassi raised baby zanzarone. He let them hatch out in a room, and every evening in this room, fo..."
+  P37: "“It is not the mosquito’s children, but only the mosquito who herself bites a malaria sufferer—it is..."
+  P38: "Grassi was as persistent as Ronald Ross had been erratic. He plugged up every little hole in his the..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VI
+
+You might know Giovanni Battista Grassi would be the man
+to do what Ronald Ross had not quite succeeded in bringing
+off. He had been educated for a doctor, at Pavia where that
+glittering Spallanzani had held forth amid applause a hundred
+years before. Grassi had been educated for a doctor (Heaven
+knows why) because he had no sooner got his license than he
+set himself up in business as a searcher in zoölogy. With a
+certain amount of sniffishness he always insisted: “I am a zoologo—not
+a medico!” Deliberate as a glacier, precise as a
+ship’s chronometer, he started finding answers to the puzzles
+of nature. Correct answers! His works were pronounced
+classics right after he published them—but it was his habit
+not to publish them for years after he started to do them. He
+made known the secret comings and goings of the Society of
+the White Ants—not only this, but he discovered microbes that
+plagued and preyed upon these white ants. He knew more
+than any man in the world about eels—and you may believe
+it took a searcher with the insight of a Spallanzani to trace out
+the weird and romantic changes that eels undergo to fulfill
+their destiny as eels. Grassi was not strong. He had abominable
+eyesight. He was full of an argumentative petulance.
+He was a contradictory combination of a man too modest to
+want his picture in the papers but bawling at the same time for
+the last jot and tittle of credit for everything that he did. And
+he did everything. Already, when he was only twenty-nine, before
+Ross had dreamt of becoming a searcher, Battista Grassi
+was a professor, and had published his famous monograph
+upon the Chaetognatha (I do not know what they are!).
+
+Before Ronald Ross knew that anybody had ever thought of
+mosquitoes carrying malaria, Grassi had had the idea, had
+taken a whirl at experiments on it, but had used the wrong
+mosquito, and failed. But that failure started ideas stewing
+in his head while he worked at other things—and how he
+worked! Grassi detested people who didn’t work. “Mankind,”
+he said, “is composed of those who work, those who pretend
+to work, and those who do neither.” He was ready to admit
+that he belonged in the first class, and it is entirely certain
+that he did belong there.
+
+In 1898, the year of the triumph of Ronald Ross, Grassi,
+knowing nothing of Ross, never having heard of Ross, went
+back at malaria again. “Malaria is the worst problem Italy
+has to face! It desolates our richest farms! It attacks millions
+in our lush lowlands! Why don’t you solve that problem?”
+So the politicians, to Battista Grassi. Then too, the
+air was full of whispers of the possibility that I don’t know
+how many different diseases might be carried from man to
+man by insects. There was that famous work of Theobald
+Smith, and Grassi had an immense respect for Theobald Smith.
+But what probably finally set Grassi working at malaria—you
+must remember he was a very patriotic and jealous man—was
+the arrival of Robert Koch. Dean of the microbe
+hunters of the world, Tsar of Science (his crown was only a
+little battered) Koch had come to Italy to prove that mosquitoes
+carry malaria from man to man.
+
+Koch was an extremely grumpy, quiet, and restless man
+now; sad because of the affair of his consumption cure (which
+had killed a considerable number of people); restless after the
+scandal of his divorce from Emmy Fraatz. So Koch went
+from one end of the world to the other, offering to conquer
+plagues but not quite succeeding, trying to find happiness and
+not quite reaching it. His touch faltered a little.... And
+now Koch met Battista Grassi, and Grassi said to Robert
+Koch:
+
+“There are places in Italy where mosquitoes are absolutely
+pestiferous—but there is no malaria at all in those places!”
+
+“Well—what of it?”
+
+“Right off, that would make you think mosquitoes had
+nothing to do with malaria,” said Battista Grassi.
+
+“So?”... Koch was enough to throw cold water on any
+logic!
+
+“Yes—but here is the point,” persisted Grassi, “I have not
+found a single place where there is malaria—where there aren’t
+mosquitoes too!”
+
+“What of that?”
+
+“This of that!” shouted Battista Grassi. “Either malaria
+is carried by one special particular blood-sucking mosquito,
+out of the twenty or forty kinds of mosquitoes in Italy—or it
+isn’t carried by mosquitoes at all!”
+
+“Hrrrm-p,” said Koch.
+
+So Grassi made no hit with Robert Koch, and so Koch and
+Grassi went their two ways, Grassi muttering to himself:
+“Mosquitoes—without malaria ... but never malaria—without
+mosquitoes! That means one special kind of mosquito!
+I must discover the suspect....”
+
+That was the homely reasoning of Battista Grassi. He compared
+himself to a village policeman trying to discover the
+criminal in a village murder. “You wouldn’t examine the whole
+population of a thousand people one by one!” muttered Grassi.
+“You would try to locate the suspicious rogues first....”
+
+His lectures for the year 1898 at the University of Rome
+over, he was a conscientious man who always gave more lectures
+than the law demanded, he needed a rest, and on the 15th
+of July he took it. Armed with sundry fat test-tubes and a
+notebook, he sallied out from Rome to those low hot places
+and marshy desolations where no man but an idiot would go
+for a vacation. Unlike Ross, this Grassi was a mosquito expert
+besides everything else that he was. His eyes—so red-rimmed
+and weak—were exceedingly sharp at spotting every
+difference between the thirty-odd different kinds of mosquitoes
+that he met. He went around with the fat test-tube in his
+hand, his ear cocked for buzzes. The buzz dies away as the
+mosquito lights. She has lit in an impossible place. Or she
+has lit in a disgusting place. No matter, Battista Grassi is up
+behind her, pounces on her, claps his fat test-tube over her,
+puts a grubby thumb over the mouth of the test-tube, paws
+over his prize and pulls her apart, scrawls little cramped pothooks
+in his notebook. That was Battista Grassi, up and
+down and around the nastiest places in Italy all that summer.
+
+So it was he cleared a dozen or twenty different mosquitoes
+of the suspicion of the crime of malaria—he was always finding
+these beasts in places where there was no malaria. He ruled
+out two dozen different kinds of gray mosquitoes and brindled
+mosquitoes, that he found anywhere—in saloons and bedrooms
+and the sacristies of cathedrals, biting babies and nuns and
+drunkards. “You are innocent!” shouted Battista Grassi at
+these mosquitoes. “For where you are none of these nuns or
+babies or drunkards suffers from malaria!”
+
+You will grant this was a most outlandish microbe hunting
+of Grassi’s. He went around making a nuisance of himself.
+He insinuated himself into the already sufficiently annoyed
+families of those hot malarious towns. He snooped annoyingly
+into the affairs of these annoyed families: “Is there malaria in
+your house?... Has there ever been malaria in your house?...
+How many have never had malaria in your house ...
+how many mosquito bites did your sick baby have last
+week?... What kind of mosquitoes bit him?” He was utterly
+without a sense of humor. And he was annoying.
+
+“No,” the indignant head of the house might tell him, “we
+suffer from malaria—but we are not bothered by mosquitoes!”
+Battista Grassi would never take his word for that. He snouted
+into pails and old crocks in the back yards. He peered beneath
+tables and behind sacred images and under beds. He even discovered
+mosquitoes hiding in shoes under those beds....
+
+So it was—it is most fantastical—that Battista Grassi went
+more than two-thirds of the way to solving this puzzle of how
+malaria gets from sick men to healthy ones before he had ever
+made a single experiment in his laboratory! For, everywhere
+where there was malaria, there were mosquitoes. And such
+mosquitoes! They were certainly a very special definite sort
+of blood-sucking mosquito Grassi found.
+
+“Zan-za-ro-ne, we call that kind of mosquito,” the householders
+told him.
+
+Always, where the “zan-za-ro-ne” buzzed, there Grassi found
+deep flushed faces on rumpled beds, or faces with chattering
+teeth going towards those beds. Always where that special and
+definite mosquito sang at twilight, Grassi found fields waiting
+for some one to till them, and from the houses of the little villages
+that sat in these fields, he saw processions emerging, and
+long black boxes....
+
+There was no mistaking this mosquito, zanzarone, once you
+had spotted her; she was a frivolous gnat that flew up from the
+marshes towards the lights of the towns; she was an elegant
+mosquito proud of four dark spots on her light brown wings;
+she was not a too dignified insect who sat in an odd way with
+the tail-end of her body sticking up in the air [that was one
+way he could spot her, for the Culex mosquitoes drooped their
+tails]; she was a brave blood-sucker who thought: “The bigger
+they are the more blood I get out of them!” So zanzarone
+preferred horses to men and men to rabbits. That was zanzarone,
+and the naturalists had given her the name Anopheles
+claviger many years before. Anopheles claviger! This became
+the slogan of Battista Grassi. You can see him, shuffling
+along behind lovers in the dusk, making fists of his fingers
+to keep himself from pouncing on the zanzarone who made
+meals off their regardless necks.... You can see this Grassi,
+sitting in a stagecoach with no springs, oblivious to bumps,
+deaf to the chatter of his fellow-passengers, with absent eyes
+counting the Anopheles claviger he had discovered—with delight—riding
+on the ceiling of the wagon in which he journeyed
+from one utterly terrible little malarious village to another still
+more cursed.
+
+  
+
+“I’ll try them on myself!” Grassi cried. He went up north
+to his home in Rovellasca. He taught boys how to spot the
+anopheles mosquito. The boys brought boxes full of these she-zanzarone
+from towns where malaria rages. Grassi took these
+boxes to his bedroom, put on his night shirt, opened the boxes,
+crawled into bed—but curse it! not one of the zanzarone bit
+him. Instead they flew out of his room and bit Grassi’s
+mother, “fortunately without ill effect!”
+
+Then Grassi went back to Rome to his lectures, and on September
+28th of 1898, before ever he had done a single serious
+experiment, he read his paper before the famous and ancient
+Academy of the Lincei: “It is the anopheles mosquito that
+carries malaria if any mosquito carries malaria....” And
+he told them he was suspicious of two other brands of mosquitoes—but
+that was absolutely all, out of the thirty or forty
+different tribes that infected the low places of Italy.
+
+Then came an exciting autumn for Battista Grassi and an
+entertaining autumn for the wits of Rome, and a most important
+autumn for mankind. Besides all that it was a most
+itchy autumn for Mr. Sola, who for six years had been a patient
+of Dr. Bastianelli in the Hospital of the Holy Spirit, high up
+on the top floor of this hospital that sat on a high hill of Rome.
+Here zanzarone never came. Here nobody ever got malaria.
+Here was the place for experiments. And here was Mr. Sola,
+who had never had malaria, every twist and turn of whose
+health Dr. Bastianelli knew, who told Battista Grassi that he
+would not mind being shut up with three different brands of
+hungry she-mosquitoes every night for a month.
+
+Grassi and Bignami and Bastianelli started off, strangely
+enough, with those two minor mosquito suspects—those two
+culexes that Grassi had discovered always hanging around
+malarious places along with the zanzarone.... They tortured
+Mr. Sola each night with hundreds of these mosquitoes. They
+shut poor Mr. Sola up in that room with those devils and turned
+off the light....
+
+Nothing happened. Sola was a tough man. Sola showed not
+a sign of malaria.
+
+(It is not clear why Grassi did not start off by loosing his
+zanzarone at this Mr. Sola.)
+
+Maybe it was because Robert Koch had laughed publicly
+at this idea of the zanzarone—Grassi does admit that discouraged
+him.
+
+But, one fine morning, Grassi hurried out of Rome to Moletta
+and came back with a couple of little bottles in which
+buzzed ten fine female anopheles mosquitoes. That night Mr.
+Sola had a particularly itchy time of it. Ten days later this
+stoical old gentleman shook horribly with a chill, his body temperature
+shot up into a high fever—and his blood swarmed
+with the microbes of malaria.
+
+“The rest of the history of Sola’s case has no interest for us,”
+wrote Grassi, “but it is now certain that mosquitoes can carry
+malaria, to a place where there are no mosquitoes in nature, to
+a place where no case of malaria has ever occurred, to a man
+who has never had malaria—Mr. Sola!”
+
+Over the country went Grassi once more, chasing zanzarone,
+hoarding zanzarone: in his laboratory he tenderly raised zanzarone
+on winter-melons and sugar-water; and in the top of
+the hospital of the Holy Spirit, in those high mosquito-proof
+rooms, Grassi and Bastianelli (to say nothing of another assistant,
+Bignami) loosed zanzarone into the bedrooms of people
+who had never had malaria—and so gave them malaria.
+
+It was an itchy autumn and an exciting one. The newspapers
+became sarcastic and hinted that the blood of these
+poor human experimental animals would be on the heads of
+these three conspirators. But Grassi said: to the devil with
+the newspapers, he cheered when his human animals got sick,
+he gave them doses of quinine as soon as he was sure his zanzarone
+had given them malaria, and then “their histories had
+no further interest for him.”
+
+By now Grassi had read of those experiments of Ronald
+Ross with birds. “Pretty crude stuff!” thought this expert
+Grassi, but when he came to look for those strange doings of
+the circles and warts and spindle-shaped threads in the stomachs
+and saliva-glands of his she-anopheles, he found that
+Ronald Ross was exactly right! The microbe of human
+malaria in the body of his zanzarone did exactly the same
+things the microbe of bird malaria had done in the bodies of
+those mosquitoes Ronald Ross hadn’t known the names of.
+Grassi didn’t waste too much time praising Ronald Ross, who,
+Heaven knows, deserved praise, needed praise, and above all
+wanted praise. Not Grassi!
+
+“By following my own way I have discovered that a special
+mosquito carried human malaria!” he cried, and then he set
+out—“It is with great regret I do this,” he explained—to demolish
+Robert Koch. Koch had been fumbling and muddling.
+Koch thought malaria went from man to man just as Texas
+fever traveled from cow to cow. Koch believed baby mosquitoes
+inherited malaria from their mothers, bit people, and
+so infected them. And Koch had sniffed at the zanzarone.
+
+So Grassi raised baby zanzarone. He let them hatch out in
+a room, and every evening in this room, for four months, sat
+this Battista Grassi with six or seven of his friends. What
+friends he must have had! For every evening they sat there
+in the dusk, barelegged with their trousers rolled up to their
+knees, bare-armed with their shirt sleeves rolled up to their
+elbows. Some of these friends, whom the anopheles relished
+particularly, were stabbed every night fifty or sixty times! So
+Grassi demolished Robert Koch, and so he proved his point,
+because, though the baby anopheles were children of mother
+mosquitoes who came from the most pestiferous malaria holes
+in Italy, not one of Grassi’s friends had a sign of malaria!
+
+“It is not the mosquito’s children, but only the mosquito
+who herself bites a malaria sufferer—it is only that mosquito
+who can give malaria to healthy people!” cried Grassi.
+
+Grassi was as persistent as Ronald Ross had been erratic.
+He plugged up every little hole in his theory that anopheles is
+the one special and particular mosquito to bring malaria to
+men. By a hundred air-tight experiments he proved the
+malaria of birds could not be carried by the mosquitoes who
+brought it to men and that the malaria of men could never be
+strewn abroad by the mosquitoes who brought it to birds.
+Nothing was too much trouble for this Battista Grassi! He
+knew as much about the habits and customs and traditions of
+those zanzarone as if he himself were a mosquito and the king
+and ruler of mosquitoes....
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

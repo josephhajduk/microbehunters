@@ -1,0 +1,395 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch11_sec04
+**Chapter 11:** Walter Reed — In the Interest of Science—and for Humanity!
+**Section 4 of this chapter**
+**Word count:** 2173
+**Total paragraphs:** 23
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Then Reed came back to Cuba, and Carroll met him with enthusiasm, and Walter Reed was sad for Lazear..."
+  P2: "“Now it is my turn to take the bite!” said Walter Reed, but he was fifty years old, and they persuad..."
+  P3: "“But we must prove it,” said that soft voice, and Reed went to General Leonard Wood, and told him th..."
+  P4: "Now, nothing is more sure than this: that every man of the great line of microbe hunters is differen..."
+  P5: "And he was exact. Every man about to be bit by a mosquito must stay locked up for days and days and ..."
+  P6: "Walter Reed was a thoroughly conscientious man. “But, men, do you realize the danger?” And he told t..."
+  P7: "“We know,” said Private Kissenger and John J. Moran of Ohio, “we volunteer solely for the cause of h..."
+  P8: "Then Walter Reed told them of the generosity of General Wood. A handsome sum of money they would get..."
+  P9: "“The one condition on which we volunteer, sir,” said Private Kissenger and civilian clerk John J. Mo..."
+  P10: "To the tip of his cap went the hand of Walter Reed (who was a major): “Gentlemen, I salute you!” And..."
+  P11: "“Rejoice with me, sweetheart,” Walter Reed wrote to his wife, “as, aside from the antitoxin of dipht..."
+  P12: "Walter Reed was so thorough that you can call him original, as original as any of the microbe hunter..."
+  P13: "“But can yellow fever be carried in any other way?” asked Reed."
+  P14: "Everybody believed that clothing and bedding and possessions of yellow fever victims were deadly—mil..."
+  P15: "That night, of the thirtieth of November, Walter Reed and James Carroll were the witnesses of a mira..."
+  P16: "Those three men opened the tightly nailed, suspicious-looking boxes. They opened those boxes inside ..."
+  P17: "Phew! There were cursings, there were holdings of noses."
+  P18: "But they went on opening those boxes, and out of them Cooke and Folk and Jernegan took pillows, soil..."
+  P19: "Night after night those three lay in that house, wondering perhaps about the welfare of the souls of..."
+  P20: "But they went back in, and they went to sleep...."
+  P21: "For twenty nights—where are their monuments?—these three men stayed there, and then they were quaran..."
+  P22: "But they all stayed fit as fiddles! Not a soul of these nine men had so much as a touch of yellow fe..."
+  P23: "For these deeds Warren Gladsden Jernegan and Levi E. Folk were generously rewarded with a purse of t..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+IV
+
+Then Reed came back to Cuba, and Carroll met him with enthusiasm,
+and Walter Reed was sad for Lazear, but very happy
+about those two successful cases of Carroll and X.Y.—and then,
+and then (brushing aside tears for Lazear) even in that there
+was the Hand of God, there was something for Science: “As
+Dr. Lazear was bitten by a mosquito while present in the wards
+of a yellow fever hospital,” wrote Walter Reed, “one must, at
+least, admit the possibility of this insect’s contamination by a
+previous bite of a yellow fever patient. This case of accidental
+infection therefore cannot fail to be of interest....”
+
+“Now it is my turn to take the bite!” said Walter Reed, but
+he was fifty years old, and they persuaded him not to. “But
+we must prove it!” he insisted, so gently, that, hearing his musical
+voice and looking at his chin that did not stick out like the
+chin of a he-man, you might think Walter Reed was wavering
+(after all, here was one man dead out of three).
+
+“But we must prove it,” said that soft voice, and Reed went
+to General Leonard Wood, and told him the exciting events that
+had happened. Who could be less of a mollycoddle than this
+Wood? And he gave Walter Reed permission to go as far as
+he liked. He gave him money to build a camp of seven tents
+and two little houses—to say nothing of a flagpole—but what
+was best of all Wood gave him money to buy men, who would
+get handsomely paid for taking a sure one chance out of five of
+never having a chance to spend that money! So Walter Reed
+said: “Thank you, General,” and one mile from Quemados they
+pitched seven tents and raised a flagpole, and flew an American
+flag and called that place Camp Lazear (three cheers for
+Lazear!), and you will see what glorious things occurred
+there.
+
+Now, nothing is more sure than this: that every man of the
+great line of microbe hunters is different from every other man
+of them, but every man Jack of them has one thing in common:
+they are original. They were all original, excepting Walter
+Reed—whom you cannot say would be shot for his originality,
+seeing that this business of mosquitoes and various bugs and
+ticks carrying diseases was very much in the air in those last ten
+years of the nineteenth century. It was natural for a man to
+think of that! But he was by all odds the most moral of the
+great line of microbe hunters—aside from being a very thorough
+clean-cut experimenter—and now that Walter Reed’s moral nature
+told him: “You must kill men to save them!” he set out to
+plan a series of air-tight tests—never was there a good man who
+thought of more hellish and dastardly tests!
+
+And he was exact. Every man about to be bit by a mosquito
+must stay locked up for days and days and weeks, in that sunbaked
+Camp Lazear—to keep him away from all danger of accidental
+contact with yellow fever. There would be no catch
+in these experiments! And then Walter Reed let it be known,
+to the American soldiers in Cuba, that there was another war
+on, a war for the saving of men—were there men who would
+volunteer? Before the ink was dry on the announcements Private
+Kissenger of Ohio stepped into his office, and with him
+came John J. Moran, who wasn’t even a soldier—he was a
+civilian clerk in the office of General Fitzhugh Lee. “You can
+try it on us, sir!” they told him.
+
+Walter Reed was a thoroughly conscientious man. “But,
+men, do you realize the danger?” And he told them of the
+headaches and the hiccups and the black vomit—and he told
+them of fearful epidemics in which not a man had lived to
+carry news or tell the horrors....
+
+“We know,” said Private Kissenger and John J. Moran of
+Ohio, “we volunteer solely for the cause of humanity and in the
+interest of science.”
+
+Then Walter Reed told them of the generosity of General
+Wood. A handsome sum of money they would get—two hundred,
+maybe three hundred dollars, if the silver-striped she-mosquitoes
+did things to them that would give them one chance out
+of five not to spend that money.
+
+“The one condition on which we volunteer, sir,” said Private
+Kissenger and civilian clerk John J. Moran of Ohio, “is that we
+get no compensation for it.”
+
+To the tip of his cap went the hand of Walter Reed (who was
+a major): “Gentlemen, I salute you!” And that day Kissenger
+and John J. Moran went into the preparatory quarantine, that
+would make them first-class, unquestionable guinea-pigs, above
+suspicion and beyond reproach. On the 5th of December Kissenger
+furnished nice full meals for five mosquitoes—two of
+them had bitten fatal cases fifteen days and nineteen days before.
+Presto! Five days later he had the devil of a backache,
+two days more and he was turning yellow—it was a perfect case,
+and in his quarters Walter Reed thanked God, for Kissenger got
+better! Then great days came to Reed and Carroll and Agramonte—for,
+if they weren’t exactly overrun with young Americans
+who were ready to throw away their lives in the interest
+of science—and for humanity—still there were ignorant people,
+just come to Cuba from Spain, who could very well use two
+hundred dollars. There were five of these mercenary fellows—whom
+I shall simply have to call “Spanish immigrants,” or I
+could call them Man 1, 2, 3, and 4—just as microbe hunters
+often mark animals: “Rabbit 1, 2, 3, and 4—” anyway they
+were bitten, carefully, by mosquitoes who, when you take averages,
+were much more dangerous than machine gun bullets.
+They earned their two hundred dollars—for four out of five of
+them had nice typical (doctors would look scientific and call
+them beautiful) cases of yellow fever! It was a triumph! It
+was sure! Not one of these men had been anywhere near yellow
+fever—like so many mice they had been kept in their screened
+tents at Quemados. If they hadn’t been ignorant immigrants—hardly
+more intelligent than animals, you might say—they
+might have been bored, because nothing had happened to them
+excepting—the stabs of silver-striped she-mosquitoes....
+
+“Rejoice with me, sweetheart,” Walter Reed wrote to his
+wife, “as, aside from the antitoxin of diphtheria and Koch’s discovery
+of the tubercle bacillus, it will be regarded as the most
+important piece of work, scientifically, during the nineteenth
+century....”
+
+Walter Reed was so thorough that you can call him original,
+as original as any of the microbe hunters of the great line—for
+he was certainly original in his thoroughness. He might
+have called it a day—you would swear he was tempted to call
+it a day: eight men had got yellow fever from mosquito bites,
+and only one—what amazing luck!—had died.
+
+“But can yellow fever be carried in any other way?” asked
+Reed.
+
+Everybody believed that clothing and bedding and possessions
+of yellow fever victims were deadly—millions of dollars
+worth of clothing and bedding had been destroyed; the Surgeon-General
+believed it; every eminent physician in America,
+North, South and Central (excepting that old fool Finlay)
+believed it. “But can it?” asked Reed, and while he was
+being so joyfully successful with Kissenger and Spaniards 1, 2,
+3, and 4, carpenters came, and built two ugly little houses in
+Camp Lazear. House No. 1 was the nastier of these two little
+houses. It was fourteen feet by twenty, it had two doors
+cleverly arranged one back of the other so no mosquitoes could
+get into it, it had two windows looking south—they were on
+the same side as the door, so no draft could blow through
+that little house. Then it was furnished with a nice stove, to
+keep the temperature well above ninety, and there were tubs of
+water in the house—to keep the air as chokey as the hold of a
+ship in the tropics. So you see it was an uninhabitable little
+house—under the best of conditions—but now, on the thirtieth
+of November in 1900, sweating soldiers carried several
+tightly nailed suspicious-looking boxes, that came from the
+yellow fever wards of Las Animas—to make this house altogether
+cursed....
+
+That night, of the thirtieth of November, Walter Reed and
+James Carroll were the witnesses of a miracle of bravery, for
+into this House No. 1 walked a young American doctor named
+Cooke, and two American soldiers, whose names—where are
+their monuments?—were Folk and Jernegan.
+
+Those three men opened the tightly nailed, suspicious-looking
+boxes. They opened those boxes inside that house, in air
+already too sticky for proper breathing.
+
+Phew! There were cursings, there were holdings of noses.
+
+But they went on opening those boxes, and out of them
+Cooke and Folk and Jernegan took pillows, soiled with the
+black vomit of men dead of yellow fever; out of them they
+took sheets and blankets, dirty with the discharges of dying
+men past helping themselves. They beat those pillows and
+shook those sheets and blankets—“you must see the yellow
+fever poison is well spread around that room!” Walter
+Reed had told them. Then Cooke and Folk and Jernegan
+made up their little army cots with those pillows and blankets
+and sheets. They undressed. They lay down on those filthy
+beds. They tried to sleep—in that room fouler than the dankest
+of medieval dungeons.... And Walter Reed and James
+Carroll guarded that little house, so tenderly, to see no mosquito
+got into it, and Folk and Cooke and Jernegan had the
+very best of food, you may be sure....
+
+Night after night those three lay in that house, wondering
+perhaps about the welfare of the souls of their predecessors in
+those sheets and blankets. They lay there, wondering whether
+anything else besides mosquitoes (though mosquitoes hadn’t
+even been proved to carry it then!) carried yellow fever....
+Then Walter Reed, who was a moral man and a thorough man,
+and James Carroll, who was a grim man, came to make their
+test a little more thorough. More boxes came to them from
+Las Animas—and when Cooke and Jernegan and Folk unpacked
+them, they had to rush out of their little house, it was
+so dreadful.
+
+But they went back in, and they went to sleep....
+
+For twenty nights—where are their monuments?—these
+three men stayed there, and then they were quarantined in a
+nice airy tent, to wait for their attack of yellow fever. But
+they gained weight. They felt fit as fiddles. They made vast
+jokes about their dirty house and their perilous sheets and
+blankets. They were happy as so many schoolboys when they
+heard Kissenger and those Spaniards (1, 2, 3, and 4) had
+really got the yellow jack after the mosquito bites. What a
+marvelous proof, you will say, but what a dastardly experiment—but
+for the insanely scientific Walter Reed that most
+dastardly experiment was not marvelous enough! Three more
+American boys went in there, and for twenty nights slept in
+new unspeakable sheets and blankets—with this little refinement
+of the experiment: they slept in the very pajamas in
+which yellow fever victims had died. And then for twenty
+more nights three other American lads went into House No. 1,
+and slept that way—with this additional little refinement of
+the experiment: they slept on pillows covered with towels
+soaked with the blood of men whom the yellow jack had
+killed.
+
+But they all stayed fit as fiddles! Not a soul of these nine
+men had so much as a touch of yellow fever! How wonderful
+is science, thought Walter Reed. “So,” he wrote, “the bubble
+of the belief that clothing can transmit yellow fever was
+pricked by the first touch of human experimentation.” Walter
+Reed was right. It is true, science is wonderful. But science
+is cruel, microbe hunting can be heartless, and that relentless
+devil that was the experimenter in Walter Reed kept asking:
+“But is your experiment really sound?” None of those men
+who slept in House No. 1 got yellow fever, that is true—but
+how do you know they were susceptible to yellow fever?
+Maybe they were naturally immune! Then Reed and Carroll,
+who had already asked as much of Folk and Jernegan as any
+captain has ever asked of any soldier—so it was that Reed and
+Carroll now shot virulent yellow fever blood under the skin of
+Jernegan, so it was they bit Folk with mosquitoes who had fed
+on fatal cases of yellow fever. They both came down with
+wracking pains and flushed faces and bloodshot eyes. They
+both came through their Valley of the Shadow. “Thank God,”
+murmured Reed—but especially Walter Reed thanked God he
+had proved those two boys were not immune during those
+twenty hot stinking nights in House No. 1.
+
+For these deeds Warren Gladsden Jernegan and Levi E. Folk
+were generously rewarded with a purse of three hundred dollars—which
+in those days was a lot of money.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

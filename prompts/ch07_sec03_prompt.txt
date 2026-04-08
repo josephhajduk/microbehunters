@@ -1,0 +1,232 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch07_sec03
+**Chapter 7:** Metchnikoff — The Nice Phagocytes
+**Section 3 of this chapter**
+**Word count:** 788
+**Total paragraphs:** 10
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "With Olga and the children flapping along and keeping up as best they could, Metchnikoff hurried to ..."
+  P2: "“I would be greatly honored to have you publish your theory in my Journal,” said Claus."
+  P3: "“But I must have a scientific name for these cells that devour microbes—a Greek name—what would be a..."
+  P4: "Claus and his learned colleagues scratched their heads and peered into their dictionaries and at las..."
+  P5: "Metchnikoff thanked them, tacked the word “phagocyte” to the head of his mast, and set sail on the s..."
+  P6: "He went from Vienna to Odessa, and there he gave a great scientific speech on “The Curative Forces o..."
+  P7: "But Metchnikoff knew he would have to have real evidence, and presently he found it, beautifully cle..."
+  P8: "When—and this happened often too and so made his theory perfect—the phagocytes failed to go out to b..."
+  P9: "Here Metchnikoff had peeped prettily into a thrilling, deadly struggle on a tiny scale, he had spied..."
+  P10: "“The immunity of the water flea, due to the help of its phagocytes, is an example of natural immunit..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+III
+
+With Olga and the children flapping along and keeping up
+as best they could, Metchnikoff hurried to Vienna to proclaim
+his theory that we are immune to germs because our bodies
+have wandering cells to gobble germs up; he made a bee-line
+for the laboratory of his friend, Professor Claus—who was a
+zoölogist, and knew nothing about microbes either, and so
+was properly amazed:
+
+“I would be greatly honored to have you publish your theory
+in my Journal,” said Claus.
+
+“But I must have a scientific name for these cells that devour
+microbes—a Greek name—what would be a Greek name for
+such cells?” cried Metchnikoff.
+
+Claus and his learned colleagues scratched their heads and
+peered into their dictionaries and at last they told him: “Phagocytes!
+Phagocyte is Greek for devouring cell—phagocytes
+is what you must call them!”
+
+Metchnikoff thanked them, tacked the word “phagocyte”
+to the head of his mast, and set sail on the seas of his exciting
+career as a microbe hunter with that word as a religion, an explanation
+of everything, a slogan, a means of gaining a living—and,
+though you may not believe it, that word did result in
+something of a start at finding out how it is we are immune!
+From then on he preached phagocytes, he defended their reputations,
+he did some real research on them, he made enemies
+about them, he doubtless helped to start the war of 1914 with
+them, by the bad feeling they caused between France and
+Germany.
+
+He went from Vienna to Odessa, and there he gave a great
+scientific speech on “The Curative Forces of the Organism”
+to the astonished doctors of the town. His delivery was
+superb; his sincerity was undoubted—but there is no record
+of whether or not he told the amazed doctors that he had not,
+up till then, so much as seen one phagocyte gobble up a single
+malignant microbe. Everybody—and this includes learned
+doctors—will stop to watch a dog fight; so this idea of Metchnikoff’s,
+this story of our little white blood cells rushing to an
+endless series of Thermopylæs to man the pass against murderous
+germs—this yarn excited them, convinced them....
+
+But Metchnikoff knew he would have to have real evidence,
+and presently he found it, beautifully clear, in water fleas.
+For a time he forgot speeches and began fishing water fleas
+out of ponds and aquariums; here he was deucedly ingenious
+again, for these small animals, like starfish larvæ, were transparent
+so that he could see through his lens what went on inside
+them. For once he grew patient, and searched, like the
+real searcher that he so rarely was, for some disease that a
+water flea perchance might have. This history has already
+made it clear that microbe hunters usually find other things
+than they set out to look for—but Metchnikoff just now had
+different luck; he watched his water fleas in their aimless daily
+life, and suddenly, through his lens he saw one of these beasts
+swallow the sharp, needle-like spores of a dangerous yeast.
+Down into the wee gullet went these needles, through the walls
+of the flea’s stomach they poked their sharp points, and into
+the tiny beast’s body they glided. Then—how could the gods
+favor such a wild man so!—Metchnikoff saw the wandering
+cells of the water flea, the phagocytes of this creature, flow
+towards those perilous needles, surround them, eat them, melt
+them up, digest them....
+
+When—and this happened often too and so made his theory
+perfect—the phagocytes failed to go out to battle against the
+deadly yeast needles, these invaders budded rapidly into swarming
+yeasts, which in their turn ate the water flea, poisoned him—and
+that meant good-by to him!
+
+Here Metchnikoff had peeped prettily into a thrilling, deadly
+struggle on a tiny scale, he had spied upon the up till now
+completely mysterious way in which certain living creatures
+defend themselves against their would-be assassins. His observations
+were true as steel, and you will have to grant they
+were devilishly ingenious, for who would have thought to look
+for the why of immunity in such an absurd beast as the water
+flea? Now Metchnikoff needed nothing more to convince him
+of the absolute and final rightness of his theory, he probed
+no deeper into this struggle (which Koch would have spent
+years over) but wrote a learned paper:
+
+“The immunity of the water flea, due to the help of its
+phagocytes, is an example of natural immunity ... for, once
+the wandering cells have not swallowed the yeast spore at the
+moment of its penetration into the body, the yeast germinates
+... secretes a poison which drives the phagocytes back not
+only, but kills them by dissolving them completely.”
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

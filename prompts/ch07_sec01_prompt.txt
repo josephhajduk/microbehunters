@@ -1,0 +1,305 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch07_sec01
+**Chapter 7:** Metchnikoff — The Nice Phagocytes
+**Section 1 of this chapter**
+**Word count:** 1471
+**Total paragraphs:** 13
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Microbe hunting has always been a queer humpty-dumpty business."
+  P2: "A janitor with no proper education was the first man to see microbes; a chemist put them on the map ..."
+  P3: "Élie Metchnikoff was a Jew, and was born in southern Russia in 1845, and before he was twenty years ..."
+  P4: "He went to the University of Kharkoff, borrowed the then rare microscope from one of his professors,..."
+  P5: "Metchnikoff was always trying to get ahead of himself. He sent papers to scientific journals while h..."
+  P6: "But if Metchnikoff sobbed because his vivid talents were underestimated by his professors, he was al..."
+  P7: "He forgot his plans for suicide; he planned strange evolutionary researches; he lay awake nights, se..."
+  P8: "That conversion was Metchnikoff’s real start in life, for now he set out (and kept at it for ten yea..."
+  P9: "Metchnikoff’s first thirty-five years were a hubbub and a perilously near disastrous groping toward ..."
+  P10: "Finally Ludmilla died; she had spent her last days solaced by morphine, and now Metchnikoff, who had..."
+  P11: "“Why live?” he cried, and took a dose of morphine that he knew must kill him, but the dose was too l..."
+  P12: "Metchnikoff’s grief was terrific but it did not last long. He was appointed Professor at the Univers..."
+  P13: "From then on Metchnikoff’s life was much less disastrous; he tried far less often to commit suicide;..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+I
+
+Microbe hunting has always been a queer humpty-dumpty
+business.
+
+A janitor with no proper education was the first man to
+see microbes; a chemist put them on the map and made people
+properly afraid of them; a country doctor turned the hunting
+of them into something that came near to being a science;
+to save the lives of babies from the poison of one of the deadliest
+of them, a Frenchman and a German had to pile up
+mountains of butchered guinea-pigs and rabbits. Microbe
+hunting is a story of amazing stupidities, fine intuitions, insane
+paradoxes. If that is the history of the hunting of microbes,
+it is the same with the story of the science, still in its
+babyhood, of why we are immune to microbes. For Metchnikoff,
+the always excited searcher who in a manner of speaking
+founded that science—this Metchnikoff was not a sober scientific
+investigator; he was more like some hysterical character
+out of one of Dostoevski’s novels.
+
+Élie Metchnikoff was a Jew, and was born in southern Russia
+in 1845, and before he was twenty years old, he said: “I
+have zeal and ability, I am naturally talented—I am ambitious
+to become a distinguished investigator!”
+
+He went to the University of Kharkoff, borrowed the then
+rare microscope from one of his professors, and after peering
+(more or less dimly) through it, this ambitious young man sat
+himself down and wrote long scientific papers before he had
+any idea at all of what science was. He bolted his classes for
+months on end, not to play, but to read; not to read novels
+mind you but to wallow through learned works on the “Crystals
+of Proteic Substances” and to become passionate about
+inflammatory pamphlets whose discovery by the police would
+have sent him to the mines in Siberia. He sat up nights,
+drinking gallons of tea and haranguing his young colleagues
+(all of them forefathers of the present Bolsheviki) on atheism
+until they nicknamed him “God-Is-Not.” Then, a few days
+before the end of the term, he crammed up the neglected lessons
+of months; and his prodigious memory, which was more
+like some weird phonograph record than any human brain,
+made it possible for him to write home to his folks that he had
+passed first and got a gold medal.
+
+Metchnikoff was always trying to get ahead of himself. He
+sent papers to scientific journals while he was still in his
+teens; he wrote these papers frantically a few hours after he
+had trained his microscope on some bug or beetle; the next
+day he would look at them again, and find that what he had
+been so certain of, was not quite the same now. Hastily he
+wrote to the editor of the scientific journal: “Please do not
+publish the manuscript I sent you yesterday. I find I have
+made a mistake.” At other times he was furious because his
+enthusiastic discoveries were turned down by the editors.
+“The world does not appreciate me!” he cried, and he went
+to his room, ready to die, dolefully whistling: “Were I small
+as a snail, I would hide myself in my shell.”
+
+But if Metchnikoff sobbed because his vivid talents were
+underestimated by his professors, he was also irrepressible.
+He forgot his contemplated suicides and his violent headaches
+in his incessant interest in all living things, but he was constantly
+spoiling his chances to do a good steady piece of scientific
+work by getting into quarrels with his teachers. Finally
+he told his mother (who had always spoiled him and believed
+in him): “I am especially interested in the study of protoplasm
+... but there is no science in Russia,” so he rushed
+off to the University of Würzburg in Germany, only to find
+that he had arrived there six weeks ahead of the opening of
+school. He sought out some Russian students there, but they
+gave him the cold shoulder—he was a Jew—then, tired of
+life, he started back home, thinking of killing himself but
+with a few books in his satchel—and one of these was the
+just-published “Origin of Species” of Darwin. He read it, he
+swallowed the Theory of Organic Evolution with one great
+mental gulp, he became a bigoted supporter of it—from then
+on evolution was his religion until he began founding new
+scientific religions of his own.
+
+He forgot his plans for suicide; he planned strange evolutionary
+researches; he lay awake nights, seeing visions—huge
+panoramas they were, of all beasts from cockroaches to elephants,
+as the children of some one remote and infinitely tiny
+ancestor....
+
+That conversion was Metchnikoff’s real start in life, for now
+he set out (and kept at it for ten years), quarreling and expostulating
+his way from one laboratory to another, from Russia
+through Germany to Italy, and from Italy to the island of
+Heligoland. He worked at the evolution of worms. He accused
+the distinguished German zoölogist Leuckart of stealing
+his stuff; incurably clumsy with his fingers, he clawed desperately
+into a lizard to find the story of evolution its insides
+might tell him—and when he could not find what he wanted,
+he threw what was left of the reptile across the laboratory.
+Unlike Koch or Leeuwenhoek, who were great because they
+knew how to ask questions of nature, Metchnikoff read books
+on Evolution, was inspired, shouted “Yes!” and then by vast
+sloppy experiments proceeded to try to force his beliefs down
+nature’s throat. Strange to say, sometimes he was right, importantly
+right as you will see. Up till now (it was in the late
+eighteen seventies) he knew nothing about microbes, but all
+the time his mania to prove the survival of the fittest was driving
+him toward his fantastic theory—partly true—of how mankind
+resists the assaults of germs.
+
+Metchnikoff’s first thirty-five years were a hubbub and a
+perilously near disastrous groping toward this event—toward
+that great notoriety that waited for him on the Island of Sicily
+in the Mediterranean Sea. At twenty-three he had married
+Ludmilla Feodorovitch, who was a consumptive and had
+to be carried to the wedding in an invalid’s chair. Then followed
+a pitiful four years for them. They dragged about
+Europe, looking for a cure; Metchnikoff trying in odd moments
+snatched from an irritatedly tender nursing of his wife,
+to do experiments on the development of green flies and
+sponges and worms and scorpions—trying above all to make
+some sensational discovery which might land him a well-paid
+professorship. “The survivors are not the best but the most
+cunning,” he whispered, as he published his scientific papers
+and pulled his wires....
+
+Finally Ludmilla died; she had spent her last days solaced
+by morphine, and now Metchnikoff, who had caught the habit
+from her, wandered from her grave through Spain to Geneva,
+taking larger and larger doses of the drug—meanwhile, his
+eyes hurt him terribly, and what is a naturalist, a searcher,
+without eyes?
+
+“Why live?” he cried, and took a dose of morphine that he
+knew must kill him, but the dose was too large, he became
+nauseated and threw it up. “Why live?” he cried again and
+took a hot bath and rushed out in the open air right afterwards
+to try to catch his death of pneumonia. But it seems
+that the wise witty gods who fashion searchers had other purposes
+for him. That very night he stopped, agape at the spectacle
+of a cloud of insects swirling round the flame of a lantern.
+“These insects live only a few hours!” he cried to himself.
+“How can the theory of the survival of the fittest be applied to
+them?” So he plunged back into his experiments.
+
+Metchnikoff’s grief was terrific but it did not last long.
+He was appointed Professor at the University of Odessa, and
+there he taught the Survival of the Fittest and became respected
+for his learning, and grew in dignity, and in less than
+two years after the death of Ludmilla, he had met Olga, a
+bright girl of fifteen, the daughter of a man of property. “His
+appearance is not unlike that of the Christ—he is so pale and
+seems so sad,” whispered Olga. Soon after they were married.
+
+From then on Metchnikoff’s life was much less disastrous;
+he tried far less often to commit suicide; his hands began to
+catch up with his precocious brain—he was learning to do experiments.
+Never was there a man who tried more sincerely
+to apply his religion (which was science) to every part of his
+life. He took Olga in hand and taught her science and art,
+and even the art and science of marriage! She worshiped the
+profound certainties that science gave him, but said, long afterwards:
+“The scientific methods which Metchnikoff applied to
+everything might have been a grave mistake at this delicate
+psychological moment....”
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

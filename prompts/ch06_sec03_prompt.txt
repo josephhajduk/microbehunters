@@ -1,0 +1,505 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch06_sec03
+**Chapter 6:** Roux and Behring — Massacre the Guinea-Pigs
+**Section 3 of this chapter**
+**Word count:** 3038
+**Total paragraphs:** 31
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "But away in Berlin there toiled another Émile—the Germans leave off the last “e”—Emil August Behring..."
+  P2: "“We have showered you with medals and microscopes and guinea-pigs—take a chance now, and give us a b..."
+  P3: "And what a house of microbe hunters it was, that dingy Triangel! Its walls shook under the arguments..."
+  P4: "But particularly, Emil Behring was there. He was a little over thirty; he was an army doctor; he had..."
+  P5: "“I will find a chemical to cure diphtheria!” he cried, and inoculated herds of guinea-pigs with cult..."
+  P6: "Under the skins of several guinea-pigs he shot a dose of diphtheria bacilli sure to kill them. In a ..."
+  P7: "Then one morning Behring came into his laboratory to see those guinea-pigs on their feet! Staggering..."
+  P8: "“I have cured diphtheria!” whispered Behring."
+  P9: "In a fever he went at trying to cure more guinea-pigs with this iodine stuff; sometimes the diphther..."
+  P10: "Just the same, here were a few guinea-pigs, sure—except for this iodine—to have died of diphtheria; ..."
+  P11: "And he reported: “I have not been encouraged by certain carefully instituted tests of iodine tri-chl..."
+  P12: "But here were still some of those feeble but cured guinea-pigs, and Behring clutched at some good hi..."
+  P13: "Now Behring no longer trusted chemicals (think of the beasts that had gone down to the incinerator!)..."
+  P14: "He expected to see the germs shrivel up, to watch them die, but when he looked, through his microsco..."
+  P15: "He tried it. With sundry guttural gruntings, with a certain poetic sloppiness, Behring got ready a s..."
+  P16: "“Surely it is in the blood I will find this antidote which protects the creatures!” cried Behring."
+  P17: "He must get some of their blood. There were hardly any of the battered but diphtheria-proof guinea-p..."
+  P18: "Into new, non-immune guinea-pigs went this mixture—and they did not die!"
+  P19: "“How true are the words of Goethe!” cried Behring. “Blood is an entirely wonderful sap!”"
+  P20: "Then, with Koch the master blinking at him, and with the entire small band of maniacs in the laborat..."
+  P21: "“It is only the serum of immune animals—of beasts who have had diphtheria and have been cured of it—..."
+  P22: "By this time nothing could discourage Behring. Like some victorious general swept on by the momentum..."
+  P23: "He injected little doses of the sheep serum into guinea-pigs; the next day he pumped virulent diphth..."
+  P24: "There was only one fly in the ointment of his success—the guarding action of the antitoxin serum did..."
+  P25: "“Iodine tri-chloride is almost as bad for guinea-pigs as the microbes are—but this antitoxin serum, ..."
+  P26: "Carefully he shot fatal doses of diphtheria bacilli into a lot of guinea-pigs. Next day, they were s..."
+  P27: "The old laboratory of the Triangel was in a furor now, over this triumphant finish of Behring’s slop..."
+  P28: "Toward the end of the year 1891, babies lay dying of diphtheria in the Bergmann clinic in the Brick ..."
+  P29: "The results seemed miraculous. A few children died; the little son of a famous physician of Berlin p..."
+  P30: "DIPHTHERIA ANTITOXIN IS A SUCCESS; BEGIN TO PRODUCE IT."
+  P31: "In the excitement of this cure, those sad ones, who had lost dear ones through the first enthusiasm ..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+III
+
+But away in Berlin there toiled another Émile—the Germans
+leave off the last “e”—Emil August Behring. He worked
+in Koch’s laboratory, in the dilapidated building called the
+“Triangel” in the Schumann street. Here great things were
+stirring. Koch was there, no longer plain Doctor Koch of
+Wollstein, but now a Herr Professor, an eminent Privy Councilor.
+But his hat still fitted him; he peered through his
+spectacles, saying little; he was enormously respected, and
+against his own judgment he was trying to convince himself
+he had discovered a cure for tuberculosis. The authorities
+(scientists have reason occasionally to curse all authorities no
+matter how benevolent) were putting pressure on him. At
+least so it is whispered now by veteran microbe hunters who
+were there and remember those brave times.
+
+“We have showered you with medals and microscopes and
+guinea-pigs—take a chance now, and give us a big cure, for the
+glory of the Fatherland, as Pasteur has done for the glory of
+France!” It was ominous stuff like this Koch was always
+hearing. He listened at last, and who can blame him, for
+what man can remain at his proper business of finding out the
+ways of microbes with Governments bawling for a place in the
+sun—or with mothers calling? So Koch listened and prepared
+his own disaster by telling the world about his “Tuberculin.”
+But at the same time he guided his youngsters in fine
+jobs they were doing—and among these young men was Emil
+August Behring. How Koch pointed the gun of his cold marvelous
+criticism at that poet’s searchings!
+
+And what a house of microbe hunters it was, that dingy Triangel!
+Its walls shook under the arguments and guttural cries
+and incessant experiments of Koch’s young men. Paul Ehrlich
+was there, smoking myriads of cigars, smearing his clothes
+and his hands and even his face with a prismatic array of
+dyes, making bold experiments to find out how baby mice
+inherit immunity to certain vegetable poisons from their
+mothers.... Kitasato, the round-faced Japanese, was shooting
+lock-jaw bacilli into the tails of mice and solemnly amputating
+these infected tails—to see whether the creatures
+would perish from the poisons the microbes had made while
+the tails were still attached.... And there were many others
+there, some forgotten and some whose names are now famous.
+With a vengeance the Germans were setting out to beat the
+French, to bury them under a vast confusion of experiments,
+to save mankind first.
+
+But particularly, Emil Behring was there. He was a little
+over thirty; he was an army doctor; he had a little beard,
+neater than Koch’s scraggly one, but with less signs of originality.
+Just the same Behring’s head, in spite of that prosaic
+beard, was the head of a poet; and yet, though he was fond
+of rhetoric, no one stuck closer to his laboratory bench than
+Behring. He compared the grandeur of the Master’s discovery
+of the tubercle bacillus to the rosy tip of the snow-capped peak
+of his favorite mountain in Switzerland, while he probed by
+careful experiments into why animals are immune to microbes.
+He compared the stormy course of human pneumonia to the
+rushing of a mountain stream, while he discovered a something
+in the blood of rats—this stuff would kill anthrax bacilli!
+He had two scientific obsessions, which were also poetical:
+one was that blood is the most marvelous of the juices circulating
+in living things (what an extraordinary mysterious sap
+it was, this blood!)—the other was the strange notion (not a
+new one) that there must exist chemicals to wipe invading microbes
+out of animals and men—without hurting the men or
+the animals.
+
+“I will find a chemical to cure diphtheria!” he cried, and
+inoculated herds of guinea-pigs with cultivations of virulent
+diphtheria bacilli. They got sick, and as they got sicker he
+shot various chemical compounds into them. He tried costly
+salts of gold, he tried naphthylamine, he tested more than
+thirty different strange or common substances. He believed
+innocently because these things could kill microbes in a glass
+tube without damaging the tube, they would also hit the diphtheria
+bacilli under a guinea-pig’s hide without ruining the
+guinea-pig. But alas, from the slaughter house of dead and
+dying guinea-pigs his laboratory was, you would suppose he
+would have seen there was little to choose between the deadly
+microbes and his equally murderous cures.... Nevertheless,
+being a poet, Behring did not have too great a reverence for
+facts; the hecatombs of corpses went on piling up, but they
+failed to shake his faith in some marvelous unknown remedy
+for diphtheria hidden somewhere among the endless rows of
+chemicals in existence. Then, in his enthusiastic—but random—search
+he came upon the tri-chloride of iodine.
+
+Under the skins of several guinea-pigs he shot a dose of
+diphtheria bacilli sure to kill them. In a few hours these microbes
+began their work; the spot of the injection became
+swollen, got ominously hot, the beasts began to droop—then,
+six hours after the fatal dose of the bacilli, Behring shot in
+his iodine tri-chloride.... “It is no good, once more,” he
+muttered. The day passed with no improvement and the next
+morning the beasts began to go into collapses. Solemnly he
+put the guinea-pigs on their backs, then poked them with his
+finger to see if they could still scramble back on their feet....
+“If the guinea-pig can still get up when you poke him, there
+may be yet a chance for him,” explained Behring to his amazed
+assistants. What a test that was—think of a doctor having a
+test like this to see whether or no his patient would live!
+And what an abominably crude test! Less and less the iodine-treated
+guinea-pigs moved when he poked them—there was
+now no longer any hope....
+
+Then one morning Behring came into his laboratory to see
+those guinea-pigs on their feet! Staggering about, and dreadfully
+scraggly looking beasts they were, but they were getting
+better from diphtheria, these creatures whose untreated companions
+had died days before....
+
+“I have cured diphtheria!” whispered Behring.
+
+In a fever he went at trying to cure more guinea-pigs with
+this iodine stuff; sometimes the diphtheria bacilli killed these
+poor beasts; sometimes the cure killed them; once in a while
+one or two of them survived and crawled painfully back to
+their feet. There was little certainty of this horrible cure and
+no rime or reason. The guinea-pigs who survived, probably
+wished they were dead, for while the tri-chloride was curing
+them it was burning nasty holes in their hides too—they
+squeaked pitifully when they bumped these gaping sores. It
+was an appalling business!
+
+Just the same, here were a few guinea-pigs, sure—except for
+this iodine—to have died of diphtheria; and they were alive!
+I often ponder how terrible was the urge forcing men like
+Behring to try to cure disease—they were not searchers for
+truth, but rabid, experimenting healers rather; ready to kill an
+animal or even a child maybe with one disease to cure him of
+another. They stopped at nothing.... For, with no evidence
+save these few dilapidated guinea-pigs, with no other proof of
+the virtues of this blistering iodine tri-chloride, Behring proceeded
+to try it on babies sick with diphtheria.
+
+And he reported: “I have not been encouraged by certain
+carefully instituted tests of iodine tri-chloride on children sick
+with diphtheria....”
+
+But here were still some of those feeble but cured guinea-pigs,
+and Behring clutched at some good his murderous gropings
+might do. The gods were kind to him. He pondered, and
+at last he asked himself: “Will these cured animals be immune
+to diphtheria now?” He took these creatures and shot
+an enormous dose of diphtheria bacilli into them. They stood
+it! They never turned a hair at millions of bacilli, enough to
+kill a dozen ordinary animals. They were immune!
+
+Now Behring no longer trusted chemicals (think of the
+beasts that had gone down to the incinerator!) but he still
+had his fixed notion that blood was the most marvelous of the
+saps coursing through living things. He worshiped blood;
+his imagination gave it unheard-of excellences and strange
+virtues. So—with more or less discomfort to his decrepit
+cured guinea-pigs—he sucked a little blood with a syringe out
+of an artery in their necks; he let the tubes holding this blood
+stand until clear straw-colored serum rose over the red part
+of the blood. With care he drew this serum off with a tiny
+pipet—he mixed the serum with a quantity of virulent diphtheria
+bacilli: “Surely there is something in the blood of these
+creatures to make them so immune to diphtheria,” pondered
+Behring; “undoubtedly there is something in this serum to kill
+the diphtheria microbes....”
+
+He expected to see the germs shrivel up, to watch them die,
+but when he looked, through his microscope, he saw dancing
+masses of them—they were multiplying, “exuberantly multiplying,”
+he wrote in his notes with regret. But blood is wonderful
+stuff. Some way it must be at the bottom of his guinea-pigs’
+immunity. “After all,” muttered Behring, “this Frenchman,
+Roux, has proved it isn’t the diphtheria germ but the
+poison it makes—it is the poison kills animals, and children....
+Maybe these iodine-cured guinea-pigs are immune
+to the poison too!”
+
+He tried it. With sundry guttural gruntings, with a certain
+poetic sloppiness, Behring got ready a soup which held poison
+but had been freed of microbes. Huge doses of this stuff he
+pumped from a syringe under the hides of his decreasing number
+of desolate cured guinea-pigs. Again, they were immune!
+Their sores went on healing, they grew fat. The poison
+bothered them no more than had the bacilli which made it.
+Here was something entirely new in microbe hunting, something
+Roux maybe dreamed of but couldn’t make come true.
+Pasteur had guarded sheep against anthrax, and children from
+the bites of mad dogs, but here was something incredible—Behring,
+giving guinea-pigs diphtheria and then nearly killing
+them with his frightful cure, had made them proof against the
+microbe’s murderous toxin. He had made them immune to
+the stuff of which one ounce was enough to kill seventy-five
+thousand big dogs....
+
+“Surely it is in the blood I will find this antidote which protects
+the creatures!” cried Behring.
+
+He must get some of their blood. There were hardly any
+of the battered but diphtheria-proof guinea-pigs left now, but
+he must have blood! He took one of the veterans, and cut
+into its neck to find the artery; there was no artery left—his
+numerous blood lettings had obliterated it. He poked about
+(let us honor this animal!) and finally got a driblet of blood
+out of a vessel in its leg. What a nervous time it was for
+Behring, and I do not know whether it is Behring or his beasts
+who is most to be pitied, for every morning he came down to
+the laboratory wondering whether any of his priceless animals
+were left alive.... But he had a few drops of serum now,
+from a cured guinea-pig. He mixed this, in a glass tube, with
+a large amount of the poisonous soup in which the diphtheria
+microbes had grown.
+
+Into new, non-immune guinea-pigs went this mixture—and
+they did not die!
+
+“How true are the words of Goethe!” cried Behring. “Blood
+is an entirely wonderful sap!”
+
+Then, with Koch the master blinking at him, and with the
+entire small band of maniacs in the laboratory breathless for
+the result, Behring made his famous critical experiment. He
+mixed diphtheria poison with the serum of a healthy guinea-pig
+who was not immune, who had never had diphtheria or
+been cured from it either, and this serum did not hinder one
+bit the murderous action of the poison. He shot this mixture
+into new guinea-pigs; in three days they grew cold; when he
+laid them on their backs and poked them with his finger they
+did not budge. In a few hours they had coughed their last
+sad hiccup and passed beyond....
+
+“It is only the serum of immune animals—of beasts who
+have had diphtheria and have been cured of it—it is only such
+serum kills the diphtheria poison!” cried Behring. Healer that
+he was, you can hear him muttering: “Now, maybe, I can make
+larger animals immune too, and get big batches of their poison-killing
+serum, then I’ll try that on children with diphtheria
+... what saves guinea-pigs should cure babies!”
+
+By this time nothing could discourage Behring. Like some
+victorious general swept on by the momentum of his first
+bloody success, he began shooting diphtheria microbes, and
+iodine tri-chloride, and the poison of diphtheria microbes, into
+rabbits, into sheep, into dogs. He tried to turn their living
+bodies into factories for making the healing serum, the toxin-killing
+serum. “Antitoxin” he called such serum. And he
+succeeded, after those maimings and holocausts and mistakes,
+always the necessary preludes to his triumphs. In a little
+while he had sheep powerfully immune, and from them he got
+plenty of blood. “Surely the antitoxin [he hadn’t the faintest
+notion what the chemistry of this mysterious stuff was]
+certainly it will prevent diphtheria,” said Behring.
+
+He injected little doses of the sheep serum into guinea-pigs;
+the next day he pumped virulent diphtheria bacilli into these
+same beasts. It was marvelous to watch them. There they
+were, scampering about with never a sign of sickness, while
+their companions (who had got no protecting dose of serum)
+perished miserably in a couple of days. How good it was to
+see them die, those unguarded beasts! For it was these creatures
+told him how well the serum saved the other ones. Hundreds
+of pretty experiments of this kind Behring made (there
+was little sloppiness now) and his helpers maybe pointed to
+their foreheads, asking whether their chief would ever have
+done saving one set of guinea-pigs and killing another set to
+prove he had saved the first. But Behring had reasons. “We
+made so many experiments because we wanted to show Herr
+Koch how far we had come in our immunizing of laboratory
+animals,” he wrote in one of his early reports.
+
+There was only one fly in the ointment of his success—the
+guarding action of the antitoxin serum didn’t last long. For
+a few days after guinea-pigs had got their injections of serum
+they stood big doses of the poison, but presently, in a week
+or two weeks, it took less and less of the toxin to kill them.
+Behring pulled at his beard: “This isn’t practical,” he muttered,
+“you couldn’t go around giving all the children of Germany
+a shot of sheep serum every few weeks!” And alas, his
+eagerness for something to make the authorities wide-eyed,
+led him away from his fine fussings with a way to prevent
+diphtheria—it sent him a-whoring after the pound of cure....
+
+“Iodine tri-chloride is almost as bad for guinea-pigs as the
+microbes are—but this antitoxin serum, it doesn’t give them
+sores and ulcers.... I know it won’t hurt my animals....
+I know it kills poison ... now, if it would cure!”
+
+Carefully he shot fatal doses of diphtheria bacilli into a lot
+of guinea-pigs. Next day, they were seedy. The second day
+their breath came anxiously. They stayed on their backs
+with that fatal laziness.... Then Behring took half of this
+lot of dying beasts, and into their bellies he injected a good
+heavy dose of the antitoxin from his immune sheep. Miracles!
+Nearly every one of them (but not all) began to breathe
+more easily in a little while. Next day, when he put them on
+their backs, they hopped nimbly back to their feet. They
+stayed there. By the fourth day they were as good as new,
+while their untreated companions, cold, dead, were being carried
+out by the animal boy.... The serum cured!
+
+The old laboratory of the Triangel was in a furor now, over
+this triumphant finish of Behring’s sloppy stumbling Odyssey.
+The hopes of everybody were purple—surely now he would
+save children! While he was getting ready his serum for the
+first fateful test on some baby near to death with diphtheria,
+Behring sat down to write his classic report on how he could
+cure beasts sure to die, by shooting into them a new, an unbelievable
+stuff their brother beasts had made in their own
+bodies—at the risk of nearly dying themselves. “We have no
+certain recipe for making animals immune,” wrote Behring;
+“these experiments I have recorded do not include only my
+successes.” Surely they did not, for Behring set down the
+messings and the fiascoes along with the few lucky stabs that
+gave him his sanguinary victory.... How could this pottering
+poet have pulled off the discovery of the diphtheria antitoxin?
+But then, come to think of it, those first ancient nameless
+men who invented sails to carry swift boats across the
+water—they must have groped that way too.... How many
+of the crazy craft of those anonymous geniuses turned turtle?
+It is the way discoveries are made....
+
+Toward the end of the year 1891, babies lay dying of diphtheria
+in the Bergmann clinic in the Brick Street in Berlin. On
+the night of Christmas, a child desperately sick with diphtheria
+cried and kicked a little as the needle of the first syringe
+full of antitoxin slid under its tender skin.
+
+The results seemed miraculous. A few children died; the
+little son of a famous physician of Berlin passed out mysteriously
+a few minutes after the serum went into him and there
+was a great hullabaloo about that—but presently large chemical
+factories in Germany took up the making of the antitoxin
+in herds of sheep. Within three years twenty thousand babies
+had been injected and like a rumor spread the news, and Biggs,
+the eminent American Health Officer, then in Europe, was
+carried away by the excitement. He cabled dramatically and
+authoritatively to Dr. Park in New York:
+
+DIPHTHERIA ANTITOXIN IS A SUCCESS; BEGIN
+TO PRODUCE IT.
+
+In the excitement of this cure, those sad ones, who had lost
+dear ones through the first enthusiasm about the dangerous injections
+of the consumption cure of Koch, forgot their sorrow
+and forgave Koch because of his brilliant pupil Behring.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

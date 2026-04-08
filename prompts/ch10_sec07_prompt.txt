@@ -1,0 +1,228 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch10_sec07
+**Chapter 10:** Ross vs. Grassi — Malaria
+**Section 7 of this chapter**
+**Word count:** 789
+**Total paragraphs:** 9
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "What is more, Battista Grassi was a practical man, and as I have said, an excessively patriotic man...."
+  P2: "“Keep away the zanzarone and in a few years Italy will be free from malaria!”"
+  P3: "He became a fanatic on the best ways to kill anopheles: he was indignant (that man had no sense of h..."
+  P4: "He was the very type of the silly sanitarian. “Don’t go out in the warm evenings,” he told every one..."
+  P5: "But Battista Grassi was a practical man! “One family, staying free from the tortures of malaria—that..."
+  P6: "In the summer of 1900 Battista Grassi went to the plain of Capaccio. The hot days were just beginnin..."
+  P7: "All around those screen-protected station houses the zanzarone swarmed in humming thousands—it was a..."
+  P8: "And of those one hundred and twelve prisoners behind the screens at night? They were rained on durin..."
+  P9: "“In the so-much-feared station of Albanella, from which for years so many coffins had been carried, ..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VII
+
+What is more, Battista Grassi was a practical man, and as I
+have said, an excessively patriotic man. He wanted to see his
+discovery do well by Italy, for he loved his Italy faithfully and
+violently. His experiments were no sooner finished, the last
+good strong nail was no sooner driven into the house of his
+case against the anopheles, than he began telling people, and
+writing in newspapers, and preaching—you might almost say
+he went about, bellowing till he bored everybody:
+
+“Keep away the zanzarone and in a few years Italy will be
+free from malaria!”
+
+He became a fanatic on the best ways to kill anopheles: he
+was indignant (that man had no sense of humor!) because
+townspeople insisted on strolling through their streets in the
+dusk. “How can you be so foolish as to walk in the twilight?”
+Grassi asked them. “That is the very time when the malaria
+mosquito is waiting for you.”
+
+He was the very type of the silly sanitarian. “Don’t go out
+in the warm evenings,” he told every one, “unless you wear
+heavy cotton gloves and veils!” (Imagine young Italians making
+love in heavy cotton gloves and veils.) So there was a good
+deal of sniggering at this professor who had become a violent
+missionary against the zanzarone.
+
+But Battista Grassi was a practical man! “One family, staying
+free from the tortures of malaria—that would be worth ten
+years of preaching—I’ll have to show them!” he muttered.
+So, in 1900, after his grinding experiments of 1898 and ’99,
+this tough man set out to “show them.” He went down into the
+worst malaria region of Italy, along the railroad line that ran
+through the plain of Capaccio. It was high summer. It was
+deadly summer there, and every summer the poor wretches of
+railroad workers, miserable farmers whose blood was gutted
+by the malaria poison, would leave that plain, at the cost of
+their jobs, at the cost of food, at the risk of starvation—to the
+hills to flee the malaria. And every summer from the swamps
+at twilight swarmed the malignant hosts of female zanzarone;
+at each hot dusk they made their meals and did their murders,
+and in the night, bellies full of blood, they sang back to their
+marshes, to marry and lay eggs and hatch out thousands more
+of their kind.
+
+In the summer of 1900 Battista Grassi went to the plain of
+Capaccio. The hot days were just beginning, the anopheles
+were on the march. In the windows and on the doors of ten little
+houses of station-masters and employees of the railroad
+Grassi put up wire screens, so fine-meshed and so perfect that
+the slickest and the slightest of the zanzarone could not slip
+through them. Then Grassi, armed with authority from the
+officials of the railroad, supplied with money by the Queen of
+Italy, became a task-master, a Pharaoh with lashes. One hundred
+and twelve souls—railroad men and their families—became
+the experimental animals of Battista Grassi and had to
+be careful to do as he told them. They had to stay indoors in
+the beautiful but dangerous twilight. Careless of death—especially
+unseen death—as all healthy human beings are careless,
+these one hundred and twelve Italians had to take precautions,
+to avoid the stabs of mosquitoes. Grassi had the
+devil of a time with them. Grassi scolded them. Grassi kept
+them inside those screens by giving them prizes of money.
+Grassi set them an indignant example by coming down to Albanella,
+most deadly place of all, and sleeping two nights a
+week behind those screens.
+
+All around those screen-protected station houses the zanzarone
+swarmed in humming thousands—it was a frightful year
+for mosquitoes. Into the un-screened neighboring station
+houses (there were four hundred and fifteen wretches living in
+those houses), the zanzarone swooped and sought their prey.
+Almost to a man, woman, and child, those four hundred and
+fifteen men, women and children fell sick with the malaria.
+
+And of those one hundred and twelve prisoners behind the
+screens at night? They were rained on during the day, they
+breathed that air that for a thousand years the wisest men were
+sure was the cause of malaria, they fell asleep at twilight, they
+did all of the things the most eminent physicians had always
+said it was dangerous to do, but in the dangerous evenings they
+stayed behind screens—and only five of them got the malaria
+during all that summer. Mild cases these were, too, maybe only
+relapses from the year before, said Grassi.
+
+“In the so-much-feared station of Albanella, from which for
+years so many coffins had been carried, one could live as healthily
+as in the healthiest spot in Italy!” cried Grassi.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

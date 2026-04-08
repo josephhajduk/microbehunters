@@ -1,0 +1,247 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch07_sec02
+**Chapter 7:** Metchnikoff — The Nice Phagocytes
+**Section 2 of this chapter**
+**Word count:** 915
+**Total paragraphs:** 11
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "It was in 1883, when the discoveries of Pasteur and Koch had made everybody mad about microbes, that..."
+  P2: "Then, one day, he began to study the way sponges and starfishes digest their food. Long before he ha..."
+  P3: "Metchnikoff sat down before his parlor table, and with that impatient clumsiness of a man whose hand..."
+  P4: "The next day Olga took the children to the circus to see some extraordinary performing monkeys. Metc..."
+  P5: "“These wandering cells in the body of the larva of a starfish, these cells eat food, they gobble up ..."
+  P6: "Without one single bit of evidence, without any research at all, Metchnikoff jumped from the digesti..."
+  P7: "“I suddenly became a pathologist,” he wrote in his diary (and this was not much more strange than if..."
+  P8: "Now Koch, precise microbe hunter that he was, would hardly have trusted Metchnikoff with the wiping ..."
+  P9: "“I said to myself that, if my theory was true, a sliver put into the body of a starfish larva ... sh..."
+  P10: "Up he got, at dawn the next morning, full of wild hopes,—and he found his guess had come true. Aroun..."
+  P11: "Metchnikoff was now a microbe hunter...."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+II
+
+It was in 1883, when the discoveries of Pasteur and Koch
+had made everybody mad about microbes, that Metchnikoff
+turned suddenly from a naturalist into a microbe hunter. He
+had wrangled with the authorities of the University of Odessa,
+and departed for the Island of Sicily with Olga and her crowd
+of little brothers and sisters, and here he set up his amateur
+laboratory in the parlor of their cottage looking across the
+magic water to the blue Calabrian shore. His intuition told
+him that microbes were now the thing in science and he
+dreamed about making great discoveries of new microbes—he
+was sincerely interested in them as well, but he knew nothing
+about the subtle ways of hunting them, indeed he had hardly
+seen a germ. He stamped about his parlor-laboratory, expounding
+biological theories to Olga, studying starfish and
+sponges, telling the children fairy stories, doing everything in
+short that was as far as possible removed from those thrilling
+researches of Koch and Pasteur....
+
+Then, one day, he began to study the way sponges and starfishes
+digest their food. Long before he had spied out strange
+cells inside these beasts, cells that were a part of their bodies,
+but cells that were free-lances, as it were, moving from place
+to place through the carcasses of which they formed a part,
+sticking out one part of themselves and dragging the rest of
+themselves after the part they had stuck out. Such were the
+wandering cells, which moved by flowing, exactly like that
+small animal, the ameba.
+
+Metchnikoff sat down before his parlor table, and with that
+impatient clumsiness of a man whose hands seem unable to
+obey his brain, he got some little particles of carmine into the
+insides of the larva of a starfish. This was an ingenious and
+very original trick of Metchnikoff’s, because these larvæ are
+as transparent as a good glass window; so he could see, through
+his lens, what went on inside the beast; and with excited delight
+he watched the crawling, flowing free-lance cells in this
+starfish ooze toward his carmine particles—and eat them up!
+Metchnikoff still imagined he was studying the digestion of
+his starfish, but strange thoughts—that had nothing to do with
+such a commonplace thing as digestion—little fog-wraiths of
+new ideas began to flutter through his head....
+
+The next day Olga took the children to the circus to see
+some extraordinary performing monkeys. Metchnikoff sat
+alone in his parlor, tugging at his biblical beard, gazing without
+seeing them at his bowls of starfish. Then—it was like
+that blinding light that bowled Paul over on his way to Damascus—in
+one moment, in the most fantastical, you would say
+impossible flash of a second, Metchnikoff changed his whole
+career.
+
+“These wandering cells in the body of the larva of a starfish,
+these cells eat food, they gobble up carmine granules—but
+they must eat up microbes too! Of course—the wandering
+cells are what protect the starfish from microbes! Our wandering
+cells, the white cells of our blood—they must be what
+protects us from invading germs ... they are the cause of
+immunity to diseases ... they are what keep the human
+race from being killed off by malignant bacilli!”
+
+Without one single bit of evidence, without any research at
+all, Metchnikoff jumped from the digestions of starfish to the
+ills of men....
+
+“I suddenly became a pathologist,” he wrote in his diary
+(and this was not much more strange than if a cornet player
+should suddenly announce himself an astrophysicist!)
+“... Feeling that there was in this idea something of surpassing
+interest, I became so excited that I began striding up and
+down the room, and even went to the seashore to collect my
+thoughts.”
+
+Now Koch, precise microbe hunter that he was, would hardly
+have trusted Metchnikoff with the wiping of his microscope,
+but his ignorance of germs was nothing to this wild Russian.
+
+“I said to myself that, if my theory was true, a sliver put
+into the body of a starfish larva ... should soon be surrounded
+by wandering cells....” And he remembered that
+when men run splinters into their fingers, and neglect to pull
+them out, those splinters are soon surrounded by pus—which
+consists largely of the wandering white cells of the blood. He
+rushed out into the garden back of the cottage, pulled some
+rose thorns off a little shrub which he had decorated as a
+Christmas tree for Olga’s brother and sisters; he dashed back
+into his absurd laboratory and stuck these thorns into the body
+of one of his water-clear young starfish....
+
+Up he got, at dawn the next morning, full of wild hopes,—and
+he found his guess had come true. Around the rose-slivers
+in the starfish were sluggish crawling masses of its wandering
+cells! Nothing more was necessary (such a jumper at conclusions
+was he) to stamp into his brain the fixed idea that he
+now had the explanation of all immunity to diseases; he rushed
+out that morning to tell famous European professors, who happened
+then to be in Messina, all about his great idea. “Here
+is why animals can withstand the attacks of microbes,” he
+said, and he talked with such enthusiastic eloquence about how
+the wandering cells of the starfish tried to eat the rose thorns
+(and he could show it so prettily too) that even the most
+eminent and pope-like Professor Doctor Virchow (who had
+sniffed at Koch) believed him!
+
+Metchnikoff was now a microbe hunter....
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

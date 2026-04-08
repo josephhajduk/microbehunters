@@ -1,0 +1,279 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch01_sec01
+**Chapter 1:** Leeuwenhoek — First of the Microbe Hunters
+**Section 1 of this chapter**
+**Word count:** 1330
+**Total paragraphs:** 10
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Two hundred and fifty years ago an obscure man named Leeuwenhoek looked for the first time into a my..."
+  P2: "Leeuwenhoek, unsung and scarce remembered, is now almost as unknown as his strange little animals an..."
+  P3: "To-day it is respectable to be a man of science. Those who go by the name of scientist form an impor..."
+  P4: "You have lately recovered from an attack of mumps, you ask your father what is the cause of mumps an..."
+  P5: "That was the world three hundred years ago, when Leeuwenhoek was born. It had hardly begun to shake ..."
+  P6: "Antony Leeuwenhoek was born in 1632 amid the blue windmills and low streets and high canals of Delft..."
+  P7: "At the age of twenty-one he left the dry-goods store, went back to Delft, married, set up a dry-good..."
+  P8: "It would be great fun to look through a lens and see things bigger than your naked eye showed them t..."
+  P9: "Of course his neighbors thought he was a bit cracked but Leeuwenhoek went on burning and blistering ..."
+  P10: "Now this self-satisfied dry-goods dealer began to turn his lenses onto everything he could get hold ..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+I
+
+Two hundred and fifty years ago an obscure man named
+Leeuwenhoek looked for the first time into a mysterious new
+world peopled with a thousand different kinds of tiny beings,
+some ferocious and deadly, others friendly and useful, many
+of them more important to mankind than any continent or
+archipelago.
+
+Leeuwenhoek, unsung and scarce remembered, is now almost
+as unknown as his strange little animals and plants were at the
+time he discovered them. This is the story of Leeuwenhoek,
+the first of the microbe hunters. It is the tale of the bold and
+persistent and curious explorers and fighters of death who came
+after him. It is the plain history of their tireless peerings into
+this new fantastic world. They have tried to chart it, these
+microbe hunters and death fighters. So trying they have
+groped and fumbled and made mistakes and roused vain hopes.
+Some of them who were too bold have died—done to death by
+the immensely small assassins they were studying—and these
+have passed to an obscure small glory.
+
+To-day it is respectable to be a man of science. Those who
+go by the name of scientist form an important element of the
+population, their laboratories are in every city, their achievements
+are on the front pages of the newspapers, often before
+they are fully achieved. Almost any young university student
+can go in for research and by and by become a comfortable
+science professor at a tidy little salary in a cozy college. But
+take yourself back to Leeuwenhoek’s day, two hundred and
+fifty years ago, and imagine yourself just through high school,
+getting ready to choose a career, wanting to know—
+
+You have lately recovered from an attack of mumps, you
+ask your father what is the cause of mumps and he tells you
+a mumpish evil spirit has got into you. His theory may not
+impress you much, but you decide to make believe you believe
+him and not to wonder any more about what is mumps—because
+if you publicly don’t believe him you are in for a beating
+and may even be turned out of the house. Your father is
+Authority.
+
+That was the world three hundred years ago, when Leeuwenhoek
+was born. It had hardly begun to shake itself free from
+superstitions, it was barely beginning to blush for its ignorance.
+It was a world where science (which only means trying to find
+truth by careful observation and clear thinking) was just
+learning to toddle on vague and wobbly legs. It was a world
+where Servetus was burned to death for daring to cut up and
+examine the body of a dead man, where Galileo was shut up for
+life for daring to prove that the earth moved around the sun.
+
+Antony Leeuwenhoek was born in 1632 amid the blue windmills
+and low streets and high canals of Delft, in Holland. His
+family were burghers of an intensely respectable kind and I
+say intensely respectable because they were basket-makers and
+brewers, and brewers are respectable and highly honored in
+Holland. Leeuwenhoek’s father died early and his mother
+sent him to school to learn to be a government official, but he
+left school at sixteen to be an apprentice in a dry-goods store
+in Amsterdam. That was his university. Think of a present-day
+scientist getting his training for experiment among bolts of
+gingham, listening to the tinkle of the bell on the cash drawer,
+being polite to an eternal succession of Dutch housewives who
+shopped with a penny-pinching dreadful exhaustiveness—but
+that was Leeuwenhoek’s university, for six years!
+
+At the age of twenty-one he left the dry-goods store, went
+back to Delft, married, set up a dry-goods store of his own
+there. For twenty years after that very little is known about
+him, except that he had two wives (in succession) and several
+children most of whom died, but there is no doubt that during
+this time he was appointed janitor of the city hall of Delft, and
+that he developed a most idiotic love for grinding lenses. He
+had heard that if you very carefully ground very little lenses
+out of clear glass, you would see things look much bigger than
+they appeared to the naked eye.... Little is known about
+him from twenty to forty, but there is no doubt that he passed
+in those days for an ignorant man. The only language he knew
+was Dutch—that was an obscure language despised by the cultured
+world as a tongue of fishermen and shop-keepers and
+diggers of ditches. Educated men talked Latin in those days,
+but Leeuwenhoek could not so much as read it and his only
+literature was the Dutch Bible. Just the same, you will see
+that his ignorance was a great help to him, for, cut off from all
+of the learned nonsense of his time, he had to trust to his own
+eyes, his own thoughts, his own judgment. And that was easy
+for him because there never was a more mulish man than this
+Antony Leeuwenhoek!
+
+It would be great fun to look through a lens and see things
+bigger than your naked eye showed them to you! But buy
+lenses? Not Leeuwenhoek! There never was a more suspicious
+man. Buy lenses? He would make them himself!
+During these twenty years of his obscurity he went to spectacle-makers
+and got the rudiments of lens-grinding. He
+visited alchemists and apothecaries and put his nose into their
+secret ways of getting metals from ores, he began fumblingly
+to learn the craft of the gold- and silversmiths. He was a most
+pernickety man and was not satisfied with grinding lenses as
+good as those of the best lens-grinder in Holland, they had to
+be better than the best, and then he still fussed over them for
+long hours. Next he mounted these lenses in little oblongs of
+copper or silver or gold, which he had extracted himself, over
+hot fires, among strange smells and fumes. To-day searchers
+pay seventy-five dollars for a fine shining microscope, turn the
+screws, peer through it, make discoveries—without knowing
+anything about how it is built. But Leeuwenhoek—
+
+Of course his neighbors thought he was a bit cracked but
+Leeuwenhoek went on burning and blistering his hands. Working
+forgetful of his family and regardless of his friends, he
+bent solitary to subtle tasks in still nights. The good neighbors
+sniggered, while that man found a way to make a tiny lens, less
+than one-eighth of an inch across, so symmetrical, so perfect,
+that it showed little things to him with a fantastic clear enormousness.
+Yes, he was a very uncultured man, but he alone
+of all men in Holland knew how to make those lenses, and he
+said of those neighbors: “We must forgive them, seeing that
+they know no better.”
+
+Now this self-satisfied dry-goods dealer began to turn his
+lenses onto everything he could get hold of. He looked
+through them at the muscle fibers of a whale and the scales of
+his own skin. He went to the butcher shop and begged or
+bought ox-eyes and was amazed at how prettily the crystalline
+lens of the eye of the ox is put together. He peered for hours
+at the build of the hairs of a sheep, of a beaver, of an elk, that
+were transformed from their fineness into great rough logs
+under his bit of glass. He delicately dissected the head of a
+fly; he stuck its brain on the fine needle of his microscope—how
+he admired the clear details of the marvelous big brain of
+that fly! He examined the cross-sections of the wood of a
+dozen different trees and squinted at the seeds of plants. He
+grunted “Impossible!” when he first spied the outlandish large
+perfection of the sting of a flea and the legs of a louse. That
+man Leeuwenhoek was like a puppy who sniffs—with a totally
+impolite disregard of discrimination—at every object of the
+world around him!
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

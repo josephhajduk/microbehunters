@@ -1,0 +1,317 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch12_sec04
+**Chapter 12:** Paul Ehrlich — The Magic Bullet
+**Section 4 of this chapter**
+**Word count:** 1607
+**Total paragraphs:** 15
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "So Paul Ehrlich, in 1902, set out on his hunt. He got out his entire array of gleaming and glitterin..."
+  P2: "They tried nearly five hundred dyes! What a completely unscientific hunter Paul Ehrlich was! It was ..."
+  P3: "That man Ehrlich smoked more of his imported cigars, even at night in bed he would awake to smoke th..."
+  P4: "Ehrlich was testing the pretty-colored but complicated benzopurpurin dyes on dying mice, but the mic..."
+  P5: "“These dyes do not spread enough through the mouse’s body! Maybe, my dear Shiga, if we change it a l..."
+  P6: "Now, while Paul Ehrlich’s head was an encyclopedia of chemical knowledge, his hands were not the han..."
+  P7: "Under the skin of two white mice Shiga shot the evil trypanosomes of the mal de Caderas. A day passe..."
+  P8: "Away they go, shot down by the magic bullet, till the last one has perished. And the mouse? His eyes..."
+  P9: "He is the first one of all mice to fail to die from the attack of the trypanosome."
+  P10: "Paul Ehrlich, by the grace of persistence, chance, God, and a dye called “Trypan Red” (its real chem..."
+  P11: "But not at once, alas and alas. With gruesome diligence Shiga shot in that trypan red, and some mice..."
+  P12: "So, for his first little success, Paul Ehrlich paid with a thousand disappointments. The trypanosome..."
+  P13: "All the time the laboratory was growing. To the good people of Frankfort Paul Ehrlich was a savant w..."
+  P14: "Then the rich people worshiped him. A great stroke of luck came in 1906. Mrs. Franziska Speyer, the ..."
+  P15: "“Ka-de-reit!... Ci-gars!” or “Ka-de-reit!... Min-er-al wa-ter!”"
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+IV
+
+So Paul Ehrlich, in 1902, set out on his hunt. He got out
+his entire array of gleaming and glittering and shimmering
+dyes. “Splen-did!” he cried as he squatted before cupboards
+holding an astounding mosaic of sloppy bottles. He provided
+himself with plenty of the healthiest mice. He got himself a
+most earnest and diligent Japanese doctor, Shiga, to do the
+patient job of watching those mice, of snipping a bit off the
+ends of their tails to get a drop of blood to look for the trypanosomes,
+of snipping another bit off the ends of the same tails to
+get a drop of blood to inject into the next mouse—to do the
+job, in short, that it takes the industry and patience of a
+Japanese to do. The evil trypanosomes of the mal de Caderas
+came in a doomed guinea-pig from the Pasteur Institute in
+Paris; into the first mouse they went, and the hunt was on.
+
+They tried nearly five hundred dyes! What a completely
+unscientific hunter Paul Ehrlich was! It was like the first
+boatman hunting for the right kind of wood from which to
+make stout oars; it was like primitive blacksmiths clawing
+among metals for the best stuff from which to forge swords. It
+was, in short, the oldest of all the ways of man to get knowledge.
+It was the method of Trial and Sweating! Ehrlich
+tried; Shiga sweat. Their mice turned blue from this dye
+and yellow from that one, but the beastly finned trypanosomes
+of the mal de Caderas swarmed gayly in their veins, and killed
+those mice, one hundred out of every hundred!
+
+That man Ehrlich smoked more of his imported cigars, even
+at night in bed he would awake to smoke them; he drank more
+mineral water; he read in more books, and he threw books at
+the head of poor Kadereit—who heaven knows could not be
+blamed for not knowing what dye would kill trypanosomes. He
+said Latin phrases; he propounded amazing theories of what
+these dyes ought to do. Never had any searcher coined so
+many utterly wrong theories. But then, in 1903, came a day
+when one of these wrong explanations came to help him.
+
+Ehrlich was testing the pretty-colored but complicated benzopurpurin
+dyes on dying mice, but the mice were dying, with
+sickening regularity, from the mal de Caderas. Paul Ehrlich
+wrinkled his forehead—already it was like a corrugated iron
+roof from the perplexities and failures of twenty years—and
+he told Shiga:
+
+“These dyes do not spread enough through the mouse’s
+body! Maybe, my dear Shiga, if we change it a little—maybe,
+let us say, if we added sulfo-groups to this dye, it would dissolve
+better in the blood of the mouse!” Paul Ehrlich wrinkled
+his brow.
+
+Now, while Paul Ehrlich’s head was an encyclopedia of
+chemical knowledge, his hands were not the hands of an expert
+chemist. He hated complicated apparatus as much as he loved
+complicated theories. He didn’t know how to manage apparatus.
+He was only a chemical dabbler making endless fussy
+little starts with test-tubes, dumping in first this and then that
+to change the color of a dye, rushing out of his room to show
+the first person he met the result, waving the test-tube at him,
+shouting: “You understand? This is splen-did!” But as for
+delicate syntheses, those subtle buildings-up and changings of
+dyes, that was work for the master chemists. “But we must
+change this dye a little—then it will work!” he cried. Now
+Paul Ehrlich was a gay man and a most charming one, and presently
+back from the dye factory near by came that benzopurpurin
+color, with the sulfo-groups properly stuck onto it,
+“changed a little.”
+
+Under the skin of two white mice Shiga shot the evil trypanosomes
+of the mal de Caderas. A day passes. Two days go by.
+The eyes of those mice begin to stick shut with the mucilage of
+doom, their hair stands up straight with their dread of destruction—one
+day more and it will be all over with both of those
+mice.... But wait! Under the skin of one of those two mice
+Shiga sends a shot of that red dye—changed a little. Ehrlich
+watches, paces, mutters, gesticulates, shoots his cuffs. In a few
+minutes the ears of that mouse turn red, the whites of his nearly
+shut eyes turn pinker than the pink of his albino pupils. That
+day is a day of fate for Paul Ehrlich, it is the day the god of
+chance is good, for, like snows before the sun of April, so those
+fell trypanosomes melt out of the blood of that mouse!
+
+Away they go, shot down by the magic bullet, till the last
+one has perished. And the mouse? His eyes open. He snouts
+in the shavings in the bottom of his cage and sniffs at the pitiful
+little body of his dead companion, the untreated one.
+
+He is the first one of all mice to fail to die from the attack of
+the trypanosome.
+
+Paul Ehrlich, by the grace of persistence, chance, God, and a
+dye called “Trypan Red” (its real chemical name would stretch
+across this page!) has saved him! How that encouraged this
+already too courageous man! “I have a dye to cure a mouse—I
+shall find one to save a million men,” so dreamed that confident
+German Jew.
+
+But not at once, alas and alas. With gruesome diligence
+Shiga shot in that trypan red, and some mice got better but
+others got worse. One, seeming to be cured, would frisk about
+its cage, and then, after sixty days (!) would turn up seedy in
+the morning. Snip! went an end off its tail, and the skillful
+Shiga would call Paul Ehrlich to see its blood matted with a
+writhing swarm of the fell trypanosomes of the mal de Caderas.
+Terrible beasts are trypanosomes, sly, tough, as all despicable
+microbes are tough. And among the tough lot of them there
+are super-hardy ones. These beasts, when a Jew and a Japanese
+come along to have at them with a bright-colored dye, lap
+up that dye. They like it! Or they retreat discreetly to
+some out-of-the-way place in a mouse’s carcass. There they
+wait their time to multiply in swarms....
+
+So, for his first little success, Paul Ehrlich paid with a
+thousand disappointments. The trypanosome of David Bruce’s
+nagana and the deadly trypanosome of human sleeping sickness
+laughed at that trypan red! They absolutely refused to
+be touched by it! Then, what worked so beautifully with
+mice, failed completely when they came to try it on white
+rats and guinea-pigs and dogs. It was a grinding work, to be
+tackled only by such an impatient persistent man as Ehrlich,
+for had he not saved one mouse?—What waste! He used
+thousands of animals! I used to think, in the arrogance of
+my faith in science: “What waste!” But no. Or call it waste
+if you like, remembering that nature gets her most sublime results—so
+often—by being lavishly wasteful. And then remember
+that Paul Ehrlich had learned one lesson: change an apparently
+useless dye, a little, and it turns from a merely pretty
+color into something of a cure. That was enough to drive forward
+this too confident man.
+
+All the time the laboratory was growing. To the good people
+of Frankfort Paul Ehrlich was a savant who understood all
+mysteries, who probed all the riddles of nature, who forgot
+everything. And how the people of Frankfort loved him for
+being so forgetful! It was said that this Herr Professor Doktor
+Ehrlich had to write himself postal cards several days ahead
+to remind himself of festive events in his family. “What a human
+being!” they said. “What a deep thinker!” said the cabbies
+who drove him every morning to his Institute. “That
+must be a genius!” said the grind-organ musicians whom he
+tipped heavily once a week to play dance music in the garden
+by the laboratory. “My best ideas come when I hear gay
+music like that,” said Paul Ehrlich, who detested all highbrow
+music and literature and art. “What a democratic man, seeing
+how great he is!” said the good people of Frankfort, and they
+named a street after him. Before he was old he was legendary!
+
+Then the rich people worshiped him. A great stroke of luck
+came in 1906. Mrs. Franziska Speyer, the widow of the rich
+banker, Georg Speyer, gave him a great sum of money to
+build the Georg Speyer House, to buy glassware and mice and
+expert chemists, who could put together the most complicated
+of his darling dyes with a twist of the wrist, who could make
+even the crazy drugs that Ehrlich invented on paper. Without
+this Mrs. Franziska Speyer, Paul Ehrlich might very well
+never have molded those magic bullets, for that was a job—you
+can watch what a job!—for a factory full of searchers.
+Here in this new Speyer House Ehrlich lorded it over chemists
+and microbe hunters like the president of a company that
+turned out a thousand automobiles a day. But he was really
+old-fashioned, and never pressed buttons. He was always popping
+into one or another of the laboratories every conceivable
+time of the day, scolding his slaves, patting them on the back,
+telling them of howling blunders he himself had made, laughing
+when he was told that his own assistants said he was crazy.
+He was everywhere! But there was always one way of tracking
+him down, for ever and again his voice could be heard,
+bawling down the corridors:
+
+“Ka-de-reit!... Ci-gars!” or “Ka-de-reit!... Min-er-al
+wa-ter!”
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

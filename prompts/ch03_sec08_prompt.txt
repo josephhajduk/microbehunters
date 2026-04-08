@@ -1,0 +1,302 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch03_sec08
+**Chapter 3:** Pasteur — Microbes Are a Menace!
+**Section 8 of this chapter**
+**Word count:** 1517
+**Total paragraphs:** 10
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Surely it looked then as if Pasteur had a right to his fantastic dreams of wiping out disease. He ha..."
+  P2: "Like a boy who has just built a steam engine all by himself Pasteur was proud; he showed the letter ..."
+  P3: "All Europe by now was in a furor about microbes, and he knew it was himself that had changed microbe..."
+  P4: "Pasteur could not believe his eyes. Bernard had done this, the great Bernard who had been his seatma..."
+  P5: "Pasteur was overwhelmed, but only for a moment. He demanded Bernard’s original manuscript. They gave..."
+  P6: "Finally he argued with Bernard by beautiful experiments—a thing most other men would have done witho..."
+  P7: "Coming to his own little vineyard in Arbois, he hastily put up his hothouses around a part of his gr..."
+  P8: "Then at the next meeting Pasteur told the Academy of how he had quarantined his grape-vines against ..."
+  P9: "Then he jumped to marvelous predictions, prophecies that have since his time come true, he leaped to..."
+  P10: "Meanwhile in a little village in Eastern Germany a young stubborn round-headed Prussian doctor was s..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VIII
+
+Surely it looked then as if Pasteur had a right to his fantastic
+dreams of wiping out disease. He had just received a worshiping
+letter from the English surgeon Lister—and this letter
+told of a scheme for cutting up sick people in safety, of doing
+operations in a way that kept out that deadly mysterious infection
+that in many hospitals killed eight people out of ten.
+“Permit me,” wrote Lister, “to thank you cordially for having
+shown me the truth of the theory of germs of putrefaction by
+your brilliant researches, and for having given me the single
+principle which has made the antiseptic system a success. If
+you ever come to Edinburgh it will be a real recompense to you,
+I believe, to see in our hospital in how large a measure humanity
+has profited from your work.”
+
+Like a boy who has just built a steam engine all by himself
+Pasteur was proud; he showed the letter to all his friends; he
+inserted it with all its praise in his scientific papers; he published
+it—of all places—in his book on beer! Then he took a
+final smash at poor old Frémy, who you would have thought
+was already sufficiently crushed by the gorgeous experiments;
+he smashed Frémy not by damning Frémy, but by praising
+himself! He spoke of his own “remarkable discoveries,” he
+called his own theories the true ones and ended: “In a word, the
+mark of true theories is their fruitfulness. This is the characteristic
+which Mr. Balard, with an entirely fatherly friendliness,
+has made stand out in speaking of my researches.”
+Frémy had no more to say.
+
+All Europe by now was in a furor about microbes, and he
+knew it was himself that had changed microbes from playthings
+into useful helpers of mankind—and perhaps, the world
+would soon be astounded by it—into dread infinitesimal ogres
+and murdering marauders, the worst enemies of the race. He
+had become the first citizen of France and even in Denmark
+prominent brewers were having his bust put in their laboratories.
+When suddenly Claude Bernard died, and some of Bernard’s
+friends published this great man’s unfinished work.
+Horrible to tell, this unfinished work had for its subject
+fermentation of grape juice into wine, and it ended by showing
+that the whole theory of Pasteur was destroyed because ...
+and Bernard closed by giving a series of reasons.
+
+Pasteur could not believe his eyes. Bernard had done this,
+the great Bernard who had been his seatmate in the Academy
+and had always praised his work; Bernard who had exchanged
+sly sarcastic remarks with him at the Academy of Medicine
+about those blue-coated pompous brass-buttoned doctors whose
+talk was keeping real experiment out of medicine. “It’s bad
+enough for these doctors and these half-witted naturalists to
+contradict me—but truly great men have always appreciated
+my work—and now Bernard ...” you can hear him muttering.
+
+Pasteur was overwhelmed, but only for a moment. He demanded
+Bernard’s original manuscript. They gave it to him.
+He studied it with all the close attention in his power. He
+found Bernard’s experiments were only beginnings, rough
+sketches; gleefully he found that Bernard’s friends who had
+published it had made some discreet changes to make it read
+better. Then he rose one day, to the scandal of the entire
+Academy and the shocked horror of all the great men of
+France, and bitterly scolded Bernard’s friends for publishing a
+research that had dared to question his own theories. Vulgarly
+he shouted objections at Bernard—who, after all, could
+not answer Pasteur from his grave. Then he published a
+pamphlet against his old dead friend’s last researches. It was
+a pamphlet in the worst of taste, accusing Bernard of having
+lost his memory. That pamphlet even claimed that Bernard,
+who was to his finger tips a hard man of science, had become
+tainted with mystical ideas by associating too much with literary
+lights of the French Academy. It even proved that in his last
+researches Bernard couldn’t see well any more—“I’ll wager
+he had become farsighted and could not see the yeasts!”
+cried Pasteur. Vulgarly, by all this criticism, he left people
+to conclude that Bernard had been in his dotage when he
+did his last work—without any sense of the fitness of things
+this passionate Pasteur jumped up and down on Bernard’s
+grave.
+
+Finally he argued with Bernard by beautiful experiments—a
+thing most other men would have done without making unseemly
+remarks. Like an American about to build a skyscraper
+in six weeks he rushed to carpenters and hardware stores and
+bought huge pieces of expensive glass and with this glass he
+had the carpenters build ingenious portable hothouses. His
+assistants worked dinnerless and sleepless, preparing flasks and
+microscopes and wads of heated cotton; and in an unbelievably
+short time Pasteur gathered up all this ponderous paraphernalia
+and hastened to catch a train for his old home in the Jura
+mountains. Like the so typical misplaced American that he
+really was, he threw every consideration and all other work to
+the winds and went directly to the point of settling: “Does my
+theory of fermentation hold?”
+
+Coming to his own little vineyard in Arbois, he hastily put
+up his hothouses around a part of his grape-vines. They were
+admirable close-fitting hothouses that sealed the grape-vines
+from the outside air. “It’s midsummer, now, the grapes are
+far from ripe,” he pondered, “and I know that at this time there
+are never any yeasts to be found on the grapes.” Then, to
+make doubly sure that no yeasts from the air could fall on the
+grapes, he carefully wrapped wads of cotton—which his assistants
+had heated to kill all living beings—around some of
+the bunches under the glass of the hothouses. He hurried
+back to Paris and waited nervously for the grapes to ripen.
+He went back to Arbois too soon in his frantic eagerness to
+prove that Bernard was wrong—but at last he got there to find
+them ripe. He examined the hothouse grapes with his microscope;
+there was not a yeast to be found on their skins. Feverishly
+he crushed some of them up in carefully heated bottles—not
+a single bubble of fermentation rose in these flasks—and
+when he did the same thing to the exposed grapes from the
+vines outside the hothouse, these bubbled quickly into wine!
+At last he gathered up Madame Pasteur and some of the vines
+with their cotton-wrapped bunches of grapes—he was going
+to take these back to the Academy, where he would offer a
+bunch to each member that wanted one, and he was going to
+challenge everybody to try to make wine from these protected
+bunches.... He knew they couldn’t do it without putting
+yeasts into them.... He would show them all Bernard was
+wrong! Madame Pasteur sat stiffly in the train all the way
+back to Paris, carefully holding the twigs straight up in front
+of her so that the cotton wrappings wouldn’t come undone. It
+was a whole day’s trip to Paris....
+
+Then at the next meeting Pasteur told the Academy of how
+he had quarantined his grape-vines against yeasts: “Is it not
+worthy of attention,” he shouted, “that in this vineyard of
+Arbois, and this would be true of millions of acres of vineyards
+all over the world, there was at the moment I made these experiments,
+not a speck of soil which was not capable of fermenting
+grapes into wine; and is it not remarkable that, on
+the contrary, the soil of my hothouses could not do this? And
+why? Because at a definite moment, I covered this soil with
+some glass....”
+
+Then he jumped to marvelous predictions, prophecies that
+have since his time come true, he leaped to poetry, I say, that
+makes you forget his vulgar wrangling with his dead friend
+Bernard. “Must we not believe, as well, that a day will come
+when preventive measures that are easy to apply, will arrest
+those plagues ...” and he painted them a lurid picture of the
+terrible yellow fever that just then had changed the gay streets
+of New Orleans into a desolation. He made them shiver to
+hear of the black plague on the far banks of the Volga. Finally
+he made them hope....
+
+Meanwhile in a little village in Eastern Germany a young
+stubborn round-headed Prussian doctor was starting on his road
+to those very miracles that Pasteur was prophesying—this
+young doctor was doing strange experiments with mice in time
+stolen from his practice. He was devising ingenious ways to
+handle microbes so that he could be dead sure he was handling
+only one kind—he was learning to do a thing that Pasteur with
+all his brilliant skill had never succeeded in doing. Let us
+leave Pasteur for a while—even though he is on the threshold
+of his most exciting experiments and funniest arguments—let
+us leave him for a chapter and go with Robert Koch, while he
+is learning to do fantastic, and marvelously important things
+with those microbes which had been subjects of Pasteur’s kingdom
+for so many years.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

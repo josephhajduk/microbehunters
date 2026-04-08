@@ -1,0 +1,338 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch05_sec02
+**Chapter 5:** Pasteur — And the Mad Dog
+**Section 2 of this chapter**
+**Word count:** 1553
+**Total paragraphs:** 24
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Pasteur arrived there, escorted by his young assistants, and found that this miraculous cure consist..."
+  P2: "Pasteur said to Louvrier: “Let us make an experiment. All cows attacked by anthrax do not die, some ..."
+  P3: "So four good healthy cows were brought, and Pasteur in the presence of Louvrier and a solemn commiss..."
+  P4: "“Now, Doctor,” said Pasteur, “choose two of these sick cows—we’ll call them A and B. Give them your ..."
+  P5: "“Even this experiment might have tricked us, Doctor,” said Pasteur. “If you had given your treatment..."
+  P6: "Here were two cows left over from the experiment, beasts that had had a hard siege of anthrax and go..."
+  P7: "So Pasteur sent to Paris for his vicious cultivation, and injected five drops into the shoulders of ..."
+  P8: "Then Pasteur jumped to one of his quick conclusions: “Once a cow has anthrax, but gets better from i..."
+  P9: "“How to give an animal a little attack of anthrax, a safe little attack that won’t kill him, but wil..."
+  P10: "So it went with Pasteur for months and he kept saying to Roux and Chamberland: “What mystery is ther..."
+  P11: "Meanwhile Pasteur and his faithful crew were training their microscopes on stuff from men and animal..."
+  P12: "In 1880, Pasteur was playing with the very tiny microbe that kills chickens with a malady known as c..."
+  P13: "Roux and Chamberland nursed these terrible wee microbes along carefully; day after day they dipped a..."
+  P14: "Then the god of good accidents whispered in his ear, and Pasteur said to Roux: “We know the chicken ..."
+  P15: "Roux followed these directions and the chickens promptly got sick, turned drowsy, lost their customa..."
+  P16: "“This is strange,” pondered Pasteur, “always before this the microbes from our cultivations have kil..."
+  P17: "But at last one day Pasteur told the laboratory servant: “Bring up some healthy birds, new chickens,..."
+  P18: "“But we only have a couple of unused chickens left, Mr. Pasteur—remember, you used the last ones bef..."
+  P19: "Pasteur made a few appropriate remarks about servants who neglected to keep a good supply of fresh c..."
+  P20: "The squawking birds were brought up. The assistant shot the soup with its myriads of germs into the ..."
+  P21: "“Roux, Chamberland, come down here—hurry!”"
+  P22: "They found him pacing up and down before the chicken cages. “Look!” said Pasteur. “The new birds we ..."
+  P23: "Roux and Chamberland were puzzled for a moment."
+  P24: "Then Pasteur raved: “But don’t you see what this means? Everything is found! Now I have found out ho..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+II
+
+Pasteur arrived there, escorted by his young assistants, and
+found that this miraculous cure consisted first, in having several
+farm hands rub the sick cow violently to make her as
+hot as possible; then long gashes were cut in the poor beast’s
+skin and into these cuts Louvrier poured turpentine; finally
+the now bellowing and deplorably maltreated cow was covered—excepting
+her face!—with an inch thick layer of unmentionable
+stuff soaked in hot vinegar. This ointment was
+kept on the animal—who now doubtless wished she were dead—by
+a cloth that covered her entire body.
+
+Pasteur said to Louvrier: “Let us make an experiment. All
+cows attacked by anthrax do not die, some of them just get
+better by themselves; there is only one way to find out, Doctor
+Louvrier, whether or no it is your treatment that saves them.”
+
+So four good healthy cows were brought, and Pasteur in the
+presence of Louvrier and a solemn commission of farmers,
+shot a powerful dose of virulent anthrax microbes into the
+shoulder of each one of these beasts: this stuff would have
+surely killed a sheep, it was enough to do to death a few dozen
+guinea-pigs. The next day Pasteur and the commission and
+Louvrier returned, and all the cows had large feverish swellings
+on their shoulders, their breath came in snorts—they were in
+a bad way, that was very evident.
+
+“Now, Doctor,” said Pasteur, “choose two of these sick
+cows—we’ll call them A and B. Give them your new cure,
+and we’ll leave cows C and D without any treatment at all.”
+So Louvrier assaulted poor A and B with his villainous treatment.
+The result was a terrible blow to the sincere would-be
+curer of cows, for one of the cows that Louvrier treated got
+better—but the other perished; and one of the creatures that
+had got no treatment at all, died—but the other got better.
+
+“Even this experiment might have tricked us, Doctor,” said
+Pasteur. “If you had given your treatment to cows A and D
+instead of A and B—we all would have thought you had really
+found a sovereign remedy for anthrax.”
+
+Here were two cows left over from the experiment, beasts
+that had had a hard siege of anthrax and got better from it:
+“What shall I do with these two cows?” pondered Pasteur.
+“Well, I might try shooting a still more savage strain of anthrax
+bacilli into them—I have one family of anthrax germs in Paris
+that would give even a rhinoceros a bad night.”
+
+So Pasteur sent to Paris for his vicious cultivation, and injected
+five drops into the shoulders of those two cows that had
+got better. Then he waited, but nothing happened to the
+beasts, not even a tiny swelling at the point where he had injected
+millions of poisonous bacilli; the cows remained perfectly
+happy!
+
+Then Pasteur jumped to one of his quick conclusions:
+“Once a cow has anthrax, but gets better from it, all the
+anthrax microbes in the world cannot give her another attack—she
+is immune.” This thought began playing and flitting
+about in his head and made him wool-gather so that he did not
+hear questions that Madame Pasteur asked him, nor see obvious
+things at which his eyes looked directly.
+
+“How to give an animal a little attack of anthrax, a safe
+little attack that won’t kill him, but will surely protect
+him.... There must be a way to do that.... I must find a
+way.”
+
+So it went with Pasteur for months and he kept saying to
+Roux and Chamberland: “What mystery is there, like the
+mystery of the non-recurrence of virulent maladies?” He
+went about muttering to himself: “We must immunize—we
+must immunize against microbes....”
+
+Meanwhile Pasteur and his faithful crew were training their
+microscopes on stuff from men and animals dead of a dozen
+different diseases; there was a kind of mixed-up fumbling in
+this work between 1878 and 1880—when one day fate, or
+God, put a marvelous way to immunize right under Pasteur’s
+lucky nose. (It is hard for me to give you this story exactly
+straight because all of the various people who have written
+about Pasteur tell it differently and Pasteur himself in his
+scientific paper says nothing whatever about this remarkable
+discovery having been a happy accident.) But here it is, as
+well as I can do, with certain gaps that I have had to fill in
+myself.
+
+In 1880, Pasteur was playing with the very tiny microbe
+that kills chickens with a malady known as chicken cholera.
+Doctor Peronçito had discovered this microbe, so tiny that it
+was hardly more than a quivering point before the strongest
+lens. Pasteur was the first microbe hunter to grow it pure, in
+a soup that he cooked for it from chicken meat. And after he
+had watched these dancing points multiply into millions in a
+few hours, he let fall the smallest part of a drop of this bug-swarming
+broth onto a crumb of bread—and fed this bread
+to a chicken. In a few hours the unfortunate beast stopped
+clucking and refused to eat, her feathers ruffled until she
+looked like a fluffy ball, and the next day Pasteur came in to
+find the bird tottering, its eyes shut in a kind of invincible
+drowsiness that turned quickly into death.
+
+Roux and Chamberland nursed these terrible wee microbes
+along carefully; day after day they dipped a clean platinum
+needle into a bottle of chicken broth that teemed with germs
+and then carefully shook the same still-wet needle into a fresh
+flask of soup that held no microbe at all—so day after day
+these transplantations went on—always with new myriads of
+germs growing from the few that had come in on the moistened
+needle. The benches of the laboratory became cluttered with
+abandoned cultures, some of them weeks old. “We’ll have to
+clean this mess up to-morrow,” thought Pasteur.
+
+Then the god of good accidents whispered in his ear, and
+Pasteur said to Roux: “We know the chicken cholera microbes
+are still alive in this bottle ... they’re several weeks old, it
+is true ... but just try shooting a few drops of this old
+cultivation into some chickens....”
+
+Roux followed these directions and the chickens promptly
+got sick, turned drowsy, lost their customary lively frivolousness.
+But next morning, when Pasteur came into the laboratory
+looking for these birds, to put them on the post-mortem
+board—he was sure they would be dead—he found them perfectly
+happy and gay!
+
+“This is strange,” pondered Pasteur, “always before this
+the microbes from our cultivations have killed twenty chickens
+out of twenty....” But the time for his discovery was not
+yet, and next day, after these strangely recovered chickens
+had been put in charge of the caretaker, Pasteur and his family
+and Roux and Chamberland went off on their summer vacations.
+They forgot about those birds....
+
+But at last one day Pasteur told the laboratory servant:
+“Bring up some healthy birds, new chickens, and get them
+ready for inoculation.”
+
+“But we only have a couple of unused chickens left, Mr.
+Pasteur—remember, you used the last ones before you went
+away—you injected the old cultures into them, and they got
+sick but didn’t die?”
+
+Pasteur made a few appropriate remarks about servants
+who neglected to keep a good supply of fresh chickens on hand.
+“Well, all right, bring up what new chickens you have left—and
+let’s have a couple of those used ones too—the ones that
+had the cholera but got better....”
+
+The squawking birds were brought up. The assistant shot
+the soup with its myriads of germs into the breast muscles of
+the chickens—into the new ones, and into the ones that had
+got better! Roux and Chamberland came into the laboratory
+next morning—Pasteur was always there an hour or so ahead
+of them—they heard the muffled voice of their master shouting
+to them from the animal room below stairs:
+
+“Roux, Chamberland, come down here—hurry!”
+
+They found him pacing up and down before the chicken
+cages. “Look!” said Pasteur. “The new birds we shot yesterday—they’re
+dead all right, as they ought to be.... But
+now see these chickens that recovered after we shot them with
+the old cultures last month.... They got the same murderous
+dose yesterday—but look at them—they have resisted the
+virulent dose perfectly ... they are gay ... they are eating!”
+
+Roux and Chamberland were puzzled for a moment.
+
+Then Pasteur raved: “But don’t you see what this means?
+Everything is found! Now I have found out how to make a
+beast a little sick—just a little sick so that he will get better,
+from a disease.... All we have to do is to let our virulent
+microbes grow old in their bottles ... instead of planting
+them into new ones every day.... When the microbes age,
+they get tame ... they give the chicken the disease ... but
+only a little of it ... and when she gets better she can stand
+all the vicious virulent microbes in the world.... This is our
+chance—this is my most remarkable discovery—this is a
+vaccine I’ve discovered, much more sure, more scientific than
+the one for smallpox where no one has seen the germ....
+We’ll apply this to anthrax too ... to all virulent diseases....
+We will save lives...!”
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

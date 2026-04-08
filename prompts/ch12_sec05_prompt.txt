@@ -1,0 +1,252 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch12_sec05
+**Chapter 12:** Paul Ehrlich — The Magic Bullet
+**Section 5 of this chapter**
+**Word count:** 1020
+**Total paragraphs:** 9
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "The dyes were a great disappointment. The chemists muttered he was an idiot. But then, you must reme..."
+  P2: "“We will change it a little,” said Paul Ehrlich, though he knew the chemists who had invented Atoxyl..."
+  P3: "Here Paul Ehrlich dabbled with Atoxyl, shouting: “Splendid!”, growling: “Un-be-liev-a-ble!”, dictati..."
+  P4: "“I can change Atoxyl!” Without his hat or coat Ehrlich hurried out of this dingy room to the marvelo..."
+  P5: "For the next two years the whole staff, Japs and Germans, not to mention some Jews, men and white ra..."
+  P6: "They changed Atoxyl! They developed marvelous compounds of arsenic which—hurrah!—would really cure m..."
+  P7: "“It is very interesting that the only damage to the mice is that they become dancing mice. Those who..."
+  P8: "They invented countless compounds, and it was a business for despair. There was that strange affair ..."
+  P9: "Such was the grim procession through the first five hundred and ninety-one compounds of arsenic. Pau..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+V
+
+The dyes were a great disappointment. The chemists muttered
+he was an idiot. But then, you must remember Paul
+Ehrlich read books. One day, sitting in the one chair in his
+office that wasn’t piled high with them, peering through chemical
+journals like some Rosicrucian in search of the formula for
+the philosopher’s stone, he came across a wicked drug. It was
+called “Atoxyl” which means: “Not poisonous.” Not poisonous?
+Atoxyl had almost cured mice with sleeping sickness.
+Atoxyl had killed mice without sleeping sickness. Atoxyl had
+been tried on those poor darkies down in Africa. It had not
+cured them, but an altogether embarrassing number of those
+darkies had gone blind, stone blind, from Atoxyl before they
+had had time to die from sleeping sickness. So, you see, this
+Atoxyl was a sinister medicine that its inventors—had they
+been living—should have been ashamed of. It was made of
+a benzene ring, which is nothing more than six atoms of carbon
+chasing themselves round in a circle like a dog running round
+biting the end of his tail, and four atoms of hydrogen, and
+some ammonia and the oxide of arsenic—which everybody
+knows is poisonous.
+
+“We will change it a little,” said Paul Ehrlich, though he
+knew the chemists who had invented Atoxyl had said it was
+so built that it couldn’t be changed without spoiling it. But
+every afternoon Ehrlich fussed around alone in his chemical
+laboratory, which was like no other chemical laboratory in the
+world. It had no retorts, no beakers, no flasks nor thermometers
+nor ovens—no, not even a balance! It was crude as the
+prescription counter of the country druggist (who also runs the
+postoffice) excepting that in its middle stood a huge table, with
+ranks and ranks of bottles—bottles with labels and bottles
+without, bottles with scrawled unreadable labels and bottles
+whose purple contents had slopped all over the labels. But
+that man’s memory remembered what was in every one of those
+bottles! From the middle of this jungle of bottles a single
+Bunsen burner reared its head and spouted a blue flame. What
+chemist would not laugh at this laboratory?
+
+Here Paul Ehrlich dabbled with Atoxyl, shouting: “Splendid!”,
+growling: “Un-be-liev-a-ble!”, dictating to the long-suffering
+Miss Marquardt, bawling for the indispensable Kadereit.
+In that laboratory, with a chemical cunning the gods
+sometimes bestow on searchers who could never be chemists,
+Paul Ehrlich found that you can change Atoxyl, not a little but
+a lot, that it can be built into heaven knows how many entirely
+unheard-of compounds of arsenic, without spoiling the combination
+of benzene and arsenic at all!
+
+“I can change Atoxyl!” Without his hat or coat Ehrlich
+hurried out of this dingy room to the marvelous workshop of
+Bertheim, chief of his chemist slaves. “Atoxyl can be changed—maybe
+we can change it into a hundred, a thousand new
+compounds of arsenic!” he exclaimed.... “Now, my dear
+Bertheim,” and he poured out a thousand fantastic schemes.
+Bertheim? He could not resist that “Now my dear Bertheim!”
+
+For the next two years the whole staff, Japs and Germans,
+not to mention some Jews, men and white rats and white mice,
+not to mention Miss Marquardt and Miss Leupold—and don’t
+forget Kadereit!—toiled together in that laboratory which was
+like a subterranean forge of imps and gnomes. They tried
+this, they did that, with six hundred and six—that is their exact
+number—different compounds of arsenic. Such was the power
+of the chief imp over them, that this staff never stopped to
+think of the absurdity and the impossibility of their job, which
+was this: to turn arsenic from a pet weapon of murderers into
+a cure which no one was sure could exist for a disease Ehrlich
+hadn’t even dreamed might be cured. These slaves worked as
+only men can work when they are inspired by a wrinkle-browed
+fanatic with kind gray eyes.
+
+They changed Atoxyl! They developed marvelous compounds
+of arsenic which—hurrah!—would really cure mice.
+“We have it!” the staff would be ready to shout, but then,
+worse luck, when the fell trypanosomes of the mal de Caderas
+had gone, those marvelous cures turned the blood of the cured
+mice to water, or killed them with a fatal jaundice.... And—who
+would believe it?—some of those arsenic remedies made
+mice dance, not for a minute but for the rest of their lives
+round and round they whirled, up and down they jumped.
+Satan himself could not have schemed a worse torture for creatures
+just saved from death. It seemed ridiculous, hopeless,
+to try to find a perfect cure. But Paul Ehrlich? He wrote:
+
+“It is very interesting that the only damage to the mice is
+that they become dancing mice. Those who visit my laboratory
+must be impressed by the great number of dancing mice
+it entertains....” He was a sanguine man!
+
+They invented countless compounds, and it was a business
+for despair. There was that strange affair of the arsenic fastness.
+When Ehrlich found that one big dose of a compound
+was too dangerous for his beasts, he tried to cure them by
+giving them a lot of little doses. But, curse it! The trypanosomes
+became immune to the arsenic, and refused to be killed
+off at all, and the mice died in droves....
+
+Such was the grim procession through the first five hundred
+and ninety-one compounds of arsenic. Paul Ehrlich kept
+cheering himself by telling himself fairy stories of marvelous
+new cures, stories that God and all nature could prove were
+lies. He drew absurd diagrams for Bertheim and the staff, pictures
+of imaginary arsenical remedies that they in their expert
+wisdom knew it was impossible to make. Everywhere he made
+pictures for his boys—who knew more than he did—on innumerable
+reams of paper, on the menu cards of restaurants and
+on picture post cards in beer halls. His men were aghast at his
+neglect of the impossible; they were encouraged by his indomitable
+mulishness. They said: “He is so enthusiastic!” and
+became enthusiastic with him. So, burning his candle at both
+ends, Paul Ehrlich came, in 1909, to his day of days.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

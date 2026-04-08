@@ -1,0 +1,380 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch02_sec04
+**Chapter 2:** Spallanzani — Microbes Must Have Parents!
+**Section 4 of this chapter**
+**Word count:** 2108
+**Total paragraphs:** 22
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "“So Needham says heat damages the Force in the seeds, does he? Has he tried it? How can he see or fe..."
+  P2: "Spallanzani got out his flasks once more and cleaned them. He brewed mixtures of different kinds of ..."
+  P3: "“Now, we’ll boil a whole series of these flasks different lengths of time, and see which one generat..."
+  P4: "If Needham were right, the flasks boiled for minutes should be alive with little animals, but the on..."
+  P5: "“Vegetative Force, what nonsense! so long as you only plug up your flasks with corks the little anim..."
+  P6: "Spallanzani was triumphant, but then he did the curious thing that only born scientists ever do—he t..."
+  P7: "Then he cleaned his flasks again, and took some seeds, but instead of merely boiling them in water, ..."
+  P8: "Days later when he came back to his flasks, with their soups brewed from the burned seeds, he smiled..."
+  P9: "Then he relaxed from his hard pryings into the loves and battles and deaths of little animals by mak..."
+  P10: "But he soon came back to the mysterious question of how life arises, that question which his religio..."
+  P11: "He didn’t do them out of any fiendish whim to hurt the father toad—but this man must know every fact..."
+  P12: "In his sniffing search for knowledge which let him stop at nothing, he was led by an instinct that d..."
+  P13: "Spallanzani held immense correspondences with half the doubters and searchers of Europe. By mail he ..."
+  P14: "“But there is a Vegetative Force,” cried Needham, “a mysterious something—I’ll admit you can’t see i..."
+  P15: "Spallanzani was up in arms in a moment, and bawled for Needham’s experiments. “Has he heated air to ..."
+  P16: "He cocked his ear—he heard a little wh-i-s-s-s-s-t. “What’s this,” he muttered, and grabbed another ..."
+  P17: "The flame sucked inward toward the opening."
+  P18: "“The air’s going in—that means the air in the bottle is less elastic than the air outside, that mean..."
+  P19: "For a moment Spallanzani had a queer feeling at the pit of his stomach, his forehead was wet with ne..."
+  P20: "Then like a flash of lightning the explanation came to him and he hurried to his work bench—it was c..."
+  P21: "He saw that Needham’s idea that boiling water outside the flask damaged the elasticity of the air in..."
+  P22: "All of the long boiling had not damaged the air at all—it was even more elastic than before—and elas..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+IV
+
+“So Needham says heat damages the Force in the seeds,
+does he? Has he tried it? How can he see or feel or weigh
+or measure this Vegetative Force? He says it is in the seeds,
+well, we’ll heat the seeds and see!”
+
+Spallanzani got out his flasks once more and cleaned them.
+He brewed mixtures of different kinds of seeds, of peas and
+beans and vetches with pure water, until his work room almost
+ran over with flasks—they perched on high shelves, they sat
+on tables and chairs, they cluttered the floor so it was hard to
+walk around.
+
+“Now, we’ll boil a whole series of these flasks different
+lengths of time, and see which one generates the most little
+animals,” he said, and then doused one set of his soups in boiling
+water for a few minutes, another for a half hour, another
+for an hour, and still another for two hours. Instead of sealing
+them in the flame he plugged them all up with corks—Needham
+said that was enough—and then he put them carefully
+away to see what would happen. He waited. He went
+off fishing and forgot to pull up his rod when a fish bit, he
+collected minerals for his museum, and forgot to take them
+home with him. He plotted for higher pay, he said masses, and
+studied the copulation of frogs and toads—and then disappeared
+once more to his dim work room with its regiments of
+bottles and weird machines. He waited.
+
+If Needham were right, the flasks boiled for minutes should
+be alive with little animals, but the ones boiled for an hour
+or two hours should be deserted. He pulled out the corks one
+by one, and looked at the drops of soup through his lens and
+at last laughed with delight—the bottles that had been boiled
+for two hours actually had more little animals sporting about
+in them than the ones he had heated for a few minutes.
+
+“Vegetative Force, what nonsense! so long as you only plug
+up your flasks with corks the little animals will get in from
+the air. You can heat your soups till you’re black in the face—the
+microbes will get in just the same and grow, after the
+broth has cooled.”
+
+Spallanzani was triumphant, but then he did the curious
+thing that only born scientists ever do—he tried to beat his
+own idea, his darling theory—by experiments he honestly and
+shrewdly planned to defeat himself. That is science! That
+is the strange self-forgetting spirit of a few rare men, those
+curious men to whom truth is more dear than their own cherished
+whims and wishes. Spallanzani walked up and down
+his narrow work room, hands behind him, meditating—“Wait,
+maybe after all Needham has guessed right, maybe there is
+some mysterious force in these seeds that strong heat might
+destroy.”
+
+Then he cleaned his flasks again, and took some seeds, but
+instead of merely boiling them in water, he put them in a
+coffee-roaster and baked them till they were soot-colored
+cinders. Next he poured pure distilled water over them, growling:
+“Now if there was a Vegetative Force in those seeds, I
+have surely roasted it to death.”
+
+Days later when he came back to his flasks, with their soups
+brewed from the burned seeds, he smiled a sarcastic smile—a
+smile that meant squirmings for Buffon and Needham—for
+as one bottle after another yielded its drops of soup to his lens,
+every drop from every bottle was alive with wee animals that
+swam up and down in the liquid and went to and fro, living
+their funny limited little lives as gayly as any animals in the
+best soup made from unburned seeds. He had tried to defeat
+his own theory, and so trying had licked the pious Needham
+and the precious Buffon. They had said that heat would kill
+their Force so that no little animals could arise—and here were
+seeds charred to carbon, furnishing excellent food for the small
+creatures—this so-called Force was a myth! Spallanzani proclaimed
+this to all of Europe, which now began to listen to
+him.
+
+Then he relaxed from his hard pryings into the loves and
+battles and deaths of little animals by making deep studies of
+the digestion of food in the human stomach—and to do this
+he experimented cruelly on himself. This was not enough, so
+he had to launch into weird investigations in the hot dark attic
+of his house, on the strange problem of how bats can keep
+from bumping into things although they cannot see. In the
+midst of this he found time to help educate his little nephews
+and to take care of his brother and sister, obscure beings who
+did not share his genius—but they were of his blood, and he
+loved them.
+
+But he soon came back to the mysterious question of how
+life arises, that question which his religion taught him to ignore,
+to accept with blind faith as a miracle of the Creator. He
+didn’t work with little animals only; instead he turned his
+curiosity onto larger ones, and began vast researches on the
+mating of toads. “What is the cause of the violent and persistent
+way in which the male toad holds the female?” he
+asked himself, and his wonder at this strange event set his
+ingenious brain to devising experiments of an unheard-of barbarity.
+
+He didn’t do them out of any fiendish whim to hurt the
+father toad—but this man must know every fact that could
+possibly be known about how new toads arose. What will
+make the toad let go this grip? And that mad priest cut off
+a male toad’s hind legs in the midst of its copulation—but the
+dying animal did not relax that blind grasp to which nature
+drove it. Spallanzani mused over his bizarre experiment.
+“This persistence of the toad,” he said, “is due less to his
+obtuseness of feeling than to the vehemence of his passion.”
+
+In his sniffing search for knowledge which let him stop at
+nothing, he was led by an instinct that drove him into heartless
+experiments on animals—but it made him do equally cruel
+and fantastic tests on himself. He studied the digestion of
+food in the stomach, he gulped down hollowed-out blocks of
+wood with meat inside them, then tickled his throat and made
+himself vomit them up again so that he could find out what
+had happened to the meat inside the blocks. He kept insanely
+at this self-torture, until, as he admitted at last, a horrid
+nausea made him stop the experiments.
+
+Spallanzani held immense correspondences with half the
+doubters and searchers of Europe. By mail he was a great
+friend of that imp, Voltaire. He complained that there were
+few men of talent in Italy, the air was too humid and foggy—he
+became a leader of that impudent band of scientists and
+philosophers who unknowingly prepared the bloodiest of revolutions
+while they tried so honestly to find truth and establish
+happiness and justice in the world. These men believed
+that Spallanzani had spiked once for all that nonsense about
+animals—even the tiniest ones—arising spontaneously. Led
+by Voltaire they cracked vast jokes about the Vegetative Force
+and its parents, the pompous Buffon and his laboratory boy,
+Father Needham.
+
+“But there is a Vegetative Force,” cried Needham, “a mysterious
+something—I’ll admit you can’t see it or weigh it—that
+can make life arise out of gravy or soup or out of nothing at
+all, perhaps. Maybe it can stand all of that roasting that
+Spallanzani applies to it, but what it needs particularly is a
+very elastic air to help it. And when Spallanzani boils his
+flasks for an hour, he hurts the elasticity of the air inside the
+flasks!”
+
+Spallanzani was up in arms in a moment, and bawled for
+Needham’s experiments. “Has he heated air to see if it got less
+elastic?” The Italian waited for experiments—and got only
+words. “Then I’ll have to test it out myself,” he said, and
+once again he put seeds in rows of flasks and sealed off their
+necks in a flame—and boiled them for an hour. Then one
+morning he went to his laboratory, and cracked off the neck
+of one of his bottles....
+
+He cocked his ear—he heard a little wh-i-s-s-s-s-t. “What’s
+this,” he muttered, and grabbed another bottle and cracked
+off its neck, holding his ear close by. Wh-i-s-s-st! There it
+was again. “That means the air is coming out of my bottle,
+or going into it,” he cried, and he lighted a candle and ingeniously
+held it near the neck of a third flask as he cracked
+the seal.
+
+The flame sucked inward toward the opening.
+
+“The air’s going in—that means the air in the bottle is less
+elastic than the air outside, that means maybe Needham is
+right!”
+
+For a moment Spallanzani had a queer feeling at the pit of
+his stomach, his forehead was wet with nervous sweat, his
+world tottered around him.... Could that fool Needham
+have made a lucky stab, a clever guess about what heat did to
+air in sealed up flasks? Could this windbag knock out all of
+this careful finding of facts, which had taken so many years
+of hard work? For days Spallanzani went about troubled,
+and snapped at students to whom before he had been gentle,
+and tried to comfort himself by reciting Dante and Homer—and
+this only made him more grumpy. A relentless torturing
+imp pricked at him and this imp said: “Find out why the air
+rushes into your flasks when you break the seals—it may not
+have anything to do with elasticity.” The imp woke him up
+in the night, it made him get tangled up in his masses....
+
+Then like a flash of lightning the explanation came to him
+and he hurried to his work bench—it was covered with broken
+flasks and abandoned bottles and its muddled disarray told
+his discouragement—he reached into a cupboard and took out
+one of his flasks. He was on the track, he would show Needham
+was wrong, and even before he had proved it he stretched
+himself with a heave of relief—so sure was he that the reason
+for the little whistling of air had come to him. He looked at
+the flasks, then smiled and said, “All the flasks that I have been
+using have fairly wide necks. When I seal them in the flame
+it takes a lot of heat to melt the glass till the neck is shut off—all
+that heat drives most of the air out of the bottle before it’s
+sealed up. No wonder the air rushes in when I crack the
+seal!”
+
+He saw that Needham’s idea that boiling water outside the
+flask damaged the elasticity of the air inside was nonsense,
+nothing less. But how to prove this, how to seal up the flasks
+without driving out the air? His devilish ingenuity came to
+help him, and he took another flask, put seeds into it, and filled
+it partly with pure water. Then he rolled the neck of the bottle
+around in a hot flame until it melted down to a tiny narrow
+opening—very, very narrow, but still open to the air outside.
+Next he let the flask cool—now the air inside must be
+the same as the air outside—then he applied a tiny flame to
+the now almost needle-fine opening. In a jiffy the flask was
+sealed—without expelling any of the air from the inside. Content,
+he put the bottle in boiling water and watched it bump
+and dance in the kettle for an hour and while he watched he
+recited verses and hummed gay tunes. He put the flask away
+for days, then one morning, sure of his result, he came to his
+laboratory to open it. He lighted a candle; he held it close to
+the flask neck; carefully he broke the seal—wh-i-s-s-s-t! But
+the flame blew away from the flask this time—the elasticity
+of the air inside the flask was greater than that outside!
+
+All of the long boiling had not damaged the air at all—it
+was even more elastic than before—and elasticity was what
+Needham said was necessary for his wonderful Vegetative
+Force. The air in the flask was super-elastic, but fishing drop
+after drop of the soup inside, Spallanzani couldn’t find a single
+little animal. Again and again, with the obstinacy of a Leeuwenhoek,
+he repeated the same experiment. He broke flasks
+and spilled boiling water down his shirt-front, he seared his
+hands, he made vast tests that had to be done over—but always
+he confirmed his first result.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

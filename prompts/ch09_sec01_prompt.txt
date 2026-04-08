@@ -1,0 +1,239 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch09_sec01
+**Chapter 9:** Bruce — Trail of the Tsetse
+**Section 1 of this chapter**
+**Word count:** 921
+**Total paragraphs:** 8
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "“Young man!”—the face of the Director-General of the British Army Medical Service changed from an ir..."
+  P2: "What could David Bruce do, but salute, and withdraw from his Presence? He had schemed, he had begged..."
+  P3: "It was in the nature of David Bruce to do things his superiors and elders didn’t want him to do. Jus..."
+  P4: "So Bruce joined the army, and married on a salary of one thousand dollars a year."
+  P5: "In certain ways he was not a model soldier. He was disobedient, and, what is much worse, tactless. S..."
+  P6: "So he got himself into a mess. In an abandoned shack he set up a laboratory (little enough he knew a..."
+  P7: "That was the way she became his assistant, and as you will see, for thirty years she remained his ri..."
+  P8: "They were such muddlers at first, it is hard to believe it, but together these newly wed bacteriolog..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+I
+
+“Young man!”—the face of the Director-General of the British
+Army Medical Service changed from an irritated red to an
+indignant mauve-color—“young man, I will send you to India,
+I will send you to Zanzibar, I will send you to Timbuctoo—I
+will send you anywhere I please”—(the majestic old gentleman
+was shouting now, and his face was a positively furious
+purple) “but you may be damned sure I shall not send you to
+Natal!...” Reverberations....
+
+What could David Bruce do, but salute, and withdraw from
+his Presence? He had schemed, he had begged, and pulled
+wires, finally he had dared the anger of this Jupiter, so that he
+might go hunt microbes in South Africa. It was in the early
+eighteen nineties; Theobald Smith, in America, had just made
+that revolutionary jump ahead in microbe hunting—he had
+just shown how death may be carried by a tick, and only by a
+tick, from one animal to another. And now this David Bruce,
+physically as adventurous as Theobald Smith was mildly professorial,
+wanted to turn that corner after Smith.... Africa
+swarmed with mysterious viruses that made the continent a
+hell to live in; in the olive-green mimosa thickets and the jungle
+hummed and sizzled a hundred kinds of flies and ticks and
+gnats.... What a place for discoveries, for swashbuckling
+microscopings and lone-wolf bug-huntings Africa must be!
+
+It was in the nature of David Bruce to do things his superiors
+and elders didn’t want him to do. Just out of medical school
+in Edinburgh, he had joined the British Army Medical Service,
+not to fight, nor to save lives, nor (at that time) to get a chance
+to hunt microbes—not for any such noble objects. He had
+joined it because he wanted to marry. They hadn’t a shilling,
+neither Bruce nor his sweetheart; their folks called them
+thirteen kinds of romantic idiots—why couldn’t they wait until
+David had established himself in a nice practice?
+
+So Bruce joined the army, and married on a salary of one
+thousand dollars a year.
+
+In certain ways he was not a model soldier. He was disobedient,
+and, what is much worse, tactless. Still a lieutenant,
+he one day disapproved of the conduct of his colonel, and offered
+to knock him down.... If you could see him now, past
+seventy, with shoulders of a longshoreman and a barrel-chest
+sloping down to his burly equator, if you could hear him swear
+through a mustache Hindenburg would be proud to own, you
+would understand he could, had it been necessary, have put
+that colonel on his back, and laughed at the court-martial that
+would have been sure to follow. He was ordered to the English
+garrison on the Island of Malta in the Mediterranean;
+with him went Mrs. Bruce—it was their honeymoon. Here
+again he showed himself to be things soldiers seldom are. He
+was energetic, as well as romantic. There was a mysterious
+disease in the island. It was called Malta fever. It was an ill
+that sent pains up and down the shin bones of soldiers and
+made them curse the day they took the Queen’s shilling. Bruce
+saw it was silly to sit patting the heads of these sufferers, and
+futile to prescribe pills for them—he must find the cause of
+Malta fever!
+
+So he got himself into a mess. In an abandoned shack he
+set up a laboratory (little enough he knew about laboratories!)
+and here he spent weeks learning how to make a culture
+medium, out of beef broth and agar-agar, to grow the unknown
+germ of Malta fever in. It ought to be simple to discover it.
+His ignorance made him think that; and in his inexperience he
+got the sticky agar-agar over hands and face; it stained
+his uniform; the stuff set into obstinate jelly when he
+tried to filter it; he spent weeks doing a job a modern laboratory
+helper would accomplish in a couple of hours. He
+said unmentionable things; he called Mrs. Bruce from the
+tennis lawn, and demanded (surely any woman knew better
+how to cook) that she help him. Out of his thousand dollars
+a year he bought monkeys—improvidently—at one dollar and
+seventy-five cents apiece. He tried to inject the blood of the
+tortured soldiers into these creatures; but they wriggled out
+of his hands and bit him and scratched him and were in general
+infernally lively nuisances. He called to his wife: “Will
+you hold this monkey for me?”
+
+That was the way she became his assistant, and as you will
+see, for thirty years she remained his right hand, going with
+him into the most pestilential dirty holes any microbe hunter
+has ever seen, sharing his poverty, beaming on his obscure
+glories; she was so important to his tremendous but not notorious
+conquests....
+
+They were such muddlers at first, it is hard to believe it,
+but together these newly wed bacteriologists worked and discovered
+the microbe of Malta fever—and were ordered from
+Malta for their pains. “What was Bruce up to, anyway?” So
+asked the high medical officers of the garrison. “Why wasn’t
+he treating the suffering soldiers—what for was he sticking
+himself away there in the hole he called his laboratory?” And
+they denounced him as an idiot, a visionary, a good-for-nothing
+monkey-tamer and dabbler with test-tubes. And just—he did
+do this twenty years later—as he might have discovered how
+the little bacillus of Malta fever sneaks from the udders of
+goats into the blood of British Tommies, he was ordered away
+to Egypt.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

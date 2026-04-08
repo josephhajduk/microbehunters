@@ -1,0 +1,438 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch03_sec03
+**Chapter 3:** Pasteur — Microbes Are a Menace!
+**Section 3 of this chapter**
+**Word count:** 2594
+**Total paragraphs:** 23
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Then one day in the midst of all this—they were just nicely settled in Lille—he came to her and said..."
+  P2: "They moved there, and Pasteur found there was absolutely no place for him to work in; there were a f..."
+  P3: "His experiment with the little rods that made the acid of sour milk convinced him—why, no one can te..."
+  P4: "Liebig, the great German, the prince of chemists, the pope of chemistry, was opposed to his idea. “S..."
+  P5: "“What I have to do is to grow yeasts in a soup that has no albumen in it at all. If yeasts will turn..."
+  P6: "He had by chance put some salt of ammonia into an albumen soup in which he grew the yeasts for his e..."
+  P7: "That night he turned over and over in his bed. He whispered his hopes and fears to Madame Pasteur—sh..."
+  P8: "He was back in his attic next morning not knowing how he had got up the stairs, not remembering his ..."
+  P9: "“Here they are,” he cried, “lovely budding growing young yeasts, hundreds of thousands of them—yes, ..."
+  P10: "His new fact was old stuff by now but still he kept on, he cared for his yeasts like some tender fat..."
+  P11: "Then for a moment the searcher in him changed into a showman, an exhibitor of stupendous surprises, ..."
+  P12: "He read papers about this and gave speeches and threw his proofs insolently at the great Liebig’s he..."
+  P13: "“Mr. Dumas, after praising the so great penetration I had given proof of ... added: ‘The Academy, si..."
+  P14: "It is only natural that in the midst of this hurrahing there was some quiet hissing. Opponents began..."
+  P15: "Many people objected to this scornful cockiness—but some good men of science had better reasons for ..."
+  P16: "PASTEUR AT FORTY-FIVE"
+  P17: "Why this annoying rancid butter smell—why sometimes no sour-milk-acid? One morning, in one of his bo..."
+  P18: "“What are these beasts? They’re much bigger than the rods—they don’t merely quiver and vibrate—they ..."
+  P19: "He watched them peevishly, he had an instinct they had no business there. There were processions of ..."
+  P20: "So he proved, after a fashion, that this new kind of beast was another kind of ferment, a ferment th..."
+  P21: "Unfortunately it was the third example. Two hundred years before old Leeuwenhoek had seen the same t..."
+  P22: "Very probably Pasteur didn’t know about these discoveries of the old trail blazers—I am sure he was ..."
+  P23: "But this strange neglect to give credit for the good work of others must not be posted too strongly ..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+III
+
+Then one day in the midst of all this—they were just nicely
+settled in Lille—he came to her and said: “We are going to
+Paris, I have just been made Administrator and Director of
+Scientific Studies in the Normal School. This is my great
+chance.”
+
+They moved there, and Pasteur found there was absolutely
+no place for him to work in; there were a few dirty laboratories
+for the students but none for the professors; what was worse,
+the Minister of Instruction told him there was not one cent
+in the budget for those bottles and ovens and microscopes without
+which he could not live. But Pasteur snooped round in
+every cranny of the dirty old building and at last climbed
+tricky stairs to a tiny room where rats played, to an attic
+under the roof. He chased the rats out and proclaimed this
+den his laboratory; he got money—in some mysterious way
+that is still not clear—for his microscopes and tubes and
+flasks. The world must know how important ferments are in
+its life. The world soon knew!
+
+His experiment with the little rods that made the acid of
+sour milk convinced him—why, no one can tell—that other
+kinds of small beings did a thousand other gigantic and useful
+and perhaps dangerous things in the world. “It is those yeasts
+that my microscope showed me in the healthy beet vats, it is
+those yeasts that turn sugar into alcohol—it is undoubtedly
+yeasts that make beer from barley and it is certainly yeasts
+that ferment grapes into wine—I haven’t proved it yet, but I
+know it.” Energetically he wiped his fogged spectacles and
+cheerfully he climbed to his attic. Experiments would tell
+him; he must make experiments; he must prove to himself he
+was right—more especially he must prove to the world he
+was right. But the world of science was against him.
+
+Liebig, the great German, the prince of chemists, the pope
+of chemistry, was opposed to his idea. “So Liebig says yeasts
+have nothing to do with the turning of sugar into alcohol—so
+he claims that you have to have albumen there, and that it is
+just the albumen breaking down that carries the sugar along
+down with it, into alcohol.” He would show this Liebig!
+Then a trick to beat Liebig flashed into his head, a crafty trick,
+a simple clear experiment that would smash Liebig and all
+other pooh-bahs of chemistry who scorned the important work
+that his precious microscopic creatures might do.
+
+“What I have to do is to grow yeasts in a soup that has no
+albumen in it at all. If yeasts will turn sugar into alcohol in
+such a soup—then Liebig and his theories are finished.”
+Defiance was in every fiber of him. This business was turning
+from an affair of cold science into a purely personal matter.
+But it was one thing to have this bright idea and quite another
+to find an albumenless food for yeasts—yeasts were squeamish
+in their tastes, confound them—and he fussed around his
+drafty attic and was for weeks an exasperated, a very grumpy
+Pasteur. Until one morning a happy accident cleared the road
+for him.
+
+He had by chance put some salt of ammonia into an albumen
+soup in which he grew the yeasts for his experiments. “What’s
+this,” he meditated. “The ammonia salt keeps disappearing as
+my yeasts bud and multiply. What does this mean?” He
+thought, he fumbled—“Wait! The yeasts use up the
+ammonia salt, they will grow without the albumen!” He
+slammed shut the door of his attic room, he must be alone
+while he worked—he loved to be alone as he worked just as
+he greatly enjoyed spouting his glorious results to worshipful,
+brilliant audiences. He took clean flasks and poured distilled
+water into them, and carefully weighed out pure sugar and
+slid it into this water, and then put in his ammonia salt—it
+was the tartrate of ammonia that he used. He reached for
+a bottle that swarmed with young budding yeasts; with care
+he fished out a yellowish flake of them and dropped it into his
+new albumenless soup. He put the bottle in his incubating
+oven. Would they grow?
+
+That night he turned over and over in his bed. He whispered
+his hopes and fears to Madame Pasteur—she couldn’t
+advise him but she comforted him. She understood everything
+but couldn’t explain away his worries. She was his perfect
+assistant....
+
+He was back in his attic next morning not knowing how he
+had got up the stairs, not remembering his breakfast—he might
+have floated from his bed directly to the rickety dusty incubator
+that held his flask—that fatal flask. He opened the
+bottle and put a tiny cloudy drop from it between two thin
+bits of glass and slid the specimen under the lens of his microscope—and
+knew the world was his.
+
+“Here they are,” he cried, “lovely budding growing young
+yeasts, hundreds of thousands of them—yes, and here are
+some of the old ones, the parent yeasts I sowed in the bottle
+yesterday.” He wanted to rush out and tell some one, but he
+held himself—he must find out something more—he got some
+of the soup from the fatal bottle into a retort, to find out
+whether his budding beings had made alcohol. “Liebig is
+wrong—albumen isn’t necessary—it is yeasts, the growth of
+yeasts that ferments sugar.” And he watched trickling tears
+of alcohol run down the neck of the retort. He spent the next
+weeks in doing the experiment over and over, to be sure that
+the yeasts would keep on living, to be certain that they would
+keep on making alcohol. He transferred them monotonously,
+from one bottle to another—he put them through countless
+flasks of this same simple soup of ammonia salt and sugar in
+water and always the yeasts budded lustily and filled the bottles
+with a foamy collar of carbonic acid gas. Always they made
+alcohol! This checking-up of his discoveries was dull work.
+There was not the excitement, the sleepless waiting for a
+result he hoped for passionately or feared terribly would not
+come.
+
+His new fact was old stuff by now but still he kept on, he
+cared for his yeasts like some tender father, he fed them
+and loved them and was proud of their miraculous work of
+turning great quantities of sugar into alcohol. He ruined his
+health watching them and he violated sacred customs of all
+good middle-class Frenchmen. He writes of how he sat down
+before his lens at seven in the evening—and this is the dinner
+hour of France!—he sat down to watch and see if he could
+spy on his yeasts in the act of budding. “And from that
+time,” he writes, “I did not take my eye from the microscope.”
+It was half past nine before he was satisfied that he had seen
+them bud. He made vast crazy tests that lasted from June
+until September to find out how long yeasts would keep at
+their work of turning sugar into alcohol, and at the end he
+cried: “Give your yeasts enough sugar, and they will not stop
+working for three months, or even more!”
+
+Then for a moment the searcher in him changed into a showman,
+an exhibitor of stupendous surprises, a missionary in the
+cause of microbes. The world must know and the people of
+the world must gasp at this astounding news that millions of
+gallons of wine in France and boundless oceans of beer in
+Germany are not made by men at all but by incessantly toiling
+armies of creatures ten-billion times smaller than a wee baby!
+
+He read papers about this and gave speeches and threw his
+proofs insolently at the great Liebig’s head—and in a little
+while a storm was up in the little Republic of Science on the
+left bank of the Seine in Paris. His old Professors beamed
+pride on him and the Academy of Sciences, which had refused
+to elect him a member, now gave him the Prize of Physiology,
+and the magnificent Claude Bernard—whom Frenchmen called
+Physiology itself—praised him in stately sentences. The next
+night, Dumas, his old professor—whose brilliant lectures had
+made him cry when he was a green boy in Paris—threw bouquets
+at Pasteur in a public speech that would have made
+another man than Pasteur bow his head and blush and protest.
+Pasteur did not blush—he was perfectly sure that Dumas was
+right. Instead he sat down proudly and wrote to his father:
+
+“Mr. Dumas, after praising the so great penetration I had
+given proof of ... added: ‘The Academy, sir, rewarded you
+a few days ago for other profound researches; your audience
+this evening will applaud you as one of the most distinguished
+professors we possess.’ All that I have underlined was said in
+these very words by Mr. Dumas, and was followed by great
+applause.”
+
+It is only natural that in the midst of this hurrahing there
+was some quiet hissing. Opponents began to rise on all sides.
+Pasteur made these enemies not entirely because his discoveries
+stepped on the toes of old theories and beliefs. No, his
+bristling curious impudent air of challenge got him enemies.
+He had a way of putting “am-I-not-clever-to-have-found-this-and-aren’t-all-of-you-fools-not-to-believe-it-at-once”
+between
+the lines of all of his writings and speeches. He loved to fight
+with words, he had a cocky eagerness to get into an argument
+with every one about anything. He would have sputtered indignantly
+at an innocently intended comment on his grammar
+or his punctuation. Look at portraits of him taken at this
+time—it was 1860—read his researches, and you will find a
+fighting sureness of his perpetual rightness in every hair of
+his eyebrow and even in the technical terms and chemical
+formulas of his famous scientific papers.
+
+Many people objected to this scornful cockiness—but some
+good men of science had better reasons for disagreeing with
+him—his experiments were brilliant, they were startling, but
+his experiments stopped short of being completely proved.
+They had loopholes. Every now and then when he set out
+confidently with some of his gray specks of ferment to make
+the acid of sour milk, he would find to his disgust a nasty
+smell of rancid butter wafting up from his bottles. There
+would be no little rods in the flask—alas—and none of the
+sour-milk-acid that he had set out to get. These occasional
+failures, the absence of sure-fire in these tests gave ammunition
+to his enemies and brought sleepless nights to Pasteur.
+But not for long! It is not the least strange thing about him
+that it didn’t seem to matter to him that he never quite solved
+this confusing going wrong of his fermentations; he was a
+cunning man—instead of butting his head against the wall of
+this problem, he slipped around it and turned it to his great
+fame and advantage.
+
+  
+  
+      PASTEUR AT FORTY-FIVE
+
+  
+
+Why this annoying rancid butter smell—why sometimes no
+sour-milk-acid? One morning, in one of his bottles that had
+gone bad, he noticed another kind of wee beasts swimming
+around among a few of the discouraged dancing rods which
+should have been there in great swarms.
+
+“What are these beasts? They’re much bigger than the
+rods—they don’t merely quiver and vibrate—they actually
+swim around like fish; they must be little animals.”
+
+He watched them peevishly, he had an instinct they had no
+business there. There were processions of them hooked together
+like barges on the River Seine, strings of clumsy barges
+that snaked along. Then there were lonely ones that would
+perform a stately twirl now and again; sometimes they would
+make a pirouette and balance—the next moment they would
+shiver at one end in a curious kind of shimmy. It was all very
+interesting, these various pretty cavortings of these new beasts.
+But they had no business there! He tried a hundred ways to
+keep them out, ways that would seem very clumsy to us now,
+but just as he thought he had cleaned them out of all his bottles,
+back they popped. Then one day it flashed over him
+that every time that his bottles of soup swarmed with this
+gently moving larger sort of animal, these same bottles of
+soup had the strong nasty smell of rancid butter.
+
+So he proved, after a fashion, that this new kind of beast
+was another kind of ferment, a ferment that made the rancid-butter-acid
+from sugar; but he didn’t nail down his proof, because
+he couldn’t be sure, absolutely, that there was one kind
+and only one kind of beast present in his bottles. While he
+was a little confused and uncertain about this, he turned his
+troubles once more to his advantage. He was peering, one
+day, at the rancid butter microbes swarming before his microscope.
+“There’s something new here—in the middle of the
+drop they are lively, going every which way.” Gently, precisely,
+a little aimlessly, he moved the specimen so that the
+edge of the drop was under his lens.... “But here at the
+edge they’re not moving, they’re lying round stiff as pokers.”
+It was so with every specimen he looked at. “Air kills them,”
+he cried, and was sure he had made a great discovery. A little
+while afterward he told the Academy proudly that he had not
+only discovered a new ferment, a wee animal that had a curious
+trick of making stale-butter-acid from sugar, but besides this
+he had discovered that these animals could live and play and
+move and do their work without any air whatever. Air even
+killed them! “And this,” he cried, “is the first example of
+little animals living without air!”
+
+Unfortunately it was the third example. Two hundred years
+before old Leeuwenhoek had seen the same thing. A hundred
+years later Spallanzani had been amazed to find that microscopic
+beasts could live without breathing.
+
+Very probably Pasteur didn’t know about these discoveries
+of the old trail blazers—I am sure he was not trying to steal
+their stuff—but as he went up in his excited climb toward
+glory and toward always increasing crowds of new discoveries,
+he regarded less and less what had been done before him and
+what went on around him. He re-discovered the curious fact
+that microbes make meat go bad. He failed to give the first
+discoverer, Schwann, proper credit for it!
+
+But this strange neglect to give credit for the good work of
+others must not be posted too strongly against him in the
+Book of St. Peter, because you can see his fine imagination,
+that poet’s thought of his, making its first attempts at showing
+that microbes are the real murderers of the human race. He
+dreams in this paper that just as there is putrid meat, so there
+are putrid diseases. He tells how he suffered in this work with
+meat gone bad; he tells about the bad smells—and how he
+hated bad smells!—that filled his little laboratory during these
+researches: “My researches on the fermentations have led
+me naturally toward these studies to which I have resolved to
+devote myself without too much thought of their danger or
+of the disgust which they inspire in me,” and then he told the
+Academy of the hard job that awaited him; he explained to
+them why he must not shrink from it, by making a graceful
+quotation from the great Lavoisier: “Public usefulness and
+the interests of humanity ennoble the most disgusting work
+and only allow enlightened men to see the zeal which is needed
+to overcome obstacles.”
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

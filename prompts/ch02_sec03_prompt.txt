@@ -1,0 +1,329 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch02_sec03
+**Chapter 2:** Spallanzani — Microbes Must Have Parents!
+**Section 3 of this chapter**
+**Word count:** 1605
+**Total paragraphs:** 18
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "He went to the row of sealed flasks first, and one by one he cracked open their necks, and fished do..."
+  P2: "He first looked at drop after drop of the soup from the sealed flasks which had been boiled for an h..."
+  P3: "“What’s this?” he cried. Here and there in the gray field of his lens he made out an animalcule play..."
+  P4: "“Why, they look like little fishes, tiny as ants,” he muttered—and then something dawned on him——“Th..."
+  P5: "He went with nervous hands to the long row of flasks he had only stoppered with corks—as his enemy N..."
+  P6: "“That means the little animals get into Needham’s flasks from the air!” he shouted. “And besides I h..."
+  P7: "It was a great day for Spallanzani, and though he did not know it, a great day for the world. Spalla..."
+  P8: "Excited, Spallanzani called his brother Nicolo, and his sister, and told them his pretty experiment...."
+  P9: "The argument between Spallanzani and Needham didn’t stay in the academies among the highbrows. It le..."
+  P10: "Meanwhile the good Needham had not been resting on his oars exactly; he was an expert at publicity, ..."
+  P11: "Needham and Buffon got on famously. Buffon wore purple clothes and lace cuffs that he didn’t like to..."
+  P12: "“What is it that causes these little animals to arise in mutton gravy, even after it has been heated..."
+  P13: "“Let us then call it the Vegetative Force, my Lord,” replied Father Needham."
+  P14: "“An apt name,” said Buffon, and he retired to his perfumed study and put on his best suit and wrote—..."
+  P15: "Worst of all, the Royal Society tumbled over itself to get ahead of the men in the street, and elect..."
+  P16: "But what could Spallanzani do? Needham and Buffon had deluged the scientific world with words—they h..."
+  P17: "Then suddenly Spallanzani had his chance, for Needham made an objection to one of his experiments. “..."
+  P18: "This was just what the energetic Spallanzani was waiting for, and he forgot religion and large class..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+III
+
+He went to the row of sealed flasks first, and one by one he
+cracked open their necks, and fished down with a slender
+hollow tube to get some of the soup inside them, in order to
+see whether any little animals at all had grown in these bottles
+that he had heated so long, and closed so perfectly against the
+microscopic creatures that might be floating in the dust of the
+outside air. He was not the lively sparkling Spallanzani now.
+He was slow, he was calm. Like some automaton, some
+slightly animated wooden man he put one drop of seed soup
+after another before his lens.
+
+He first looked at drop after drop of the soup from the
+sealed flasks which had been boiled for an hour, and his long
+looking was rewarded by—nothing. Eagerly he turned to the
+bottles that had been boiled for only a few minutes, and
+cracked their seals as before, and put drops of the soup inside
+them before his lens.
+
+“What’s this?” he cried. Here and there in the gray field
+of his lens he made out an animalcule playing and sporting
+about—these weren’t large microbes, like some he had seen—but
+they were living little animals just the same.
+
+“Why, they look like little fishes, tiny as ants,” he muttered—and
+then something dawned on him——“These flasks
+were sealed—nothing could get into them from the outside,
+yet here are little beings that have stood a heat of boiling water
+for several minutes!”
+
+He went with nervous hands to the long row of flasks he
+had only stoppered with corks—as his enemy Needham had
+done—and he pulled out the corks, one by one, and fished in
+the bottles once more with his tubes. He growled excitedly,
+he got up from his chair, he seized a battered notebook and
+feverishly wrote down obscure remarks in a kind of scrawled
+shorthand. But these words meant that every one of the
+flasks which had been only corked, not sealed, was alive with
+little animals! Even the corked flasks which had been boiled
+for an hour, “were like lakes in which swim fishes of all sizes,
+from whales to minnows.”
+
+“That means the little animals get into Needham’s flasks
+from the air!” he shouted. “And besides I have discovered a
+great new fact: living things exist that can stand boiling water
+and still live—you have to heat them to boiling almost an hour
+to kill them!”
+
+It was a great day for Spallanzani, and though he did not
+know it, a great day for the world. Spallanzani had proved
+that Needham’s theory of little animals arising spontaneously
+was wrong—just as the old master Redi had proved the idea
+was wrong that flies can be bred in putrid meat. But he had
+done more than that, for he had rescued the baby science of
+microbe hunting from a fantastic myth, a Mother Goose yarn
+that would have made all scientists of other kinds hold their
+noses at the very mention of microbe hunting as a sound branch
+of knowledge.
+
+Excited, Spallanzani called his brother Nicolo, and his sister,
+and told them his pretty experiment. And then, bright-eyed,
+he told his students that life only comes from life; every living
+thing has to have a parent—even these wretched little animals!
+Seal your soup flasks in a flame, and nothing can get
+into them from outside. Heat them long enough, and everything,
+even those tough beasts that can stand boiling, will be
+killed. Do that, and you’ll never find any living animals arising
+in any kind of soup—you could keep it till doomsday.
+Then he threw his work at Needham’s head in a brilliant sarcastic
+paper, and the world of science was thrown into an uproar.
+Could Needham really be wrong? asked thoughtful
+men, gathered in groups under the high lamps and candles of
+the scientific societies of London and Copenhagen, of Paris and
+Berlin.
+
+The argument between Spallanzani and Needham didn’t stay
+in the academies among the highbrows. It leaked out through
+heavy doors onto the streets and crept into stylish drawing-rooms.
+The world would have liked to believe Needham, for
+the people of the eighteenth century were cynical and gay;
+everywhere men were laughing at religion and denying any
+supreme power in nature, and they delighted in the notion that
+life could arise haphazardly. But Spallanzani’s experiments
+were so clear and so hard to answer, even with the cleverest
+words....
+
+Meanwhile the good Needham had not been resting on his
+oars exactly; he was an expert at publicity, and to help his
+cause along he went to Paris and lectured about his mutton
+gravy, and in Paris he fell in with the famous Count Buffon.
+This count was rich; he was handsome; he loved to write
+about science; he believed he could make up hard facts in his
+head; he was rather too well dressed to do experiments. Besides
+he really knew some mathematics, and had translated
+Newton into French. When you consider that he could juggle
+most complicated figures, that he was a rich nobleman as well,
+you will agree that he certainly ought to know—without experimenting—whether
+little animals could come to life without
+fathers or mothers! So argued the godless wits of Paris.
+
+Needham and Buffon got on famously. Buffon wore purple
+clothes and lace cuffs that he didn’t like to muss up on dirty
+laboratory tables, with their dust and cluttered glassware and
+pools of soup spilled from accidentally broken flasks. So he
+did the thinking and writing, while Needham messed with the
+experiments. These two men then set about to invent a great
+theory of how life arises, a fine philosophy that every one
+could understand, that would suit devout Christians as well as
+witty atheists. The theory ignored Spallanzani’s cold facts,
+but what would you have? It came from the brain of the
+great Buffon, and that was enough to upset any fact, no matter
+how hard, no matter how exactly recorded.
+
+“What is it that causes these little animals to arise in mutton
+gravy, even after it has been heated, my Lord?” you can hear
+Needham asking of the noble count. Count Buffon’s brain
+whirled in a magnificent storm of the imagination, then he
+answered: “You have made a great, a most momentous discovery,
+Father Needham. You have put your finger on the
+very source of life. In your mutton gravy you have uncovered
+the very force—it must be a force, everything is force—which
+creates life!”
+
+“Let us then call it the Vegetative Force, my Lord,” replied
+Father Needham.
+
+“An apt name,” said Buffon, and he retired to his perfumed
+study and put on his best suit and wrote—not from dry
+laboratory notes or the exact records of lenses or flasks but
+from his brain—he wrote, I say, about the marvels of this
+Vegetative Force that could make little animals out of mutton
+gravy and heated seed soups. In a little while Vegetative
+Force was on everybody’s tongue. It accounted for everything.
+The wits made it take the place of God, and the churchmen
+said it was God’s most powerful weapon. It was popular like
+a street song or an off color story—or like present day talk
+about relativity.
+
+Worst of all, the Royal Society tumbled over itself to get
+ahead of the men in the street, and elected Needham a Fellow,
+and the Academy of Sciences of Paris made him an Associate.
+Meanwhile in Italy Spallanzani began to walk up and down his
+laboratory and sputter and rage. Here was a danger to
+science, here was ignoring of cold facts, without which science
+is nothing. Spallanzani was a priest of God, and God was perhaps
+reasonably sacred to him, he didn’t argue with any one
+about that—but here was a pair of fellows who ignored his
+pretty experiments, his clear beautiful facts!
+
+But what could Spallanzani do? Needham and Buffon had
+deluged the scientific world with words—they had not answered
+his facts, they had not shown where Spallanzani’s experiment
+of the sealed flasks was wrong. The Italian was a
+fighter, but he liked to fight with facts and experiments, and
+here he was laying about him in this fog of big words, and
+hitting nothing. Spallanzani stormed and laughed and was
+sarcastic and bitter about this marvelous hoax, this mysterious
+Vegetative Force. It was the Force, prattled Needham, that
+had made Eve grow out of Adam’s rib. It was the Force, once
+more, that gave rise to the remarkable worm-tree of China,
+which is a worm in winter, and then marvelous to say is turned
+by the Vegetative Force into a tree in summer! And much
+more of such preposterous stuff, until Spallanzani saw the
+whole science of living things in danger of being upset, by this
+alleged Vegetative Force with which, next thing people knew,
+Needham would be turning cows into men and fleas into elephants.
+
+Then suddenly Spallanzani had his chance, for Needham
+made an objection to one of his experiments. “Your experiment
+does not hold water,” he wrote to the Italian, “because
+you have heated your flasks for an hour, and that fierce heat
+weakens and so damages the Vegetative Force that it can no
+longer make little animals.”
+
+This was just what the energetic Spallanzani was waiting
+for, and he forgot religion and large classes of eager students
+and the pretty ladies that loved to be shown through his
+museum. He rolled up his wide sleeves and plunged into
+work, not at a writing desk but before his laboratory bench,
+not with a pen, but with his flasks and seeds and microscopes.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

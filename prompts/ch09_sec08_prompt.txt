@@ -1,0 +1,227 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch09_sec08
+**Chapter 9:** Bruce — Trail of the Tsetse
+**Section 8 of this chapter**
+**Word count:** 738
+**Total paragraphs:** 10
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "The ten thousand smaller microbe hunters who work at lesser jobs to-day, as well as the dozen toweri..."
+  P2: "“Can young tsetse flies, bred in the laboratory, inherit the sleeping-sickness trypanosome from thei..."
+  P3: "But no man knew what the result would be—before he tried. And the deaths from sleeping sickness (acc..."
+  P4: "How he enjoyed hearing of other men trying to kill themselves to find out! His last African foray wa..."
+  P5: "Bruce went to work at it. A German in Portuguese East Africa said: “This trypanosome is a new kind o..."
+  P6: "Then this German, his name was Taute, took the blood of an animal about to die from nagana, and shot..."
+  P7: "Was Bruce shocked at this? Listen to him, then: “It is a matter for some scientific regret that thes..."
+  P8: "Merciless Bruce! Poor Taute! He tried conscientiously to kill himself—and Bruce says it is too bad h..."
+  P9: "Nyassaland was the last battlefield of Bruce against the sleeping sickness, and it was his most hope..."
+  P10: "That experiment was the injection of the nagana trypanosomes, not into one, or a hundred—but a thous..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VIII
+
+The ten thousand smaller microbe hunters who work at
+lesser jobs to-day, as well as the dozen towering ones whose
+adventures this book tells, all of them have to take some risk
+of death. But if the ten thousand smaller microbe hunters
+of to-day could by some chemistry be changed into death fighters
+like Bruce! There was something diabolical in the
+risks he took, and something yet more devilish in the way he
+could laugh—with a dry humor—and wish other microbe
+hunters might have died to prove some of his own theories.
+But he had a right to wish death for others——
+
+“Can young tsetse flies, bred in the laboratory, inherit the
+sleeping-sickness trypanosome from their mothers?” Surely
+there was a chance of it (you remember that strange business
+of Theobald Smith’s mother-ticks bequeathing the Texas
+fever microbe to their children). But analogies are for philosophers
+and lawyers. “Are artificially hatched young tsetses
+dangerous?” asks Bruce. “No!” he can answer. “For two
+members of the commission” [modestly he does not say which
+two members] “allowed hundreds of tsetse flies, bred in the
+laboratory, to bite them. And the result was negative.”
+
+But no man knew what the result would be—before he tried.
+And the deaths from sleeping sickness (according to the best
+figures) are one hundred out of one hundred....
+
+How he enjoyed hearing of other men trying to kill themselves
+to find out! His last African foray was in 1911—he
+stayed until 1914. He was near sixty; his blacksmith’s
+strength was beginning to crack from a nasty infection of his
+air-tubes got from I know not what drenching rains or chills
+of high tropic nights. But a new form of sleeping sickness—terrible
+stuff that killed in a few months instead of years—had
+just broken out in Nyassaland and Rhodesia. There was
+a great scientific quarrel on. Was the trypanosome causing
+this disease some new beast just out of the womb of Nature—or
+was it nothing else than Bruce’s old parasite of nagana,
+tired of butchering only cows, dogs and horses, and now learning
+to kill men?
+
+Bruce went to work at it. A German in Portuguese East
+Africa said: “This trypanosome is a new kind of bug!” Bruce
+retorted: “On the contrary, it is nothing but the nagana germ
+hopping from cows to men.”
+
+Then this German, his name was Taute, took the blood of an
+animal about to die from nagana, and shot five cubic centimeters
+of it—it held millions of trypanosomes—under his own
+skin: to prove the nagana parasite does not kill men. And he
+let scores of tsetse flies bite him, flies whose bellies and spit-glands
+were crammed with the writhing microbes—he did these
+things to prove his point!
+
+Was Bruce shocked at this? Listen to him, then: “It is a
+matter for some scientific regret that these experiments were
+not successful—though we can ill spare our bold and somewhat
+rash colleague—for then the question would have been
+answered.... As it is, these negative experiments prove
+nothing. It may be that only one man in a thousand would
+become infected that way.”
+
+Merciless Bruce! Poor Taute! He tried conscientiously to
+kill himself—and Bruce says it is too bad he did not die. He
+made the ultimate gesture—surely the God of searchers will
+reward him; then Bruce (and he is right) criticizes the worth
+of Taute’s lone desperate experiment!
+
+Nyassaland was the last battlefield of Bruce against the
+sleeping sickness, and it was his most hopeless one. For here
+he found that the Glossina morsitans (that is the name of the
+tsetse carrier of the sickness) does not make its home only on
+the shores of lakes and rivers, but buzzes and bites from one
+end of Nyassaland to the other; there is no way of running
+away from it, no chance of moving nations out from under it
+here.... Bruce stuck at it, he spent years at measurements
+of the lengths of trypanosomes—monotonous enough this work
+was to have driven a subway ticket chopper mad—he was
+trying to find out whether the nagana and this new disease
+were one and the same thing. He ended by not finding out,
+and he finished with this regret: that it was at present impossible
+to do the experiment to clinch the matter one way or the
+other.
+
+That experiment was the injection of the nagana trypanosomes,
+not into one, or a hundred—but a thousand human beings.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

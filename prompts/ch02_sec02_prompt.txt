@@ -1,0 +1,331 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch02_sec02
+**Chapter 2:** Spallanzani — Microbes Must Have Parents!
+**Section 2 of this chapter**
+**Word count:** 1718
+**Total paragraphs:** 17
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Even the scientists were on this side of the question. The English naturalist Ross announced learned..."
+  P2: "Spallanzani heard all of these stories which so many important people were sure were facts, he read ..."
+  P3: "Then one night, in his solitude, he came across a little book, a simple and innocent little book, an..."
+  P4: "The book told him of the superstition about the generation of maggots and flies, it told of how even..."
+  P5: "“A great man, this fellow Redi, who wrote this book,” thought Spallanzani, as he took off his coat a..."
+  P6: "Next morning it was one jump from the inspiring book to tackling this same question, not with flies,..."
+  P7: "Spallanzani began fumblingly to learn how to grow wee beasts, and how to use a microscope. He cut hi..."
+  P8: "At this time another priest, named Needham, a devout Catholic who liked to think he could do experim..."
+  P9: "He told them how he had taken a quantity of mutton gravy hot from the fire, and put the gravy in a b..."
+  P10: "“A momentous discovery, this,” cried Needham to the Royal Society, “these little animals can only ha..."
+  P11: "The Royal Society and the whole educated world were excited by Needham’s discovery. Here was no Old ..."
+  P12: "The devil of prejudice was talking again. Now Spallanzani began to sharpen his razors for his fellow..."
+  P13: "Here the searcher in him came forward—he didn’t go to his desk to write Needham about it—instead he ..."
+  P14: "So he took his shining flasks one by one, and rolled their necks gently in a hot flame till each one..."
+  P15: "At last, his eyes near stuck shut with tiredness, he lifted the flasks of stew steaming from their k..."
+  P16: "Then he went off for days to do the thousand things that were not enough to use up his buzzing energ..."
+  P17: "He had gone back to his rows of flasks of seed soup."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+II
+
+Even the scientists were on this side of the question. The
+English naturalist Ross announced learnedly that: “To question
+that beetles and wasps were generated in cow dung is to
+question reason, sense, and experience.” Even such complicated
+animals as mice didn’t have to have mothers or fathers—if
+anybody doubted this, let him go to Egypt, and there
+he would find the fields literally swarming with mice, begot
+of the mud of the River Nile—to the great calamity of the inhabitants!
+
+Spallanzani heard all of these stories which so many important
+people were sure were facts, he read many more of
+them that were still more strange, he watched students get into
+brawls in excited attempts to prove that mice and bees didn’t
+have to have fathers or mothers. He heard all of these things—and
+didn’t believe them. He was prejudiced. Great advances
+in science so often start from prejudice, on ideas got
+not from science but straight out of a scientist’s head, on notions
+that are only the opposite of the prevailing superstitious
+nonsense of the day. Spallanzani had violent notions about
+whether life could rise spontaneously; for him it was on the
+face of things absurd to think that animals—even the wee
+beasts of Leeuwenhoek—could arise in a haphazard way from
+any old thing or out of any dirty mess. There must be law
+and order to their birth, there must be a rime and reason!
+But how to prove it?
+
+Then one night, in his solitude, he came across a little book,
+a simple and innocent little book, and this book told him of
+an entirely new way to tackle the question of how life arises.
+The fellow who wrote the book didn’t argue with words—he
+just made experiments—and God! thought Spallanzani, how
+clear are the facts he demonstrates. He stopped being sleepy
+and forgot the dawn was coming, and read on....
+
+The book told him of the superstition about the generation
+of maggots and flies, it told of how even the most intelligent
+men believed that maggots and flies could arise out of putrid
+meat. Then—and Spallanzani’s eyes nearly popped out with
+wonder, with excitement, as he read of a little experiment that
+blew up this nonsense, once and for always.
+
+“A great man, this fellow Redi, who wrote this book,”
+thought Spallanzani, as he took off his coat and bent his thick
+neck toward the light of the candle. “See how easy he settles
+it! He takes two jars and puts some meat in each one. He
+leaves one jar open and then puts a light veil over the other
+one. He watches—and sees flies go down into the meat in the
+open pot—and in a little while there are maggots there, and
+then new flies. He looks at the jar that has the veil over it—and
+there are no maggots or flies in that one at all. How
+easy! It is just a matter of the veil keeping the mother flies
+from getting at the meat.... But how clever, because for a
+thousand years people have been getting out of breath arguing
+about the question—and not one of them thought of doing this
+simple experiment that settles it in a moment.”
+
+Next morning it was one jump from the inspiring book to
+tackling this same question, not with flies, but with the microscopic
+animals. For all the professors were saying just then
+that though maybe flies had to come from eggs, little sub-visible
+animals certainly could rise by themselves.
+
+Spallanzani began fumblingly to learn how to grow wee
+beasts, and how to use a microscope. He cut his hands and
+broke large expensive flasks. He forgot to clean his lenses
+and sometimes saw his little animals dimly through his fogged
+glasses—just as you can faintly make out minnows in the water
+riled up by your net. He raved at his blunders; he was not
+the dogged worker that Leeuwenhoek had been—but despite
+his impetuousness he was persistent—he must prove that these
+yarns about the animalcules were yarns, nothing more. But
+wait! “If I set out to prove something I am no real scientist—I
+have to learn to follow where the facts lead me—I have to
+learn to whip my prejudices....” And he kept on learning
+to study little animals, and to observe with a patient, if not
+an unprejudiced eye, and gradually he taught the vanity of his
+ideas to bow to the hard clearness of his facts.
+
+At this time another priest, named Needham, a devout Catholic
+who liked to think he could do experiments, was becoming
+notorious in England and Ireland, claiming that little microscopic
+animals were generated marvelously in mutton gravy.
+Needham sent his experiments to the Royal Society, and the
+learned Fellows deigned to be impressed.
+
+He told them how he had taken a quantity of mutton gravy
+hot from the fire, and put the gravy in a bottle, and plugged
+the bottle up tight with a cork, so that no little animals or their
+eggs could possibly get into the gravy from the air. Next he
+even went so far as to heat the bottle and its mutton gravy in
+hot ashes. “Surely,” said the good Needham, “this will kill
+any little animals or their eggs, that might remain in the flask.”
+He put this gravy flask away for a few days, then pulled the
+cork—and marvel of marvels—when he examined the stuff
+inside with his lens, he found it swarming with animalcules.
+
+“A momentous discovery, this,” cried Needham to the Royal
+Society, “these little animals can only have come from the
+juice of the gravy. Here is a real experiment showing that life
+can come spontaneously from dead stuff!” He told them
+mutton gravy wasn’t necessary—a soup made from seeds or
+almonds would do the same trick.
+
+The Royal Society and the whole educated world were excited
+by Needham’s discovery. Here was no Old Wives’ tale.
+Here was hard experimental fact; and the heads of the Society
+got together and thought about making Needham a Fellow of
+their remote aristocracy of learning. But away in Italy, Spallanzani
+was reading the news of Needham’s startling creation
+of little animals from mutton gravy. While he read he knit
+his brows, and narrowed his dark eyes. At last he snorted:
+“Animalcules do not arise by themselves from mutton gravy,
+or almond seeds, or anything else! This fine experiment is
+a fraud—maybe Needham doesn’t know it is—but there’s a
+nigger in the wood pile somewhere. I’m going to find it....”
+
+The devil of prejudice was talking again. Now Spallanzani
+began to sharpen his razors for his fellow priest—the Italian
+was a nasty fellow who liked to slaughter ideas of any kind
+that were contrary to his—he began to whet his knives, I say,
+for Needham. Then one night, alone in his laboratory, away
+from the brilliant clamor of his lectures and remote from the
+gay salons where ladies adored his knowledge, he felt sure he
+had found the loophole in Needham’s experiment. He chewed
+his quill, he ran his hands through his shaggy hair, “Why have
+those little animals appeared in that hot gravy, and in those
+soups made from seeds?” Undoubtedly because Needham
+didn’t heat the bottles long enough, and surely because he
+didn’t plug them tight enough!
+
+Here the searcher in him came forward—he didn’t go to his
+desk to write Needham about it—instead he went to his dusty
+glass-strewn laboratory, and grabbed some flasks and seeds,
+and dusted off his microscope. He started out to test, even
+to defeat, if necessary, his own explanations. Needham didn’t
+heat his soups long enough—maybe there are little animals,
+or their eggs, which can stand a tremendous heat, who knows?
+So Spallanzani took some large glass flasks, round bellied with
+tapering necks. He scrubbed and washed and dried them till
+they stood in gleaming rows on his table. Then he put seeds
+of various kinds into some, and peas and almonds into others,
+and following that poured pure water into all of them. “Now I
+won’t only heat these soups for a short time,” he cried, “but
+I’ll boil them for an hour!” He got his fires ready—then he
+grunted: “But how shall I close up my flasks? Corks might
+not be tight enough, they might let these infinitely wee things
+through.” He pondered. “I’ve got it, I’ll melt the necks of
+my bottles shut in a flame. I’ll close them with glass—nothing,
+no matter how small, can sneak through glass!”
+
+So he took his shining flasks one by one, and rolled their
+necks gently in a hot flame till each one was fused completely
+shut. He dropped some of them when they got too hot—he
+sizzled the skin of his fingers, he swore, and got new flasks to
+take the smashed ones’ places. Then when his flasks were all
+sealed and ready, “Now for some real heat,” he muttered, and
+for tedious hours he tended his bottles, as they bumped and
+danced in caldrons of boiling water. One set he boiled for a
+few minutes only. Another he kept in boiling water for a full
+hour.
+
+At last, his eyes near stuck shut with tiredness, he lifted the
+flasks of stew steaming from their kettles, and put them carefully
+away—to wait for nervous anxious days to see whether
+any little animals would grow in them. And he did another
+thing, a simple one which I almost forgot to tell you about, he
+made another duplicate set of stews in flasks plugged up with
+corks, not sealed, and after boiling these for an hour put them
+away beside the others.
+
+Then he went off for days to do the thousand things that
+were not enough to use up his buzzing energy. He wrote letters
+to the famous naturalist Bonnet, in Switzerland, telling him his
+experiments; he played football; he went hunting and fishing.
+He lectured about science, and told his students not of dry
+technicalities only, but of a hundred things—from the marvelous
+wee beasts that Leeuwenhoek had found in his mouth
+to the strange eunuchs and the veiled multitudinous wives of
+Turkish harems. At last he vanished and students and professors—and
+ladies—asked: “Where is the Abbé Spallanzani?”
+
+He had gone back to his rows of flasks of seed soup.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

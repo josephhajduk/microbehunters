@@ -1,0 +1,351 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch06_sec04
+**Chapter 6:** Roux and Behring — Massacre the Guinea-Pigs
+**Section 4 of this chapter**
+**Word count:** 1656
+**Total paragraphs:** 24
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "But there were still criticisms and muttered complaints, and this was natural, for the serum was no ..."
+  P2: "Then Émile Roux came back into the battle. He discovered brilliantly an easy way to make horses immu..."
+  P3: "Like Behring—perhaps he was even more passionately sure than Behring—Roux believed in advance this a..."
+  P4: "In his study in the Institute in the Rue Dutot with a gleam in his eye that made his dear ones forge..."
+  P5: "He got ready his syringes and bottles with the same cold steadiness the farmers had marveled at, lon..."
+  P6: "Roux looked at his syringes—did this serum really save life?"
+  P7: "“Yes!” shouted Émile Roux, the human being."
+  P8: "“I don’t know—let us make an experiment,” whispered Émile Roux, the searcher for truth."
+  P9: "“But, to make an experiment, you will have to withhold the serum from half at least of these childre..."
+  P10: "“True, it is a terrible burden,” answered the searcher that was Roux, “but just because this serum h..."
+  P11: "“But if you find out the serum is good, if it turns out from your experiment that the serum really c..."
+  P12: "It was a dreadful choice. There was one more argument the searcher that was Roux could have brought ..."
+  P13: "That would have been the final, the true answer of science to sentiment. But it was not made, and wh..."
+  P14: "“The general condition of the children receiving the serum improves rapidly ... in the wards there a..."
+  P15: "He went on to tell the Congress of Buda-Pesth how the serum chased away the slimy gray membrane—that..."
+  P16: "à Mr. le Dr. Kruif       Souvenir amical       Dr. Roux.       18 Octobre 1923."
+  P17: "And yet—and yet—twenty-six out of every hundred babies Roux had treated—died, in spite of this marve..."
+  P18: "But it was an emotional time, remember, and Roux, and the Congress of Buda-Pesth were not assembled ..."
+  P19: "And yet—I, who believe in this antitoxin, I say this, twenty years after—diphtheria is a disease hav..."
+  P20: "But the doctors at Buda-Pesth did not think of figures and they carried home the tidings of the anti..."
+  P21: "Meanwhile the searchers, believing, are busy with other things—and I can only hope, if another wave ..."
+  P22: "But even if the diphtheria antitoxin is not a sure cure, we already know that the experiments of Rou..."
+  P23: "There is every hope, if fathers and mothers can only be convinced and allow their children to underg..."
+  P24: "And for this men will thank those first crude searchings of Loeffler and Roux and Behring."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+IV
+
+But there were still criticisms and muttered complaints, and
+this was natural, for the serum was no sure-fire, one hundred
+per cent curative stuff for babies—any more than it was for
+guinea-pigs. Then too, learned doctors pointed out that what
+happened under the hide of a guinea-pig was not the same—necessarily—as
+the savage thing going on in the throat of a
+child. Thousands of children were getting the diphtheria
+serum, but some children (maybe not so many as before perhaps?)
+kept dying horribly in spite of it. Doctors questioned....
+Some parents had their hopes dashed....
+
+Then Émile Roux came back into the battle. He discovered
+brilliantly an easy way to make horses immune to the poison—they
+did not die, they developed no horrid abscesses, and, best
+of all, they furnished great gallon bottles full of the precious
+antitoxin—powerful stuff this serum was; little bits of it destroyed
+large doses of that poison fatal to so many big dogs.
+
+Like Behring—perhaps he was even more passionately sure
+than Behring—Roux believed in advance this antitoxin would
+save suffering children from death. He thought nothing of
+prevention, he forgot about his gargles. He hurried to and
+fro between his workroom and the stables, carrying big-bellied
+flasks, jabbing needles into those patient horse’s necks. Just
+then, a particularly virulent breed (so Roux thought) of diphtheria
+bacillus was crawling through the homes of Paris. At
+the Hospital for Sick Children, fifty out of every hundred
+children (at least the statistics said so) were being carried
+blue-faced to the morgue. At the Hospital Trousseau as many
+as sixty out of a hundred were dying (but it is not clear whether
+the doctors there knew all these deaths to be from diphtheria).
+On the first of February, 1894, Roux of the narrow chest and
+hatchet face and black skull cap, walked into the diphtheria
+ward of the Hospital for sick children, carrying bottles of his
+straw-colored, miracle-working stuff.
+
+In his study in the Institute in the Rue Dutot with a gleam
+in his eye that made his dear ones forget he was marked for
+death, there sat a palsied man, who must know, before he died,
+whether one of his boys had wiped out another pestilence.
+Pasteur waited for news from Roux.... Then too, all over
+Paris there were fathers and mothers of stricken ones, praying
+for Roux to hurry—they had heard of this marvelous cure of
+Doctor Behring. It could almost bring babies back to life,
+folks said—and Roux could see these people holding out their
+hands to him....
+
+He got ready his syringes and bottles with the same cold
+steadiness the farmers had marveled at, long before, in those
+great days of the anthrax vaccine tests at Pouilly-le-Fort. His
+assistants, Martin and Chaillou, lighted the little alcohol lamp
+and hurried to anticipate his slightest order. Roux looked at
+the helpless doctors, then at the little lead-colored faces and
+the hands that picked and clutched at the edges of the covers,
+the bodies twisting to get a little breath....
+
+Roux looked at his syringes—did this serum really save
+life?
+
+“Yes!” shouted Émile Roux, the human being.
+
+“I don’t know—let us make an experiment,” whispered
+Émile Roux, the searcher for truth.
+
+“But, to make an experiment, you will have to withhold the
+serum from half at least of these children—you may not do
+that.” So said Émile Roux, the man with a heart, and all
+voices of all despairing parents were joined to the pleading
+voice of this Émile Roux.
+
+“True, it is a terrible burden,” answered the searcher that
+was Roux, “but just because this serum has cured rabbits, I
+do not know it will cure babies.... And I must know. I
+must find truth. Only by comparing the number of children
+who die, not having been given this serum, with the number
+who perish, having received it—only so can I ever know.”
+
+“But if you find out the serum is good, if it turns out from
+your experiment that the serum really cures—think of your
+responsibility for the death of those children, those hundreds
+of babies who did not get the antitoxin!”
+
+It was a dreadful choice. There was one more argument
+the searcher that was Roux could have brought against the
+man of sentiment, for he might have asked: “If we do not
+find out surely, by experiment on these babies, the world may
+be lulled into the belief it has a perfect remedy for diphtheria—microbe
+hunters will stop looking for a remedy, and in the
+years that follow, thousands of children will die who might
+have been saved if hard scientific searching had gone on....”
+
+That would have been the final, the true answer of science to
+sentiment. But it was not made, and who after all can blame
+the pitying human heart of Roux for leaving the cruel road
+that leads to truth? The syringes were ready, the serum
+welled up into them as he gave a strong pull at the plungers.
+He began his merciful and maybe life-saving injections, and
+every one of the more than three hundred threatened children
+who came into the hospital during the next five months received
+good doses of the diphtheria antitoxin. Praise be, the
+results were a great vindication for the human Roux, for
+that summer, the experiment over, he told a congress of
+eminent medical men and savants from all parts of the world:
+
+“The general condition of the children receiving the serum
+improves rapidly ... in the wards there are to be seen hardly
+any more faces pale and lead-blue ... instead, the demeanor
+of the children is lively and gay!”
+
+He went on to tell the Congress of Buda-Pesth how the
+serum chased away the slimy gray membrane—that breeding
+place where the bacilli made their terrible poison—out of the
+babies’ throats. He related how their fevers were cooled by
+this marvelous serum (it was like some breeze blowing from
+a lake of northern water across the fiery pavements of a city).
+The most dignified congress of prominent and celebrated physicians
+cheered. It rose to its feet....
+
+  
+  
+      à Mr. le Dr. Kruif
+      Souvenir amical
+      Dr. Roux.
+      18 Octobre 1923.
+
+  
+
+And yet—and yet—twenty-six out of every hundred babies
+Roux had treated—died, in spite of this marvelous serum....
+
+But it was an emotional time, remember, and Roux, and the
+Congress of Buda-Pesth were not assembled to serve truth
+but to discuss and to plan and to celebrate the saving of lives.
+They cared little for figures then; they cared less for annoying
+objectors who carped about comparing figures; they were
+swept away by Roux’s report of how the serum cooled fevered
+brows. Then, Roux could have answered such annoying critics
+(with the applause of his famous audience): “What if twenty-six
+out of a hundred did die—you must remember that for
+years before this treatment fifty out of a hundred died!”
+
+And yet—I, who believe in this antitoxin, I say this,
+twenty years after—diphtheria is a disease having strange ups
+and downs of viciousness. In some terrible decades it kills
+its sixty out of a hundred; then some mysterious thing happens
+and the virus seems to weaken and only ten children are taken
+where sixty died before. So it was, in those brave days of
+Roux and Behring, for in a certain hospital in England, in
+those very days, the death rate from diphtheria had gone down
+from forty in a hundred to twenty-nine in a hundred—before
+the serum was ever used!
+
+But the doctors at Buda-Pesth did not think of figures and
+they carried home the tidings of the antitoxin to all corners of
+the world, in a few years the antitoxin treatment of diphtheria
+became orthodox, and now there is not one doctor out of a
+thousand who will not swear that this antitoxin is a beautiful
+cure. Probably they are right. Indeed, there is evidence
+that when antitoxin is given on the first day of the disease, all
+but a few babies are saved—and if there is delay, many are
+lost.... Surely, any doctor should be called guilty, in the
+light of what is known, who did not give the antitoxin to a
+threatened child. I would be quick to call a doctor to give
+it to one of my own children. Why not, indeed? Perhaps
+the antitoxin cures. But it is not completely proved, and it is
+too late now to prove it one way or another to the hilt, because,
+since all the world believes in the antitoxin, no man
+can be found heartless enough or bold enough to do the experiment
+which science demands.
+
+Meanwhile the searchers, believing, are busy with other
+things—and I can only hope, if another wave of the dreadful
+diphtheria of the eighties sweeps over the world again, I can
+only hope that Roux was right.
+
+But even if the diphtheria antitoxin is not a sure cure, we
+already know that the experiments of Roux and Behring have
+not been in vain. It is a story still too recent, too much in the
+newspapers to be a part of this history—but to-day, in New
+York under the superb leadership of Dr. Park, and all over
+America, and in Germany, hundreds of thousands of babies and
+school-children are being ingeniously and safely turned into
+so many small factories for the making of antitoxin, so that
+they will never get diphtheria at all. Under the skins of these
+youngsters go wee doses of that terrible poison fatal to so many
+big dogs—but it is a poison fantastically changed so that it is
+harmless to a week-old baby!
+
+There is every hope, if fathers and mothers can only be
+convinced and allow their children to undergo three small safe
+pricks of a syringe needle, that diphtheria will no longer be
+the murderer that it has been for ages.
+
+And for this men will thank those first crude searchings of
+Loeffler and Roux and Behring.
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

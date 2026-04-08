@@ -1,0 +1,273 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch11_sec06
+**Chapter 11:** Walter Reed — In the Interest of Science—and for Humanity!
+**Section 6 of this chapter**
+**Word count:** 1194
+**Total paragraphs:** 10
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "Then the world came to Habana, and there was acclaim for Walter Reed, and the customary solemn discu..."
+  P2: "Then William Crawford Gorgas and John Guitéras—he was a great Cuban authority on yellow jack—they we..."
+  P3: "The immigrants (of course they were very ignorant people) came; the immigrants listened and were tol..."
+  P4: "There was panic in Habana, and mutterings of the mob—and who can blame that mob, for human life is s..."
+  P5: "They were sure there was no visible bacillus, nor any kind of microbe that could be seen through the..."
+  P6: "Walter Reed was busy, so he sent James Carroll to Habana to see, and here you find James Carroll, in..."
+  P7: "By some unexplained sorceries he got hold of some good poisonous yellow fever blood, and filtered it..."
+  P8: "Reed wrote to stop him: those deaths were too much—but Carroll simply must get some contaminated mos..."
+  P9: "“In my own case,” said Carroll, “produced by the bite of a single mosquito, a fatal result was looke..."
+  P10: "Such was the strangest of that strange crew, and looking back on this his boldness, in despite of hi..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VI
+
+Then the world came to Habana, and there was acclaim for
+Walter Reed, and the customary solemn discussions and doubts
+and arguments of the learned men who came. William Crawford
+Gorgas (who was another blameless man!) grooming himself
+for the immortality of Panama, went into the gutters and
+cesspools and cisterns of Habana, making horrid war on the
+Stegomyia mosquitoes, and in ninety days, Habana had not a
+single case of yellow jack—she was free for the first time in
+two hundred years. It was magical! But still there came
+learned doctors, and solemn bearded physicians, from Europe
+and America, asking this, questioning that—and one morning
+fifteen of these skeptics were in the mosquito room of the
+laboratory—oh! they were from Missouri! “These are remarkable
+experiments, but the results should be weighed and
+considered with reserve ... et cetera!” Then the gauze lid
+came off a jar of she-mosquitoes (of course it was by accident)
+and into the room, with wicked lustful eyes on those learned
+scientists the Stegomyia buzzed. Alas for skepticism! Away
+went all doubts! From the room rushed the eminent servants
+of knowledge! Down went the screen door with a crash—such
+was the vehemence of their conviction that Walter Reed was
+right. (Though it happened that this particular jar of mosquitoes
+was not contaminated.)
+
+Then William Crawford Gorgas and John Guitéras—he was
+a great Cuban authority on yellow jack—they were convinced
+too by those experiments at Camp Lazear, and they were full
+of excellent plans to put those experiments in practice—fine
+plans, but rash plans, alas. “It is remarkable,” said Gorgas
+and Guitéras, “that these experimental cases at Camp Lazear
+didn’t die—they had typical yellow fever, but they got better,
+maybe because Reed put them to bed so quickly.” Then they
+proceeded to play with fire. “We will give newly arrived non-immune
+immigrants yellow fever—a smart attack of it, but a
+safe attack of it.” They planned this, when it really was so
+easy to wipe out yellow fever simply by warring on the Stegomyia,
+which does not breed in secret places, which is a very
+domestic mosquito! “And at the same time we can confirm
+Reed’s results,” thought Gorgas and Guitéras.
+
+The immigrants (of course they were very ignorant people)
+came; the immigrants listened and were told it was safe; seven
+immigrants and a bold young American nurse were bitten by
+the poisoned Stegomyia. And of these eight, two immigrants
+and the bold young American nurse went out from the hospital,
+safe from another attack of yellow fever, safe from all the worries
+of the world.... They went out, feet first—to slow
+music. What a fine searcher was Walter Reed—but what
+amazing luck he had, in those experiments at Camp
+Lazear....
+
+There was panic in Habana, and mutterings of the mob—and
+who can blame that mob, for human life is sacred. But
+there was Assistant-Surgeon James Carroll, unsentimental as
+an embalmer and before all else a soldier,—he had just then
+come back to Habana to settle certain little academic questions.
+“We can wipe out yellow fever now, we have proved
+just how it gets from man to man—but what is it causes yellow
+fever?” This is what Reed and Carroll asked each other, and
+everybody must admit that it was a purely academic question,
+and I ask you: was it worth a human life (even of a Spanish
+immigrant) to find the answer? Myself I cannot answer yes
+or no. But Reed and Carroll answered yes! Starting out as
+soldiers obeying orders, as humanitarians risking their hides to
+save the lives of men, they had been bitten by the virus of the
+search for truth, cold truth—they were enchanted with the
+glory that comes from the discovery of unknown things....
+
+They were sure there was no visible bacillus, nor any kind
+of microbe that could be seen through the strongest microscope
+to cause it—they had looked in the livers of men and the lights
+of mosquitoes for such a germ, in vain. But there were other
+possibilities—magical possibilities, of a new kind of germ that
+might be the cause of yellow fever, an ultra-microbe, too immensely
+small for the strongest lens to uncover, revealing its
+existence only by the murdering of men with its unseen mysterious
+poison. That might be the nature of the germ of yellow
+fever. Old Friedrich Loeffler—he of the mustaches—had
+found such little life making calves sick with foot-and-mouth
+disease. And now if Reed and Carroll could show the microbe
+of yellow fever belonged to this sub-microscopic world too!
+
+Walter Reed was busy, so he sent James Carroll to Habana
+to see, and here you find James Carroll, intensely annoyed because
+those experimental cases of Guitéras had died. Guitéras—do
+you blame him?—was in a funk. No, Carroll mightn’t
+draw blood from yellow fever patients. Indeed not, Carroll
+mightn’t even bite them with mosquitoes. What was most silly,
+Dr. Guitéras would rather not have Dr. Carroll make post-mortems
+on the dead cases—it might enrage the population of
+Habana. “You can imagine my disappointment!” wrote Carroll
+to Walter Reed, with indignant remarks about the frivolous
+fears of ignorant populations. But did those deaths stop
+him? Not Carroll!
+
+By some unexplained sorceries he got hold of some good
+poisonous yellow fever blood, and filtered it through a porcelain
+filter that was so fine no visible microbe could get through
+it. The stuff that came through that filter Carroll shot under
+the skin of three non-immunes (history doesn’t tell how he induced
+them to stand for it)—and presto! two of them got yellow
+fever. Hurrah! Yellow fever was like foot-and-mouth
+disease then. Its cause was a germ maybe too little to see, a
+microbe that could sneak through fine-grained porcelain.⁠[1]
+
+Reed wrote to stop him: those deaths were too much—but
+Carroll simply must get some contaminated mosquitoes, and
+by some bold devilry he did get them, and heigho for this final
+most horrible experiment!
+
+“In my own case,” said Carroll, “produced by the bite of a
+single mosquito, a fatal result was looked for during several
+days. I became so firmly convinced that the severity of the
+attack depended upon the susceptibility of an individual rather
+than on the number of bites he had got, that on October 9,
+1901, at Habana, I purposely applied to a non-immune eight
+mosquitoes (all I had) that had been contaminated eighteen
+days before. The attack that followed was a mild one,” ended
+Carroll, triumphantly. But what if that patient had died—as
+God knows he might have?
+
+Such was the strangest of that strange crew, and looking
+back on this his boldness, in despite of his fanatic prying into
+dangerous mysteries, my hat is off to this bald-headed bespectacled
+ex-lumberjack searcher. He himself was the first
+to be hit, it was Carroll gave the example to those American soldiers,
+to that civilian clerk, and to those Spanish immigrants—1,
+2, 3, and 4—and to all the rest of the unknown numbers of
+them. And do you remember, in the middle of his attack of
+yellow fever, that moment when his heart seemed to stop? In
+1907, six years after, Carroll’s heart stopped for good....
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

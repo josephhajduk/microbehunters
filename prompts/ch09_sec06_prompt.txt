@@ -1,0 +1,269 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch09_sec06
+**Chapter 9:** Bruce — Trail of the Tsetse
+**Section 6 of this chapter**
+**Word count:** 1101
+**Total paragraphs:** 13
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "And there were. One day, as they walked through the Botanical Garden at Entebbe, Bruce pushing his b..."
+  P2: "Hard work began in the laboratory; already Bruce had found an excellent experimental animal—the monk..."
+  P3: "That is the secret of those fine discoveries Bruce made. It was because he was a hunter. Not only wi..."
+  P4: "Now they planned and did terrible experiments. Day after day they caused tsetse flies to feed on pat..."
+  P5: "He proceeded to call in a strange gang of co-workers to help him in one of the most amazing tests of..."
+  P6: "The magnificent Apolo broke in: “But I cannot believe that is so—Kivu has been on the Lake shore alw..."
+  P7: "Bruce didn’t argue. He bluffed, as follows: “If you do not believe me, give me a chance to prove it ..."
+  P8: "The bluff was perfect: “What then, is to be done, Colonel Bruce?” asked Apolo."
+  P9: "“Well, I must be dead sure I am right,” Bruce told him. Then he showed Apolo a great map of Uganda. ..."
+  P10: "So Bruce gave Apolo butterfly nets, and killing bottles, and envelopes; he gave directions about the..."
+  P11: "Apolo was nothing if not intelligent, and efficient. He said he would see what could be done. There ..."
+  P12: "Presently the envelopes began to pour in on Bruce and called him away from his monkey experiments. T..."
+  P13: "The job looked finished. The unhappy monkeys bit by the flies who had sucked the blood of dying negr..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+VI
+
+And there were. One day, as they walked through the Botanical
+Garden at Entebbe, Bruce pushing his bulky body
+between the rows of tropic plants ahead of his small wife—there
+was a glad shriek from her.... “Why, David! There
+are two tsetse—on your back!” That woman was a scientific
+Diana. She swooped on those two tsetses, and caught them,
+and gave them a practical pinch—just enough to kill them, and
+then showed them to her husband. They had been perched,
+ready to strike, within a few inches of his neck. Now they
+knew they were on the trail.
+
+Hard work began in the laboratory; already Bruce had
+found an excellent experimental animal—the monkey, which
+he could put into a beautiful fatal sleep, just like that of a
+man, by injecting fluid from the spines of doomed negroes.
+But now to catch tsetse flies. They armed themselves with
+butterfly nets and the glass-windowed cages they had invented
+in Zululand. Then these inseparable searchers climbed into
+canoes; lusty crews of black boys shot them across the lake.
+Along the banks they walked—it was charming in the shade
+there—but listen! Yes, there was the buzz of the tsetse....
+They tried to avoid being bitten. They were bit—and stayed
+awake nights wondering what would happen—they went back
+to the laboratory and clapped the cages on the backs of
+monkeys. It was a good time for them.
+
+That is the secret of those fine discoveries Bruce made. It
+was because he was a hunter. Not only with his mind—but
+a bold everlastingly curious snouting hunter with his body too.
+If he had sat back and listened to those missionaries, or stayed
+listening to those bug experts—he would never have learned
+that Kivu was the Uganda name for the tsetse. He would
+never have found the tsetse. But he carried the fight to the
+enemy—and as for Mrs. Bruce, that woman was better than a
+third hand or two extra pairs of eyes for him.
+
+Now they planned and did terrible experiments. Day after
+day they caused tsetse flies to feed on patients near to death
+(already too deep in sleep to be annoyed by the insects); they
+interrupted the flies in the midst of their meal, and put the
+angry, half-satisfied cages of them on the backs of monkeys.
+With all the tenderness of high-priced nurses watching over
+Park Avenue babies they saw to it that only their experimental
+flies, and no chance flies from outside, got a meal off those
+beasts. Other searchers might have rolled their thumbs
+waiting to see what happened to the monkeys, but not
+Bruce.
+
+He proceeded to call in a strange gang of co-workers to help
+him in one of the most amazing tests of all microbe hunting.
+Bruce asked for an audience from the high-plumed gay-robed
+potentate, Apolo Kagwa, Prime Minister of Uganda. He told
+Apolo he had discovered the microbe of the sleeping death
+which was killing so many thousands of his people. He informed
+him many thousands more already had the parasite
+in their blood, and were doomed. “But there is a way to stop
+the ruin that faces your country, for I have reason to believe
+it is the tsetse fly—the insect you call Kivu—and only this
+insect, that carries the poisonous germ from a sick man to a
+healthy one——”
+
+The magnificent Apolo broke in: “But I cannot believe that
+is so—Kivu has been on the Lake shore always, and my people
+have only begun to be taken by the sleeping sickness during
+the last few years——”
+
+Bruce didn’t argue. He bluffed, as follows: “If you do not
+believe me, give me a chance to prove it to you. Go down,
+Apolo Kagwa, to the Crocodile Point on the Lake shore where
+Kivu swarms so. Sit on the shore there with your feet in the
+water for five minutes. Don’t keep off the flies—and I’ll promise
+you’ll be a dead man in two years!”
+
+The bluff was perfect: “What then, is to be done, Colonel
+Bruce?” asked Apolo.
+
+“Well, I must be dead sure I am right,” Bruce told him.
+Then he showed Apolo a great map of Uganda. “If I’m right,
+where there is sleeping sickness—there we will find tsetse
+flies too. Where there are no tsetse—there should be no
+sleeping sickness.”
+
+So Bruce gave Apolo butterfly nets, and killing bottles, and
+envelopes; he gave directions about the exact way to set down
+all the facts, and he told how Apolo’s darky minions might
+pinch the flies without getting stabbed themselves. “And then
+we will put our findings down on this map—and see if I’m
+right.”
+
+Apolo was nothing if not intelligent, and efficient. He said
+he would see what could be done. There were bows and amiable
+formalities. In a jiffy the black Prime Minister had called
+for his head chief, the Sekibobo, and all the paraphernalia,
+with rigid directions, went from the Sekibobo to the lesser
+headmen, and from them down to the canoe men—the wheels
+of that perfect feudal system were set going....
+
+Presently the envelopes began to pour in on Bruce and
+called him away from his monkey experiments. They cluttered
+the laboratory, they called him from his peerings into the
+intestines of tsetse flies where he looked for trypanosomes.
+Rapidly, with perfectly recorded facts—most of them set down
+by intelligent blacks and some by missionaries—the envelopes
+came in. It was a kind of scientific co-working you would
+have a hard time finding among white folks, even white medical
+men. Each envelope had a grubby assorted mess of biting
+flies, they had a dirty time sorting them, but every time they
+found a tsetse, a red-headed pin went into that spot on the
+map—and if a report of “sleeping sickness present” came with
+that fly, a black-headed pin joined it. From the impressive
+Sekibobo down to the lowest fly-boy, Apolo’s men had done
+their work with an automatic perfection. At last the red and
+black dots on the map showed that where there were tsetses,
+there was the sleeping death—and where there were no tsetses—there
+was no single case of sleeping sickness!
+
+The job looked finished. The unhappy monkeys bit by the
+flies who had sucked the blood of dying negroes—these
+monkeys’ mouths fell open while they tried to eat their beloved
+bananas; they went to sleep and died. Other monkeys
+never bit by flies—but kept in the same cages, eating out of
+the same dishes—those monkeys never showed a sign of the
+disease. Here were experiments as clean, as pretty as the best
+ones Theobald Smith had made....
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.

@@ -1,0 +1,221 @@
+# Microbe Hunters — Section Processing Prompt (v2)
+
+You are helping create an illustrated, scroll-synced reading experience of "Microbe Hunters" by Paul de Kruif for a parent reading aloud to a 5-year-old. Your job is to process ONE sub-section of the book.
+
+## Your Output
+
+Output a single JSON object (no markdown fencing, no commentary — just valid JSON) with this structure:
+
+```json
+{
+  "id": "ch01_sec02",
+  "chapter": 1,
+  "section": 2,
+  "scientist": "Leeuwenhoek",
+  "subtitle": "First of the Microbe Hunters",
+  "summary": "One paragraph summary for the parent.",
+  "segments": [
+    {
+      "segment_index": 0,
+      "paragraph_range": [1, 4],
+      "anchor_sentence": "First sentence of first paragraph in this segment.",
+      "visual": {
+        "scene_description": "What the animation depicts, for human review.",
+        "animation_prompt": "Full prompt for Grok Imagine, with style prefix.",
+        "mood": "wonder"
+      }
+    }
+  ]
+}
+```
+
+## IMPORTANT: Do NOT reproduce book text
+
+Do NOT include any `text_html` field. Instead, use `paragraph_range` — a pair of 1-based indices [start, end] inclusive, referring to paragraphs in the section's text. Paragraph 1 is the first paragraph, paragraph 2 is the second, etc. We will stitch the text back in programmatically.
+
+## How to Segment
+
+Break the sub-section into **segments** by paragraph ranges, where each segment gets one animation:
+
+- **Each segment should be roughly 250-500 words** (2-5 paragraphs).
+- **Each segment needs a clear visual moment.**
+- **Short sub-sections** (under 300 words): single segment covering all paragraphs.
+- **Long sub-sections** (over 1500 words): 3-6 segments.
+- Segments must cover ALL paragraphs with no gaps or overlaps.
+- `anchor_sentence` is the first sentence of the first paragraph in the segment's range.
+
+## How to Write Animation Prompts
+
+Every `animation_prompt` MUST start with this exact prefix:
+```
+Simple linocut print style illustration, bold black outlines, flat muted colors in dusty rose and sage green and ochre, rough textured edges, hand-printed look on natural paper, children's book illustration,
+```
+
+Then describe the scene with HIGH DETAIL and SCIENTIFIC ACCURACY:
+1. **Who**: The scientist with period-correct clothing, accurate physical description from the style guide
+2. **What**: The specific action, naming the exact equipment and technique being used (correct microscope type for the era, actual lab methods, real specimen types)
+3. **Where**: Historically accurate setting with specific environmental details (lighting type, furniture, instruments visible)
+4. **Scientific inset**: When microbes are being observed, include a circular magnified inset showing accurate morphology (rod-shaped bacilli, round cocci, flagella, cell walls, correct staining colors)
+
+Prompts should be 60-100 words total (including prefix). Be specific and detailed. No vague words like "warm," "friendly," "beautiful," "magical." No negative prompts. No artist name references. NEVER include any text, words, labels, or lettering in the image — AI-generated text is always garbled and ruins the illustration.
+
+## How to Write scene_description
+
+1-2 sentences for human reviewers: what's happening narratively and what the animation should depict.
+
+## How to Write summary
+
+2-4 sentences summarizing this sub-section for the parent, helping them paraphrase for a 5-year-old.
+
+## Mood options
+
+Use one of: wonder, discovery, tension, humor, triumph, sadness, curiosity, adventure
+
+## Important Rules
+
+1. **Do NOT reproduce book text.** Use paragraph_range only.
+2. **Every segment must have a visual.** No segments without an animation prompt.
+3. **Keep the child in mind.** Visuals should be engaging, not scary. Focus on the scientist's determination, not suffering.
+4. **Maintain character consistency** per the style guide.
+5. **Output valid JSON only.** No markdown, no explanation, no commentary outside the JSON.
+
+
+---
+
+## Style Guide (key points)
+
+### Character Descriptions (use these exact details for visual consistency)
+- **Leeuwenhoek**: round face, big nose, white curled periwig, long dark wool coat, 17th-century Dutch burgher clothing, hunches over tiny hand-held single-lens microscope (brass plates the size of a large coin with glass bead lens)
+- **Spallanzani**: tall thin, sharp features, black Catholic priest's cassock, 18th-century Italian, dramatic gesturing hands, works with sealed glass flasks over flames
+- **Pasteur**: neat trimmed beard, round spectacles, formal black frock coat (NOT white lab coat), 19th-century French, intense focused expression, swan-neck glass flasks
+- **Koch**: thick dark mustache, round wire spectacles, wool waistcoat with rolled shirtsleeves, sturdy German build, compound brass microscope, petri dishes, staining dyes
+- **Roux**: gaunt face, dark pointed beard, rolled-up shirtsleeves, French, syringes and guinea pigs in cluttered Paris laboratory
+- **Behring**: broad shoulders, Prussian military bearing, blond mustache, formal dress, works with serum and antitoxins
+- **Metchnikoff**: wild bushy white beard, round spectacles, Russian, excitable gestures, starfish larvae and white blood cells
+- **Theobald Smith**: quiet neat American, clean-shaven, modest USDA laboratory, cattle tick specimens in glass jars
+- **Bruce**: British military uniform with sun helmet, African landscape with tsetse flies, field laboratory in Zululand
+- **Ross**: British Indian Army officer, thin mustache, hot cramped Indian bungalow, mosquito cages and dissecting needles, sweat-stained shirt, oil lamp
+- **Grassi**: dark Italian features, animated expression, Anopheles mosquitoes pinned on cards, malaria-ridden Italian village
+- **Walter Reed**: US Army uniform, kind weathered face, military camp in Cuba, volunteer soldiers, wooden barracks
+- **Paul Ehrlich**: messy cluttered desk covered in chemical bottles, ever-present cigar, coat stained with bright chemical dyes, test tubes of colored compounds and laboratory mice
+
+### Microbe Depictions (scientifically accurate)
+- **Bacteria**: rod-shaped bacilli (anthrax, TB) or round cocci, show cell walls, endospores where relevant, flagella on motile species
+- **Protozoa**: malaria as crescent-shaped gametocytes inside red blood cells, trypanosomes as elongated with undulating membrane and flagellum
+- **White blood cells / phagocytes**: large irregular cells engulfing smaller bacteria, visible nucleus
+- Use circular inset to represent microscope field of view
+- Include accurate staining colors where relevant (Gram stain violet/pink, methylene blue, acid-fast red)
+
+### IMPORTANT
+- NEVER include any text, words, labels, or lettering in the image description — AI-generated text is always garbled
+
+---
+
+## Section to Process
+
+**Section ID:** ch10_sec02
+**Chapter 10:** Ross vs. Grassi — Malaria
+**Section 2 of this chapter**
+**Word count:** 781
+**Total paragraphs:** 5
+
+### Paragraph Index (for paragraph_range references)
+
+  P1: "For the first thirty-five years of his life Ronald Ross tried his best not to be a microbe hunter. H..."
+  P2: "But he was, for all that, something of a chaser of moonbeams, because, finding that his symphonies d..."
+  P3: "Not that there was no chance for him to hunt microbes in India. Microbes? The very air was thick wit..."
+  P4: "He went back to England on his first furlough in 1888, and there something happened to him, an event..."
+  P5: "Of course, he failed again. He bribed, begged, and wheedled drops of blood out of the fingers of hun..."
+
+### Full Text (for understanding content — do NOT reproduce in output)
+
+II
+
+For the first thirty-five years of his life Ronald Ross tried
+his best not to be a microbe hunter. He was born in the foothills
+of the Himalayas in India, and knowing his father (if
+you believe in eugenics) you might suspect that Ronald Ross
+would do topsy-turvy things with his life. Father Ross was a
+ferocious looking border-fighting English general with belligerent
+side-whiskers, who was fond of battles but preferred to
+paint landscapes. He shipped his son Ronald Ross back to
+England before he was ten, and presently, before he was
+twenty, Ronald was making a not too enthusiastic pass at
+studying medicine, failing to pass his examinations because he
+preferred composing music to the learning of Latin words and
+the cultivation of the bedside manner. This was in the
+eighteen-seventies, mind you, in the midst of the most spectacular
+antics of Pasteur, but from the autobiography of
+Ronald Ross, which is a strange mixture of cleverness and contradiction,
+of frank abuse of himself and of high enthusiasm
+for himself, you can only conclude that this revolution in medicine
+left Ronald Ross cold.
+
+But he was, for all that, something of a chaser of moonbeams,
+because, finding that his symphonies didn’t turn out to
+be anything like those of Mozart, he tried literature, in the
+grand manner. He neglected to write prescriptions while he
+nursed his natural bent for epic drama. But publishers didn’t
+care for these masterpieces, and when Ross printed them at
+his own expense, the public failed to get excited about them.
+Father Ross became indignant at this dabbling and threatened
+to stop his allowance, so Ronald (he had spunk) got a job as
+a ship’s doctor on the Anchor Line between London and New
+York. On this vessel he observed the emotions and frailties
+of human nature in the steerage, wrote poetry on the futility
+of life, and got up his back medical work. Finally he passed
+the examination for the Indian Medical Service, found the heat
+of India detestable, but was glad there was little medical practice
+to attend to, because it left him time to compose now
+totally forgotten epics and sagas and blood-and-thunder
+romances. That was the beginning of the career of Ronald
+Ross!
+
+Not that there was no chance for him to hunt microbes in
+India. Microbes? The very air was thick with them. The
+water was a soup of them. All around him in Madras were
+the stinking tanks breeding the Asiatic cholera; he saw men
+die in thousands of the black plague; he heard their teeth rattle
+with the ague of malaria, but he had no ears or eyes or nose
+for all that—for now he forgot literature to become a mathematician.
+He shut himself up inventing complicated equations.
+He devised systems of the universe of a grandeur he thought
+equal to Newton’s. He forgot about these to write another
+novel. He took twenty-five-mile-a-day walking trips in spite of
+the heat and then cursed India bitterly because it was so hot.
+He was ordered off to Burma and to the Island of Moulmein,
+and here he did remarkable surgical operations—“which cured
+most of the cases”—though he had never presumed to be a
+surgeon. He tried everything but impressed hardly anybody;
+years passed, and, when the Indian Medical Service failed to
+recognize his various abilities, Ronald Ross cried: “Why
+work?”
+
+He went back to England on his first furlough in 1888, and
+there something happened to him, an event that is often an
+antidote to cynicism and a regulator of confused multitudinous
+ambitions. He met, he was smitten with, and presently he
+married Miss Rosa Bloxam. Back in India—though he wrote
+another novel called “Child of Ocean” and invented systems
+of shorthand and devised phonetic spellings for the writing of
+verse and was elected secretary of the Golf Club—he began
+to fumble at his proper work. In short he began to turn a
+microscope, with which he was no expert, on to the blood of
+malarious Hindus. The bizarre, many-formed malaria microbe
+had been discovered long ago in 1880 by a French army
+surgeon, Laveran, and Ronald Ross, who was as original as he
+was energetic and never did anything the way anybody else
+did it, tried to find this malaria germ by methods of his
+own.
+
+Of course, he failed again. He bribed, begged, and wheedled
+drops of blood out of the fingers of hundreds of aguey East
+Indians. He peered. He found nothing. “Laveran is certainly
+wrong! There is no germ of malaria!” said Ronald
+Ross, and he wrote four papers trying to prove that malaria
+was due to intestinal disturbances. That was his start in microbe
+hunting!
+
+---
+
+Now output the JSON for this section. Remember: valid JSON only, no markdown fencing, no commentary. Use paragraph_range [start, end] inclusive. Do NOT include any text_html field.
