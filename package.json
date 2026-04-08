@@ -1,0 +1,23 @@
+{
+  "name": "microbehunters",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephhajduk/microbehunters.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josephhajduk/microbehunters/issues"
+  },
+  "homepage": "https://github.com/josephhajduk/microbehunters#readme",
+  "dependencies": {
+    "@chenglou/pretext": "^0.0.5"
+  }
+}

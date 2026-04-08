@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microbe Hunters — An Illustrated Reading</title>
+<style>
+/* ========================================
+   CSS Custom Properties
+   ======================================== */
+:root {
+  --text-width: 42rem;
+  --media-width: 40vw;
+  --gap: 2rem;
+  --font-body: 'Literata', 'Georgia', serif;
+  --font-heading: 'Inter', 'Helvetica Neue', sans-serif;
+  --color-bg: #faf8f4;
+  --color-text: #2c2420;
+  --color-text-muted: #6b5e54;
+  --color-accent: #8b6d5c;
+  --color-rule: #d4cbc2;
+  --color-media-bg: #f0ece6;
+  --transition-duration: 0.6s;
+  --reading-line-height: 1.85;
+  --reading-font-size: 1.125rem;
+}
+
+/* ========================================
+   Reset & Base
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--reading-font-size);
+  line-height: var(--reading-line-height);
+}
+
+/* ========================================
+   Fonts — loaded from Google Fonts
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap');
+
+/* ========================================
+   Layout: Two columns
+   ======================================== */
+.page-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Left column: scrolling text */
+.text-column {
+  flex: 1;
+  max-width: var(--text-width);
+  margin-left: auto;
+  padding: 2rem var(--gap) 50vh 2rem;
+}
+
+/* Right column: sticky media */
+.media-column {
+  position: sticky;
+  top: 0;
+  width: var(--media-width);
+  height: 100vh;
+  flex-shrink: 0;
+  background: var(--color-media-bg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   Chapter Navigation (left sidebar)
+   ======================================== */
+.chapter-nav {
+  position: fixed;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-chapter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+  opacity: 0.5;
+}
+
+.nav-chapter:hover,
+.nav-chapter.active {
+  opacity: 1;
+  background: rgba(139, 109, 92, 0.1);
+  color: var(--color-accent);
+}
+
+.nav-roman {
+  font-weight: 600;
+  min-width: 1.5em;
+}
+
+.nav-scientist {
+  display: none;
+}
+
+.nav-chapter:hover .nav-scientist {
+  display: inline;
+}
+
+/* ========================================
+   Chapter Headers
+   ======================================== */
+.chapter-header {
+  padding: 4rem 0 2rem;
+  text-align: left;
+  border-top: 1px solid var(--color-rule);
+  margin-top: 3rem;
+}
+
+.chapter-header:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 6rem;
+}
+
+.chapter-number {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.chapter-scientist {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.chapter-subtitle {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   Sections & Segments
+   ======================================== */
+.section {
+  margin-bottom: 1rem;
+}
+
+.segment {
+  padding: 1.5rem 0;
+  min-height: 40vh;
+}
+
+.segment-text p {
+  margin-bottom: 1em;
+  text-indent: 1.5em;
+  hanging-punctuation: first;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+.segment-text p:first-child {
+  text-indent: 0;
+}
+
+.segment-text p:first-child::first-letter {
+  /* Subtle drop cap for first paragraph of each visual segment */
+}
+
+/* ========================================
+   Media Panel
+   ======================================== */
+.media-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-item {
+  position: absolute;
+  inset: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-duration) ease,
+              transform var(--transition-duration) ease;
+  pointer-events: none;
+}
+
+.media-item.active {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.media-item img,
+.media-item video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* Placeholder when no media exists yet */
+.media-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  gap: 0.75rem;
+}
+
+.media-placeholder .mood-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Mood colors */
+.mood-badge[data-mood="wonder"]    { background: #e8dff0; color: #6b4d8a; }
+.mood-badge[data-mood="discovery"] { background: #dce8d8; color: #4a6b42; }
+.mood-badge[data-mood="tension"]   { background: #f0ddd8; color: #8a4d42; }
+.mood-badge[data-mood="humor"]     { background: #f0ecd8; color: #7a6b2e; }
+.mood-badge[data-mood="triumph"]   { background: #d8e4f0; color: #2e4d7a; }
+.mood-badge[data-mood="sadness"]   { background: #e0dce0; color: #5a525a; }
+.mood-badge[data-mood="curiosity"] { background: #dce8e8; color: #2e5a5a; }
+.mood-badge[data-mood="adventure"] { background: #f0e4d8; color: #7a5a2e; }
+
+/* ========================================
+   Transition Variants
+   ======================================== */
+/* Fade (default) */
+.media-item[data-transition="fade"] {
+  /* Default opacity transition already handles this */
+}
+
+/* Slide up */
+.media-item[data-transition="slide-up"] {
+  transform: translateY(2rem);
+}
+.media-item[data-transition="slide-up"].active {
+  transform: translateY(0);
+}
+
+/* Slide down */
+.media-item[data-transition="slide-down"] {
+  transform: translateY(-2rem);
+}
+.media-item[data-transition="slide-down"].active {
+  transform: translateY(0);
+}
+
+/* Slide left */
+.media-item[data-transition="slide-left"] {
+  transform: translateX(2rem);
+}
+.media-item[data-transition="slide-left"].active {
+  transform: translateX(0);
+}
+
+/* Dissolve (slower fade) */
+.media-item[data-transition="dissolve"] {
+  transition-duration: 1.2s;
+}
+
+/* Zoom */
+.media-item[data-transition="zoom"] {
+  transform: scale(0.92);
+}
+.media-item[data-transition="zoom"].active {
+  transform: scale(1);
+}
+
+/* Crossfade (handled via JS timing) */
+.media-item[data-transition="crossfade"] {
+  transition-duration: 0.8s;
+}
+
+/* ========================================
+   Title / Hero
+   ======================================== */
+.hero {
+  padding: 8rem 0 4rem;
+  text-align: left;
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.hero .author {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.hero .edition-note {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 1024px) {
+  .chapter-nav { display: none; }
+  .media-column {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 35vh;
+    z-index: 50;
+  }
+  .text-column {
+    max-width: 100%;
+    padding: 2rem 1.5rem calc(35vh + 2rem) 1.5rem;
+    margin: 0;
+  }
+  .page-wrapper {
+    flex-direction: column;
+  }
+}
+
+/* ========================================
+   Scrollbar
+   ======================================== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-rule);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* ========================================
+   Print
+   ======================================== */
+@media print {
+  .media-column, .chapter-nav { display: none; }
+  .text-column { max-width: 100%; padding: 0; margin: 0; }
+  .segment { min-height: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <!-- Left: scrolling text -->
+  <div class="text-column" id="text-column">
+    <div class="hero">
+      <h1>Microbe Hunters</h1>
+      <div class="author">by Paul de Kruif</div>
+      <div class="edition-note">An illustrated reading edition</div>
+    </div>
+
+{{BODY_CONTENT}}
+
+  </div>
+
+  <!-- Right: sticky media panel -->
+  <div class="media-column">
+    <div class="media-container" id="media-container">
+      <!-- Media items injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- Chapter navigation -->
+<nav class="chapter-nav" id="chapter-nav">
+{{CHAPTER_NAV}}
+</nav>
+
+<script type="module">
+// ============================================
+// Pretext integration for text measurement
+// ============================================
+// We use pretext to precisely measure segment heights
+// for accurate scroll-sync trigger points.
+import { prepare, layout } from './node_modules/@chenglou/pretext/dist/layout.js';
+
+// ============================================
+// Configuration
+// ============================================
+const SCROLL_OFFSET = 0.35; // Trigger point: 35% from top of viewport
+const MEDIA_EXTENSIONS = ['.mp4', '.webm', '.png', '.webp', '.jpg'];
+
+// ============================================
+// State
+// ============================================
+let activeSegmentId = null;
+let segments = [];
+let mediaElements = {};
+let observer = null;
+
+// ============================================
+// Initialization
+// ============================================
+function init() {
+  // Collect all segments
+  segments = Array.from(document.querySelectorAll('.segment'));
+
+  // Create media items for each segment
+  const container = document.getElementById('media-container');
+
+  segments.forEach(seg => {
+    const mediaId = seg.dataset.media;
+    const transition = seg.dataset.transition || 'fade';
+    const mood = seg.dataset.mood || 'curiosity';
+
+    const mediaItem = document.createElement('div');
+    mediaItem.className = 'media-item';
+    mediaItem.id = `media-${mediaId}`;
+    mediaItem.dataset.transition = transition;
+
+    // Try to load media, show placeholder if not found
+    mediaItem.innerHTML = createMediaHTML(mediaId, mood, transition);
+    container.appendChild(mediaItem);
+    mediaElements[mediaId] = mediaItem;
+  });
+
+  // Set up IntersectionObserver for scroll sync
+  setupScrollSync();
+
+  // Set up chapter nav highlighting
+  setupChapterNav();
+
+  // Activate first segment
+  if (segments.length > 0) {
+    activateSegment(segments[0].dataset.media);
+  }
+
+  // Use pretext to measure text for diagnostics
+  measureWithPretext();
+}
+
+// ============================================
+// Media loading
+// ============================================
+function createMediaHTML(mediaId, mood, transition) {
+  // Build paths to check
+  const videoPath = `media/${mediaId}.mp4`;
+  const imagePath = `media/${mediaId}.png`;
+
+  // We'll try video first, image second, placeholder last
+  // The onerror cascade handles missing files gracefully
+  return `
+    <video src="${videoPath}" autoplay loop muted playsinline
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+    </video>
+    <img src="${imagePath}" alt=""
+         style="display:none"
+         onload="this.style.display='block'"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+    <div class="media-placeholder" style="display:none">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <path d="M21 15l-5-5L5 21"/>
+      </svg>
+      <span class="mood-badge" data-mood="${mood}">${mood}</span>
+      <span>${mediaId}</span>
+    </div>
+  `;
+}
+
+// ============================================
+// Scroll Sync
+// ============================================
+function setupScrollSync() {
+  // Use IntersectionObserver with a rootMargin that triggers
+  // when a segment crosses the SCROLL_OFFSET threshold
+  const topMargin = Math.round(-SCROLL_OFFSET * 100);
+  const bottomMargin = Math.round(-(1 - SCROLL_OFFSET) * 100);
+
+  observer = new IntersectionObserver((entries) => {
+    // Find the entry closest to our trigger line
+    let bestEntry = null;
+    let bestDistance = Infinity;
+
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const rect = entry.boundingClientRect;
+        const triggerY = window.innerHeight * SCROLL_OFFSET;
+        const distance = Math.abs(rect.top - triggerY);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestEntry = entry;
+        }
+      }
+    });
+
+    if (bestEntry) {
+      const mediaId = bestEntry.target.dataset.media;
+      if (mediaId && mediaId !== activeSegmentId) {
+        activateSegment(mediaId);
+      }
+    }
+  }, {
+    rootMargin: `${topMargin}% 0px ${bottomMargin}% 0px`,
+    threshold: [0, 0.1, 0.25, 0.5]
+  });
+
+  segments.forEach(seg => observer.observe(seg));
+}
+
+// ============================================
+// Segment Activation
+// ============================================
+function activateSegment(mediaId) {
+  const prev = activeSegmentId;
+  activeSegmentId = mediaId;
+
+  // Deactivate previous
+  if (prev && mediaElements[prev]) {
+    mediaElements[prev].classList.remove('active');
+
+    // Pause video if any
+    const prevVideo = mediaElements[prev].querySelector('video');
+    if (prevVideo) prevVideo.pause();
+  }
+
+  // Activate new
+  if (mediaElements[mediaId]) {
+    mediaElements[mediaId].classList.add('active');
+
+    // Play video if any
+    const video = mediaElements[mediaId].querySelector('video');
+    if (video && video.readyState >= 2) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    }
+  }
+
+  // Update chapter nav
+  updateChapterNav(mediaId);
+}
+
+// ============================================
+// Chapter Navigation
+// ============================================
+function setupChapterNav() {
+  // Already linked via href="#chapter-N"
+}
+
+function updateChapterNav(mediaId) {
+  // Extract chapter number from mediaId (e.g., "ch04_sec02_seg01" -> 4)
+  const match = mediaId.match(/ch(\d+)/);
+  if (!match) return;
+
+  const chapterNum = parseInt(match[1]);
+  document.querySelectorAll('.nav-chapter').forEach((link, i) => {
+    link.classList.toggle('active', i + 1 === chapterNum);
+  });
+}
+
+// ============================================
+// Pretext Integration
+// ============================================
+function measureWithPretext() {
+  try {
+    // Measure all segment text blocks for precise height data
+    // This powers accurate scroll-trigger calculations
+    const style = getComputedStyle(document.body);
+    const fontSize = style.fontSize;
+    const fontFamily = style.fontFamily.split(',')[0].trim().replace(/['"]/g, '');
+    const font = `${fontSize} ${fontFamily}`;
+
+    let totalLines = 0;
+    segments.forEach(seg => {
+      const textEl = seg.querySelector('.segment-text');
+      if (!textEl) return;
+
+      const text = textEl.textContent || '';
+      const prepared = prepare(text, font);
+      const containerWidth = textEl.offsetWidth;
+      const lineHeight = parseFloat(fontSize) * 1.85;
+      const measured = layout(prepared, containerWidth, lineHeight);
+
+      totalLines += measured.lineCount;
+
+      // Store measurement on the element for potential use
+      seg.dataset.measuredHeight = measured.height;
+      seg.dataset.measuredLines = measured.lineCount;
+    });
+
+    console.log(`[pretext] Measured ${segments.length} segments, ${totalLines} total lines`);
+  } catch (e) {
+    console.warn('[pretext] Measurement fallback:', e.message);
+  }
+}
+
+// ============================================
+// Keyboard navigation
+// ============================================
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown' || e.key === 'j') {
+    const currentIdx = segments.findIndex(s => s.dataset.media === activeSegmentId);
+    if (currentIdx < segments.length - 1) {
+      segments[currentIdx + 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  } else if (e.key === 'ArrowUp' || e.key === 'k') {
+    const currentIdx = segments.findIndex(s => s.dataset.media === activeSegmentId);
+    if (currentIdx > 0) {
+      segments[currentIdx - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+});
+
+// ============================================
+// Boot
+// ============================================
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+
+</body>
+</html>
