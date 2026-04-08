@@ -110,7 +110,7 @@ body {
 .nav-chapter:hover,
 .nav-chapter.active {
   opacity: 1;
-  background: rgba(139, 109, 92, 0.1);
+  background: var(--color-bg);
   color: var(--color-accent);
 }
 
@@ -256,10 +256,6 @@ body.text-size-biggest { --reading-font-size: 1.65rem;  --reading-line-height: 1
   text-align: left;
 }
 
-/* Widow fix: paragraphs pretext flagged as having widows get squeezed */
-.segment-text .pretext-paragraph.has-widow {
-  max-width: calc(100% - 2em);
-}
 
 /* ========================================
    Media Panel
@@ -5073,8 +5069,6 @@ function init() {
 
   // Expose reflow for text size controls
   window._pretextReflow = () => {
-    // Reset any inline max-width from previous widow fixes
-    document.querySelectorAll('.segment-text p').forEach(p => p.style.maxWidth = '');
     reflowWithPretext();
     syncFromScroll();
   };
@@ -5113,16 +5107,19 @@ function reflowWithPretext() {
         totalLines += result.lineCount;
 
         // Detect widows: last line < WIDOW_THRESHOLD of container width
+        // Fix by adding a word-joiner before the last word
         if (result.lines.length >= 3) {
           const lastLine = result.lines[result.lines.length - 1];
           if (lastLine.width / containerWidth < WIDOW_THRESHOLD) {
-            // Squeeze paragraph to push a word down
-            const tighterWidth = containerWidth - fontSize * 2;
-            const tighter = layoutWithLines(prepared, tighterWidth, lineHeight);
-            // Only apply if it doesn't add more than 1 extra line
-            if (tighter.lineCount <= result.lineCount + 1) {
-              p.style.maxWidth = `${tighterWidth}px`;
-              widowsFixed++;
+            // Insert &nbsp; between last two words to pull one down
+            const text = p.innerHTML;
+            const lastSpaceIdx = text.lastIndexOf(' ', text.length - 2);
+            if (lastSpaceIdx > 0) {
+              const secondLastSpaceIdx = text.lastIndexOf(' ', lastSpaceIdx - 1);
+              if (secondLastSpaceIdx > 0) {
+                p.innerHTML = text.slice(0, secondLastSpaceIdx) + '\u00A0' + text.slice(secondLastSpaceIdx + 1);
+                widowsFixed++;
+              }
             }
           }
         }
