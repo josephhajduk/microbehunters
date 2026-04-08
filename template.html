@@ -60,9 +60,8 @@ body {
 /* Left column: scrolling text */
 .text-column {
   flex: 1;
-  max-width: var(--text-width);
-  margin-left: auto;
-  padding: 2rem var(--gap) 50vh 2rem;
+  min-width: 0;
+  padding: 2rem clamp(2rem, 5vw, 6rem) 50vh clamp(2rem, 5vw, 6rem);
 }
 
 /* Right column: sticky media */
