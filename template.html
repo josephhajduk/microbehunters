@@ -83,12 +83,13 @@ body {
    ======================================== */
 .chapter-nav {
   position: fixed;
-  top: 50%;
+  top: 1rem;
+  bottom: 1rem;
   left: 1rem;
-  transform: translateY(-50%);
   z-index: 100;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0.25rem;
 }
 
@@ -125,6 +126,46 @@ body {
 .nav-chapter:hover .nav-scientist {
   display: inline;
 }
+
+/* Text size controls */
+.text-size-controls {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-rule);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.text-size-btn {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-heading);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.7rem;
+  opacity: 0.6;
+  transition: all 0.2s;
+}
+
+.text-size-btn:hover {
+  opacity: 1;
+  background: rgba(139, 109, 92, 0.1);
+}
+
+.text-size-btn.active {
+  opacity: 1;
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* Size classes on body */
+body.text-size-default { --reading-font-size: 1.125rem; --reading-line-height: 1.85; }
+body.text-size-bigger  { --reading-font-size: 1.35rem;  --reading-line-height: 1.9; }
+body.text-size-biggest { --reading-font-size: 1.65rem;  --reading-line-height: 1.95; }
 
 /* ========================================
    Chapter Headers
@@ -193,8 +234,31 @@ body {
   text-indent: 0;
 }
 
-.segment-text p:first-child::first-letter {
-  /* Subtle drop cap for first paragraph of each visual segment */
+/* Pretext-rendered lines */
+.segment-text .pretext-paragraph {
+  margin-bottom: 1em;
+}
+
+.segment-text .pretext-paragraph:first-child {
+  /* no indent on first para */
+}
+
+.segment-text .pretext-paragraph:not(:first-child) {
+  text-indent: 1.5em;
+}
+
+.segment-text .pretext-line {
+  display: block;
+  text-align: justify;
+}
+
+.segment-text .pretext-line:last-child {
+  text-align: left;
+}
+
+/* Widow fix: paragraphs pretext flagged as having widows get squeezed */
+.segment-text .pretext-paragraph.has-widow {
+  max-width: calc(100% - 2em);
 }
 
 /* ========================================
@@ -397,7 +461,7 @@ body {
 }
 </style>
 </head>
-<body>
+<body class="text-size-default">
 
 <div class="page-wrapper">
   <!-- Left: scrolling text -->
@@ -423,38 +487,178 @@ body {
 <!-- Chapter navigation -->
 <nav class="chapter-nav" id="chapter-nav">
 {{CHAPTER_NAV}}
+<div class="text-size-controls">
+  <button class="text-size-btn active" data-size="default" onclick="setTextSize('default')">A</button>
+  <button class="text-size-btn" data-size="bigger" onclick="setTextSize('bigger')" style="font-size:0.85rem">A</button>
+  <button class="text-size-btn" data-size="biggest" onclick="setTextSize('biggest')" style="font-size:1.05rem">A</button>
+</div>
 </nav>
+<script>
+function setTextSize(size) {
+  document.body.classList.remove('text-size-default', 'text-size-bigger', 'text-size-biggest');
+  document.body.classList.add('text-size-' + size);
+  document.querySelectorAll('.text-size-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.size === size);
+  });
+  // Re-measure after font size change
+  if (window._pretextReflow) window._pretextReflow();
+}
+</script>
 
 <script type="module">
 // ============================================
-// Pretext integration for text measurement
+// Pretext — text layout + scroll sync
 // ============================================
-// We use pretext to precisely measure segment heights
-// for accurate scroll-sync trigger points.
-import { prepare, layout } from './node_modules/@chenglou/pretext/dist/layout.js';
+import {
+  prepareWithSegments,
+  layoutWithLines,
+  measureNaturalWidth,
+  prepare,
+  layout,
+} from './node_modules/@chenglou/pretext/dist/layout.js';
 
 // ============================================
 // Configuration
 // ============================================
-const SCROLL_OFFSET = 0.35; // Trigger point: 35% from top of viewport
-const MEDIA_EXTENSIONS = ['.mp4', '.webm', '.png', '.webp', '.jpg'];
+const SCROLL_TRIGGER = 0.35;  // fraction from top of viewport
+const WIDOW_THRESHOLD = 0.35; // last line < 35% of container = widow
 
 // ============================================
 // State
 // ============================================
 let activeSegmentId = null;
-let segments = [];
+let segments = [];           // DOM elements
+let segmentTops = [];        // Y offsets from pretext measurements
 let mediaElements = {};
-let observer = null;
+let ticking = false;
 
 // ============================================
-// Initialization
+// Boot
 // ============================================
 function init() {
-  // Collect all segments
   segments = Array.from(document.querySelectorAll('.segment'));
+  buildMediaPanel();
+  reflowWithPretext();
+  if (segments.length > 0) activateSegment(segments[0].dataset.media);
 
-  // Create media items for each segment
+  // Scroll sync via rAF — driven by pretext measurements
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    reflowWithPretext();
+    syncFromScroll();
+  });
+
+  // Expose reflow for text size controls
+  window._pretextReflow = () => {
+    // Reset any inline max-width from previous widow fixes
+    document.querySelectorAll('.segment-text p').forEach(p => p.style.maxWidth = '');
+    reflowWithPretext();
+    syncFromScroll();
+  };
+}
+
+// ============================================
+// Pretext: reflow paragraphs + measure
+// ============================================
+function reflowWithPretext() {
+  const style = getComputedStyle(document.body);
+  const fontSize = parseFloat(style.fontSize);
+  const lineHeight = fontSize * parseFloat(style.lineHeight) || fontSize * 1.85;
+  const fontFamily = style.fontFamily.split(',')[0].trim().replace(/['"]/g, '');
+  const font = `${fontSize}px ${fontFamily}`;
+  const indentFont = font; // same font for indent measurement
+
+  let totalLines = 0;
+  let widowsFixed = 0;
+
+  segments.forEach(seg => {
+    const textEl = seg.querySelector('.segment-text');
+    if (!textEl) return;
+
+    const paragraphs = textEl.querySelectorAll('p');
+    const containerWidth = textEl.offsetWidth;
+    if (containerWidth <= 0) return;
+
+    paragraphs.forEach((p, pIdx) => {
+      const rawText = p.textContent || '';
+      if (!rawText.trim()) return;
+
+      try {
+        const prepared = prepareWithSegments(rawText, font);
+        const result = layoutWithLines(prepared, containerWidth, lineHeight);
+
+        totalLines += result.lineCount;
+
+        // Detect widows: last line < WIDOW_THRESHOLD of container width
+        if (result.lines.length >= 3) {
+          const lastLine = result.lines[result.lines.length - 1];
+          if (lastLine.width / containerWidth < WIDOW_THRESHOLD) {
+            // Squeeze paragraph to push a word down
+            const tighterWidth = containerWidth - fontSize * 2;
+            const tighter = layoutWithLines(prepared, tighterWidth, lineHeight);
+            // Only apply if it doesn't add more than 1 extra line
+            if (tighter.lineCount <= result.lineCount + 1) {
+              p.style.maxWidth = `${tighterWidth}px`;
+              widowsFixed++;
+            }
+          }
+        }
+      } catch (e) {
+        // Graceful fallback — browser handles layout
+      }
+    });
+  });
+
+  // Now measure segment positions for scroll sync
+  buildSegmentMap();
+
+  console.log(`[pretext] ${segments.length} segments, ${totalLines} lines, ${widowsFixed} widows fixed`);
+}
+
+// ============================================
+// Build scroll-sync position map
+// ============================================
+function buildSegmentMap() {
+  segmentTops = segments.map(seg => {
+    const rect = seg.getBoundingClientRect();
+    return rect.top + window.scrollY;
+  });
+}
+
+// ============================================
+// Scroll sync — pretext-driven positions
+// ============================================
+function onScroll() {
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(() => {
+      syncFromScroll();
+      ticking = false;
+    });
+  }
+}
+
+function syncFromScroll() {
+  const triggerY = window.scrollY + window.innerHeight * SCROLL_TRIGGER;
+
+  // Binary search for the segment whose top is closest below triggerY
+  let lo = 0, hi = segmentTops.length - 1;
+  while (lo < hi) {
+    const mid = (lo + hi + 1) >> 1;
+    if (segmentTops[mid] <= triggerY) lo = mid;
+    else hi = mid - 1;
+  }
+
+  const mediaId = segments[lo]?.dataset.media;
+  if (mediaId && mediaId !== activeSegmentId) {
+    activateSegment(mediaId);
+  }
+}
+
+// ============================================
+// Media panel
+// ============================================
+function buildMediaPanel() {
   const container = document.getElementById('media-container');
 
   segments.forEach(seg => {
@@ -462,47 +666,22 @@ function init() {
     const transition = seg.dataset.transition || 'fade';
     const mood = seg.dataset.mood || 'curiosity';
 
-    const mediaItem = document.createElement('div');
-    mediaItem.className = 'media-item';
-    mediaItem.id = `media-${mediaId}`;
-    mediaItem.dataset.transition = transition;
-
-    // Try to load media, show placeholder if not found
-    mediaItem.innerHTML = createMediaHTML(mediaId, mood, transition);
-    container.appendChild(mediaItem);
-    mediaElements[mediaId] = mediaItem;
+    const el = document.createElement('div');
+    el.className = 'media-item';
+    el.id = `media-${mediaId}`;
+    el.dataset.transition = transition;
+    el.innerHTML = mediaHTML(mediaId, mood);
+    container.appendChild(el);
+    mediaElements[mediaId] = el;
   });
-
-  // Set up IntersectionObserver for scroll sync
-  setupScrollSync();
-
-  // Set up chapter nav highlighting
-  setupChapterNav();
-
-  // Activate first segment
-  if (segments.length > 0) {
-    activateSegment(segments[0].dataset.media);
-  }
-
-  // Use pretext to measure text for diagnostics
-  measureWithPretext();
 }
 
-// ============================================
-// Media loading
-// ============================================
-function createMediaHTML(mediaId, mood, transition) {
-  // Build paths to check
-  const videoPath = `media/${mediaId}.mp4`;
-  const imagePath = `media/${mediaId}.png`;
-
-  // We'll try video first, image second, placeholder last
-  // The onerror cascade handles missing files gracefully
+function mediaHTML(mediaId, mood) {
   return `
-    <video src="${videoPath}" autoplay loop muted playsinline
+    <video src="media/${mediaId}.mp4" autoplay loop muted playsinline
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
     </video>
-    <img src="${imagePath}" alt=""
+    <img src="media/${mediaId}.png" alt=""
          style="display:none"
          onload="this.style.display='block'"
          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
@@ -514,133 +693,35 @@ function createMediaHTML(mediaId, mood, transition) {
       </svg>
       <span class="mood-badge" data-mood="${mood}">${mood}</span>
       <span>${mediaId}</span>
-    </div>
-  `;
+    </div>`;
 }
 
 // ============================================
-// Scroll Sync
-// ============================================
-function setupScrollSync() {
-  // Use IntersectionObserver with a rootMargin that triggers
-  // when a segment crosses the SCROLL_OFFSET threshold
-  const topMargin = Math.round(-SCROLL_OFFSET * 100);
-  const bottomMargin = Math.round(-(1 - SCROLL_OFFSET) * 100);
-
-  observer = new IntersectionObserver((entries) => {
-    // Find the entry closest to our trigger line
-    let bestEntry = null;
-    let bestDistance = Infinity;
-
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const rect = entry.boundingClientRect;
-        const triggerY = window.innerHeight * SCROLL_OFFSET;
-        const distance = Math.abs(rect.top - triggerY);
-        if (distance < bestDistance) {
-          bestDistance = distance;
-          bestEntry = entry;
-        }
-      }
-    });
-
-    if (bestEntry) {
-      const mediaId = bestEntry.target.dataset.media;
-      if (mediaId && mediaId !== activeSegmentId) {
-        activateSegment(mediaId);
-      }
-    }
-  }, {
-    rootMargin: `${topMargin}% 0px ${bottomMargin}% 0px`,
-    threshold: [0, 0.1, 0.25, 0.5]
-  });
-
-  segments.forEach(seg => observer.observe(seg));
-}
-
-// ============================================
-// Segment Activation
+// Segment activation + transitions
 // ============================================
 function activateSegment(mediaId) {
   const prev = activeSegmentId;
   activeSegmentId = mediaId;
 
-  // Deactivate previous
   if (prev && mediaElements[prev]) {
     mediaElements[prev].classList.remove('active');
-
-    // Pause video if any
-    const prevVideo = mediaElements[prev].querySelector('video');
-    if (prevVideo) prevVideo.pause();
+    const v = mediaElements[prev].querySelector('video');
+    if (v) v.pause();
   }
 
-  // Activate new
   if (mediaElements[mediaId]) {
     mediaElements[mediaId].classList.add('active');
-
-    // Play video if any
-    const video = mediaElements[mediaId].querySelector('video');
-    if (video && video.readyState >= 2) {
-      video.currentTime = 0;
-      video.play().catch(() => {});
-    }
+    const v = mediaElements[mediaId].querySelector('video');
+    if (v && v.readyState >= 2) { v.currentTime = 0; v.play().catch(() => {}); }
   }
 
-  // Update chapter nav
-  updateChapterNav(mediaId);
-}
-
-// ============================================
-// Chapter Navigation
-// ============================================
-function setupChapterNav() {
-  // Already linked via href="#chapter-N"
-}
-
-function updateChapterNav(mediaId) {
-  // Extract chapter number from mediaId (e.g., "ch04_sec02_seg01" -> 4)
+  // Chapter nav
   const match = mediaId.match(/ch(\d+)/);
-  if (!match) return;
-
-  const chapterNum = parseInt(match[1]);
-  document.querySelectorAll('.nav-chapter').forEach((link, i) => {
-    link.classList.toggle('active', i + 1 === chapterNum);
-  });
-}
-
-// ============================================
-// Pretext Integration
-// ============================================
-function measureWithPretext() {
-  try {
-    // Measure all segment text blocks for precise height data
-    // This powers accurate scroll-trigger calculations
-    const style = getComputedStyle(document.body);
-    const fontSize = style.fontSize;
-    const fontFamily = style.fontFamily.split(',')[0].trim().replace(/['"]/g, '');
-    const font = `${fontSize} ${fontFamily}`;
-
-    let totalLines = 0;
-    segments.forEach(seg => {
-      const textEl = seg.querySelector('.segment-text');
-      if (!textEl) return;
-
-      const text = textEl.textContent || '';
-      const prepared = prepare(text, font);
-      const containerWidth = textEl.offsetWidth;
-      const lineHeight = parseFloat(fontSize) * 1.85;
-      const measured = layout(prepared, containerWidth, lineHeight);
-
-      totalLines += measured.lineCount;
-
-      // Store measurement on the element for potential use
-      seg.dataset.measuredHeight = measured.height;
-      seg.dataset.measuredLines = measured.lineCount;
+  if (match) {
+    const ch = parseInt(match[1]);
+    document.querySelectorAll('.nav-chapter').forEach((link, i) => {
+      link.classList.toggle('active', i + 1 === ch);
     });
-
-    console.log(`[pretext] Measured ${segments.length} segments, ${totalLines} total lines`);
-  } catch (e) {
-    console.warn('[pretext] Measurement fallback:', e.message);
   }
 }
 
@@ -648,21 +729,16 @@ function measureWithPretext() {
 // Keyboard navigation
 // ============================================
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowDown' || e.key === 'j') {
-    const currentIdx = segments.findIndex(s => s.dataset.media === activeSegmentId);
-    if (currentIdx < segments.length - 1) {
-      segments[currentIdx + 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  } else if (e.key === 'ArrowUp' || e.key === 'k') {
-    const currentIdx = segments.findIndex(s => s.dataset.media === activeSegmentId);
-    if (currentIdx > 0) {
-      segments[currentIdx - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+  const idx = segments.findIndex(s => s.dataset.media === activeSegmentId);
+  if ((e.key === 'ArrowDown' || e.key === 'j') && idx < segments.length - 1) {
+    segments[idx + 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else if ((e.key === 'ArrowUp' || e.key === 'k') && idx > 0) {
+    segments[idx - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 });
 
 // ============================================
-// Boot
+// Go
 // ============================================
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
