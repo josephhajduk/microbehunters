@@ -830,7 +830,7 @@ function pageTurn() {
   const style = getComputedStyle(document.body);
   const fontSize = parseFloat(style.fontSize);
   const lh = parseFloat(style.lineHeight) || fontSize * 1.85;
-  const overlap = lh * 3; // keep 3 lines visible from previous page
+  const overlap = lh * 1; // keep 1 line visible from previous page
   const scrollAmount = window.innerHeight - overlap;
   window.scrollBy({ top: scrollAmount, behavior: 'smooth' });
 }
@@ -846,7 +846,7 @@ document.addEventListener('keydown', (e) => {
     const style = getComputedStyle(document.body);
     const fontSize = parseFloat(style.fontSize);
     const lh = parseFloat(style.lineHeight) || fontSize * 1.85;
-    window.scrollBy({ top: -(window.innerHeight - lh * 3), behavior: 'smooth' });
+    window.scrollBy({ top: -(window.innerHeight - lh * 1), behavior: 'smooth' });
   }
   const idx = segments.findIndex(s => s.dataset.media === activeSegmentId);
   if ((e.key === 'ArrowDown' || e.key === 'j') && idx < segments.length - 1) {
